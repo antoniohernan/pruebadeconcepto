@@ -23,7 +23,7 @@ jobs:
       - name: Install, build, and upload your site
         uses: withastro/action@v0
         with:
-          path: /src/pages
+          path: src/pages
           package-manager: yarn 
 
   deploy:
