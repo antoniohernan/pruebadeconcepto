@@ -1,2 +1,2 @@
 # pruebadeconcepto
-Blog personal basado en Github Pages - docs folder
+Blog personal
