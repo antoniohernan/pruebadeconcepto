@@ -1,8 +1,12 @@
-site_name: Prueba de concepto
-site_url: https://example.com/
+site_name: Prueba de Concepto
+site_url: https://pruebadeconcepto.es
+repo_url: https://github.com/antoniohernan/pruebadeconcepto
+site_description: "Un informático de siempre… en estos tiempos modernos"
 nav:
     - Home: index.md
     - About: about.md
 theme:
-    locale: es
-    name: mkdocs
+  name: material
+  favicon: assets/images/favicon.ico
+  font: false
+copyright: Copyright &copy; 2019-2023 Antonio Hernan
