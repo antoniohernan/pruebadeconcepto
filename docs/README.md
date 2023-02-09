@@ -1,2 +1,0 @@
-# pruebadeconcepto
-Blog personal
