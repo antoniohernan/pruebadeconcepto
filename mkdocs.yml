@@ -5,4 +5,4 @@ nav:
     - About: about.md
 theme:
     locale: es
-    name: bootstrap
+    name: material
