@@ -23,4 +23,6 @@ jobs:
           pip install -r requirements.txt
 
       - name: MkDocs gh-deploy
-        run: mkdocs gh-deploy -v
+        run: |
+          git pull
+          mkdocs gh-deploy -v
