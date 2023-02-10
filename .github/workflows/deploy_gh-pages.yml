@@ -3,14 +3,13 @@ name: gh-deploy
 on:
   push:
     branches:
-      - master
-
+      - main
 jobs:
   build:
     name: MkDocs Github Pages automatic deployment
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout master
+      - name: Checkout maikn
         uses: actions/checkout@v2
 
       - name: Set up Python 3.9
