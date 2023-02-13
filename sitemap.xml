@@ -16,4 +16,12 @@
          <xhtml:link rel="alternate" hreflang="fr" href="https://pruebadeconcepto.es/fr/about/"/>
          
     </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/hello-world/</loc>
+         <lastmod>2023-02-13</lastmod>
+         <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://pruebadeconcepto.es/en/hello-world/"/>
+         <xhtml:link rel="alternate" hreflang="fr" href="https://pruebadeconcepto.es/fr/hello-world/"/>
+         
+    </url>
 </urlset>
