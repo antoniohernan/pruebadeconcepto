@@ -71,4 +71,8 @@ nav:
     - Inicio: index.md
     - Generales:
       - Hola mundo!!: hello-world.md
+    - Informática Viejuna:
+      - ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!: guybrush.md
+      - ¿Y esto tiene discos SSD?: discossd.md
+   
        
