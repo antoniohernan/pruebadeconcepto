@@ -10,14 +10,14 @@
       
       
       
-        <link rel="canonical" href="https://pruebadeconcepto.es/about/">
+        <link rel="canonical" href="https://pruebadeconcepto.es/discossd/">
       
       <link rel="icon" href="../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.14">
     
     
       
-        <title>About - Prueba de Concepto</title>
+        <title>¿Y esto tiene discos SSD? - Prueba de Concepto</title>
       
     
     
@@ -68,11 +68,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#about" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -103,7 +98,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              About
+              ¿Y esto tiene discos SSD?
             
           </span>
         </div>
@@ -228,13 +223,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../guybrush/" class="md-tabs__link">
+      <a href="../guybrush/" class="md-tabs__link md-tabs__link--active">
         Informática Viejuna
       </a>
     </li>
@@ -359,12 +356,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
       
       
@@ -399,11 +398,19 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../discossd/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         ¿Y esto tiene discos SSD?
       </a>
+      
     </li>
   
 
@@ -432,8 +439,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -445,15 +450,24 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/antoniohernan/pruebadeconcepto/edit/master/docs/about.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/antoniohernan/pruebadeconcepto/edit/master/docs/discossd.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="about">About<a class="headerlink" href="#about" title="Permanent link">&para;</a></h1>
-<p>about test page
-second line</p>
+  <h1>¿Y esto tiene discos SSD?</h1>
+
+<p>La muerte reciente de Eduardo Punset me ha traído a la cabeza cuando en mi empresa gestionábamos uno de sus portales de ayuda. El portal iba, como solemos decir coloquialmente, <strong>como el ojete</strong>, y vino la típica reunión Comerciales-Desarrollo-Sistemas para <strong>tirarnos los trastos a la cabeza y localizar al culpable.</strong></p>
+<p><img alt="" src="../images/Selecci%C3%B3n_440.png" /></p>
+<p>Aparecieron <strong>frases célebres, desgastadas por el uso</strong>...</p>
+<p>"<em>En desarrollo el portal vuela</em>..." "<em>En mi entorno local del portátil va como un tiro</em>..." "<em>¿Y si le metemos más memoria al servidor? ¿le ponemos más CPU?</em>" "<em>¿Tienen todos los parches?</em>"</p>
+<p>Típicas todas ellas de personas con ninguna o muy poca experiencia que <strong>apenas aciertan a copiar y pegar código encontrado en <a href="https://stackoverflow.com/">StackOverFlow</a></strong>.</p>
+<p>Y entonces soltaron esta, que me <strong>hizo saltar del sitio</strong>:</p>
+<p>"¿Pero ese servidor <strong>tiene los discos SSD no</strong>?", claro que si majadero, este y todos los de ese CPD, valen más sus cabinas de discos que tus dos riñones vendidos al mercado negro...</p>
+<p>Efectivamente, era <strong>un problema de codificación</strong> (again), que en desarrollo o en local con apenas 10 entradas funciona todo como un avión, pero que <strong>en producción con algunas decenas de miles de entradas</strong> ese bucle que haces trayéndote toda la información sin filtrar mata al portal al segundo usuario.</p>
+<p>Por supuesto que la solución no sirvió para nada, <strong>meses después</strong> con otro portal similar los <strong>mismos problemas</strong>, el código era un copia/pega y seguían ahí las deficiencias de siempre, no supieron ni reutilizar el código.</p>
+<p>Pero esta vez la reunión la empecé yo y dejé claro que los discos eran SSD, y devolví el revés preguntando primero si su aplicación estaba preparada para soportar tanta velocidad en disco.</p>
 
               
             </article>
@@ -468,6 +482,26 @@ second line</p>
       </main>
       
         <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../guybrush/" class="md-footer__link md-footer__link--prev" aria-label="Previous: ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
