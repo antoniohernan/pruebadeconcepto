@@ -2,9 +2,6 @@ site_name: Prueba de Concepto
 site_url: https://pruebadeconcepto.es
 repo_url: https://github.com/antoniohernan/pruebadeconcepto
 site_description: "Un informático de siempre… en estos tiempos modernos"
-nav:
-    - Home: index.md
-    - About: about.md
 
 theme:
   name: material
@@ -69,9 +66,9 @@ plugins:
       pretty_print: !ENV [PRETTY_RSS, false]
       length: 30
       match_path: "Tech Blog/.*"
-  - i18n:
-      default_language: en
-      default_language_only: !ENV [DEFAULT_LANGUAGE_ONLY, false]
-      languages:
-        en: '<img style="height: 10px; border: 0px;" alt="en" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f1ec-1f1e7.svg" title="english" /> English'
-        fr: '<img style="height: 10px; border: 0px;" alt="fr" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f1eb-1f1f7.svg" title="français" /> Français'
+
+nav:
+    - Inicio: index.md
+    - Generales:
+      - Hola mundo!!: hello-world.md
+       
