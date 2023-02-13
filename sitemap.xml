@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
          <loc>https://pruebadeconcepto.es/</loc>
-         <lastmod>2023-02-10</lastmod>
+         <lastmod>2023-02-13</lastmod>
          <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://pruebadeconcepto.es/en/"/>
+         <xhtml:link rel="alternate" hreflang="fr" href="https://pruebadeconcepto.es/fr/"/>
+         
     </url>
     <url>
          <loc>https://pruebadeconcepto.es/about/</loc>
-         <lastmod>2023-02-10</lastmod>
+         <lastmod>2023-02-13</lastmod>
          <changefreq>daily</changefreq>
+         <xhtml:link rel="alternate" hreflang="en" href="https://pruebadeconcepto.es/en/about/"/>
+         <xhtml:link rel="alternate" hreflang="fr" href="https://pruebadeconcepto.es/fr/about/"/>
+         
     </url>
 </urlset>
