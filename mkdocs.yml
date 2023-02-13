@@ -75,10 +75,12 @@ nav:
       - ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!: guybrush.md
       - ¿Y esto tiene discos SSD?: discossd.md
     - Tecnología:
+      - Tec1:
     - Raspberry PI:
+      - RpI:
     - Impresion 3D:
+      - 3d1:
     - Chuletas:
+      - C1:
     - Acerca de:
       - Acerca de mi y mis pruebas de concepto: acercademi.md
-   
-       
