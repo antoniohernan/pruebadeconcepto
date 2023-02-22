@@ -1,4 +1,4 @@
-name: gh-deploy
+name: GH-Deploy
 
 on:
   push:
