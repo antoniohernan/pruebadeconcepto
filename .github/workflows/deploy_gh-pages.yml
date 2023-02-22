@@ -1,4 +1,4 @@
-name: GH-Deploy
+name: MkDocs Deploy
 
 on:
   push:
