@@ -1,6 +1,5 @@
 site_name: Prueba de Concepto
 site_url: https://pruebadeconcepto.es
-repo_url: https://github.com/antoniohernan/pruebadeconcepto
 site_description: "Un informático de siempre… en estos tiempos modernos"
 
 theme:
@@ -10,9 +9,9 @@ theme:
   favicon: images/favicon.ico
   features:
     - navigation.tabs
-#    - navigation.tabs.sticky
-#    - navigation.sections
-#    - navigation.top
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.top
   palette:
     - media: "(prefers-color-scheme)"
       toggle:
