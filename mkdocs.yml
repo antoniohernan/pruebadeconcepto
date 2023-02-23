@@ -10,9 +10,9 @@ theme:
   favicon: images/favicon.ico
   features:
     - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.sections
-    - navigation.top
+#    - navigation.tabs.sticky
+#    - navigation.sections
+#    - navigation.top
   palette:
     - media: "(prefers-color-scheme)"
       toggle:
