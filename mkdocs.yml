@@ -69,9 +69,9 @@ plugins:
 nav:
     - Inicio: index.md
     - Generales:
-      - Hola mundo!!: hello-world.md
+      - Hola mundo!!: gen_hello-world.md
     - Informática Viejuna:
-      - ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!: guybrush.md
-      - ¿Y esto tiene discos SSD?: discossd.md
+      - ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!: infv_guybrush.md
+      - ¿Y esto tiene discos SSD?: infv_discossd.md
     - Acerca de:
-      - Acerca de mi y mis pruebas de concepto: acercademi.md
+      - Acerca de mi y mis pruebas de concepto: about_acercademi.md
