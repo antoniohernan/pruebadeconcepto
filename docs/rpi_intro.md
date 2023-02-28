@@ -19,9 +19,9 @@ Lógicamente esto **a día de hoy no vale para mucho**, en 6 años hay nuevas ve
 
 Aquí iré actualizando un índice de las distintas partes de este grupo de mensajes por si queréis ir saltando a alguna parte que os interese más.
 
-- [Introducción](rpi_intro/index.html)
-- [Instalación básica (I)](rpi_install_i/index.html)
-- [Instalación básica (II)](rpi_install_ii/index.html)
+- [Introducción](rpi_intro.md)
+- [Instalación básica (I)](rpi_install_i.md)
+- [Instalación básica (II)](rpi_install_ii.md)
 - [Securización](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014-parte-4-securizacion)
 - [Copias de Seguridad](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014-parte-5-copiasseguridad/)
 - [Práctico 1 - Servidor de WordPress (I)](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014-parte-6-practico1-wordpress1/)
