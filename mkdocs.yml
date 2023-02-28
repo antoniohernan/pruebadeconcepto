@@ -73,5 +73,10 @@ nav:
     - Informática Viejuna:
       - ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!: infv_guybrush.md
       - ¿Y esto tiene discos SSD?: infv_discossd.md
+    - RaspberryPi:
+      - Introducción: rpi_intro.md
+      - Instalación Básica I: rpi_install_i.md
+      - Instalación Básica II: rpi_install_ii.md
     - Acerca de:
       - Acerca de mi y mis pruebas de concepto: about_acercademi.md
+      - Política de privacidad: about_privacy-policy.md
