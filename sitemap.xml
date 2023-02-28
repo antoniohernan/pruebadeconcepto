@@ -6,12 +6,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pruebadeconcepto.es/about/</loc>
+         <loc>https://pruebadeconcepto.es/about_acercademi/</loc>
          <lastmod>2023-02-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pruebadeconcepto.es/about_acercademi/</loc>
+         <loc>https://pruebadeconcepto.es/about_privacy-policy/</loc>
          <lastmod>2023-02-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -27,6 +27,21 @@
     </url>
     <url>
          <loc>https://pruebadeconcepto.es/infv_guybrush/</loc>
+         <lastmod>2023-02-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi_install_i/</loc>
+         <lastmod>2023-02-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi_install_ii/</loc>
+         <lastmod>2023-02-28</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi_intro/</loc>
          <lastmod>2023-02-28</lastmod>
          <changefreq>daily</changefreq>
     </url>
