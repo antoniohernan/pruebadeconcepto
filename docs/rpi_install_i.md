@@ -15,7 +15,7 @@ Cada distribución tiene sus pros y sus contras, e incluso con el tiempo **te vu
 
 ## ¿Y eso de NOOBS?
 
-Pues esto es relativamente reciente, de Septiembre-Octubre de 2013. (**\*recordad**... esto se escribió en 2014!!). Consiste en que te descargas una imagen muy pequeña, y una vez puesta en la Pi, conectada a red y conectada a un teclado y video por HDMI, arranca y se empieza a descargar la imagen definitiva. Algo así como los ejecutables de instalación que se emplean en Windows (argggg), que ocupa muy poco y que cuando los ejecutas te das cuenta que se pone a descargar el software real y se pega la tira de tiempo descargando y venga a bajar megas y megas. También tienes la opción de utilizar una imagen NOOB que tiene las distribuciones casi completas y no necesita de esta descarga. Es una facilidad, muy acertada, que nos dan ahora por si no quieres complicaciones de ningún tipo. No es que no recomiende su uso, pero a mi estas cosas no me gustan, las cosas que vienen ya hechas o que te lo hacen todo ellos y yo no somos muy amigos. No digo que no funcione, por que lo he probado y funciona bastante bien, pero así no aprendes nada.
+Pues esto es relativamente reciente, de Septiembre-Octubre de 2013. (**recordad**... esto se escribió en 2014!!). Consiste en que te descargas una imagen muy pequeña, y una vez puesta en la Pi, conectada a red y conectada a un teclado y video por HDMI, arranca y se empieza a descargar la imagen definitiva. Algo así como los ejecutables de instalación que se emplean en Windows (argggg), que ocupa muy poco y que cuando los ejecutas te das cuenta que se pone a descargar el software real y se pega la tira de tiempo descargando y venga a bajar megas y megas. También tienes la opción de utilizar una imagen NOOB que tiene las distribuciones casi completas y no necesita de esta descarga. Es una facilidad, muy acertada, que nos dan ahora por si no quieres complicaciones de ningún tipo. No es que no recomiende su uso, pero a mi estas cosas no me gustan, las cosas que vienen ya hechas o que te lo hacen todo ellos y yo no somos muy amigos. No digo que no funcione, por que lo he probado y funciona bastante bien, pero así no aprendes nada.
 
 ## ¿Entonces ARCH Linux?¿Por qué?
 
@@ -39,6 +39,7 @@ Si quieres hacer este mismo proceso por ti mismo, con el terminal de OSX los pas
 - Conectas la tarjeta SD al sistema.
 - Identificamos cual es la tarjeta SD que hemos puesto
 
+```
 /dev/disk0 (internal, physical):
    #:                       TYPE NAME                    SIZE       IDENTIFIER
    0:      GUID\_partition\_scheme                        \*1.0 TB     disk0
@@ -49,31 +50,36 @@ Si quieres hacer este mismo proceso por ti mismo, con el terminal de OSX los pas
 #: TYPE NAME
 0: FDisk\_partition\_scheme \*32.0 GB
 1: DOS\_FAT 32.0 GB
+```
 
-- Como véis, en mi caso mi SD es el disco que está en /dev/disk1. El tamaño de la tarjeta SD es una muy buena pista para identificarla.
+- Como véis, en mi caso mi SD es el disco que está en ```/dev/disk1```. El tamaño de la tarjeta SD es una muy buena pista para identificarla.
 - Ahora bien, por si tenéis alguna duda, ejecuntado este comando podréis ver donde está montada la tarjeta en el sistema de ficheros:
 
+```
 df -kh
 Filesystem Size Used Avail Capacity Mounted on 
 /dev/disk0s2 233Gi 208Gi 25Gi 90% /
 ...
 /dev/disk1s2 32Gi 17Mi 31Mi 1% /Volumes/Untitled
+```
 
-Todas las unidades externas en OSX se montan en /Volumes, y ese Untitled que aparece ahí es el nombre de nuestra tarjeta, que seguramente si está nueva sea ese. El disco es /dev/disk1 y s2 es el número de la partición del disco (la s es de slice), por tanto nuestro disco es /dev/disk1, de la partición nos olvidamos por que al volcar la imagen de la distribución se crea su propia tabla de particiones (que luego vamos a modificar, por supuesto).
+Todas las unidades externas en OSX se montan en ```/Volumes```, y ese Untitled que aparece ahí es el nombre de nuestra tarjeta, que seguramente si está nueva sea ese. El disco es ```/dev/disk1``` y ```s2``` es el número de la partición del disco (la s es de slice), por tanto nuestro disco es ```/dev/disk1```, de la partición nos olvidamos por que al volcar la imagen de la distribución se crea su propia tabla de particiones (que luego vamos a modificar, por supuesto).
 
 - Ahora tenemos que desmontar la tarjeta SD, pero no expulsarla!!. Esto es, vamos a ver cómo desaparece la unidad de nuestro escritorio, pero el dispositivo sigue conectado al equipo.
-
+```
 sudo diskutil unmountDisk /dev/disk1
+```
 
-**sudo** es el comando para la ejecución de comandos bajo otro usuario, su es de switch user y do de hacer, esto es, hacer con otro usuario. Aquí en este comando que os he puesto es ejecutar con el usuario administrador el comando diskutil. Os va a pedir una clave antes de continuar, es la clave del usuario administrador de vuestro equipo.
+**sudo** es el comando para la ejecución de comandos bajo otro usuario, su es de switch user y do de hacer, esto es, hacer con otro usuario. Aquí en este comando que os he puesto es ejecutar con el usuario administrador el comando diskutil. Os va a pedir una clave antes de continuar, es la clave del usuario administrador de vuestro equipo.
 
 - El comando para grabar la imagen en ese dispositvo es este:
-
+```
 sudo dd bs=1m if=<ficheroimagen.img> of=/dev/disk1
+```
 
-El comando **dd** toma su nombre de Dataset Definition, y sirve para la manipulación de la información a bajo nivel, para transferir datos, manipular raw data/devices (si, este RAW significa lo mismo que el RAW de las cámaras de fotos tan de moda últimamente, acceso en "crudo") y realizar algunas conversiones predefinidas. Los parámetros que pasamos al comando son bs=1m, que indica que use bloques de 1m para la lectura y escritura, if que le indica al comando el fichero (con ruta completa si es necesario) de origen, y of que le indica el destino de los datos, en nuestro caso el dispositivo de la tarjeta SD. Debéis reemplazar <ficheroimagen.img> por el nombre y ruta de vuestro fichero de imagen, si por ejemplo lo tenéis en vuestras descargas de usuario tendréis dos opciones para hacerlo.
+El comando **dd** toma su nombre de Dataset Definition, y sirve para la manipulación de la información a bajo nivel, para transferir datos, manipular raw data/devices (si, este RAW significa lo mismo que el RAW de las cámaras de fotos tan de moda últimamente, acceso en "crudo") y realizar algunas conversiones predefinidas. Los parámetros que pasamos al comando son bs=1m, que indica que use bloques de 1m para la lectura y escritura, if que le indica al comando el fichero (con ruta completa si es necesario) de origen, y of que le indica el destino de los datos, en nuestro caso el dispositivo de la tarjeta SD. Debéis reemplazar <ficheroimagen.img> por el nombre y ruta de vuestro fichero de imagen, si por ejemplo lo tenéis en vuestras descargas de usuario tendréis dos opciones para hacerlo.
 
-La primera es cambiar el directorio actual de trabajo del terminal, en los sistemas OSX, aunque en el navegador de carpetas lo veáis todo en castellano, en realidad todo eso "por debajo" no son más que carpetas del sistema operativo BSD, que están en inglés. Vuestra carpeta de descargas de usuario estará en **~/Downloads** El símbolo **~** (si, el gorrinillo de encima de las Ñ o virgulilla) se corresponde al caracter ASCII 126 y es un carácter reservado que viene a indicar o contener la ruta del directorio HOME del usuario. En los equipos con Windows (arggg) se obtiene manteniendo pulsada la tecla ALT y tecleando 126 en el teclado numérico. En los equipos con OSX se obtiene manteniendo pulsada la tecla ALT y pulsando la tecla Ñ. En mi caso, que mi usuario se llama Nono, mi carpeta de descargas estará en la ruta /Users/Nono/Downloads ó bien en la ruta ~/Downloads.
+La primera es cambiar el directorio actual de trabajo del terminal, en los sistemas OSX, aunque en el navegador de carpetas lo veáis todo en castellano, en realidad todo eso "por debajo" no son más que carpetas del sistema operativo BSD, que están en inglés. Vuestra carpeta de descargas de usuario estará en **~/Downloads** El símbolo **~** (si, el gorrinillo de encima de las Ñ o virgulilla) se corresponde al caracter ASCII 126 y es un carácter reservado que viene a indicar o contener la ruta del directorio HOME del usuario. En los equipos con Windows (arggg) se obtiene manteniendo pulsada la tecla ALT y tecleando 126 en el teclado numérico. En los equipos con OSX se obtiene manteniendo pulsada la tecla ALT y pulsando la tecla Ñ. En mi caso, que mi usuario se llama Nono, mi carpeta de descargas estará en la ruta ```/Users/Nono/Downloads``` ó bien en la ruta ```~/Downloads```.
 
 - Así que, ejecutamos esto para cambiar al directorio
 
@@ -115,8 +121,8 @@ RSA key fingerprint is 91:2d:b5:60:8a:17:60:4e:62:37:d2:ce:ea:94:7f:65.
 Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added '192.168.1.20' (RSA) to the list of known hosts.
 
-Tenemos que decir **yes**, que aceptamos que se guarde la huella RSA para ese servidor en nuestra lista de equipos conocidos. Y esta información se guarda en el fichero **known\_hosts** que tenemos en el directorio .ssh de nuestro home de usuario (~/.ssh). **¿Por que os cuento esto?**, pues por que esa IP, nombre de máquina y huella de clave RSA se almacenan ahí donde os digo y en caso de hacer una reinstalación de la tarjeta SD (lo harás tarde o temprano.. al tiempo) esta información cambia. Cuando tratéis de hacer una conexión SSH a la nueva/recién formateada Pi se hará un lio tremendo entre lo antiguo y lo nuevo y veréis como directamente la conexión SSH se cierra. Es más, es posible que os llegue a salir un aviso en pantalla acerca de un posible ataque del tipo “[Man in the Middle](http://es.wikipedia.org/wiki/Ataque_Man-in-the-middle)”, como esto:
-
+Tenemos que decir **yes**, que aceptamos que se guarde la huella RSA para ese servidor en nuestra lista de equipos conocidos. Y esta información se guarda en el fichero **known\_hosts** que tenemos en el directorio .ssh de nuestro home de usuario (~/.ssh). **¿Por que os cuento esto?**, pues por que esa IP, nombre de máquina y huella de clave RSA se almacenan ahí donde os digo y en caso de hacer una reinstalación de la tarjeta SD (lo harás tarde o temprano.. al tiempo) esta información cambia. Cuando tratéis de hacer una conexión SSH a la nueva/recién formateada Pi se hará un lio tremendo entre lo antiguo y lo nuevo y veréis como directamente la conexión SSH se cierra. Es más, es posible que os llegue a salir un aviso en pantalla acerca de un posible ataque del tipo “[Man in the Middle](http://es.wikipedia.org/wiki/Ataque_Man-in-the-middle)”, como esto:
+```
 @@@@@@@@@@@
 WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
 @@@@@@@@@@@
@@ -130,8 +136,10 @@ Add correct host key in /Users/Nono/.ssh/known\_hosts to get rid of this message
 Offending RSA key in /Users/Nono/.ssh/known\_hosts:1
 RSA host key for 192.168.1.20 has changed and you have requested strict checking.
 Host key verification failed.
+```
 
-¿Solución?, modificar o eliminar este fichero, si eliminar, no pasa nada, se volverá a generar y llenar de contenido en las siguientes conexiones. Así que, si reinstalas tu Pi y ves que no puedes conectar con ella por SSH, y que esta conexión se cierra al instante prueba esto:
+¿Solución?, modificar o eliminar este fichero, si eliminar, no pasa nada, se volverá a generar y llenar de contenido en las siguientes conexiones. Así que, si reinstalas tu Pi y ves que no puedes conectar con ella por SSH, y que esta conexión se cierra al instante 
+prueba esto:
 
 rm ~/.ssh/known\_hosts
 
