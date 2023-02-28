@@ -1,0 +1,1137 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Un informático de siempre… en estos tiempos modernos">
+      
+      
+      
+        <link rel="canonical" href="https://pruebadeconcepto.es/rpi_securizacion/">
+      
+      
+        <link rel="prev" href="../rpi_install_ii/">
+      
+      
+        <link rel="next" href="../rpi_backup/">
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.15">
+    
+    
+      
+        <title>Instalando una RaspberryPI todo uso… en 2014 (parte 4) – Securización - Prueba de Concepto</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.113286f1.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#es-necesario-securizar-mi-maquina" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Prueba de Concepto" class="md-header__button md-logo" aria-label="Prueba de Concepto" data-md-component="logo">
+      
+  <img src="../images/logo_white.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Prueba de Concepto
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Instalando una RaspberryPI todo uso… en 2014 (parte 4) – Securización
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Inicio
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../gen_hello-world/" class="md-tabs__link">
+        Generales
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../infv_guybrush/" class="md-tabs__link">
+        Informática Viejuna
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../rpi_intro/" class="md-tabs__link md-tabs__link--active">
+        RaspberryPi
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../about_acercademi/" class="md-tabs__link">
+        Acerca de
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Prueba de Concepto" class="md-nav__button md-logo" aria-label="Prueba de Concepto" data-md-component="logo">
+      
+  <img src="../images/logo_white.png" alt="logo">
+
+    </a>
+    Prueba de Concepto
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Inicio
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Generales
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Generales
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gen_hello-world/" class="md-nav__link">
+        Hola mundo!!
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Informática Viejuna
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Informática Viejuna
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infv_guybrush/" class="md-nav__link">
+        ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infv_discossd/" class="md-nav__link">
+        ¿Y esto tiene discos SSD?
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          RaspberryPi
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          RaspberryPi
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_intro/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_install_i/" class="md-nav__link">
+        Instalación Básica I
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_install_ii/" class="md-nav__link">
+        Instalación Básica II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Securización
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Securización
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#es-necesario-securizar-mi-maquina" class="md-nav__link">
+    ¿Es necesario securizar mi máquina?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vale-entonces-securizamos-creamos-usuario" class="md-nav__link">
+    Vale, entonces securizamos, creamos usuario
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalamos-sudo" class="md-nav__link">
+    Instalamos sudo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uncomment-to-allow-members-of-group-wheel-to-execute-any-command" class="md-nav__link">
+    Uncomment to allow members of group wheel to execute any command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wheel-allall-all" class="md-nav__link">
+    %wheel ALL=(ALL) ALL
+  </a>
+  
+    <nav class="md-nav" aria-label="%wheel ALL=(ALL) ALL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cortamos-la-conexion-directa-de-root" class="md-nav__link">
+    Cortamos la conexión directa de root
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permitrootlogin-yes" class="md-nav__link">
+    PermitRootLogin yes
+  </a>
+  
+    <nav class="md-nav" aria-label="PermitRootLogin yes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#y-podemos-usar-autenticacion-en-dos-pasos-pues-claro" class="md-nav__link">
+    ¿Y podemos usar autenticación en dos pasos?, pues claro
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-to-no-to-disable-skey-passwords" class="md-nav__link">
+    Change to no to disable s/key passwords
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pam-10" class="md-nav__link">
+    %PAM-1.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auth-required-pam_securettyso-disable-remote-root" class="md-nav__link">
+    auth required pam_securetty.so #disable remote root
+  </a>
+  
+    <nav class="md-nav" aria-label="auth required pam_securetty.so #disable remote root">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#y-ya-estamos-seguros" class="md-nav__link">
+    ¿Y ya estamos seguros?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-mas-se-puede-hacer" class="md-nav__link">
+    ¿Que más se puede hacer?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_backup/" class="md-nav__link">
+        Copias de Seguridad
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_wordpress1/" class="md-nav__link">
+        Práctico 1 - Servidor Wordpress 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_wordpress2/" class="md-nav__link">
+        Práctico 2 - Servidor Wordpress 2
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Acerca de
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Acerca de
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about_acercademi/" class="md-nav__link">
+        Acerca de mi y mis pruebas de concepto
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about_privacy-policy/" class="md-nav__link">
+        Política de privacidad
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#es-necesario-securizar-mi-maquina" class="md-nav__link">
+    ¿Es necesario securizar mi máquina?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vale-entonces-securizamos-creamos-usuario" class="md-nav__link">
+    Vale, entonces securizamos, creamos usuario
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalamos-sudo" class="md-nav__link">
+    Instalamos sudo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uncomment-to-allow-members-of-group-wheel-to-execute-any-command" class="md-nav__link">
+    Uncomment to allow members of group wheel to execute any command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wheel-allall-all" class="md-nav__link">
+    %wheel ALL=(ALL) ALL
+  </a>
+  
+    <nav class="md-nav" aria-label="%wheel ALL=(ALL) ALL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cortamos-la-conexion-directa-de-root" class="md-nav__link">
+    Cortamos la conexión directa de root
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#permitrootlogin-yes" class="md-nav__link">
+    PermitRootLogin yes
+  </a>
+  
+    <nav class="md-nav" aria-label="PermitRootLogin yes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#y-podemos-usar-autenticacion-en-dos-pasos-pues-claro" class="md-nav__link">
+    ¿Y podemos usar autenticación en dos pasos?, pues claro
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-to-no-to-disable-skey-passwords" class="md-nav__link">
+    Change to no to disable s/key passwords
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pam-10" class="md-nav__link">
+    %PAM-1.0
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#auth-required-pam_securettyso-disable-remote-root" class="md-nav__link">
+    auth required pam_securetty.so #disable remote root
+  </a>
+  
+    <nav class="md-nav" aria-label="auth required pam_securetty.so #disable remote root">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#y-ya-estamos-seguros" class="md-nav__link">
+    ¿Y ya estamos seguros?
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-mas-se-puede-hacer" class="md-nav__link">
+    ¿Que más se puede hacer?
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h2 id="es-necesario-securizar-mi-maquina">¿Es necesario securizar mi máquina?<a class="headerlink" href="#es-necesario-securizar-mi-maquina" title="Permanent link">&para;</a></h2>
+<p>Esto lo tienes que decidir tu.</p>
+<p>Si vas a tener tú máquina en el salón de casa y sólo la usas para XBMC o para emular juegos y poco más lo mismo no te merece ni molestarte en hacerlo.</p>
+<p>Ahora bien, si vas a tener tu máquina en la wifi de tu piso de estudiantes compartido, si la vas a conectar al exterior y vas a querer conectarte desde fuera por conexión SSH, o si vas a poner esta máquina en el colegio donde das clases lleno de jóvenes hiperhormonados que desean pasar a la historia del centro educativo como el que formateó el servidor del profesor... <strong>pues sí, debes securizarla</strong>.</p>
+<p>Esto es como dejar una bicicleta en la puerta de una biblioteca, contra más medidas de seguridad más costará que te la roben, pero ten por seguro que si quieren ir a por ella y robártela, les costará más o menos pero te la robarán.</p>
+<h2 id="vale-entonces-securizamos-creamos-usuario">Vale, entonces securizamos, creamos usuario<a class="headerlink" href="#vale-entonces-securizamos-creamos-usuario" title="Permanent link">&para;</a></h2>
+<p>Lo primero que vamos a hacer es <strong>dejar de usar nuestro apreciado usuario root</strong> o administrador para todas las tareas habituales. Con esto consigues dos cosas, por un lado dejas de exponer tu conexión segura con estas credenciales y consigues usar otro usuario con muchos menos privilegios que puede que a la hora de que algún comando de los "críticos" se te escape de los dedos, la cosa no vaya a mayores.</p>
+<p>Por tanto, <strong>vamos a crear un nuevo usuario</strong>.</p>
+<p>En Linux/Unix los usuarios residen en un fichero de configuración <code>/etc/passwd</code>, este fichero tiene estructura de campos separados por el caracter <strong>:</strong> y hay datos tales como su UID o <strong>identificador de usuario</strong>, su GID o <strong>identificador de grupo</strong> PRIMARIO (por que <strong>podemos tener varios grupos secundarios</strong>), datos como nombre, ruta del directorio HOME y el ejecutable de nuestra Shell de usuarios, esto es, nuestro intérprete de comandos.</p>
+<p>En ningún caso aparecen claves, ni cifradas ni sin cifrar, estas claves están en otro fichero <code>/etc/shadow</code> donde aparecen cifradas y este fichero a su vez no es accesible salvo para los administradores del sistema.</p>
+<p>Como os he dicho los usuarios tienen un grupo primario y pueden tener grupos secundarios, los grupos se guardan en el fichero <code>/etc/passwd</code> que también tiene esa estructura de campos separados por el carácter :, apareciendo en primer lugar el nombre del grupo, a continuación el GID o identificador de grupo y por último, una lista separada por , con todos los usuarios que forman parte del grupo a nivel secundario.</p>
+<p>Creamos el grupo y el usuario con esta secuencia de comandos:</p>
+<p>[root@Jarvis etc]# groupadd -g 1001 operadores
+[root@Jarvis etc]# useradd -m -g 1001 -u 1001 -s /bin/bash -d /home/operador operador
+[root@Jarvis ~]# passwd operador</p>
+<p>Enter new UNIX password: ***
+Retype new UNIX password: ***</p>
+<p>passwd: password updated successfully</p>
+<p>El comando <code>groupadd</code> añade un nuevo grupo al fichero <code>/etc/group</code>, con el parámetro -g indicamos el número identificador de grupo que queremos utilizar, y en último lugar el argumento que se corresponde al nombre del grupo.</p>
+<p>El comando <code>useradd</code>añade un nuevo usuario al fichero <code>/etc/passwd</code>, con el parámetro -g indicamos el número de identificador de su grupo primario, con el parámetro -u indicamos el número de identificador del usuario, con el parámetro -s el ejecutable de nuestro intérprete de comando o shell, con el parámetro -d la ruta del home del usuario y por último el argumento que da nombre a nuestro usuario.</p>
+<p>Con estos dos comandos creamos por tanto grupo y usuario, se rellenan los ficheros passwd y group y se coloca a dicho usuario dentro del grupo creado como grupo primario.</p>
+<p>¿<strong>Y la clave</strong>?, la clave se la damos después, con el comando <code>passwd</code>, en este caso, el comando recibe un argumento que es el nombre del usuario que hemos creado. Por defecto si no indicamos nada el cambio de clave se hace sobre el usuario con el que estamos conectado, y por definición un usuario no puede cambiar más que su propia clave, así que ejecutar el comando <code>passwd &lt;usuario&gt;</code>sólo lo podremos hacer con el usuario administrador o root.</p>
+<h2 id="instalamos-sudo">Instalamos sudo<a class="headerlink" href="#instalamos-sudo" title="Permanent link">&para;</a></h2>
+<p>Ahora vamos a instalar <code>sudo</code>, esto os suena de cuando lo hemos usado para instalar la imagen Iso en nuestra tarjeta SD, es ese programa que nos permite ejecutar otros programas como si fuésemos otro usuario, esto se hace así:</p>
+<p>[root@Jarvis ~]# pacman -S sudo
+resolving dependencies...
+looking for inter-conflicts...
+Packages (1): sudo-1.8.6.p8-1
+Total Download Size: 0.55 MiB
+Total Installed Size: 2.48 MiB
+:: Proceed with installation? [Y/n] Y
+:: Retrieving packages ...
+sudo-1.8.6.p8-1-armv6h 566.1 KiB 717K/s 00:01 [#################################] 100%
+(1/1) checking keys in keyring [#################################] 100%
+(1/1) checking package integrity [#################################] 100%
+(1/1) loading package files [#################################] 100%
+(1/1) checking for file conflicts [#################################] 100%
+(1/1) checking available disk space [#################################] 100%
+(1/1) installing sudo [#################################] 100%</p>
+<p>Utilizamos nuestro gestor de paquetes <strong>pacman con el parámetro -S</strong> y el argumento sudo, esto es, instalame ese paquete.</p>
+<p>Y una vez instalado tenemos que configurarlo, la configuración no es más que la edición de un fichero, <code>/etc/sudoers</code>, y para tal fin tenemos un programa específico, visudo, y claro, al llevar VI en el nombre ya os podéis imaginar como seusa.</p>
+<p>Por supuesto que también podremos modificar el fichero libremente con VI, pero <strong>cualquier error de sintáxis dejará el sistema hecho unos zorros</strong>, visudo, además de bloquear el fichero (nadie más podrá editarlo a la vez) y hacer copia previa, verifica la sintaxis antes de salvarlo, así pues, uso más que recomendado.</p>
+<p>[root@Jarvis etc]# visudo</p>
+<h2 id="uncomment-to-allow-members-of-group-wheel-to-execute-any-command">Uncomment to allow members of group wheel to execute any command<a class="headerlink" href="#uncomment-to-allow-members-of-group-wheel-to-execute-any-command" title="Permanent link">&para;</a></h2>
+<h1 id="wheel-allall-all">%wheel ALL=(ALL) ALL<a class="headerlink" href="#wheel-allall-all" title="Permanent link">&para;</a></h1>
+<p>%operadores ALL=(ALL) ALL</p>
+<p>Añadimos la línea arriba indicada, ¿qué significa esa línea?</p>
+<p>El pimero ALL= indica <strong>desde donde nos pueden ejecutar</strong>, en este caso desde cualquier máquina.</p>
+<p>El segundo (ALL) <strong>indica los usuarios que podrán hacer sudo</strong>, dentro del grupo que vemos ahora.</p>
+<p>El tercer ALL <strong>indica los comandos que ese usuario podrá ejecutar</strong>, en este caso todos.</p>
+<p>¿Y ese %operadores? pues con eso indicamos que todo esto que hemos explicado arriba de los ALL sólo lo van a poder hacer los usuarios que por perfilado (passwd y group) tengran el grupo operadores como grupo <strong>PRIMARIO</strong>, esto es, como grupo dentro de passwd, si el usuario tiene el grupo como <strong>SECUNDARIO</strong> a través del fichero de grupos no cumplirá esta configuración y no podrá ejecutar sudo.</p>
+<p>Cuando ejecutemos por tanto sudo con nuestro usuario operador nos solicitará una clave, que es la nuestra, la del usuario operador.</p>
+<p>Ahora con esto instalado ya no necesitamos el acceso directo a la máquina con el usuario root, por tanto, lo mejor es cerrarlo, que no se pueda conectar nadie directamente con un usuario privilegiado.</p>
+<p>Esta operación es algo más delicada pues hay que tocar algunos ficheros de configuración que de hacerlo mal nos quedamos sin conexión... así que cuidado, y <strong>ante la duda ESC + :q! para salir de VI sin hacer cambios</strong>.</p>
+<h2 id="cortamos-la-conexion-directa-de-root">Cortamos la conexión directa de root<a class="headerlink" href="#cortamos-la-conexion-directa-de-root" title="Permanent link">&para;</a></h2>
+<p>Para esto, en primer lugar editamos el fichero <code>/etc/ssh/sshd_config</code></p>
+<p>[root@Jarvis etc]# vi /etc/ssh/sshd_config</p>
+<p>Debemos buscar la línea que tiene:</p>
+<h1 id="permitrootlogin-yes">PermitRootLogin yes<a class="headerlink" href="#permitrootlogin-yes" title="Permanent link">&para;</a></h1>
+<p>Y cambiarla por esta otra:</p>
+<p>PermitRootLogin no</p>
+<p>Para esto bajamos con los cursores por el fichero y una vez puestos sobre el símbolo # de la línea pulsamos la tecla x, que nos borra ese carácter. Ahora nos movemos con las flechas a la derecha hasta ponernos encima de la y de yes y pulsamos el comando cw (Change Word), nos aparecerá un símbolo $ sobre la s que nos marca el final de la palabra que estamos sustituyendo, y tecleamos no.</p>
+<p>Salimos salvando el fichero con ESC :wq!</p>
+<p>Tenemos que reiniciar el demonio de ssh, <strong>¿demonio?</strong>, si, los procesos residentes en el sistema, que se quedan a la espera de hacer su trabajo ante eventos específicos se llaman demonios (Daemon), en el caso de los procesos de ssh <strong>su demonio se llaman sshd</strong>.</p>
+<p>[root@Jarvis etc]# systemctl restart sshd</p>
+<p>El comando <code>systemctl</code> es nuestro comando para controlar el sistema de arranque/ejecución de servicios en la máquina bajo <a href="https://wiki.archlinux.org/index.php/systemd_(Espa%C3%B1ol)">systemd</a></p>
+<p>En este caso le estamos diciendo que reinicie ese servicio/demonio concreto.</p>
+<p>En cuanto termine el reinicio del demonio podremos probar a abrir una nueva conexión ssh con root y veremos como nos da un acceso denegado, así pues, a partir de este momento todas las conexiones con el usuario operador y las ejecuciones privilegiadas o bien con sudo o bien haciendo<code>su -</code>para cambiar a una shell de usuario root.</p>
+<h2 id="y-podemos-usar-autenticacion-en-dos-pasos-pues-claro">¿Y podemos usar autenticación en dos pasos?, pues claro<a class="headerlink" href="#y-podemos-usar-autenticacion-en-dos-pasos-pues-claro" title="Permanent link">&para;</a></h2>
+<p>Primero tenemos que instalarnos en nuestro teléfono el programa de Google que nos <strong>genera los "tokens"</strong> por tiempo, para iOs este es el <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">enlace</a></p>
+<p>Tenemos que descargarnos los fuentes de este librería PAM de la propia Google, y lo tenemos que hacer desde nuestra máquina, vamos a utilizar el comando <code>wget</code></p>
+<p>PAM es el acrónimo de <strong>Linux Pluggable Authentication Modules</strong>, esto es, módulo conectables de autenticación, vamos a darle a nuestro sistema por tanto un módulo de autenticación en dos pasos de Google en formato librería.</p>
+<p>[operador@Jarvis ~]$ su - 
+  Password: <aquí la clave de root> </p>
+<p>[root@Jarvis ~]# mkdir /Descargas; cd /Descargas 
+[root@Jarvis Descargas]# wget https://google-authenticator.googlecode.com/files/libpam-google-authenticator-1.0-source.tar.bz2</p>
+<p>Nos conectamos con operador, hacemos un su - para cambiar al usuario root (la clave que se nos pide es la de ese usuario, root).</p>
+<p>Creamos un directorio con el comando <code>mkdir</code> (Make Directory), y nos posicionamos en el con <code>cd</code>. Como veis los dos comandos están en la misma línea separados por un ;, esto es por que la shell ejecuta un comando y ejecuta el otro.</p>
+<p>Si miramos la "doble extensión" del fichero que nos descargamos vemos que por un lado se trata de un fichero comprimido con <a href="https://www.archlinux.org/packages/core/i686/bzip2/">Bzip2</a> dada la extensión bz2 y que además se trata de un conjunto de archivos y directorios empaquetados con <a href="http://es.wikipedia.org/wiki/Tar">tar</a></p>
+<p>Para desempaquetar el tar no tenemos problemas pues es algo que siempre vamos a encontrar en la distribución, prácticamente sea la que sea.</p>
+<p>En cuanto a bzip2 ya es otra cosa y la tendremos que instalar, para esto, ya sabéis recurrimos a nuestro gestor de paquetes (seguimos teniendo nuestra conexión y nuestra sesión de operador con la que hemos cambiado a root):</p>
+<p>[root@Jarvis Descargas]# pacman -S bzip2</p>
+<p>resolving dependencies...</p>
+<p>Tenemos que descomprimir y desempaquetar el fichero de los fuentes de esta librería, con algunas versiones recientes de tar es posible que este haga las dos operaciones, que primero descomprima y luego desempaquete, pero con esta que os pongo yo a continuación os funcionará siempre, sea cual sea la versión de tar y el formato de compresión:</p>
+<p>[root@Jarvis Descargas]# bzip2 -dc libpam-google-authenticator-1.0-source.tar.bz2 | tar -xv</p>
+<p>¿Os acordáis que antes os he contado lo de &gt; &lt; y |?, pues aquí vemos el <strong>uso de | (pipe o tubería)</strong>, esto lo que hace es convertir la salida estandar de un comando en la entrada estándar del siguiente, por tanto toma la descompresión del fichero y se lo entrega al comando tar para que lo desempaquete.</p>
+<p>Sólo nos queda compilar, y para esto necesitamos entorno de desarrollo, lo que implica instalar al menos los siguientes paquetes:</p>
+<p>[root@Jarvis Descargas]# pacman -S make gcc</p>
+<p>resolving dependencies...</p>
+<p>Y estas son las órdenes para poder compilar:</p>
+<p>[root@Jarvis Descargas]# cd libpam-google-authenticator-1.0
+[root@Jarvis libpam-google-authenticator-1.0]# make</p>
+<p>gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o google-authenticator.o google-authenticator.c
+gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o base32.o base32.c
+gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o hmac.o hmac.c
+gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o sha1.o sha1.c
+gcc -g -o google-authenticator google-authenticator.o base32.o hmac.o sha1.o -ldl
+gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o pam_google_authenticator.o pam_google_authenticator.c
+gcc -shared -g -o pam_google_authenticator.so pam_google_authenticator.o base32.o hmac.o sha1.o -lpam
+gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o demo.o demo.c
+gcc -DDEMO --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o pam_google_authenticator_demo.o pam_google_authenticator.c
+gcc -g -rdynamic -o demo demo.o pam_google_authenticator_demo.o base32.o hmac.o sha1.o -ldl
+gcc -DTESTING --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden \ 
+ -o pam_google_authenticator_testing.o pam_google_authenticator.c
+gcc -shared -g -o pam_google_authenticator_testing.so pam_google_authenticator_testing.o base32.o hmac.o sha1.o -lpam
+gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o pam_google_authenticator_unittest.o pam_google_authenticator_unittest.c
+gcc -g -rdynamic -o pam_google_authenticator_unittest pam_google_authenticator_unittest.o base32.o hmac.o sha1.o -lc -ldl</p>
+<p>Y si la compilación no nos da ningún error, procedemos a instalarlo:</p>
+<p>[root@Jarvis libpam-google-authenticator-1.0]# make install</p>
+<p>cp pam_google_authenticator.so /lib/security
+cp google-authenticator /usr/local/bin</p>
+<p>Esto nos deja por un lado instalada la librería de seguridad, en <code>/lib/security</code>, y el programa <code>google-authenticator</code> que nos va a servir para genera la entrada en el programa de autenticación de nuestro terminal móvil.</p>
+<p>Antes de activar la librería debemos tener generados los códigos de acceso con la aplicación, ¿con que usuario?, puescon el único con el que nos podemos conectar a la máquina, operador, así que necesitamos tener la conexión a nuestra máquina abierta con dicho usuario o abrir una nueva.</p>
+<p>Ejectamos el siguiente comando.</p>
+<p>[operador@Jarvis ~]$ /usr/local/bin/google-authenticator</p>
+<p>Do you want authentication tokens to be time-based (y/n) y</p>
+<p>https://www.google.com/chart?chs=200x200&amp;chld=M|0&amp;cht=qr&amp;chl=otpauth://totp/root@DomePi%3Fsecret%3DYYMTXZ56APYLY6CE</p>
+<p>Your new secret key is: DYYMTXZ56APYLY6CE
+Your verification code is 636744</p>
+<p>Your emergency scratch codes are:</p>
+<p>31868847
+79023148
+93855998
+42788591
+48617175</p>
+<p>Do you want me to update your "~/.google_authenticator" file (y/n) y</p>
+<p>Do you want to disallow multiple uses of the same authentication
+token? This restricts you to one login about every 30s, but it increases
+your chances to notice or even prevent man-in-the-middle attacks (y/n) y</p>
+<p>By default, tokens are good for 30 seconds and in order to compensate for
+possible time-skew between the client and the server, we allow an extra
+token before and after the current time. If you experience problems with poor
+time synchronization, you can increase the window from its default
+size of 1:30min to about 4min. Do you want to do so (y/n) n</p>
+<p>If the computer that you are logging into isn't hardened against brute-force
+login attempts, you can enable rate-limiting for the authentication module.
+By default, this limits attackers to no more than 3 login attempts every 30s.
+Do you want to enable rate-limiting (y/n) y</p>
+<p>Como véis, <strong>se dice a todo que sí salvo a la compensación extra de tiempo</strong>.</p>
+<p>Se nos genera una URL y un conjunto de códigos adicionales.</p>
+<p>Si copiáis esa URL en un navegador os mostrará un QR que se puede escasear con la aplicación de Google y que directamente os arrancará la aplicación con la generación de códigos para vuestro dispositivo.</p>
+<p>Así de fácil, iniciar la app en el móvil, pulsar sobre añadir y escanear ese código QR.</p>
+<p>Los otros códigos, pues son código "quemables", esto es, si alguna vez no puedes acceder a la aplicación y te tienes que conectar puedes usar uno de esos códigos, una vez que lo has usado ya no es válido y por tanto decimos que se ha quemado.</p>
+<p>Si los usas todos, pues no pasa nada, podrías volver a usar el ejecutable de <code>google-authenticator</code> y generar un nuevo conjunto de códigos y una nueva URL de acceso.</p>
+<p>Ya tenemos nuestro generador de códigos en sincronía con nuestra máquina, así que vamos a activarlo, para esto en primer lugar tenemos que editar el fichero <code>/etc/ssh/sshd_config</code> y modificar lo que se indica a continuación (con el usuario root, si estás con operador deberás hacer el su -):</p>
+<p>[root@Jarvis ~]# vi /etc/ssh/sshd_config</p>
+<h1 id="change-to-no-to-disable-skey-passwords">Change to no to disable s/key passwords<a class="headerlink" href="#change-to-no-to-disable-skey-passwords" title="Permanent link">&para;</a></h1>
+<p>ChallengeResponseAuthentication no</p>
+<p>Cambiamos esa línea, y <strong>donde dice no ponemos yes</strong></p>
+<p>Ahora editamos el fichero <code>/etc/pam.d/sshd</code>, añadiendo una línea al principio del fichero (pulsando la combinación de teclas SHIFT + o, que nos añade una linea por encima de la actual):</p>
+<p>[root@Jarvis ~]# vi /etc/pam.d/sshd</p>
+<h1 id="pam-10">%PAM-1.0<a class="headerlink" href="#pam-10" title="Permanent link">&para;</a></h1>
+<h1 id="auth-required-pam_securettyso-disable-remote-root">auth required pam_securetty.so #disable remote root<a class="headerlink" href="#auth-required-pam_securettyso-disable-remote-root" title="Permanent link">&para;</a></h1>
+<p>auth required pam_google_authenticator.so</p>
+<p>Y ya sólo nos queda reiniciar sshd</p>
+<p>[root@Jarvis ~]# systemctl restart sshd</p>
+<p>Ahora, si hacemos una conexión veremos que no nos pide usuario/clave, sino que nos pide un código de verificación, que es el que nos genera nuestra aplicación móvil (ó alguno de aquellos códigos quemables que habíamos generado)</p>
+<p>Verification code:
+Password:</p>
+<p>Last login: Mon Apr 15 19:16:10 2013 from 192.168.1.10</p>
+<p>[operador@Jarvis ~]$</p>
+<h2 id="y-ya-estamos-seguros">¿Y ya estamos seguros?<a class="headerlink" href="#y-ya-estamos-seguros" title="Permanent link">&para;</a></h2>
+<p>Pues no, con esto sólo lo has puesto un poco más difícil, pero no es una máquina segura 100%, para tener unamáquina así, <strong>segura al 100% lo único que puedes hacer es apagarla y desconectarla de la red</strong>...</p>
+<h2 id="que-mas-se-puede-hacer">¿Que más se puede hacer?<a class="headerlink" href="#que-mas-se-puede-hacer" title="Permanent link">&para;</a></h2>
+<p>Pues podemos <strong>activar el firewall</strong> de nuestra máquina, para restringir las conexiones, que sólo nos lo permita desde las direcciones IP de nuestros equipos (p.e. desde nuestro equipo MAC de sobremesa o portátil), o activar la apertura del puerto de conexión sólo ante un evento denominado <strong>PortKnocking</strong>.</p>
+<p>Pero esto son cuestiones algo extensas que ya trataré más adelante.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2019-2023 Antonio Hernan
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+      
+    
+  </body>
+</html>

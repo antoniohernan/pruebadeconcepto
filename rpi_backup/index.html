@@ -1,0 +1,966 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Un informático de siempre… en estos tiempos modernos">
+      
+      
+      
+        <link rel="canonical" href="https://pruebadeconcepto.es/rpi_backup/">
+      
+      
+        <link rel="prev" href="../rpi_securizacion/">
+      
+      
+        <link rel="next" href="../rpi_wordpress1/">
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.15">
+    
+    
+      
+        <title>Instalando una RaspberryPI todo uso… en 2014 (parte 5) – Copias de Seguridad - Prueba de Concepto</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.113286f1.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#copias-de-seguridad" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Prueba de Concepto" class="md-header__button md-logo" aria-label="Prueba de Concepto" data-md-component="logo">
+      
+  <img src="../images/logo_white.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Prueba de Concepto
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Instalando una RaspberryPI todo uso… en 2014 (parte 5) – Copias de Seguridad
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Inicio
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../gen_hello-world/" class="md-tabs__link">
+        Generales
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../infv_guybrush/" class="md-tabs__link">
+        Informática Viejuna
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../rpi_intro/" class="md-tabs__link md-tabs__link--active">
+        RaspberryPi
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../about_acercademi/" class="md-tabs__link">
+        Acerca de
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Prueba de Concepto" class="md-nav__button md-logo" aria-label="Prueba de Concepto" data-md-component="logo">
+      
+  <img src="../images/logo_white.png" alt="logo">
+
+    </a>
+    Prueba de Concepto
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Inicio
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Generales
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Generales
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gen_hello-world/" class="md-nav__link">
+        Hola mundo!!
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Informática Viejuna
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Informática Viejuna
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infv_guybrush/" class="md-nav__link">
+        ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infv_discossd/" class="md-nav__link">
+        ¿Y esto tiene discos SSD?
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          RaspberryPi
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          RaspberryPi
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_intro/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_install_i/" class="md-nav__link">
+        Instalación Básica I
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_install_ii/" class="md-nav__link">
+        Instalación Básica II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_securizacion/" class="md-nav__link">
+        Securización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Copias de Seguridad
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Copias de Seguridad
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#copias-de-seguridad" class="md-nav__link">
+    Copias de seguridad
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copia-completa-sd-copia-en-frio" class="md-nav__link">
+    Copia completa SD (copia en frío)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copias-incrementales-copia-en-caliente" class="md-nav__link">
+    Copias incrementales (copia en caliente)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binbash" class="md-nav__link">
+    !/bin/bash
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_wordpress1/" class="md-nav__link">
+        Práctico 1 - Servidor Wordpress 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_wordpress2/" class="md-nav__link">
+        Práctico 2 - Servidor Wordpress 2
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Acerca de
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Acerca de
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about_acercademi/" class="md-nav__link">
+        Acerca de mi y mis pruebas de concepto
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about_privacy-policy/" class="md-nav__link">
+        Política de privacidad
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#copias-de-seguridad" class="md-nav__link">
+    Copias de seguridad
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copia-completa-sd-copia-en-frio" class="md-nav__link">
+    Copia completa SD (copia en frío)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copias-incrementales-copia-en-caliente" class="md-nav__link">
+    Copias incrementales (copia en caliente)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binbash" class="md-nav__link">
+    !/bin/bash
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h2 id="copias-de-seguridad">Copias de seguridad<a class="headerlink" href="#copias-de-seguridad" title="Permanent link">&para;</a></h2>
+<p>En este punto tenemos nuestra máquina lista y preparada para empezar a meter contenido en ella.</p>
+<p>Instalar programas, activar funcionalidades, en definitiva, para empezar el cacharreo, así que toca pensar en <strong>tener como mínimo un punto de restauración</strong> para no tener que volver a realizar todos los trabajos que hemos hecho hasta ahora.</p>
+<p>Además de todo esto, la copia de seguridad nos va a aportar un plus de tranquilidad, y ya no tendremos tanto miedo por tocar este o aquel fichero de configuración y llevarnos la sorpresa de que nuestra máquina no se comporta como queríamos <strong>o que simplemente no arranca</strong>.</p>
+<p>Os cuento como hago yo las copias de seguridad, y como siempre digo, esto es sólo una parte, y como yo lo hago, tomadlo como una base si queréis pero no como un dogma.</p>
+<p>Por desgracia para nosotros los Maqueros, aquí no disponemos de nada similar al fantástico <a href="https://web.archive.org/web/20090615053605/http://www.apple.com/es/macosx/what-is-macosx/time-machine.html">TimeMachine</a>, así que debemos implementarlo todo con otros programas y mecanismos (programación de tareas), además las copias completas serán algo más manuales y a máquina parada.</p>
+<p>Distinguiremos dos tipos de copias de seguridad, las copias en <strong>frío</strong>, o copias completas, donde <strong>la máquina está parada</strong> y no se realizan por tanto modificaciones en su contenido, es más, para estas copias deberemos retirar la tarjeta SD de la máquina.</p>
+<p>Y las copias en <strong>caliente</strong>, que realizaremos con <strong>la máquina en funcionamiento</strong>, aunque en ocasiones podamos llegar a sufrir algo de degradación en el rendimiento de nuestra máquina por en consumo de disco/cpu de la operación de copia. Estas copias en caliente <strong>serán complemento de las anteriores</strong>.</p>
+<p>Explicado un poco mejor, partimos de una copia en frío, la cual no es más que un espejo o snapshot de la actual información de nuestra tarjeta SD, y que se realiza con no mucha asiduidad, ya que implica la parada de la máquina.</p>
+<p>Tenemos por otro lado que a diario, o incluso varias veces a lo largo del dÌa, se realizan copias en caliente, las cuales además son incrementales, esto es, se copia todo y luego se copia únicamente lo que se modifica (realmente se copian los bloques de los ficheros que cambian, es la llamada <a href="http://es.wikipedia.org/wiki/Delta_encoding">tecnología delta</a></p>
+<p>Para restaurar nuestra máquina en el último momento antes de un error debemos restaurar la tarjeta con la última copia de seguridad completa en frío que tengamos y luego añadirle la información del incremental de que disponemos.</p>
+<h2 id="copia-completa-sd-copia-en-frio">Copia completa SD (copia en frío)<a class="headerlink" href="#copia-completa-sd-copia-en-frio" title="Permanent link">&para;</a></h2>
+<p>No se si recordáis la utilidad que os comenté en el momento de pasar la imagen del sistema operativo a la SD, <a href="http://ivanx.com/raspberrypi/">Pi Filler</a> , como os dije ese fabricante tiene otra utilidad llamada <a href="http://ivanx.com/raspberrypi/">Pi Copier</a> que hace la operación inversa, pasar el contenido de la tarjeta a un fichero en nuestro disco duro, incluso hace una compresión del fichero de volcado si así se lo indicamos.</p>
+<p>Ambos programas, Pi Filler y Pi Copier están <strong>hechos en AppleScript y son fácilmente editables</strong>, para que veáis si queréis lo que realmente hacen.</p>
+<p>El uso de Pi Copier es muy sencillo pues sólo hay que seleccionar nuestra tarjeta SD e indicar un fichero de destino, marcando si queremos que Además la copia sea posteriormente comprimida y listo,a esperar el resultado.</p>
+<p>Es posible que queramos hacerlo manualmente, total es hacer la operación inversa a la de carga de la SD con la imagen original.</p>
+<p>Para esto, volveremos a usar el comando dd cambiando como es lógico los parámetros de entrada y salida de la información.</p>
+<p>Este sería el comando para volcar nuestra tarjeta SD en nuestra carpeta Descargas:</p>
+<p>sudo dd bs=1m if=/dev/rdisk1 | gzip &gt; ~/downloads/2014-04-26_Jarvis.img.gz</p>
+<p>El parámetro <code>if</code> indica que nuestro origen será el disco (completo, no particiones) que corresponde a nuestra tarjeta SD (en mi caso es este, <code>/dev/rdisk1</code> pues monto con un USB porta SD, recordad como vimos como localizar nuestro dispositivo en el mensaje de instalación de la SD).</p>
+<p>Y ¿el parámetro de salida?, no está, se omite, por que la salida del comando, salida estándar o a pantalla se está enviando a un comando mediante el uso de ese <code>|</code>, esto es, la salida estándar del comando <code>dd</code> se está empleando como entrada estándar del comando <code>gzip</code> ( es la versión <a href="http://es.wikipedia.org/wiki/GNU">GNU</a> de nuestro conocido Zip), y la salida generada por gzip es enviada a un fichero mediante el uso de <code>&gt;</code> el cual se encuentra en la carpeta de Descargas (Downloads, recordad que el terminal del sistema operativo lo ve <strong>todo en inglés</strong>...) de la carpeta HOME del usuario, la cual viene indicada por el uso de nuestra amiga la virgulilla (~).</p>
+<p>Importante, el tamaño del fichero de destino, en caso de no comprimirlo es el mismo que el tamaño de la tarjeta SD, esté esta llena o no, si nuestra tarjeta es de 32Gb nuestra imagen en disco será de esos 32Gb, pues la copia es literal, así pues, imprescindible comprimirla a no ser que dispongamos de Terabytes libres para regalar.</p>
+<h2 id="copias-incrementales-copia-en-caliente">Copias incrementales (copia en caliente)<a class="headerlink" href="#copias-incrementales-copia-en-caliente" title="Permanent link">&para;</a></h2>
+<p>Bien, pues ahora tenemos un punto de partida para poder restaurar nuestra máquina, a través de esas imágenes completas de tarjeta. Estas copias, por lo que tardan y por que debemos detener la máquina no las haremos con mucha frecuencia, yo en mi caso particular las hago una vez al mes... <strong>mes arriba mes abajo</strong> XD.</p>
+<p>Para las copias en caliente yo empleo dos métodos, uso <a href="http://es.wikipedia.org/wiki/Rsync">Rsync</a>  y <a href="http://en.wikipedia.org/wiki/Dump_(program)">Dump</a>casi indistintamente, si bien rsync es bastante más frecuente y me fuerzo a usarlo bastante más regularmente pues es posible hacerlo incluso volcando sobre equipos que estén en nuestra red (p.e. un NAS)</p>
+<p>Os voy a contar como opero con Rsync, para tratar de no hacer este tutorial demasiado extenso y dejamos por ahora el tema de dump para futuras revisiones de este texto. Además, como veremos un poco más adelante, el uso de rsync nos va a venir muy bien para utilizar nuestra máquina como centro de respaldo de nuestros equipos Apple, algo así como una <strong>pequeña Time Capsule</strong>.</p>
+<p>Necesitamos un pendrive de al menos 4Gb (fácil y barato hoy en día), el pendrive lo conectamos a uno de los dos puertos USB y será nuestra unidad de respaldo.</p>
+<p>Este unidad la vamos a <strong>montar de manera fija</strong>, por tanto no dependeremos de la posibilidad de automontaje que luego más adelante veremos.</p>
+<p>En primer lugar, después de conectar el pendrive a la máquina, debemos identificar que dispositivo se corresponde con nuestro pendrive:</p>
+<p>Con el siguiente comando vemos como el dispositivo está conectado a la máquina y que es identificado por esta (en mi caso un lector de tarjeta Micro-SD):</p>
+<p>[root@Jarvis log]# lsusb</p>
+<p>Bus 001 Device 004: ID 1058:1103 Western Digital Technologies, Inc. My Book Studio
+Bus 001 Device 005: ID 05e3:0715 Genesys Logic, Inc. USB 2.0 microSD Reader
+Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp. SMSC9512/9514 Fast Ethernet Adapter
+Bus 001 Device 002: ID 0424:9512 Standard Microsystems Corp. SMC9512/9514 USB Hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</p>
+<p>Y la mejor manera de ver cual es el dispositivo de nuestro pendrive es guiarnos por la salida del comando fdisk y por las capacidades de los "discos":</p>
+<p>[root@Jarvis ~]# fdisk -l</p>
+<p>Disk /dev/sdb: 3.7 GiB, 3965190144 bytes, 7744512 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x00000000
+Device Boot Start End Blocks Id System
+/dev/sdb1 8192 7744511 3868160 b W95 FAT32</p>
+<p>Nuestro pendrive es la unidad <code>/dev/sdb</code> y la partición es la 1 (única partición por otro lado), está formateado sistema de ficheros Fat32, así que vamos a hacer lo propio que es crear unas particiones más acordes con el sistema operativo con el que estamos tratando y a formatear estas particiones.</p>
+<p>En concreto crearemos dos, una la vamos a emplear ahora en este paso de copias de seguridad y la otra partición la utilizaremos en el siguiente mensaje...</p>
+<p>Es posible usar el “disco” en Fat32, y así podremos compartir este pendrive entre sistemas, pero esto lo veremos en otra ocasión ya que necesitaríamos modificar las opciones de montaje del dispositivo (no vale emplear el defaults en fstab) y podemos tener algunos problemas de permisos, por no decir que tendremos la limitación de tamaño máximo de archivo que tiene Fat32 respecto a ext4.</p>
+<p>[root@Jarvis ~]# fdisk /dev/sdb</p>
+<p>Welcome to fdisk (util-linux 2.24.1).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.</p>
+<p>Orden (m para obtener ayuda): p
+Disk /dev/sdb: 7,5 GiB, 8017412096 bytes, 15659008 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xc3072e18
+Disposit. Inicio Start Final Blocks Id System
+/dev/sdb1 2048 15659007 7828480 83 Linux
+Orden (m para obtener ayuda): d
+Selected partition 1
+Partition 1 has been deleted.</p>
+<p>Orden (m para obtener ayuda): n
+Partition type:
+p primary (0 primary, 0 extended, 4 free)
+e extended</p>
+<p>Select (default p): p
+Número de partición (1-4, default 1): 1
+First sector (2048-15659007, default 2048):
+Last sector, +sectors or +size{K,M,G,T,P} (2048-15659007, default 15659007): +3G
+Created a new partition 1 of type 'Linux' and of size 3 GiB.</p>
+<p>Orden (m para obtener ayuda): n
+Partition type:
+p primary (1 primary, 0 extended, 3 free)
+e extended</p>
+<p>Select (default p): p
+Número de partición (2-4, default 2): 2
+First sector (6293504-15659007, default 6293504):
+Last sector, +sectors or +size{K,M,G,T,P} (6293504-15659007, default 15659007):
+Created a new partition 2 of type 'Linux' and of size 4,5 GiB.</p>
+<p>Orden (m para obtener ayuda): p
+Disk /dev/sdb: 7,5 GiB, 8017412096 bytes, 15659008 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xc3072e18
+Disposit. Inicio Start Final Blocks Id System
+/dev/sdb1 2048 6293503 3145728 83 Linux
+/dev/sdb2 6293504 15659007 4682752 83 Linux</p>
+<p>Orden (m para obtener ayuda): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.</p>
+<p>Ahora creamos el FileSystem en esa partición de disco (de tipo <a href="http://es.wikipedia.org/wiki/Ext4">ext4</a> ), y el directorio donde montaremos el disco:</p>
+<p>[root@Jarvis ~]# mkfs -t ext4 /dev/sdb1</p>
+<p>mke2fs 1.42.8 (20-Jun-2013)
+Filesystem label=
+OS type: Linux
+Block size=4096 (log=2)
+Fragment size=4096 (log=2)
+Stride=0 blocks, Stripe width=0 blocks
+242400 inodes, 967808 blocks
+48390 blocks (5.00%) reserved for the super user
+First data block=0
+Maximum filesystem blocks=994050048
+30 block groups
+32768 blocks per group, 32768 fragments per group
+8080 inodes per group
+Superblock backups stored on blocks:
+32768, 98304, 163840, 229376, 294912, 819200, 884736
+Allocating group tables: done
+Writing inode tables: done
+Creating journal (16384 blocks): done
+Writing superblocks and filesystem accounting information: done</p>
+<p>[root@Jarvis /]# mkdir /BCK</p>
+<p>Y por último, configuramos el punto de montaje, para lo que debemos editar nuestro fichero <code>/etc/fstab</code> (con VI por supuesto) y añadir la siguiente línea:</p>
+<p>/dev/sdb1 /BCK ext4 defaults 0 0</p>
+<p>Para añadir esa línea, después de haber tecleado <code>vi /etc/fstab</code> pulsamos las teclas SHIFT + G (que nos lleva al final del fichero) y una vez allí pulsamos la tecla o (o minúscula) para añadir una nueva línea a continuación de la actual(última en nuestro caso) y así entramos en modo edición, aquí podemos teclear la información o usar copiar y pegar de la que os he puesto si es que el nombre del dispositivo coincide.</p>
+<p>En caso de no realizar un nuevo particionamiento y aprovechar lo que tenemos en el pendrive (p.e. Fat32), la línea que debemos crear en <code>/etc/fstab</code> es la siguiente:</p>
+<p>/dev/sdb1 /BCK vfat user,rw,umask=111,dmask=000 0 0</p>
+<p>En los siguientes arranques de la máquina ese punto de montaje ya estará presente, y si queremos activarlo ahora, sin tener que reiniciar recurriremos al comando mount el cual nos montará los recursos pendientes de montaje tal y como aparecen en nuestro <code>/etc/fstab</code></p>
+<p>[root@Jarvis /]# mount -a
+[root@Jarvis /]# df -kh</p>
+<p>Filesystem Size Used Avail Use% Mounted on
+/dev/sdb1 3.6G 7.4M 3.4G 1% /BCK</p>
+<p>Con la infraestructura necesaria para estas copias incrementales ya operativa vamos a ver los comandos y scripts necesarios para hacerla funcionar.</p>
+<p>Lo primero es instalar rsync que por defecto no está incluido en la instalación base, para esto:</p>
+<p>sudo pacman -S rsync</p>
+<p>El comando para hacer una copia completa de toda nuestra tarjeta sobre el directorio <code>/BCK/Copias</code> del pendrive es este:</p>
+<p>rsync -aAXv /* /BCK --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found,/BCK/*}</p>
+<p>Los parámetros empleados, -aAX son para que la copia sea lo más literal posible en cuanto a permisos, ACLs, etc, así como para que el copiado se comporte de manera recursiva.</p>
+<p>En las exclusiones ponemos todos los directorios de los que cuelga el sistema “en vuelo”, esto es, en /proc por ejemplo tenemos los procesos que están corriendo, en /tmp los temporales que se pierden tras cada reinicio, etc.</p>
+<p>Y por supuesto, debemos excluir la propia carpeta de copias, que en este caso está montada bajo / y sería tomada en cuenta por el /*.</p>
+<p>Si el comando finaliza bien podemos incorporarlo en un fichero de shell script y programarlo mediante <a href="http://es.wikipedia.org/wiki/Cron_(Unix)">crontab</a> para su ejecución.</p>
+<p>Para esto, con el usuario root ejecutamos:</p>
+<p>mkdir -p /home/operador/scripts
+mkdir -p /home/operador/logs
+chown operador:operadores /home/operador/scripts
+vi /home/operador/scripts/CopiaSeg.sh</p>
+<p>El primer comando,<code>mkdir -p</code> crea el directorio scripts, el modificador -p lo que indica es que se cree toda la</p>
+<p>estructura de directorios que haga falta.</p>
+<p>El segundo comando,<code>chown</code> es de Change Owner, esto es, cambiar de propietario, el directorio que hemos creado es propiedad del usuario root, lo cambiamos para que sea propiedad del usuario operador y del grupo operadores.</p>
+<p>El contenido del fichero que estamos editando con VI será este:</p>
+<h1 id="binbash">!/bin/bash<a class="headerlink" href="#binbash" title="Permanent link">&para;</a></h1>
+<p>rsync -aAXv /* /BCK --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found,/BCK/*} &gt; /dev/null 2&gt;/home/operador/logs/CopiaSeg.log</p>
+<p>ESC + :wq!</p>
+<p>Le damos permisos de ejecución al script con el comando chmod:</p>
+<p>chmod u+x /home/operador/scripts/CopiaSeg.sh</p>
+<p>Y por último editamos el crontab del usuario root para ponerlo que se ejecute a diario, todos los días de la semana a las 23:00 horas.</p>
+<p>crontab -e</p>
+<p>0 23 * * * /home/operador/scripts/CopiaSeg.sh</p>
+<p>Esto es <strong>una aproximación</strong> digamos que “decente” de un sistema de copias de seguridad, menos es nada, y por lo menos desde estas copias podréis volver a poner el sistema en marcha.</p>
+<p>En cuando que pueda pondré en la sección “Anexos” de este mensaje algún script algo más elaborado respecto a las copias de seguridad, para poder tener copias por semanas, manteniendo al menos un mes, etc… vamos, algo un poco mejor que todo esto.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2019-2023 Antonio Hernan
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+      
+    
+  </body>
+</html>

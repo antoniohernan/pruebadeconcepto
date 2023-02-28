@@ -1,0 +1,1232 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Un informático de siempre… en estos tiempos modernos">
+      
+      
+      
+        <link rel="canonical" href="https://pruebadeconcepto.es/rpi_wordpress1/">
+      
+      
+        <link rel="prev" href="../rpi_backup/">
+      
+      
+        <link rel="next" href="../rpi_wordpress2/">
+      
+      <link rel="icon" href="../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.15">
+    
+    
+      
+        <title>Instalando una RaspberryPI todo uso… en 2014 (parte 6) – práctico 1 - Wordpress I - Prueba de Concepto</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.113286f1.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nuestro-propio-servidor-de-wordpress" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Prueba de Concepto" class="md-header__button md-logo" aria-label="Prueba de Concepto" data-md-component="logo">
+      
+  <img src="../images/logo_white.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Prueba de Concepto
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Instalando una RaspberryPI todo uso… en 2014 (parte 6) – práctico 1 - Wordpress I
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href=".." class="md-tabs__link">
+      Inicio
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../gen_hello-world/" class="md-tabs__link">
+        Generales
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../infv_guybrush/" class="md-tabs__link">
+        Informática Viejuna
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../rpi_intro/" class="md-tabs__link md-tabs__link--active">
+        RaspberryPi
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../about_acercademi/" class="md-tabs__link">
+        Acerca de
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Prueba de Concepto" class="md-nav__button md-logo" aria-label="Prueba de Concepto" data-md-component="logo">
+      
+  <img src="../images/logo_white.png" alt="logo">
+
+    </a>
+    Prueba de Concepto
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Inicio
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Generales
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Generales
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gen_hello-world/" class="md-nav__link">
+        Hola mundo!!
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Informática Viejuna
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Informática Viejuna
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infv_guybrush/" class="md-nav__link">
+        ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../infv_discossd/" class="md-nav__link">
+        ¿Y esto tiene discos SSD?
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          RaspberryPi
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          RaspberryPi
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_intro/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_install_i/" class="md-nav__link">
+        Instalación Básica I
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_install_ii/" class="md-nav__link">
+        Instalación Básica II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_securizacion/" class="md-nav__link">
+        Securización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_backup/" class="md-nav__link">
+        Copias de Seguridad
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Práctico 1 - Servidor Wordpress 1
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Práctico 1 - Servidor Wordpress 1
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nuestro-propio-servidor-de-wordpress" class="md-nav__link">
+    Nuestro propio servidor de WordPress
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#necesidades-de-disco-previas" class="md-nav__link">
+    Necesidades de disco previas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalamos-el-servidor-web" class="md-nav__link">
+    Instalamos el servidor WEB
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalamos-php-y-php-fpm" class="md-nav__link">
+    Instalamos PHP y PHP-FPM
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-html" class="md-nav__link">
+    user html;
+  </a>
+  
+    <nav class="md-nav" aria-label="user html;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-y-configuracion-de-mariadb" class="md-nav__link">
+    Instalación y configuración de MariaDB
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#administracion-de-mariadb-con-phpmyadmin" class="md-nav__link">
+    Administración de MariaDB con PHPMyAdmin
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-html_1" class="md-nav__link">
+    user html;
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_wordpress2/" class="md-nav__link">
+        Práctico 2 - Servidor Wordpress 2
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          Acerca de
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Acerca de
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about_acercademi/" class="md-nav__link">
+        Acerca de mi y mis pruebas de concepto
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about_privacy-policy/" class="md-nav__link">
+        Política de privacidad
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nuestro-propio-servidor-de-wordpress" class="md-nav__link">
+    Nuestro propio servidor de WordPress
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#necesidades-de-disco-previas" class="md-nav__link">
+    Necesidades de disco previas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalamos-el-servidor-web" class="md-nav__link">
+    Instalamos el servidor WEB
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalamos-php-y-php-fpm" class="md-nav__link">
+    Instalamos PHP y PHP-FPM
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-html" class="md-nav__link">
+    user html;
+  </a>
+  
+    <nav class="md-nav" aria-label="user html;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-y-configuracion-de-mariadb" class="md-nav__link">
+    Instalación y configuración de MariaDB
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#administracion-de-mariadb-con-phpmyadmin" class="md-nav__link">
+    Administración de MariaDB con PHPMyAdmin
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-html_1" class="md-nav__link">
+    user html;
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h2 id="nuestro-propio-servidor-de-wordpress">Nuestro propio servidor de WordPress<a class="headerlink" href="#nuestro-propio-servidor-de-wordpress" title="Permanent link">&para;</a></h2>
+<p>En este, el primer caso práctico de uso real de la Rpi vamos a ver como instalar un servidor completo de WordPress, exactamente igual al que tendríamos si contratamos un hosting en internet.</p>
+<p>La utilidad de esto… que cada uno busque su justificación… si estáis intentando montar un blog y no sabéis muy bien como os va a salir la cosa pues… es una estupenda plataforma para las diversas pruebas, y sobre todo barata porqué no os costará nada.</p>
+<p>También lo podéis enfocar desde el ámbito lectivo, un servidor de WordPress en local, que cuesta poco (y hoy en día hay que justificar muy mucho los gastos en educación), que no necesita salida a internet por lo tanto no hay esos posibles “peligros” de la chiquillería en clase… etc.</p>
+<p><a href="http://es.wikipedia.org/wiki/WordPress">WordPress</a> no es más que un software escrito en php que necesita para poderse ejecutar de una base de datos, un intérprete de php y un servidor web.</p>
+<p>Para la base de datos, tradicionalmente se ha empleado <a href="http://es.wikipedia.org/wiki/Mysql">MySQL</a>, un motor de base de datos bastante ligero a la par que robusto, si bien, este software no es todo lo “<em><strong>libre</strong></em>” que debería pues pertenece desde hace un tiempo al todopoderoso Oracle.</p>
+<p>Así que en su lugar, en vez de emplear MySQL vamos a utilizar el motor de base de datos <a href="http://es.wikipedia.org/wiki/MariaDB">MariaDB</a>, este software está desarrollado por la propia gente que en su momento realizó MySQL, así que no existen muchas diferencias…</p>
+<p>En cuanto al servidor web, lo normal es encontrarse con <a href="http://es.wikipedia.org/wiki/Servidor_HTTP_Apache">Apache</a>, si bien este servidor web en las Raspberry presenta un comportamiento un tanto “gastón” con los recursos, así que en su lugar emplearemos <a href="http://es.wikipedia.org/wiki/Nginx">NginX</a> el cual se desenvuelve bastante mejor para estos menesteres.</p>
+<h2 id="necesidades-de-disco-previas">Necesidades de disco previas<a class="headerlink" href="#necesidades-de-disco-previas" title="Permanent link">&para;</a></h2>
+<p>Para generar los directorios donde se guardarán muchos de los ficheros de esta instalación necesitamos más disco del que dispone la tarjeta SD de nuestra máquina.</p>
+<p>Puesto que tenemos instalada un pendrive USB vamos a emplearlo para montar sobre el un nuevo FS (FileSystem) que se corresponda con <code>/srv</code> .</p>
+<p>Por defecto en nuestra instalación ese directorio ya existe y está montado sobre el FS raíz del sistema:</p>
+<p>[root@Jarvis srv]# df -kh .
+S.ficheros Tamaño Usados Disp Uso% Montado en
+/dev/root 3,0G 676M 2,2G 24% /</p>
+<p>[root@Jarvis srv]# ls -lR
+.: total 8
+dr-xr-xr-x 2 root ftp 4096 jun 4 2013 ftp
+drwxr-xr-x 2 root root 4096 jun 4 2013 http</p>
+<p>Vamos a crear un nuevo sistema de ficheros en la partición que tenemos libre en el USB, movemos el actual directorio a otro nombre, montamos la unidad y devolvemos el directorio, fácil…</p>
+<p>Creamos el sistema de ficheros:</p>
+<p>[root@Jarvis srv]# mkfs -t ext4 /dev/sdb2</p>
+<p>mke2fs 1.42.9 (28-Dec-2013)
+Etiqueta del sistema de ficheros=
+OS type: Linux
+Tamaño del bloque=4096 (bitácora=2)
+Tamaño del fragmento=4096 (bitácora=2)
+Stride=0 blocks, Stripe width=0 blocks
+293184 inodes, 1170688 blocks
+58534 blocks (5.00%) reserved for the super user
+Primer bloque de datos=0
+Número máximo de bloques del sistema de ficheros=1199570944
+36 bloque de grupos
+32768 bloques por grupo, 32768 fragmentos por grupo
+8144 nodos-i por grupo
+Respaldo del superbloque guardado en los bloques:
+32768, 98304, 163840, 229376, 294912, 819200, 884736
+Allocating group tables: hecho
+Escribiendo las tablas de nodos-i: hecho
+Creating journal (32768 blocks):hecho
+Escribiendo superbloques y la información contable del sistema de ficheros: hecho</p>
+<p>Editamos el fichero <code>/etc/fstab</code> para configurar el punto de montaje</p>
+<p>[root@Jarvis srv]# vi /etc/fstab
+/dev/sdb1 /BCK ext4 defaults 0 0
+/dev/sdb2 /srv ext4 defaults 0 0</p>
+<p>Añadimos la segunda línea que vemos.</p>
+<p>Salvamos el fichero pero aún no montamos la unidad pues el directorio existe y tiene contenido.</p>
+<p>Copiamos el directorio srv con otro nombre y lo volvemos a crear para poder hacer el montaje de la unidad USB</p>
+<p>[root@Jarvis /]# cd /
+[root@Jarvis /]# mv /srv /srv2
+[root@Jarvis /]# mkdir /srv</p>
+<p>Ahora podemos montar la partición sin problemas y volver a mover el directorio donde estaba</p>
+<p>[root@GumPI /]# mount -a
+[root@GumPI /]# mv /srv2/* /srv
+[root@GumPI /]# rmdir srv2</p>
+<p>Y para comprobar que lo hemos hecho bien</p>
+<p>[root@Jarvis ~]# cd /srv
+[root@Jarvis srv]# df -kh .
+S.ficheros Tamaño Usados Disp Uso% Montado en
+/dev/sdb2 4,3G 9,0M 4,1G 1% /srv</p>
+<p>[root@Jarvis srv]# ls -lR
+.:
+total 24
+dr-xr-xr-x 2 root ftp 4096 jun 4 2013 ftp
+drwxr-xr-x 2 root root 4096 jun 4 2013 http
+drwx------ 2 root root 16384 mar 25 19:03 lost+found</p>
+<h2 id="instalamos-el-servidor-web">Instalamos el servidor WEB<a class="headerlink" href="#instalamos-el-servidor-web" title="Permanent link">&para;</a></h2>
+<p>Con nuestro gestor de paquetes, <code>pacman</code> vamos a instalar el servidor web</p>
+<p>[root@Jarvis ~]# pacman -S nginx
+resolviendo dependencias...
+verificando conflictos...
+Paquetes (1): nginx-1.4.7-1
+Tamaño Total de Descarga: 0,25 MiB
+Tamaño Total Instalado: 0,71 MiB
+:: ¿Continuar con la instalación? [S/n] S
+:: Recuperando paquetes ...
+nginx-1.4.7-1-armv6h 251,9 KiB 913K/s 00:00      [##################################################] 100%
+(1/1) verificando llaves en el llavero           [##################################################] 100%
+(1/1) verificando la integridad de los paquetes  [##################################################] 100%
+(1/1) cargando los archivos del paquete...       [##################################################] 100%
+(1/1) verificando conflictos entre archivos      [##################################################] 100%
+(1/1) verificando el espacio disponible en disco [##################################################] 100%
+(1/1) instalando nginx                           [##################################################] 100%</p>
+<p>Lo arrancamos para ver si todo funciona correctamente</p>
+<p>[root@Jarvis ~]# systemctl start nginx</p>
+<p>Y comprobamos que se puede acceder al servidor por el puerto web por defecto que es el 80.</p>
+<p>Nos conectamos a nuestra Raspberry 192.168.1.20 (<em>por aquí tu IP</em>) (<a href="http://192.168.1.20">http://192.168.1.20</a>) y debemos ver un</p>
+<p>mensaje tal que así:</p>
+<p><em>Welcome to nginx!</em></p>
+<p><em>If you see this page, the nginx web server is successfully installed and working. Further configuration is required.</em></p>
+<p><em>For online documentation and support please refer to nginx.org.</em></p>
+<p><em>Commercial support is available at nginx.com.</em></p>
+<p><em>Thank you for using nginx.</em></p>
+<p>Perfecto, ya tenemos el servidor web instalado, ahora instalamos PHP y PHP-FPM (es el FastCGI para PHP) y terminamos de configurarlo.</p>
+<h2 id="instalamos-php-y-php-fpm">Instalamos PHP y PHP-FPM<a class="headerlink" href="#instalamos-php-y-php-fpm" title="Permanent link">&para;</a></h2>
+<p>Como siempre, con <code>pacman</code> , solicitamos a los repositorios los paquetes oficiales.</p>
+<p>[root@Jasrvis ~]# pacman -S php php-fpm
+resolviendo dependencias...
+verificando conflictos...
+Paquetes (3): libxml2-2.9.1-5 php-5.5.10-1 php-fpm-5.5.10-1
+Tamaño Total de Descarga: 5,46 MiB
+Tamaño Total Instalado: 29,19 MiB
+:: ¿Continuar con la instalación? [S/n] S
+:: Recuperando paquetes ...
+libxml2-2.9.1-5-armv6h 1090,4 KiB 2030K/s 00:01      [##################################################] 100%
+php-5.5.10-1-armv6h 2,8 MiB 3,16M/s 00:01            [##################################################] 100%
+php-fpm-5.5.10-1-armv6h 1675,1 KiB 4,21M/s 00:00     [##################################################] 100%
+(3/3) verificando llaves en el llavero               [##################################################] 100%
+(3/3) verificando la integridad de los paquetes      [##################################################] 100%
+(3/3) cargando los archivos del paquete...           [##################################################] 100%
+(3/3) verificando conflictos entre archivos          [##################################################] 100%
+(3/3) verificando el espacio disponible en disco     [##################################################] 100%
+(1/3) instalando libxml2                             [##################################################] 100%
+(2/3) instalando php                                 [##################################################] 100%
+(3/3) instalando php-fpm                             [##################################################] 100%</p>
+<p>Arrancamos PHP-FPM (FastGCI Process Manager, donde FastCGI es un Gateway para la conexión de procesos web…)</p>
+<p>[root@Jarvis ~]# systemctl start php-fpm</p>
+<p>Y configuramos el conjunto NginX PHP y PHP-FPM</p>
+<p>Por defecto NginX busca los ficheros en <code>/usr/share/nginx/html</code> , vamos a modificar su configuración básica para que los busque en /srv/http, ajustamos también algunos parámetros para la gestión de los lobs de errores, compresión de mensajes… etc.</p>
+<p>Editamos <code>/etc/nginx/nginx.conf</code> , borramos todo su contenido y lo reemplazamos con este</p>
+<h1 id="user-html">user html;<a class="headerlink" href="#user-html" title="Permanent link">&para;</a></h1>
+<p>worker_processes 1;
+error_log /var/log/error_nginx.log;
+events {
+        worker_connections 1024;
+       }
+http {
+      include mime.types;
+      default_type application/octet-stream;
+      sendfile on;
+      keepalive_timeout 15;
+      gzip on;
+      gzip_comp_level 1;
+      server {
+            listen 80;
+            server_name localhost;
+            location ~ \.php {
+                              root /srv/http;
+                              fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+                              fastcgi_index index.php;
+                              fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                              include /etc/nginx/fastcgi_params;
+                              }
+            location / {
+                        root /srv/http;
+                        index index.php;
+                        }
+            error_page 500 502 503 504 /50x.html;
+            location = /50x.html {
+                                  root /usr/share/nginx/html;
+                                  }
+      }
+}</p>
+<p>Ahora creamos un fichero de prueban en php para ver si nuestra instalación y configuración son correctas, así que editamos el fichero <code>/srv/http/index.php</code> y usamos este contenido:</p>
+<?php
+echo "<p>Prueba</p>";
+?>
+
+<p>Reiniciamos tanto NginX como PHP-FPM y probamos a ver si se ve esta prueba</p>
+<p>[root@Jarvis ~]# systemctl restart nginx php-fpm</p>
+<p>Probamos el acceso nuevamente a nuestro servidor web en la url http://192.168.1.20 (por aquí tu IP) (<a href="http://192.168.1.20">http://192.168.1.20</a>)</p>
+<p>Y tendremos que ver como el navegador web nos muestra en texto “<strong>Prueba</strong>” que se genera con ese sencillo .php de índice que hemos creado.</p>
+<p>Sólo nos falta dejar estos dos servicios activos en los futuros inicios de máquina mediante los comandos:</p>
+<p>[root@Jarvis ~]# systemctl enable nginx
+[root@Jarvis ~]# systemctl enable php-fpm</p>
+<h2 id="instalacion-y-configuracion-de-mariadb">Instalación y configuración de MariaDB<a class="headerlink" href="#instalacion-y-configuracion-de-mariadb" title="Permanent link">&para;</a></h2>
+<p>Vamos con la base de datos.</p>
+<p>Nuestro amigo pacman, lo volvemos a emplear para la descarga del software, como vemos las posibles dependencias del mismo, librerías, clientes, etc, se instalan junto con el software.</p>
+<p>Prestad especial atención al final de la instalación por que este paquete ofrece una documentación “post-instalación” muy buena, de los pocos…</p>
+<p>[root@ Jarvis ~]# pacman -S mariadb
+resolviendo dependencias...
+verificando conflictos...
+Paquetes (4): libaio-0.3.109-7 libmariadbclient-5.5.36-1 mariadb-clients-5.5.36-1 mariadb-5.5.36-1
+Tamaño Total de Descarga: 16,32 MiB
+Tamaño Total Instalado: 141,79 MiB
+:: ¿Continuar con la instalación? [S/n] S
+:: Recuperando paquetes ...
+libaio-0.3.109-7-armv6h 4,1 KiB 4,03M/s 00:00            [##################################################] 100%
+libmariadbclient-5.5.36-1-armv6h 6,6 MiB 2,46M/s 00:03   [##################################################] 100%
+mariadb-clients-5.5.36-1-armv6h 799,6 KiB 1221K/s 00:01  [##################################################] 100%
+mariadb-5.5.36-1-armv6h 8,9 MiB 2,04M/s 00:04            [##################################################] 100%
+(4/4) verificando llaves en el llavero                   [##################################################] 100%
+(4/4) verificando la integridad de los paquetes          [##################################################] 100%
+(4/4) cargando los archivos del paquete...               [##################################################] 100%
+(4/4) verificando conflictos entre archivos              [##################################################] 100%
+(4/4) verificando el espacio disponible en disco         [##################################################] 100%
+(1/4) instalando libaio                                  [##################################################] 100%
+(2/4) instalando libmariadbclient                        [##################################################] 100%
+(3/4) instalando mariadb-clients                         [##################################################] 100%
+(4/4) instalando mariadb                                 [##################################################] 100%
+Installing MariaDB/MySQL system tables in '/var/lib/mysql' ... OK
+Filling help tables... OK
+To start mysqld at boot time you have to copy support-files/mysql.server to the right place for your system
+PLEASE REMEMBER TO SET A PASSWORD FOR THE MariaDB root USER !
+To do so, start the server, then issue the following commands:
+'/usr/bin/mysqladmin' -u root password 'new-password'
+'/usr/bin/mysqladmin' -u root -h Jarvis password 'new-password'
+Alternatively you can run:
+'/usr/bin/mysql_secure_installation'
+which will also give you the option of removing the test
+databases and anonymous user created by default. This is
+strongly recommended for production servers.</p>
+<p>See the MariaDB Knowledgebase at http://mariadb.com/kb or the
+MySQL manual for more instructions.
+You can start the MariaDB daemon with:
+cd '/usr' ; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'
+You can test the MariaDB daemon with mysql-test-run.pl
+cd '/usr/mysql-test' ; perl mysql-test-run.pl
+Please report any problems at http://mariadb.org/jira
+The latest information about MariaDB is available at http://mariadb.org/.
+You can find additional information about the MySQL part at:
+http://dev.mysql.com
+Support MariaDB development by buying support/new features from
+SkySQL Ab. You can contact us about this at sales@skysql.com.</p>
+<p>Alternatively consider joining our community based development effort:
+http://mariadb.com/kb/en/contributing-to-the-mariadb-project/</p>
+<blockquote>
+<blockquote>
+<p>If you are migrating from MySQL, don't forget to run 'mysql_upgrade'
+after mysqld.service restart.</p>
+</blockquote>
+</blockquote>
+<p>Iniciamos el gestor de base de datos, para poder configurarlo, este inicio tarda un poquito, no asustarse y correr a reiniciar el servidor</p>
+<p><code>[root@Jarvis ~]# systemctl start mysqld</code></p>
+<p>Y ahora realizamos la configuración inicial de MariaDB empleando el script que esta documentación del paquete nos indica (hay un error en el script pero no afecta a su funcionalidad, lleva ahí desde hace varios meses…):</p>
+<p>[root@Jarvis ~]# /usr/bin/mysql_secure_installation
+/usr/bin/mysql_secure_installation: línea 379: find_mysql_client: no se encontró la orden
+NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+SERVERS IN PRODUCTION USE! PLEASE READ EACH STEP CAREFULLY!</p>
+<p>In order to log into MariaDB to secure it, we'll need the current
+password for the root user. If you've just installed MariaDB, and
+you haven't set the root password yet, the password will be blank,
+so you should just press enter here.
+Enter current password for root (enter for none): <pulsamos intro>
+OK, successfully used password, moving on...</p>
+<p>Setting the root password ensures that nobody can log into the MariaDB
+root user without the proper authorisation.
+Set root password? [Y/n] Y
+New password: <ponemos clave>
+Re-enter new password: <repetimos clave>
+Password updated successfully!
+Reloading privilege tables..
+... Success!</p>
+<p>By default, a MariaDB installation has an anonymous user, allowing anyone
+to log into MariaDB without having to have a user account created for
+them. This is intended only for testing, and to make the installation
+go a bit smoother. You should remove them before moving into a
+production environment.
+Remove anonymous users? [Y/n] Y
+... Success!</p>
+<p>Normally, root should only be allowed to connect from 'localhost'. This
+ensures that someone cannot guess at the root password from the network.
+Disallow root login remotely? [Y/n] Y
+... Success!</p>
+<p>By default, MariaDB comes with a database named 'test' that anyone can
+access. This is also intended only for testing, and should be removed
+before moving into a production environment.
+Remove test database and access to it? [Y/n] Y
+- Dropping test database...
+... Success!</p>
+<ul>
+<li>Removing privileges on test database...
+... Success!</li>
+</ul>
+<p>Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+Reload privilege tables now? [Y/n] Y
+... Success!</p>
+<p>Cleaning up...
+All done! If you've completed all of the above steps, your MariaDB
+installation should now be secure.
+Thanks for using MariaDB!</p>
+<p>Y una vez configurado todo, reincidamos el gestor de base de datos y lo habilitamos en el arranque de máquina</p>
+<p>[root@Jarvis ~]# systemctl restart mysqld
+[root@Jarvis ~]# systemctl enable mysqld</p>
+<h2 id="administracion-de-mariadb-con-phpmyadmin">Administración de MariaDB con PHPMyAdmin<a class="headerlink" href="#administracion-de-mariadb-con-phpmyadmin" title="Permanent link">&para;</a></h2>
+<p>Para hacer la vida un poco más fácil, y poder administrar la base de datos de una manera algo más gráfica, instalamos el paquete de administración basado en Php.</p>
+<p>Más que nada por que en cualquier Hosting de pago es el paquete que con casi toda seguridad os encontraréis, así que vamos a tratar de poner aquí todo igual.</p>
+<p>Recurrimos a pacman una vez más:</p>
+<p>[root@Jarvis ~]# pacman -S phpmyadmin php-mcrypt
+resolviendo dependencias...
+verificando conflictos...
+Paquetes (3): libmcrypt-2.5.8-3 php-mcrypt-5.5.10-1 phpmyadmin-4.1.11-1
+Tamaño Total de Descarga: 4,78 MiB
+Tamaño Total Instalado: 26,21 MiB
+:: ¿Continuar con la instalación? [S/n] S
+:: Recuperando paquetes ...
+libmcrypt-2.5.8-3-armv6h 64,9 KiB 319K/s 00:00       [##################################################] 100%
+php-mcrypt-5.5.10-1-armv6h 9,9 KiB 236K/s 00:00      [##################################################] 100%
+phpmyadmin-4.1.11-1-any 4,7 MiB 2,52M/s 00:02        [##################################################] 100%
+(3/3) verificando llaves en el llavero               [##################################################] 100%
+(3/3) verificando la integridad de los paquetes      [##################################################] 100%
+(3/3) cargando los archivos del paquete...           [##################################################] 100%
+(3/3) verificando conflictos entre archivos          [##################################################] 100%
+(3/3) verificando el espacio disponible en disco     [##################################################] 100%
+(1/3) instalando phpmyadmin                          [##################################################] 100%
+Check http://wiki.archlinux.org/index.php/Phpmyadmin for details.
+Dependencias opcionales para phpmyadmin
+php-mcrypt: to use phpMyAdmin internal authentication [pendiente]
+(2/3) instalando libmcrypt                           [##################################################] 100%
+(3/3) instalando php-mcrypt                          [##################################################] 100%</p>
+<p>Por defecto la instalación se realiza dentro de la ruta <code>/usr/share/webapps/phpMyAdmin</code> y nuestro servidor web no está configurado para arrancar nada allí.</p>
+<p>La solución, pues fácil, creamos un enlace de es ruta en nuestra ruta de servidor http y así podremos ejecutarlo.</p>
+<p>Se podría mover/copiar el contenido de esa webapps a la carpeta, pero de cara a actualizaciones del paquete es más recomendable hacerlo por enlace.</p>
+<p>[root@Jarvis ~]# ln -s /usr/share/webapps/phpMyAdmin /srv/http/phpMyAdmin</p>
+<p>Y ahora tenemos que volver a modificar el fichero de configuración del servidor web <code>/etc/nginx/nginx.conf</code> , este sería el contenido del fichero que debemos tener:</p>
+<h1 id="user-html_1">user html;<a class="headerlink" href="#user-html_1" title="Permanent link">&para;</a></h1>
+<p>worker_processes 1;
+error_log /var/log/error_nginx.log;
+events {
+    worker_connections 1024;
+    }
+http {
+    include mime.types;
+    default_type application/octet-stream;
+    sendfile on;
+    keepalive_timeout 15;
+    gzip on;
+    gzip_comp_level 1;
+    server {
+        listen 80;
+    server_name localhost;
+    location ~ \.php {
+            root /srv/http;
+            fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include /etc/nginx/fastcgi_params;
+            }
+    location /phpmyadmin {
+            rewrite ^/* /phpMyAdmin last;
+            }
+    location / {
+            root /srv/http;
+            index index.php;
+            }
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+    root /usr/share/nginx/html;
+            }
+    }
+}</p>
+<p>También debemos modificar el fichero /etc/php/php.ini realizando estos cambios que a continuación se detallan:</p>
+<p>Localizamos la línea que dice <code>open_basedir=</code> y ponemos esto:</p>
+<p><code>open_basedir= /srv/http/:/home/:/tmp/:/usr/share/pear/:/usr/share/webapps/:/etc/webapps/</code></p>
+<p>Localizamos estas líneas, y las descomentamos, esto es, quitamos el ; del principio de la línea (pulsando la letra x)</p>
+<p>extension=mysqli.so
+extension=mysql.so
+extension=mcrypt.so
+mysqli.allow_local_infile = On</p>
+<p>Como hemos realizado modificaciones que afectan a la configuración del servidor web y del FastCGI de PHP, vamos a reiniciar ambos procesos</p>
+<p>[root@Jarvis nginx]# systemctl restart nginx php-fpm</p>
+<p>Y probamos para ver si hemos conseguido instalar todo bien.</p>
+<p>Para esto, entramos a la url http://192.168.1.20/phpmyadmin (por aquí tu IP) (<a href="http://192.168.1.20/phpmyadmin">http://192.168.1.20/phpmyadmin</a>)</p>
+<p>... <a href="http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014-parte-7-practico1-wordpress2/">Continuará</a> ...</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2019-2023 Antonio Hernan
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top"], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.2a6f1dda.min.js"></script>
+      
+    
+  </body>
+</html>
