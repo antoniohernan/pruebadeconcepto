@@ -21,7 +21,9 @@ Hay sonidos y luces que no se olvidan, el arranque de esta máquina, con el disc
 
 Recuerdos que están casi a la misma altura que los sonidos de un modem de 9600 [baudios](https://es.wikipedia.org/wiki/Tasa_de_baudios) (¿baudios?, los jóvenes que no diferencian un bit de un byte ni saben que eso existe..) y sus luces intermitentes con el cuarto a oscuras, que fueron la mayoría de mis "discotecas" de juventud.
 
-![](images/pollodegoma-150x150.png)Los chicos de hoy en día, si no tienen equipos que generan miles de millones de triángulos por segundo y texturas reales... pues no les vale nada.
+![](images/pollodegoma-150x150.png)
+
+Los chicos de hoy en día, si no tienen equipos que generan miles de millones de triángulos por segundo y texturas reales... pues no les vale nada.
 
 Nunca sabrán la relación de un pollo de goma y una polea, ni disfrutaran de esta [maravilla de banda sonora](https://youtu.be/WjvD3C_nvBk) tan de 8bits.
 
