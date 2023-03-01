@@ -73,7 +73,7 @@ nav:
     - Informática Viejuna:
       - ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!: infv_guybrush.md
       - ¿Y esto tiene discos SSD?: infv_discossd.md
-    - Tecnología
+    - Tecnología:
       - Envía ficheros desde Github a EC2 con actions: tec_actionsec2.md
     - RaspberryPi:
       - Introducción: rpi_intro.md
