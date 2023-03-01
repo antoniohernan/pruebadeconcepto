@@ -225,53 +225,64 @@ De esta manera podemos consultar el fichero de errores, que puede tener pocas o
 Imaginad que lanzáis un borrado de ficheros residuales, si existen el comando de borrado los elimina, salida de errores 0, pero si no existe saca error por la salida de errores, aunque a nosotros no nos importa, si hay borras, si no hay pues vale. Para eso, enviamos la salida de errores a un dispositivo muy especial y entrañable /dev/null, siendo el comando algo así `rm *.kk 2 > /dev/null` . Me borras todo lo que sea .kk y en caso de error (salida 2) me envías toda esa información al dispositivo /dev/null, que para que os hagáis una idea es como la alfombra que se levanta para meter lo que barres del suelo y allí se queda, desaparece sólo.
 
 - Continuamos con la personalización, perdón por el tostón, a veces me cuesta contenerme.
+```
+[root@alarmpi ~]# rm /etc/localtime
+[root@alarmpi ~\# ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
+```
 
-\[root@alarmpi ~\]# rm /etc/localtime
-\[root@alarmpi ~\]# ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
-
-Borramos el enlace /etc/localime y lo volvemos a crear. ¿Que es un enlace?, pues un puntero a otro fichero/directorio en nuestro sistema. Si lo borramos estamos borrando solamente el enlace, no el destino del puntero, y si borramos el destino del puntero nuestro enlace se queda "colgado" (según el tipo de terminal y su configuración de visualización, podrás llegar a ver los enlaces colgados parpadeando en pantalla). Con el comando ln creamos un link o enlace, con el modificador -s le indicamos que es un enlace de los denominados suaves, damos el destino del enlace y el nombre del mismo.
+Borramos el enlace `/etc/localime` y lo volvemos a crear. ¿Que es un enlace?, pues un puntero a otro fichero/directorio en nuestro sistema. Si lo borramos estamos borrando solamente el enlace, no el destino del puntero, y si borramos el destino del puntero nuestro enlace se queda "colgado" (según el tipo de terminal y su configuración de visualización, podrás llegar a ver los enlaces colgados parpadeando en pantalla). Con el comando ln creamos un link o enlace, con el modificador -s le indicamos que es un enlace de los denominados suaves, damos el destino del enlace y el nombre del mismo.
 
 - Ahora modificamos las “locales”
 
-Más bien las generamos para poder tener soporte completo a todo nuestros juego de caracteres, incluidas las Ñs y todas las vocales acentuadas. Para hacer esto, los pasos son tres: 1.- Editar el fichero /etc/locale.gen para eliminar el comentario (#) de las líneas que contienen los juegos de caracteres en español (#es\_ES@euro ISO-8859-15 y #es\_ES.UTF-8 UTF-8)
+Más bien las generamos para poder tener soporte completo a todo nuestros juego de caracteres, incluidas las Ñs y todas las vocales acentuadas. Para hacer esto, los pasos son tres: 
 
-\[root@alarmpi ~\]# vi /etc/locale.gen
-(Pulsar la tecla / shift + 7, y teclear la cadena a buscar, en este caso /es\_ES no lleva a la primera línea que lo
+1.- Editar el fichero `/etc/locale.gen` para eliminar el comentario (`#`) de las líneas que contienen los juegos de caracteres en español (`#es_ES@euro ISO-8859-15` y `#es_ES.UTF-8 UTF-8`)
+
+```
+[root@alarmpi ~]# vi /etc/locale.gen
+(Pulsar la tecla / shift + 7, y teclear la cadena a buscar, en este caso `es_ES` no lleva a la primera línea que lo
 contiene)
-#es\_ES.UTF-8 UTF-8
-#es\_ES@euro ISO-8859-15
+#es_ES.UTF-8 UTF-8
+#es_ES@euro ISO-8859-15
 (Sobre la # de estas dos líneas pulsamos la tecla x (x minúscula) para eliminar ese carácter)
 ESC + :wq!
+```
 
 2.- Generar las locales, mediante el comando locale-gen
-
-\[root@alarmpi ~\]# locale-gen
+```
+[root@alarmpi ~]# locale-gen
 Generating locales...
-es\_ES.UTF-8
-es\_ES.ISO-8859-15
+es_ES.UTF-8
+es_ES.ISO-8859-15
 Generation complete.
+```
 
 3.- Configurar nuestro sistema para usar las locales generadas, editando y/o creando el fichero /etc/locale.conf
-
-\[root@alarmpi ~\]# vi /etc/locale.conf
-LANG=es\_ES.UTF-8
-LC\_MESSAGES=es\_ES.UTF-8
+```
+[root@alarmpi ~]# vi /etc/locale.conf
+LANG=es_ES.UTF-8
+LC_MESSAGES=es_ES.UTF-8
 ESC + :wq!
+```
 
-Si queremos estar seguro que tenemos las locales y el juego de caracteres correcto, en el siguiente reinicio de máquina podemos emplear el comando locale para ver una salida del comando similar a esto:
+Si queremos estar seguro que tenemos las locales y el juego de caracteres correcto, en el siguiente reinicio de 
+máquina podemos emplear el comando locale para ver una salida del comando similar a esto:
 
-\[root@ alarmpi ~\]# localectl status
-System Locale: LANG=es\_ES.UTF-8
+```
+[root@ alarmpi ~]# localectl status
+System Locale: LANG=es_ES.UTF-8
 VC Keymap: n/a
 X11 Layout: n/a
+```
 
 4.- Y configuramos la distribución de las teclas para el posible uso de un teclado USB conectado a la máquina.
-
-\[root@alarmpi ~\]# echo “KEYMAP=mac-euro2” > /etc/vconsole.conf \[root@alarmpi ~\]# localectl set-keymap mac-euro2
-\[root@alarmpi ~\]# localectl status
-System Locale: LANG=es\_ES.UTF-8 
+```
+[root@alarmpi ~]# echo “KEYMAP=mac-euro2” > /etc/vconsole.conf [root@alarmpi ~]# localectl set-keymap mac-euro2
+[root@alarmpi ~]# localectl status
+System Locale: LANG=es_ES.UTF-8 
     VC Keymap: mac-euro2
    X11 Layout: es X11 Model: pc105
-  X11 Options: terminate:ctrl\_alt\_bksp
+  X11 Options: terminate:ctrl_alt_bksp
+```
 
 ... Seguimos en el siguiente mensaje ...
