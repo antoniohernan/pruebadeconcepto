@@ -79,29 +79,37 @@ sudo dd bs=1m if=<ficheroimagen.img> of=/dev/disk1
 
 El comando **dd** toma su nombre de Dataset Definition, y sirve para la manipulación de la información a bajo nivel, para transferir datos, manipular raw data/devices (si, este RAW significa lo mismo que el RAW de las cámaras de fotos tan de moda últimamente, acceso en "crudo") y realizar algunas conversiones predefinidas. Los parámetros que pasamos al comando son bs=1m, que indica que use bloques de 1m para la lectura y escritura, if que le indica al comando el fichero (con ruta completa si es necesario) de origen, y of que le indica el destino de los datos, en nuestro caso el dispositivo de la tarjeta SD. Debéis reemplazar <ficheroimagen.img> por el nombre y ruta de vuestro fichero de imagen, si por ejemplo lo tenéis en vuestras descargas de usuario tendréis dos opciones para hacerlo.
 
-La primera es cambiar el directorio actual de trabajo del terminal, en los sistemas OSX, aunque en el navegador de carpetas lo veáis todo en castellano, en realidad todo eso "por debajo" no son más que carpetas del sistema operativo BSD, que están en inglés. Vuestra carpeta de descargas de usuario estará en **~/Downloads** El símbolo **~** (si, el gorrinillo de encima de las Ñ o virgulilla) se corresponde al caracter ASCII 126 y es un carácter reservado que viene a indicar o contener la ruta del directorio HOME del usuario. En los equipos con Windows (arggg) se obtiene manteniendo pulsada la tecla ALT y tecleando 126 en el teclado numérico. En los equipos con OSX se obtiene manteniendo pulsada la tecla ALT y pulsando la tecla Ñ. En mi caso, que mi usuario se llama Nono, mi carpeta de descargas estará en la ruta ```/Users/Nono/Downloads``` ó bien en la ruta ```~/Downloads```.
+La primera es cambiar el directorio actual de trabajo del terminal, en los sistemas OSX, aunque en el navegador de carpetas lo veáis todo en castellano, en realidad todo eso "por debajo" no son más que carpetas del sistema operativo BSD, que están en inglés. Vuestra carpeta de descargas de usuario estará en ```~/Downloads``` El símbolo ```~``` (si, el gorrinillo de encima de las Ñ o virgulilla) se corresponde al caracter ASCII 126 y es un carácter reservado que viene a indicar o contener la ruta del directorio HOME del usuario. En los equipos con Windows (arggg) se obtiene manteniendo pulsada la tecla ALT y tecleando 126 en el teclado numérico. En los equipos con OSX se obtiene manteniendo pulsada la tecla ALT y pulsando la tecla Ñ. En mi caso, que mi usuario se llama Nono, mi carpeta de descargas estará en la ruta ```/Users/Nono/Downloads``` ó bien en la ruta ```~/Downloads```.
 
 - Así que, ejecutamos esto para cambiar al directorio
-
+```
 cd ~/Downloads
+```
 
-El comando **cd** es Change Dir, cambia de directorio, y nos lleva al mismo sitio donde tenemos descargada nuestra imagen, si este fichero se llama, por ejemplo archlinux-hf-2013-07-22.img, el comando dd que tenemos que ejecutar es este:
+El comando **cd** es Change Dir, cambia de directorio, y nos lleva al mismo sitio donde tenemos descargada nuestra imagen, si este fichero se llama, por ejemplo ```archlinux-hf-2013-07-22.img```, el comando dd que tenemos que ejecutar es este:
 
+```
 sudo dd bs=1m if=archlinux-hf-2013-07-22.img of=/dev/disk1
+```
 
 Si no queremos hacer cambios de directorios y ejecutar el comando dd buscando el fichero de imagen **como ruta absoluta** a nuestras descargas, estemos posicionados donde estemos en el terminal, el comando dd a ejecutar es:
 
+```
 sudo dd bs=1m if=~/Downloads/archlinux-hf-2013-07-22.img of=/dev/disk1
+```
 
 En OSX tenemos posibilidad de acceder al dispositivo también por un puntero al mismo en modo RAW, que ya que estamos usando dd, que como os he contado es experto en estos desempeños, podemos hacer uso de el.
 
 Hay quien dice que con este tipo de acceso se pueden llegar a tener un 20% más de rendimiento, yo no aprecié tanto, aunque si que se nota algo.. Para esto, en vez de utilizar el **dispositivo /dev/disk1** usamos el de acceso raw **/dev/rdisk1**, esa r ese raw. Por tanto, el comando dd "definitivo" sería este:
 
+```
 sudo dd bs=1m if=archlinux-hf-2013-07-22.img of=/dev/rdisk1
+```
 
 - Tan sólo resta esperar a la finalización del comando dd y expulsar la tarjeta SD del sistema, para la expulsión el comando es este:
-    
+    ```
     sudo diskutil eject /dev/disk1
+    ```
     
 
 ## Encendemos nuestra Pi por primera vez
@@ -112,16 +120,21 @@ Vamos a realizar una conexión por el protocolo SSH, esto es, una conexión que 
 
 Yo uso habitualmente [iTerm2](http://www.iterm2.com), pero podéis usar el terminal del propio Osx para esto, el comando a ejecutar es este:
 
+```
 ssh root@192.168.1.20
+```
 
 Una anotación sobre las conexiones SSH, cuando realizamos una conexión por primera vez a un sistema nos suele aparecer un mensaje en el terminal tal que así:
 
+```
 The authenticity of host '192.168.1.20 (192.168.1.20)' can't be established.
 RSA key fingerprint is 91:2d:b5:60:8a:17:60:4e:62:37:d2:ce:ea:94:7f:65.
 Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added '192.168.1.20' (RSA) to the list of known hosts.
+```
 
-Tenemos que decir **yes**, que aceptamos que se guarde la huella RSA para ese servidor en nuestra lista de equipos conocidos. Y esta información se guarda en el fichero **known\_hosts** que tenemos en el directorio .ssh de nuestro home de usuario (~/.ssh). **¿Por que os cuento esto?**, pues por que esa IP, nombre de máquina y huella de clave RSA se almacenan ahí donde os digo y en caso de hacer una reinstalación de la tarjeta SD (lo harás tarde o temprano.. al tiempo) esta información cambia. Cuando tratéis de hacer una conexión SSH a la nueva/recién formateada Pi se hará un lio tremendo entre lo antiguo y lo nuevo y veréis como directamente la conexión SSH se cierra. Es más, es posible que os llegue a salir un aviso en pantalla acerca de un posible ataque del tipo “[Man in the Middle](http://es.wikipedia.org/wiki/Ataque_Man-in-the-middle)”, como esto:
+Tenemos que decir **yes**, que aceptamos que se guarde la huella RSA para ese servidor en nuestra lista de equipos conocidos. Y esta información se guarda en el fichero **known\_hosts** que tenemos en el directorio `.ssh` de nuestro home de usuario `~/.ssh`. **¿Por que os cuento esto?**, pues por que esa IP, nombre de máquina y huella de clave RSA se almacenan ahí donde os digo y en caso de hacer una reinstalación de la tarjeta SD (lo harás tarde o temprano.. al tiempo) esta información cambia. Cuando tratéis de hacer una conexión SSH a la nueva/recién formateada Pi se hará un lio tremendo entre lo antiguo y lo nuevo y veréis como directamente la conexión SSH se cierra. Es más, es posible que os llegue a salir un aviso en pantalla acerca de un posible ataque del tipo “[Man in the Middle](http://es.wikipedia.org/wiki/Ataque_Man-in-the-middle)”, como esto:
+
 ```
 @@@@@@@@@@@
 WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
@@ -141,23 +154,27 @@ Host key verification failed.
 ¿Solución?, modificar o eliminar este fichero, si eliminar, no pasa nada, se volverá a generar y llenar de contenido en las siguientes conexiones. Así que, si reinstalas tu Pi y ves que no puedes conectar con ella por SSH, y que esta conexión se cierra al instante 
 prueba esto:
 
+```
 rm ~/.ssh/known\_hosts
+```
 
-El comando rm toma su nombre de Remove, elimina ese fichero, es un comando PELIGROSO ya que no tiene marcha atrás, **no existe un unrm**... lo que borres borrado está, además este comando puede tomar a través de sus parámetros un montón de opciones que hagan que su comportamiento sea letal, como -fr (f = force r=recursive, borra recursivamente sin confirmación), todo un HitParade entre los becarios de administración de sistemas, y que tire la primera piedra el que nunca se le haya escapado uno y la haya liado parda... Si te da miendo usar este comando puedes tratar de mover el fichero, si mover, por que en Unix/Linux no existe un comando que renombre elementos, existe un comando que los mueve.
+El comando `rm` toma su nombre de Remove, elimina ese fichero, es un comando PELIGROSO ya que no tiene marcha atrás, **no existe un unrm**... lo que borres borrado está, además este comando puede tomar a través de sus parámetros un montón de opciones que hagan que su comportamiento sea letal, como `-fr` (f = force r=recursive, borra recursivamente sin confirmación), todo un HitParade entre los becarios de administración de sistemas, y que tire la primera piedra el que nunca se le haya escapado uno y la haya liado parda... Si te da miendo usar este comando puedes tratar de mover el fichero, si mover, por que en Unix/Linux no existe un comando que renombre elementos, existe un comando que los mueve.
 
+```
 mv ~./ssh/known\_hosts ~./ssh/known\_hosts.old
+```
 
 El comando **mv es de Move**, y lo que hace es que mueve el fichero known\_hosts a otro destino, que es el fichero known\_hosts.old. Retomamos nuestra instalación, perdón por la dispersión, pero creo que es bueno ir de vez en cuando soltando cosas de estas en plan culturilla general, que son las que más te hacen aprender. Hemos abierto una conexión SSH, hemos autorizado a que se almacene en local la huella de la clave RSA de nuestra PI y nos está pidiendo la clave del usuario root, que es el que hemos configurador en la conexión. ¿Que clave?, la de por defecto, luego la cambiamos, **es root**
 
 ## Pantalla negra letras blancas, tu tienes el poder
-
  
-
-\[root@alarmpi ~\]#
+```
+[root@alarmpi ~]#
+```
 
 Con estos caracteres tu **Pi te da la bienvenida al mundo** del cacharreo. ¿Decepcionado verdad?, espera, que te explico la cantidad de información que te está dando con esa línea aparentemente tan simple. **root** = nos informa del usuario con el que estamos interactuando en esta sesión, en breve vemos como crear más usuarios y esta información te será de utilidad, así sabes que estas ejecutando y con que usuario. **alarmpi** = el nombre de nuestra máquina, así sabes a que máquina te has conectado. ¿Pero si sólo tengo una?, si, tu si, pero yo a día de hoy administro administraba entorno a los 200 servidores, vital saber el cual estás. En breve vemos como cambiar el nombre a nuestra máquina, ante todo personalidad propia!!. **~** = nuestra amiga la virgulilla aparece de nuevo, nos indica que estamos en el directorio HOME de este usuario. Si hacemos referencia en un cd (change directory, cambio de directorio) a ~ nos llevará a este directorio o bien lo empleará para componer la ruta relativa usándolo como base, es lo mismo que emplear la varible de entorno $HOME (las variables se referencia así, con un $ por delante). Esta información es muy util pues en cuanto que cambiemos de directorio aquí nos aparecerá el nombre del directorio (sin ruta) en el que nos encontramos (que sería lo mismo que consultar la variable de entorno $PWD, ó Process Working Directory, o ejecutar el comando pwd que nos da esta misma información). **#** = esto nos indica que tenemos la shell como root, nuevamente en entornos monousuario que sólo tenemos root no nos aporta nada, pero cuando tenemos varios usuarios es importante porque, con usuarios que no son UID 0 (administradores, como nuestro root) el símbolo que veremos es un $.
 
-¿Que diferencia hay con la shell de root y la de otro usuario?, pensad en aquel -fr del comando rm, y ahora lo juntáis con una shell privilegiada, si... la aniquilación de todo fichero de tu instalación... ¿A que mola tener el poder?? mu ha ha ha... Toda esta información que se nos muestra es completamente personalizable, para ello podemos modificar en nuestro fichero de perfil de shell (.profile, .bash\_profile o en los esqueletos de usuarios para hacerlo general a todos los nuevos usuarios) el valor de las variables de entorno $PS1 y $PS2, las llamadas Prompt String.
+¿Que diferencia hay con la shell de root y la de otro usuario?, pensad en aquel `-fr` del comando `rm`, y ahora lo juntáis con una shell privilegiada, si... la aniquilación de todo fichero de tu instalación... ¿A que mola tener el poder?? mu ha ha ha... Toda esta información que se nos muestra es completamente personalizable, para ello podemos modificar en nuestro fichero de perfil de shell (`.profile`, `.bash\_profile` o en los esqueletos de usuarios para hacerlo general a todos los nuevos usuarios) el valor de las variables de entorno `$PS1` y `$PS2`, las llamadas Prompt String.
 
 No quiero hacer esta guía interminable así que voy a omitir estas configuraciones, si alguien está interesado en ello que me lo pregunte, que con mucho gusto le cuento como modificarlo.
 
@@ -165,16 +182,20 @@ No quiero hacer esta guía interminable así que voy a omitir estas configuraci
 
 Antes de empezar a hacer más cosas, vamos a actualizar nuestro sistema para ponerlo a la última. Recordad, estamos en una distribución Rolling Release, así que vamos a decirle al sistema que mire que es lo que tiene instalado, busque en los repositosio las actualizaciones y nos las instale.
 
-\[root@alarmpi ~\]# pacman -Syu
+```
+[root@alarmpi ~]# pacman -Syu
+```
 
-**pacman** es el comando para manejar y administrar paquetes de software, con el podrás instalar, actualizar, eliminar y listar el software que tienes instalado. Con los parámetros **\-Syu** le indicamos la forma de comportarse, en este caso es S = sincroniza paquetes, y = refresca la descarga del paquete desde el repositorio, es lo mismo que usar --refresh, y u = actualizar todos los paquetes que están fuera de fecha, es lo mismo que usar el parámetro --sysupgrade Veremos como el sistema comprueba todos los paquetes y nos solicita confirmación para realizar la actualización. La primera vez lleva un tiempo. Finalizada la actualización debemos reiniciar la máquina para que se carguen todos los paquetes nuevos/actualizados correctamente.
+**pacman** es el comando para manejar y administrar paquetes de software, con el podrás instalar, actualizar, eliminar y listar el software que tienes instalado. Con los parámetros **\-Syu** le indicamos la forma de comportarse, en este caso es S = sincroniza paquetes, y = refresca la descarga del paquete desde el repositorio, es lo mismo que usar --refresh, y u = actualizar todos los paquetes que están fuera de fecha, es lo mismo que usar el parámetro `--sysupgrade` Veremos como el sistema comprueba todos los paquetes y nos solicita confirmación para realizar la actualización. La primera vez lleva un tiempo. Finalizada la actualización debemos reiniciar la máquina para que se carguen todos los paquetes nuevos/actualizados correctamente.
 
-\[root@alarmpi ~\]# sync
-\[root@alarmpi ~\]# reboot
+```
+[root@alarmpi ~]# sync
+[root@alarmpi ~]# reboot
+```
 
-El comando **sync** lo que hace es volcar a disco toda la información que puedan contener los buffers de memoria y que aún no se han fijado en fichero. Es por decirlo en lenguaje más plano, salvar a disco lo que está en vuelo o en memoria de la máquina. El comando **reboot** lo que hace es un apagado y posterior inicio de nuestra máquina. Podemos hacerlo de más maneras, usando por ejemplo el comando shutdown -r o el propio systemd nos permite reiniciar con el comando systemctl reboot.
+El comando **sync** lo que hace es volcar a disco toda la información que puedan contener los buffers de memoria y que aún no se han fijado en fichero. Es por decirlo en lenguaje más plano, salvar a disco lo que está en vuelo o en memoria de la máquina. El comando **reboot** lo que hace es un apagado y posterior inicio de nuestra máquina. Podemos hacerlo de más maneras, usando por ejemplo el comando `shutdown -r` o el propio systemd nos permite reiniciar con el comando `systemctl reboot`.
 
-Alguna vez he visto diferencias entre ambos, aparte de la evidente que shutdown tiene por defecto un periodo de tiempo de gracia durante el cual puedes interrumpir la parada (con shutdown -c), pero son cosas relativamente específicas al sistema operativo, tal como esto que os decía de sync, que pueda ser invocado por el comando de reinicio, desconexiones y parada de servicios, etc. No quiero entretenerme demasiado.
+Alguna vez he visto diferencias entre ambos, aparte de la evidente que shutdown tiene por defecto un periodo de tiempo de gracia durante el cual puedes interrumpir la parada (con `shutdown -c`), pero son cosas relativamente específicas al sistema operativo, tal como esto que os decía de sync, que pueda ser invocado por el comando de reinicio, desconexiones y parada de servicios, etc. No quiero entretenerme demasiado.
 
 ## Un toque personal
 
@@ -182,16 +203,20 @@ Nuestra máquina ya está casi lista para empezar a hacer tareas de las "diverti
 
 - En primer lugar, la clave del **administrador**:
 
-\[root@alarmpi ~\]# passwd root
+```
+[root@alarmpi ~]# passwd root
 Enter new UNIX password:
 Retype new UNIX password:
 passwd: password updated successfully
+```
 
 El comando **passwd** nos permite cambiar la clave, se nos solicita dos veces y no se muestra en pantalla. No recuerdo bien si esta clave tiene política de caracteres, en plan mínimo 8 caracteres, al menos una mayúscula, un dígito numérico, un carácter raruno como #$%& y que no se haya repetido la clave en los últimos cambios.. etc etc.. La verdad es que suelo usar una clave más o menos compleja que harto de estas exigencias las cumple todas y una parte de la clave es variable para evitar repetir en futuros cambios. Lo dicho, ponéis la clave nueva que queráis.
 
 - Cambiamos la configuración de zona horaria
 
-\[root@alarmpi etc\]# echo "Europe/Madrid" > /etc/timezone
+```
+[root@alarmpi etc]# echo "Europe/Madrid" > /etc/timezone
+```
 
 Os explico. El comando **echo** lo que hace es imprimir en la salida estandar lo que le digamos, hace un "eco". ¿Salida estandar?, bien os amplio la información, sin nervios. Estáis tratando con un sistema operativo de verdad, no aquellos juguetes de Ms-DOS (argggg), aquí tenéis una entrada estandar (por defecto teclado) y DOS salidas, la estandar (ó salida 1) y la de errores (ó salida 2), ambas se imprimen en pantalla por defecto. Con los símbolos > < | podéis manejar y redireccionar las entradas/salidas a vuestro antojo, entrada, salida y pipe o tubería. En este caso, el del comando echo, lo que hacemos es que la salida estandar, que es la pantalla (ó salida 1, solo que el 1 siempre se omite) es redireccionada a algo, en este caso a un fichero, por tanto TODO lo que ese comando echo vaya a mostrar la pantalla se va a grabar en ese fichero, salvo lo que vaya dirigido a pantalla y que esté por la salida de errores. Existe otro formato de redireción, que es >> , con este lo que indicamos es que si el destino de nuestra salida existe no lo machaque, sino que añada contenido. ¿Y la salida de errores?, pues bien, los comandos en Unix/Lnx muestran información por las dos salidas, por la estandar y por la de errores, ambas por defecto aparecen en pantalla, pero nosotros podemos diferenciarlos y reconducir una, otra o ambas a donde queramos. Por ejemplo si un comando lo tratamos para que su salida sea así `> /var/log/ejecucion.log 2> /var/log/errores.log` tendremos que en pantalla no vemos nada (se puede solucionar con tee) pero se generan dos ficheros, uno, ejecución.log tiene la salida estandar, y el otro, errores.log tiene los errores del proceso.
 
