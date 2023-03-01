@@ -42,14 +42,14 @@ Si quieres hacer este mismo proceso por ti mismo, con el terminal de OSX los pas
 ```
 /dev/disk0 (internal, physical):
    #:                       TYPE NAME                    SIZE       IDENTIFIER
-   0:      GUID\_partition\_scheme                        \*1.0 TB     disk0
+   0:      GUID_partition_scheme                        *1.0 TB     disk0
    1:                        EFI EFI                     209.7 MB   disk0s1
-   2:                 Apple\_APFS Container disk1         1000.0 GB  disk0s2
+   2:                 Apple_APFS Container disk1         1000.0 GB  disk0s2
 
 /dev/disk1
 #: TYPE NAME
-0: FDisk\_partition\_scheme \*32.0 GB
-1: DOS\_FAT 32.0 GB
+0: FDisk_partition_scheme *32.0 GB
+1: DOS_FAT 32.0 GB
 ```
 
 - Como véis, en mi caso mi SD es el disco que está en ```/dev/disk1```. El tamaño de la tarjeta SD es una muy buena pista para identificarla.
@@ -145,8 +145,8 @@ It is also possible that a host key has just been changed.
 The fingerprint for the RSA key sent by the remote host is
 32:e5:d9:77:59:79:f3:83:3f:d6:19:76:b7:00:f4:c1.
 Please contact your system administrator.
-Add correct host key in /Users/Nono/.ssh/known\_hosts to get rid of this message.
-Offending RSA key in /Users/Nono/.ssh/known\_hosts:1
+Add correct host key in /Users/Nono/.ssh/known_hosts to get rid of this message.
+Offending RSA key in /Users/Nono/.ssh/known_hosts:1
 RSA host key for 192.168.1.20 has changed and you have requested strict checking.
 Host key verification failed.
 ```
@@ -155,16 +155,16 @@ Host key verification failed.
 prueba esto:
 
 ```
-rm ~/.ssh/known\_hosts
+rm ~/.ssh/known_hosts
 ```
 
 El comando `rm` toma su nombre de Remove, elimina ese fichero, es un comando PELIGROSO ya que no tiene marcha atrás, **no existe un unrm**... lo que borres borrado está, además este comando puede tomar a través de sus parámetros un montón de opciones que hagan que su comportamiento sea letal, como `-fr` (f = force r=recursive, borra recursivamente sin confirmación), todo un HitParade entre los becarios de administración de sistemas, y que tire la primera piedra el que nunca se le haya escapado uno y la haya liado parda... Si te da miendo usar este comando puedes tratar de mover el fichero, si mover, por que en Unix/Linux no existe un comando que renombre elementos, existe un comando que los mueve.
 
 ```
-mv ~./ssh/known\_hosts ~./ssh/known\_hosts.old
+mv ~./ssh/known_hosts ~./ssh/known_hosts.old
 ```
 
-El comando **mv es de Move**, y lo que hace es que mueve el fichero known\_hosts a otro destino, que es el fichero known\_hosts.old. Retomamos nuestra instalación, perdón por la dispersión, pero creo que es bueno ir de vez en cuando soltando cosas de estas en plan culturilla general, que son las que más te hacen aprender. Hemos abierto una conexión SSH, hemos autorizado a que se almacene en local la huella de la clave RSA de nuestra PI y nos está pidiendo la clave del usuario root, que es el que hemos configurador en la conexión. ¿Que clave?, la de por defecto, luego la cambiamos, **es root**
+El comando **mv es de Move**, y lo que hace es que mueve el fichero known_hosts a otro destino, que es el fichero known_hosts.old. Retomamos nuestra instalación, perdón por la dispersión, pero creo que es bueno ir de vez en cuando soltando cosas de estas en plan culturilla general, que son las que más te hacen aprender. Hemos abierto una conexión SSH, hemos autorizado a que se almacene en local la huella de la clave RSA de nuestra PI y nos está pidiendo la clave del usuario root, que es el que hemos configurador en la conexión. ¿Que clave?, la de por defecto, luego la cambiamos, **es root**
 
 ## Pantalla negra letras blancas, tu tienes el poder
  
@@ -174,7 +174,7 @@ El comando **mv es de Move**, y lo que hace es que mueve el fichero known\_hosts
 
 Con estos caracteres tu **Pi te da la bienvenida al mundo** del cacharreo. ¿Decepcionado verdad?, espera, que te explico la cantidad de información que te está dando con esa línea aparentemente tan simple. **root** = nos informa del usuario con el que estamos interactuando en esta sesión, en breve vemos como crear más usuarios y esta información te será de utilidad, así sabes que estas ejecutando y con que usuario. **alarmpi** = el nombre de nuestra máquina, así sabes a que máquina te has conectado. ¿Pero si sólo tengo una?, si, tu si, pero yo a día de hoy administro administraba entorno a los 200 servidores, vital saber el cual estás. En breve vemos como cambiar el nombre a nuestra máquina, ante todo personalidad propia!!. **~** = nuestra amiga la virgulilla aparece de nuevo, nos indica que estamos en el directorio HOME de este usuario. Si hacemos referencia en un cd (change directory, cambio de directorio) a ~ nos llevará a este directorio o bien lo empleará para componer la ruta relativa usándolo como base, es lo mismo que emplear la varible de entorno $HOME (las variables se referencia así, con un $ por delante). Esta información es muy util pues en cuanto que cambiemos de directorio aquí nos aparecerá el nombre del directorio (sin ruta) en el que nos encontramos (que sería lo mismo que consultar la variable de entorno $PWD, ó Process Working Directory, o ejecutar el comando pwd que nos da esta misma información). **#** = esto nos indica que tenemos la shell como root, nuevamente en entornos monousuario que sólo tenemos root no nos aporta nada, pero cuando tenemos varios usuarios es importante porque, con usuarios que no son UID 0 (administradores, como nuestro root) el símbolo que veremos es un $.
 
-¿Que diferencia hay con la shell de root y la de otro usuario?, pensad en aquel `-fr` del comando `rm`, y ahora lo juntáis con una shell privilegiada, si... la aniquilación de todo fichero de tu instalación... ¿A que mola tener el poder?? mu ha ha ha... Toda esta información que se nos muestra es completamente personalizable, para ello podemos modificar en nuestro fichero de perfil de shell (`.profile`, `.bash\_profile` o en los esqueletos de usuarios para hacerlo general a todos los nuevos usuarios) el valor de las variables de entorno `$PS1` y `$PS2`, las llamadas Prompt String.
+¿Que diferencia hay con la shell de root y la de otro usuario?, pensad en aquel `-fr` del comando `rm`, y ahora lo juntáis con una shell privilegiada, si... la aniquilación de todo fichero de tu instalación... ¿A que mola tener el poder?? mu ha ha ha... Toda esta información que se nos muestra es completamente personalizable, para ello podemos modificar en nuestro fichero de perfil de shell (`.profile`, `.bash_profile` o en los esqueletos de usuarios para hacerlo general a todos los nuevos usuarios) el valor de las variables de entorno `$PS1` y `$PS2`, las llamadas Prompt String.
 
 No quiero hacer esta guía interminable así que voy a omitir estas configuraciones, si alguien está interesado en ello que me lo pregunte, que con mucho gusto le cuento como modificarlo.
 
