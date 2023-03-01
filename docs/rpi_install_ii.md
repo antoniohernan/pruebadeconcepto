@@ -7,14 +7,17 @@ date: "2019-12-23"
 
 Y ya, para terminar de personalizar nuestra máquina vamos a cambiarle el nombre, ¿alarmpi? a quien se le ese nombre, con la de cosas bonitas y frikis que hay para usar, toda la saga de ESDLA está llena de nombres máquinas, el mundo del comic, de las novelas de Sci-Fi, o puedes usar los socorridos nombres de familiares mascotas... **el nombrar o bautizar máquinas es un arte** ;)
 
-\[root@alarmpi etc\]# vi /etc/hostame
+```
+[root@alarmpi etc]# vi /etc/hostame
 Jarvis
+```
 
-Con esto editamos el fichero donde está el nombre de nuestra máquina. Sobre el editor VI os podría contar mucho, pero para este caso os doy un pequeño guión y si os pica la dudéis consultar esta [página](http://www.lagmonster.org/docs/vi.html) o esta [otra](http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html). Después de pulsar intro al final del comando vi /etc/hostname tendreis el editor abierto con una línea que dice _alarmpi_. Borramos esta línea, pulsando dos veces la tecla d `dd`, la línea desaparece. Ahora insertamos el nuevo texto, pulsmos la tecla i `i`, y teclamos el nombre de nuestra máquina. Termina la edición volvemos al modo de comando del editor pulsando la tecla ESC. Y ejecutamos el comando del editor que nos salva el fichero y finaliza la edición `:wq!`
+Con esto editamos el fichero donde está el nombre de nuestra máquina. Sobre el editor VI os podría contar mucho, pero para este caso os doy un pequeño guión y si os pica la dudéis consultar esta [página](http://www.lagmonster.org/docs/vi.html) o esta [otra](http://www.viemu.com/a_vi_vim_graphical_cheat_sheet_tutorial.html). Después de pulsar intro al final del comando `vi /etc/hostname` tendreis el editor abierto con una línea que dice `_alarmpi_`. Borramos esta línea, pulsando dos veces la tecla d `dd`, la línea desaparece. Ahora insertamos el nuevo texto, pulsmos la tecla i `i`, y teclamos el nombre de nuestra máquina. Termina la edición volvemos al modo de comando del editor pulsando la tecla ESC. Y ejecutamos el comando del editor que nos salva el fichero y finaliza la edición `:wq!`
 
 Como hemos cambiado el nombre de la máquina, debemos cambiar también la configuración del fichero de direcciones locales, de manera que cuando hagamos referencia a nuestro nuevo nombre de máquina, el sistema sea capaz de encontrarse a si mismo.
 
-\[root@alarmpi etc\]# vi hosts
+```
+[root@alarmpi etc]# vi hosts
 #
 # /etc/hosts: static lookup table for host names
 #
@@ -22,30 +25,36 @@ Como hemos cambiado el nombre de la máquina, debemos cambiar también la config
 127.0.0.1 localhost.localdomain localhost Jarvis
 ::1 localhost.localdomain localhost Jarvis
 # End of file
+```
 
 Nuevamente recurrimos a VI. Nos desplazamos con los cursores hasta el espacio que hay detrás de localhost, vamos a borrar todo lo que existe en esa línea desde ese punto hasta el final. Para eso, la combinación de teclas es `SHIFT + d`. Y ahora añadimos al final de la línea, el comando que nos habilita la edición al final de línea es `SHIFT + a`. Estando en modo edicion tecleamos el nombre nuevo de nuestra máquina y para volver a modo de comando pulsamos ESC. Nos vamos a la otra línea y repetimos la misma operación. Y para salvar, como os he dicho antes, ESC y luego `:wq!`
 
 Un reinicio de la máquina para que se refresquen estos cambios y **ahora entramos en palabras mayores**, que vamos a tocar la **tabla de particiones de la tarjeta**.
 
-\[root@alarmpi ~\]# sync
-\[root@alarmpi ~\]# reboot
+```
+[root@alarmpi ~]# sync
+[root@alarmpi ~]# reboot
+```
 
 ## Particionamiento y redimensionamiento de SD
 
-Por defecto, las imágenes de las distribuciones (no se si con NOOB es igual) vienen para tarjetas de 4Gb, nosotros es muy posible que tengamos una tarjeta más grande, 8, 16 o 32Gb. Vamos a cambiar la tabla de particiones para que se pueda aprovechar todo es espacio, y de paso vamos a hacer una cosa muy importante que es crear una **zona de Swap**. Para el particionamiento yo soy muy maniático, me gusta crear cada file system crítico en su lugar, para evitar que te crezcan descontroladamente si no los creas así, como file system y los dejas como directorios. Por ejemplo, si creas un FS (file system) para el raiz de la máquina / y en este existe el directorio /var/log (que es donde suelen ir todos los logs del sistema) no sabrás de una manera rápida y clara si el contenido de ese directorio crece de manera inusual, tampoco tendrás posibilidades de maniobrar ampliando si se da el caso. En cambio, si creas un FS para / y otro FS para /var/log ambos puntos de montaje son independientes y puedes ampliar llegado el caso el de log y controlarlo de un simple vistazo. De todas maneras, todo esto es mucho, pero que mucho más manejable si en vez de hacerlo así empleamos LVM (Logical Volumen Manager), el cual nos permite agrupar el almacenamiento y crear volúmenes lógicos, si veo que no me sale una guía excesivamente grande no descarto contar algo de LVM de cara sobre todo al almacenamiento externo. Para este caso y casi todo lo que voy a contar en la guia, con un particionamiento más o menos rudimenatario puede valer, esto es, dando todo el espacio que nos sea posible a la raiz del sistema (/) y generando una pequeña área para la zona de swap que ahora después os comentaré. La modificación de la tabla de particiones **es una tarea crítica, un error y no arrancáis**, así que si has pensado en hacer un clonado de tu SD, este es el momento, recordad aquel programa, Pi Copier que os comenté.
+Por defecto, las imágenes de las distribuciones (no se si con NOOB es igual) vienen para tarjetas de 4Gb, nosotros es muy posible que tengamos una tarjeta más grande, 8, 16 o 32Gb. Vamos a cambiar la tabla de particiones para que se pueda aprovechar todo es espacio, y de paso vamos a hacer una cosa muy importante que es crear una **zona de Swap**. Para el particionamiento yo soy muy maniático, me gusta crear cada file system crítico en su lugar, para evitar que te crezcan descontroladamente si no los creas así, como file system y los dejas como directorios. Por ejemplo, si creas un FS (file system) para el raiz de la máquina `/` y en este existe el directorio `/var/log` (que es donde suelen ir todos los logs del sistema) no sabrás de una manera rápida y clara si el contenido de ese directorio crece de manera inusual, tampoco tendrás posibilidades de maniobrar ampliando si se da el caso. En cambio, si creas un FS para `/` y otro FS para `/var/log` ambos puntos de montaje son independientes y puedes ampliar llegado el caso el de log y controlarlo de un simple vistazo. De todas maneras, todo esto es mucho, pero que mucho más manejable si en vez de hacerlo así empleamos LVM (Logical Volumen Manager), el cual nos permite agrupar el almacenamiento y crear volúmenes lógicos, si veo que no me sale una guía excesivamente grande no descarto contar algo de LVM de cara sobre todo al almacenamiento externo. Para este caso y casi todo lo que voy a contar en la guia, con un particionamiento más o menos rudimenatario puede valer, esto es, dando todo el espacio que nos sea posible a la raiz del sistema (`/`) y generando una pequeña área para la zona de swap que ahora después os comentaré. La modificación de la tabla de particiones **es una tarea crítica, un error y no arrancáis**, así que si has pensado en hacer un clonado de tu SD, este es el momento, recordad aquel programa, Pi Copier que os comenté.
 
 Vamos a particionar, para esto, conectados a nuestra Pi por SSH con el usuario root utilizamos el comando `fdisk`(Fixed Disk Setup), y tenemos que indicarle a este programa cual es el dispositivo que apunta a nuestra tarjeta SD. Con el comando `df -kh` que os indiqué antes podréis ver en que dispositivo están montadas las particiones y sus FileSystem, ya os lo digo yo, es **/dev/mmcblk0** Todo lo que os pongo a continuación es específico de un ARCH Linux, de una imagen reciente (a partir de Septiembre de 2013).
 
+```
 fdisk /dev/mmcblk0
 Welcome to fdisk (util-linux 2.23.1).
 Changes will remain in memory only, until you decide to write them.
 Be careful before using the write command.
 Command (m for help):
+```
 
 ¿Que? ¿intuitivo verdad?... En primer lugar, listamos las particiones actuales, para esto, el comando es **p** (de print).
 
+```
 Disk /dev/mmcblk0: 31.7 GB, 31674335232 bytes, 61863936 sectors
-Units = sectors of 1 \* 512 = 512 bytes
+Units = sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 512 bytes / 512 bytes
 Disk label type: dos
@@ -54,13 +63,13 @@ Device Boot Start End Blocks Id System
 /dev/mmcblk0p1 2048 186367 92160 c W95 FAT32 (LBA)
 /dev/mmcblk0p2 186368 3667967 1740800 5 Extended
 /dev/mmcblk0p5 188416 3667967 1739776 83 Linux
-
+``` 
 Hay que fijarse, importante, el punto de inicio de las particiones (Start). Hay tres particiones, la **p1** que es donde está la partición de arranque o boot del sistema. La **p2** que es extendida y la **p5** que es una partición lógica y está contenida dentro de **p2**. Empezamos por eliminar **p2** (y por tanto p5).
-
+```
 Command (m for help): d
 Partition number (1,2,5, default 5): 2
 Partition 2 is deleted
-
+```
 Con el comando **d** (delete) le decimos que queremos borrar una partición y luego le damos el número de partición. Si listamos las particiones que nos quedan ahora, el resultado es este:
 
 Command (m for help): p
