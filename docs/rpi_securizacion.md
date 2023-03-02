@@ -26,17 +26,18 @@ En ningún caso aparecen claves, ni cifradas ni sin cifrar, estas claves están 
 Como os he dicho los usuarios tienen un grupo primario y pueden tener grupos secundarios, los grupos se guardan en el fichero `/etc/passwd` que también tiene esa estructura de campos separados por el carácter :, apareciendo en primer lugar el nombre del grupo, a continuación el GID o identificador de grupo y por último, una lista separada por , con todos los usuarios que forman parte del grupo a nivel secundario.
 
 Creamos el grupo y el usuario con esta secuencia de comandos:
+```
+[root@Jarvis etc]# groupadd -g 1001 operadores
+[root@Jarvis etc]# useradd -m -g 1001 -u 1001 -s /bin/bash -d /home/operador operador
+[root@Jarvis ~]# passwd operador
 
-\[root@Jarvis etc\]# groupadd -g 1001 operadores
-\[root@Jarvis etc\]# useradd -m -g 1001 -u 1001 -s /bin/bash -d /home/operador operador
-\[root@Jarvis ~\]# passwd operador
-
-Enter new UNIX password: \*\*\*
-Retype new UNIX password: \*\*\*
+Enter new UNIX password: ***
+Retype new UNIX password: ***
 
 passwd: password updated successfully
-
-El comando `groupadd` añade un nuevo grupo al fichero `/etc/group`, con el parámetro -g indicamos el número identificador de grupo que queremos utilizar, y en último lugar el argumento que se corresponde al nombre del grupo.
+```
+El comando `groupadd` añade un nuevo grupo al fichero `/etc/group`, con el parámetro -g indicamos el número 
+identificador de grupo que queremos utilizar, y en último lugar el argumento que se corresponde al nombre del grupo.
 
 El comando `useradd`añade un nuevo usuario al fichero `/etc/passwd`, con el parámetro -g indicamos el número de identificador de su grupo primario, con el parámetro -u indicamos el número de identificador del usuario, con el parámetro -s el ejecutable de nuestro intérprete de comando o shell, con el parámetro -d la ruta del home del usuario y por último el argumento que da nombre a nuestro usuario.
 
@@ -46,39 +47,39 @@ Con estos dos comandos creamos por tanto grupo y usuario, se rellenan los ficher
 
 ## Instalamos sudo
 
-Ahora vamos a instalar `sudo`, esto os suena de cuando lo hemos usado para instalar la imagen Iso en nuestra tarjeta SD, es ese programa que nos permite ejecutar otros programas como si fuésemos otro usuario, esto se hace así:
-
-\[root@Jarvis ~\]# pacman -S sudo
+Ahora vamos a instalar `sudo`, esto os suena de cuando lo hemos usado para instalar la imagen Iso en nuestra tarjeta SD, es ese programa que nos permite ejecutar otros programas como si fuésemos otro usuario, esto se hace así:
+```
+[root@Jarvis ~]# pacman -S sudo
 resolving dependencies...
 looking for inter-conflicts...
 Packages (1): sudo-1.8.6.p8-1
 Total Download Size: 0.55 MiB
 Total Installed Size: 2.48 MiB
-:: Proceed with installation? \[Y/n\] Y
+:: Proceed with installation? [Y/n] Y
 :: Retrieving packages ...
-sudo-1.8.6.p8-1-armv6h 566.1 KiB 717K/s 00:01 \[#################################\] 100%
-(1/1) checking keys in keyring \[#################################\] 100%
-(1/1) checking package integrity \[#################################\] 100%
-(1/1) loading package files \[#################################\] 100%
-(1/1) checking for file conflicts \[#################################\] 100%
-(1/1) checking available disk space \[#################################\] 100%
-(1/1) installing sudo \[#################################\] 100%
-
-Utilizamos nuestro gestor de paquetes **pacman con el parámetro -S** y el argumento sudo, esto es, instalame ese paquete.
+sudo-1.8.6.p8-1-armv6h 566.1 KiB 717K/s 00:01 [#################################] 100%
+(1/1) checking keys in keyring                [#################################] 100%
+(1/1) checking package integrity              [#################################] 100%
+(1/1) loading package files                   [#################################] 100%
+(1/1) checking for file conflicts             [#################################] 100%
+(1/1) checking available disk space           [#################################] 100%
+(1/1) installing sudo                         [#################################] 100%
+```
+Utilizamos nuestro gestor de paquetes **pacman con el parámetro -S** y el argumento sudo, esto es, instalame ese paquete.
 
 Y una vez instalado tenemos que configurarlo, la configuración no es más que la edición de un fichero, `/etc/sudoers`, y para tal fin tenemos un programa específico, visudo, y claro, al llevar VI en el nombre ya os podéis imaginar como seusa.
 
-Por supuesto que también podremos modificar el fichero libremente con VI, pero **cualquier error de sintáxis dejará el sistema hecho unos zorros**, visudo, además de bloquear el fichero (nadie más podrá editarlo a la vez) y hacer copia previa, verifica la sintaxis antes de salvarlo, así pues, uso más que recomendado.
-
-\[root@Jarvis etc\]# visudo
+Por supuesto que también podremos modificar el fichero libremente con VI, pero **cualquier error de sintáxis dejará el sistema hecho unos zorros**, visudo, además de bloquear el fichero (nadie más podrá editarlo a la vez) y hacer copia previa, verifica la sintaxis antes de salvarlo, así pues, uso más que recomendado.
+```
+[root@Jarvis etc]# visudo
 
 ## Uncomment to allow members of group wheel to execute any command
 
 # %wheel ALL=(ALL) ALL
 
 %operadores ALL=(ALL) ALL
-
-Añadimos la línea arriba indicada, ¿qué significa esa línea?
+```
+Añadimos la línea arriba indicada, ¿qué significa esa línea?
 
 El pimero ALL= indica **desde donde nos pueden ejecutar**, en este caso desde cualquier máquina.
 
@@ -98,15 +99,15 @@ Esta operación es algo más delicada pues hay que tocar algunos ficheros de con
 
 Para esto, en primer lugar editamos el fichero `/etc/ssh/sshd_config`
 
-\[root@Jarvis etc\]# vi /etc/ssh/sshd\_config
+`[root@Jarvis etc]# vi /etc/ssh/sshd_config`
 
 Debemos buscar la línea que tiene:
 
-#PermitRootLogin yes
+`#PermitRootLogin yes`
 
 Y cambiarla por esta otra:
 
-PermitRootLogin no
+`PermitRootLogin no`
 
 Para esto bajamos con los cursores por el fichero y una vez puestos sobre el símbolo # de la línea pulsamos la tecla x, que nos borra ese carácter. Ahora nos movemos con las flechas a la derecha hasta ponernos encima de la y de yes y pulsamos el comando cw (Change Word), nos aparecerá un símbolo $ sobre la s que nos marca el final de la palabra que estamos sustituyendo, y tecleamos no.
 
@@ -114,7 +115,7 @@ Salimos salvando el fichero con ESC :wq!
 
 Tenemos que reiniciar el demonio de ssh, **¿demonio?**, si, los procesos residentes en el sistema, que se quedan a la espera de hacer su trabajo ante eventos específicos se llaman demonios (Daemon), en el caso de los procesos de ssh **su demonio se llaman sshd**.
 
-\[root@Jarvis etc\]# systemctl restart sshd
+`[root@Jarvis etc]# systemctl restart sshd`
 
 El comando `systemctl` es nuestro comando para controlar el sistema de arranque/ejecución de servicios en la máquina bajo [systemd](https://wiki.archlinux.org/index.php/systemd_(Espa%C3%B1ol))
 
@@ -128,15 +129,15 @@ Primero tenemos que instalarnos en nuestro teléfono el programa de Google que n
 
 Tenemos que descargarnos los fuentes de este librería PAM de la propia Google, y lo tenemos que hacer desde nuestra máquina, vamos a utilizar el comando `wget`
 
-PAM es el acrónimo de **Linux Pluggable Authentication Modules**, esto es, módulo conectables de autenticación, vamos a darle a nuestro sistema por tanto un módulo de autenticación en dos pasos de Google en formato librería.
-
-\[operador@Jarvis ~\]$ su - 
+PAM es el acrónimo de **Linux Pluggable Authentication Modules**, esto es, módulo conectables de autenticación, vamos a darle a nuestro sistema por tanto un módulo de autenticación en dos pasos de Google en formato librería.
+```
+[operador@Jarvis ~]$ su - 
   Password: <aquí la clave de root> 
 
-\[root@Jarvis ~\]# mkdir /Descargas; cd /Descargas 
-\[root@Jarvis Descargas\]# wget https://google-authenticator.googlecode.com/files/libpam-google-authenticator-1.0-source.tar.bz2
-
-Nos conectamos con operador, hacemos un su - para cambiar al usuario root (la clave que se nos pide es la de ese usuario, root).
+[root@Jarvis ~]# mkdir /Descargas; cd /Descargas 
+[root@Jarvis Descargas]# wget https://google-authenticator.googlecode.com/files/libpam-google-authenticator-1.0-source.tar.bz2
+```
+Nos conectamos con operador, hacemos un su - para cambiar al usuario root (la clave que se nos pide es la de ese usuario, root).
 
 Creamos un directorio con el comando `mkdir` (Make Directory), y nos posicionamos en el con `cd`. Como veis los dos comandos están en la misma línea separados por un ;, esto es por que la shell ejecuta un comando y ejecuta el otro.
 
