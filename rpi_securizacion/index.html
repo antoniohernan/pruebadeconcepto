@@ -625,49 +625,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#uncomment-to-allow-members-of-group-wheel-to-execute-any-command" class="md-nav__link">
-    Uncomment to allow members of group wheel to execute any command
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#wheel-allall-all" class="md-nav__link">
-    %wheel ALL=(ALL) ALL
-  </a>
-  
-    <nav class="md-nav" aria-label="%wheel ALL=(ALL) ALL">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#cortamos-la-conexion-directa-de-root" class="md-nav__link">
     Cortamos la conexión directa de root
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
-  <a href="#permitrootlogin-yes" class="md-nav__link">
-    PermitRootLogin yes
-  </a>
-  
-    <nav class="md-nav" aria-label="PermitRootLogin yes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#y-podemos-usar-autenticacion-en-dos-pasos-pues-claro" class="md-nav__link">
     ¿Y podemos usar autenticación en dos pasos?, pues claro
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -878,49 +845,16 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#uncomment-to-allow-members-of-group-wheel-to-execute-any-command" class="md-nav__link">
-    Uncomment to allow members of group wheel to execute any command
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#wheel-allall-all" class="md-nav__link">
-    %wheel ALL=(ALL) ALL
-  </a>
-  
-    <nav class="md-nav" aria-label="%wheel ALL=(ALL) ALL">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#cortamos-la-conexion-directa-de-root" class="md-nav__link">
     Cortamos la conexión directa de root
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
-  <a href="#permitrootlogin-yes" class="md-nav__link">
-    PermitRootLogin yes
-  </a>
-  
-    <nav class="md-nav" aria-label="PermitRootLogin yes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#y-podemos-usar-autenticacion-en-dos-pasos-pues-claro" class="md-nav__link">
     ¿Y podemos usar autenticación en dos pasos?, pues claro
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -991,20 +925,24 @@
 <p>En Linux/Unix los usuarios residen en un fichero de configuración <code>/etc/passwd</code>, este fichero tiene estructura de campos separados por el caracter <strong>:</strong> y hay datos tales como su UID o <strong>identificador de usuario</strong>, su GID o <strong>identificador de grupo</strong> PRIMARIO (por que <strong>podemos tener varios grupos secundarios</strong>), datos como nombre, ruta del directorio HOME y el ejecutable de nuestra Shell de usuarios, esto es, nuestro intérprete de comandos.</p>
 <p>En ningún caso aparecen claves, ni cifradas ni sin cifrar, estas claves están en otro fichero <code>/etc/shadow</code> donde aparecen cifradas y este fichero a su vez no es accesible salvo para los administradores del sistema.</p>
 <p>Como os he dicho los usuarios tienen un grupo primario y pueden tener grupos secundarios, los grupos se guardan en el fichero <code>/etc/passwd</code> que también tiene esa estructura de campos separados por el carácter :, apareciendo en primer lugar el nombre del grupo, a continuación el GID o identificador de grupo y por último, una lista separada por , con todos los usuarios que forman parte del grupo a nivel secundario.</p>
-<p>Creamos el grupo y el usuario con esta secuencia de comandos:</p>
-<p>[root@Jarvis etc]# groupadd -g 1001 operadores
+<p>Creamos el grupo y el usuario con esta secuencia de comandos:
+<div class="highlight"><pre><span></span><code>[root@Jarvis etc]# groupadd -g 1001 operadores
 [root@Jarvis etc]# useradd -m -g 1001 -u 1001 -s /bin/bash -d /home/operador operador
-[root@Jarvis ~]# passwd operador</p>
-<p>Enter new UNIX password: ***
-Retype new UNIX password: ***</p>
-<p>passwd: password updated successfully</p>
-<p>El comando <code>groupadd</code> añade un nuevo grupo al fichero <code>/etc/group</code>, con el parámetro -g indicamos el número identificador de grupo que queremos utilizar, y en último lugar el argumento que se corresponde al nombre del grupo.</p>
+[root@Jarvis ~]# passwd operador
+
+Enter new UNIX password: ***
+Retype new UNIX password: ***
+
+passwd: password updated successfully
+</code></pre></div>
+El comando <code>groupadd</code> añade un nuevo grupo al fichero <code>/etc/group</code>, con el parámetro -g indicamos el número 
+identificador de grupo que queremos utilizar, y en último lugar el argumento que se corresponde al nombre del grupo.</p>
 <p>El comando <code>useradd</code>añade un nuevo usuario al fichero <code>/etc/passwd</code>, con el parámetro -g indicamos el número de identificador de su grupo primario, con el parámetro -u indicamos el número de identificador del usuario, con el parámetro -s el ejecutable de nuestro intérprete de comando o shell, con el parámetro -d la ruta del home del usuario y por último el argumento que da nombre a nuestro usuario.</p>
 <p>Con estos dos comandos creamos por tanto grupo y usuario, se rellenan los ficheros passwd y group y se coloca a dicho usuario dentro del grupo creado como grupo primario.</p>
 <p>¿<strong>Y la clave</strong>?, la clave se la damos después, con el comando <code>passwd</code>, en este caso, el comando recibe un argumento que es el nombre del usuario que hemos creado. Por defecto si no indicamos nada el cambio de clave se hace sobre el usuario con el que estamos conectado, y por definición un usuario no puede cambiar más que su propia clave, así que ejecutar el comando <code>passwd &lt;usuario&gt;</code>sólo lo podremos hacer con el usuario administrador o root.</p>
 <h2 id="instalamos-sudo">Instalamos sudo<a class="headerlink" href="#instalamos-sudo" title="Permanent link">&para;</a></h2>
-<p>Ahora vamos a instalar <code>sudo</code>, esto os suena de cuando lo hemos usado para instalar la imagen Iso en nuestra tarjeta SD, es ese programa que nos permite ejecutar otros programas como si fuésemos otro usuario, esto se hace así:</p>
-<p>[root@Jarvis ~]# pacman -S sudo
+<p>Ahora vamos a instalar <code>sudo</code>, esto os suena de cuando lo hemos usado para instalar la imagen Iso en nuestra tarjeta SD, es ese programa que nos permite ejecutar otros programas como si fuésemos otro usuario, esto se hace así:
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# pacman -S sudo
 resolving dependencies...
 looking for inter-conflicts...
 Packages (1): sudo-1.8.6.p8-1
@@ -1013,20 +951,25 @@ Total Installed Size: 2.48 MiB
 :: Proceed with installation? [Y/n] Y
 :: Retrieving packages ...
 sudo-1.8.6.p8-1-armv6h 566.1 KiB 717K/s 00:01 [#################################] 100%
-(1/1) checking keys in keyring [#################################] 100%
-(1/1) checking package integrity [#################################] 100%
-(1/1) loading package files [#################################] 100%
-(1/1) checking for file conflicts [#################################] 100%
-(1/1) checking available disk space [#################################] 100%
-(1/1) installing sudo [#################################] 100%</p>
-<p>Utilizamos nuestro gestor de paquetes <strong>pacman con el parámetro -S</strong> y el argumento sudo, esto es, instalame ese paquete.</p>
+(1/1) checking keys in keyring                [#################################] 100%
+(1/1) checking package integrity              [#################################] 100%
+(1/1) loading package files                   [#################################] 100%
+(1/1) checking for file conflicts             [#################################] 100%
+(1/1) checking available disk space           [#################################] 100%
+(1/1) installing sudo                         [#################################] 100%
+</code></pre></div>
+Utilizamos nuestro gestor de paquetes <strong>pacman con el parámetro -S</strong> y el argumento sudo, esto es, instalame ese paquete.</p>
 <p>Y una vez instalado tenemos que configurarlo, la configuración no es más que la edición de un fichero, <code>/etc/sudoers</code>, y para tal fin tenemos un programa específico, visudo, y claro, al llevar VI en el nombre ya os podéis imaginar como seusa.</p>
-<p>Por supuesto que también podremos modificar el fichero libremente con VI, pero <strong>cualquier error de sintáxis dejará el sistema hecho unos zorros</strong>, visudo, además de bloquear el fichero (nadie más podrá editarlo a la vez) y hacer copia previa, verifica la sintaxis antes de salvarlo, así pues, uso más que recomendado.</p>
-<p>[root@Jarvis etc]# visudo</p>
-<h2 id="uncomment-to-allow-members-of-group-wheel-to-execute-any-command">Uncomment to allow members of group wheel to execute any command<a class="headerlink" href="#uncomment-to-allow-members-of-group-wheel-to-execute-any-command" title="Permanent link">&para;</a></h2>
-<h1 id="wheel-allall-all">%wheel ALL=(ALL) ALL<a class="headerlink" href="#wheel-allall-all" title="Permanent link">&para;</a></h1>
-<p>%operadores ALL=(ALL) ALL</p>
-<p>Añadimos la línea arriba indicada, ¿qué significa esa línea?</p>
+<p>Por supuesto que también podremos modificar el fichero libremente con VI, pero <strong>cualquier error de sintáxis dejará el sistema hecho unos zorros</strong>, visudo, además de bloquear el fichero (nadie más podrá editarlo a la vez) y hacer copia previa, verifica la sintaxis antes de salvarlo, así pues, uso más que recomendado.
+<div class="highlight"><pre><span></span><code>[root@Jarvis etc]# visudo
+
+## Uncomment to allow members of group wheel to execute any command
+
+# %wheel ALL=(ALL) ALL
+
+%operadores ALL=(ALL) ALL
+</code></pre></div>
+Añadimos la línea arriba indicada, ¿qué significa esa línea?</p>
 <p>El pimero ALL= indica <strong>desde donde nos pueden ejecutar</strong>, en este caso desde cualquier máquina.</p>
 <p>El segundo (ALL) <strong>indica los usuarios que podrán hacer sudo</strong>, dentro del grupo que vemos ahora.</p>
 <p>El tercer ALL <strong>indica los comandos que ese usuario podrá ejecutar</strong>, en este caso todos.</p>
@@ -1036,27 +979,29 @@ sudo-1.8.6.p8-1-armv6h 566.1 KiB 717K/s 00:01 [#################################
 <p>Esta operación es algo más delicada pues hay que tocar algunos ficheros de configuración que de hacerlo mal nos quedamos sin conexión... así que cuidado, y <strong>ante la duda ESC + :q! para salir de VI sin hacer cambios</strong>.</p>
 <h2 id="cortamos-la-conexion-directa-de-root">Cortamos la conexión directa de root<a class="headerlink" href="#cortamos-la-conexion-directa-de-root" title="Permanent link">&para;</a></h2>
 <p>Para esto, en primer lugar editamos el fichero <code>/etc/ssh/sshd_config</code></p>
-<p>[root@Jarvis etc]# vi /etc/ssh/sshd_config</p>
+<p><code>[root@Jarvis etc]# vi /etc/ssh/sshd_config</code></p>
 <p>Debemos buscar la línea que tiene:</p>
-<h1 id="permitrootlogin-yes">PermitRootLogin yes<a class="headerlink" href="#permitrootlogin-yes" title="Permanent link">&para;</a></h1>
+<p><code>#PermitRootLogin yes</code></p>
 <p>Y cambiarla por esta otra:</p>
-<p>PermitRootLogin no</p>
+<p><code>PermitRootLogin no</code></p>
 <p>Para esto bajamos con los cursores por el fichero y una vez puestos sobre el símbolo # de la línea pulsamos la tecla x, que nos borra ese carácter. Ahora nos movemos con las flechas a la derecha hasta ponernos encima de la y de yes y pulsamos el comando cw (Change Word), nos aparecerá un símbolo $ sobre la s que nos marca el final de la palabra que estamos sustituyendo, y tecleamos no.</p>
 <p>Salimos salvando el fichero con ESC :wq!</p>
 <p>Tenemos que reiniciar el demonio de ssh, <strong>¿demonio?</strong>, si, los procesos residentes en el sistema, que se quedan a la espera de hacer su trabajo ante eventos específicos se llaman demonios (Daemon), en el caso de los procesos de ssh <strong>su demonio se llaman sshd</strong>.</p>
-<p>[root@Jarvis etc]# systemctl restart sshd</p>
+<p><code>[root@Jarvis etc]# systemctl restart sshd</code></p>
 <p>El comando <code>systemctl</code> es nuestro comando para controlar el sistema de arranque/ejecución de servicios en la máquina bajo <a href="https://wiki.archlinux.org/index.php/systemd_(Espa%C3%B1ol)">systemd</a></p>
 <p>En este caso le estamos diciendo que reinicie ese servicio/demonio concreto.</p>
 <p>En cuanto termine el reinicio del demonio podremos probar a abrir una nueva conexión ssh con root y veremos como nos da un acceso denegado, así pues, a partir de este momento todas las conexiones con el usuario operador y las ejecuciones privilegiadas o bien con sudo o bien haciendo<code>su -</code>para cambiar a una shell de usuario root.</p>
 <h2 id="y-podemos-usar-autenticacion-en-dos-pasos-pues-claro">¿Y podemos usar autenticación en dos pasos?, pues claro<a class="headerlink" href="#y-podemos-usar-autenticacion-en-dos-pasos-pues-claro" title="Permanent link">&para;</a></h2>
 <p>Primero tenemos que instalarnos en nuestro teléfono el programa de Google que nos <strong>genera los "tokens"</strong> por tiempo, para iOs este es el <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">enlace</a></p>
 <p>Tenemos que descargarnos los fuentes de este librería PAM de la propia Google, y lo tenemos que hacer desde nuestra máquina, vamos a utilizar el comando <code>wget</code></p>
-<p>PAM es el acrónimo de <strong>Linux Pluggable Authentication Modules</strong>, esto es, módulo conectables de autenticación, vamos a darle a nuestro sistema por tanto un módulo de autenticación en dos pasos de Google en formato librería.</p>
-<p>[operador@Jarvis ~]$ su - 
-  Password: <aquí la clave de root> </p>
-<p>[root@Jarvis ~]# mkdir /Descargas; cd /Descargas 
-[root@Jarvis Descargas]# wget https://google-authenticator.googlecode.com/files/libpam-google-authenticator-1.0-source.tar.bz2</p>
-<p>Nos conectamos con operador, hacemos un su - para cambiar al usuario root (la clave que se nos pide es la de ese usuario, root).</p>
+<p>PAM es el acrónimo de <strong>Linux Pluggable Authentication Modules</strong>, esto es, módulo conectables de autenticación, vamos a darle a nuestro sistema por tanto un módulo de autenticación en dos pasos de Google en formato librería.
+<div class="highlight"><pre><span></span><code>[operador@Jarvis ~]$ su - 
+  Password: &lt;aquí la clave de root&gt; 
+
+[root@Jarvis ~]# mkdir /Descargas; cd /Descargas 
+[root@Jarvis Descargas]# wget https://google-authenticator.googlecode.com/files/libpam-google-authenticator-1.0-source.tar.bz2
+</code></pre></div>
+Nos conectamos con operador, hacemos un su - para cambiar al usuario root (la clave que se nos pide es la de ese usuario, root).</p>
 <p>Creamos un directorio con el comando <code>mkdir</code> (Make Directory), y nos posicionamos en el con <code>cd</code>. Como veis los dos comandos están en la misma línea separados por un ;, esto es por que la shell ejecuta un comando y ejecuta el otro.</p>
 <p>Si miramos la "doble extensión" del fichero que nos descargamos vemos que por un lado se trata de un fichero comprimido con <a href="https://www.archlinux.org/packages/core/i686/bzip2/">Bzip2</a> dada la extensión bz2 y que además se trata de un conjunto de archivos y directorios empaquetados con <a href="http://es.wikipedia.org/wiki/Tar">tar</a></p>
 <p>Para desempaquetar el tar no tenemos problemas pues es algo que siempre vamos a encontrar en la distribución, prácticamente sea la que sea.</p>
