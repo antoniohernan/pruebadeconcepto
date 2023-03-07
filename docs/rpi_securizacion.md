@@ -109,9 +109,9 @@ Y cambiarla por esta otra:
 
 `PermitRootLogin no`
 
-Para esto bajamos con los cursores por el fichero y una vez puestos sobre el símbolo # de la línea pulsamos la tecla x, que nos borra ese carácter. Ahora nos movemos con las flechas a la derecha hasta ponernos encima de la y de yes y pulsamos el comando cw (Change Word), nos aparecerá un símbolo $ sobre la s que nos marca el final de la palabra que estamos sustituyendo, y tecleamos no.
+Para esto bajamos con los cursores por el fichero y una vez puestos sobre el símbolo `#` de la línea pulsamos la tecla `x`, que nos borra ese carácter. Ahora nos movemos con las flechas a la derecha hasta ponernos encima de la y de yes y pulsamos el comando cw (Change Word), nos aparecerá un símbolo `$` sobre la `s` que nos marca el final de la palabra que estamos sustituyendo, y tecleamos no.
 
-Salimos salvando el fichero con ESC :wq!
+Salimos salvando el fichero con `ESC :wq!`
 
 Tenemos que reiniciar el demonio de ssh, **¿demonio?**, si, los procesos residentes en el sistema, que se quedan a la espera de hacer su trabajo ante eventos específicos se llaman demonios (Daemon), en el caso de los procesos de ssh **su demonio se llaman sshd**.
 
@@ -121,7 +121,7 @@ El comando `systemctl` es nuestro comando para controlar el sistema de arranque/
 
 En este caso le estamos diciendo que reinicie ese servicio/demonio concreto.
 
-En cuanto termine el reinicio del demonio podremos probar a abrir una nueva conexión ssh con root y veremos como nos da un acceso denegado, así pues, a partir de este momento todas las conexiones con el usuario operador y las ejecuciones privilegiadas o bien con sudo o bien haciendo`su -`para cambiar a una shell de usuario root.
+En cuanto termine el reinicio del demonio podremos probar a abrir una nueva conexión ssh con root y veremos como nos da un acceso denegado, así pues, a partir de este momento todas las conexiones con el usuario operador y las ejecuciones privilegiadas o bien con sudo o bien haciendo `su -` para cambiar a una shell de usuario root.
 
 ## ¿Y podemos usar autenticación en dos pasos?, pues claro
 
@@ -137,67 +137,75 @@ PAM es el acrónimo de **Linux Pluggable Authentication Modules**, esto es, mód
 [root@Jarvis ~]# mkdir /Descargas; cd /Descargas 
 [root@Jarvis Descargas]# wget https://google-authenticator.googlecode.com/files/libpam-google-authenticator-1.0-source.tar.bz2
 ```
-Nos conectamos con operador, hacemos un su - para cambiar al usuario root (la clave que se nos pide es la de ese usuario, root).
+Nos conectamos con operador, hacemos un `su -` para cambiar al usuario root (la clave que se nos pide es la de ese usuario, root).
 
-Creamos un directorio con el comando `mkdir` (Make Directory), y nos posicionamos en el con `cd`. Como veis los dos comandos están en la misma línea separados por un ;, esto es por que la shell ejecuta un comando y ejecuta el otro.
+Creamos un directorio con el comando `mkdir` (Make Directory), y nos posicionamos en el con `cd`. Como veis los dos comandos están en la misma línea separados por un `;` ,esto es por que la shell ejecuta un comando y ejecuta el otro.
 
-Si miramos la "doble extensión" del fichero que nos descargamos vemos que por un lado se trata de un fichero comprimido con [Bzip2](https://www.archlinux.org/packages/core/i686/bzip2/) dada la extensión bz2 y que además se trata de un conjunto de archivos y directorios empaquetados con [tar](http://es.wikipedia.org/wiki/Tar)
+Si miramos la "doble extensión" del fichero que nos descargamos vemos que por un lado se trata de un fichero comprimido con [Bzip2](https://www.archlinux.org/packages/core/i686/bzip2/) dada la extensión `bz2` y que además se trata de un conjunto de archivos y directorios empaquetados con [tar](http://es.wikipedia.org/wiki/Tar)
 
-Para desempaquetar el tar no tenemos problemas pues es algo que siempre vamos a encontrar en la distribución, prácticamente sea la que sea.
+Para desempaquetar el **tar** no tenemos problemas pues es algo que siempre vamos a encontrar en la distribución, prácticamente sea la que sea.
 
-En cuanto a bzip2 ya es otra cosa y la tendremos que instalar, para esto, ya sabéis recurrimos a nuestro gestor de paquetes (seguimos teniendo nuestra conexión y nuestra sesión de operador con la que hemos cambiado a root):
+En cuanto a **bzip2** ya es otra cosa y la tendremos que instalar, para esto, ya sabéis recurrimos a nuestro gestor de paquetes (seguimos teniendo nuestra conexión y nuestra sesión de operador con la que hemos cambiado a root):
 
-\[root@Jarvis Descargas\]# pacman -S bzip2
+```
+[root@Jarvis Descargas]# pacman -S bzip2
 
 resolving dependencies...
+```
 
 Tenemos que descomprimir y desempaquetar el fichero de los fuentes de esta librería, con algunas versiones recientes de tar es posible que este haga las dos operaciones, que primero descomprima y luego desempaquete, pero con esta que os pongo yo a continuación os funcionará siempre, sea cual sea la versión de tar y el formato de compresión:
 
-\[root@Jarvis Descargas\]# bzip2 -dc libpam-google-authenticator-1.0-source.tar.bz2 | tar -xv
+```
+[root@Jarvis Descargas]# bzip2 -dc libpam-google-authenticator-1.0-source.tar.bz2 | tar -xv
+```
 
-¿Os acordáis que antes os he contado lo de > < y |?, pues aquí vemos el **uso de | (pipe o tubería)**, esto lo que hace es convertir la salida estandar de un comando en la entrada estándar del siguiente, por tanto toma la descompresión del fichero y se lo entrega al comando tar para que lo desempaquete.
+¿Os acordáis que antes os he contado lo de `> <` y `|`?, pues aquí vemos el **uso de | (pipe o tubería)**, esto lo que hace es convertir la salida estandar de un comando en la entrada estándar del siguiente, por tanto toma la descompresión del fichero y se lo entrega al comando tar para que lo desempaquete.
 
 Sólo nos queda compilar, y para esto necesitamos entorno de desarrollo, lo que implica instalar al menos los siguientes paquetes:
 
-\[root@Jarvis Descargas\]# pacman -S make gcc
+```
+[root@Jarvis Descargas]# pacman -S make gcc
 
 resolving dependencies...
+```
 
 Y estas son las órdenes para poder compilar:
 
-\[root@Jarvis Descargas\]# cd libpam-google-authenticator-1.0
-\[root@Jarvis libpam-google-authenticator-1.0\]# make
+```
+[root@Jarvis Descargas]# cd libpam-google-authenticator-1.0
+[root@Jarvis libpam-google-authenticator-1.0]# make
 
 gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o google-authenticator.o google-authenticator.c
 gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o base32.o base32.c
 gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o hmac.o hmac.c
 gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o sha1.o sha1.c
 gcc -g -o google-authenticator google-authenticator.o base32.o hmac.o sha1.o -ldl
-gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o pam\_google\_authenticator.o pam\_google\_authenticator.c
-gcc -shared -g -o pam\_google\_authenticator.so pam\_google\_authenticator.o base32.o hmac.o sha1.o -lpam
+gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o pam_google_authenticator.o pam_google_authenticator.c
+gcc -shared -g -o pam_google_authenticator.so pam_google_authenticator.o base32.o hmac.o sha1.o -lpam
 gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o demo.o demo.c
-gcc -DDEMO --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o pam\_google\_authenticator\_demo.o pam\_google\_authenticator.c
-gcc -g -rdynamic -o demo demo.o pam\_google\_authenticator\_demo.o base32.o hmac.o sha1.o -ldl
-gcc -DTESTING --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden \\ 
- -o pam\_google\_authenticator\_testing.o pam\_google\_authenticator.c
-gcc -shared -g -o pam\_google\_authenticator\_testing.so pam\_google\_authenticator\_testing.o base32.o hmac.o sha1.o -lpam
-gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o pam\_google\_authenticator\_unittest.o pam\_google\_authenticator\_unittest.c
-gcc -g -rdynamic -o pam\_google\_authenticator\_unittest pam\_google\_authenticator\_unittest.o base32.o hmac.o sha1.o -lc -ldl
+gcc -DDEMO --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o pam_google_authenticator_demo.o pam_google_authenticator.c
+gcc -g -rdynamic -o demo demo.o pam_google_authenticator_demo.o base32.o hmac.o sha1.o -ldl
+gcc -DTESTING --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o pam_google_authenticator_testing.o pam_google_authenticator.c
+gcc -shared -g -o pam_google_authenticator_testing.so pam_google_authenticator_testing.o base32.o hmac.o sha1.o -lpam
+gcc --std=gnu99 -Wall -O2 -g -fPIC -c -fvisibility=hidden -o pam_google_authenticator_unittest.o pam_google_authenticator_unittest.c
+gcc -g -rdynamic -o pam_google_authenticator_unittest pam_google_authenticator_unittest.o base32.o hmac.o sha1.o -lc -ldl
+```
 
 Y si la compilación no nos da ningún error, procedemos a instalarlo:
+```
+[root@Jarvis libpam-google-authenticator-1.0]# make install
 
-\[root@Jarvis libpam-google-authenticator-1.0\]# make install
-
-cp pam\_google\_authenticator.so /lib/security
+cp pam_google_authenticator.so /lib/security
 cp google-authenticator /usr/local/bin
+```
 
 Esto nos deja por un lado instalada la librería de seguridad, en `/lib/security`, y el programa `google-authenticator` que nos va a servir para genera la entrada en el programa de autenticación de nuestro terminal móvil.
 
 Antes de activar la librería debemos tener generados los códigos de acceso con la aplicación, ¿con que usuario?, puescon el único con el que nos podemos conectar a la máquina, operador, así que necesitamos tener la conexión a nuestra máquina abierta con dicho usuario o abrir una nueva.
 
 Ejectamos el siguiente comando.
-
-\[operador@Jarvis ~\]$ /usr/local/bin/google-authenticator
+```
+[operador@Jarvis ~]$ /usr/local/bin/google-authenticator
 
 Do you want authentication tokens to be time-based (y/n) y
 
@@ -214,7 +222,7 @@ Your emergency scratch codes are:
 42788591
 48617175
 
-Do you want me to update your "~/.google\_authenticator" file (y/n) y
+Do you want me to update your "~/.google_authenticator" file (y/n) y
 
 Do you want to disallow multiple uses of the same authentication
 token? This restricts you to one login about every 30s, but it increases
@@ -230,6 +238,7 @@ If the computer that you are logging into isn't hardened against brute-force
 login attempts, you can enable rate-limiting for the authentication module.
 By default, this limits attackers to no more than 3 login attempts every 30s.
 Do you want to enable rate-limiting (y/n) y
+```
 
 Como véis, **se dice a todo que sí salvo a la compensación extra de tiempo**.
 
@@ -243,38 +252,44 @@ Los otros códigos, pues son código "quemables", esto es, si alguna vez no pued
 
 Si los usas todos, pues no pasa nada, podrías volver a usar el ejecutable de `google-authenticator` y generar un nuevo conjunto de códigos y una nueva URL de acceso.
 
-Ya tenemos nuestro generador de códigos en sincronía con nuestra máquina, así que vamos a activarlo, para esto en primer lugar tenemos que editar el fichero `/etc/ssh/sshd_config` y modificar lo que se indica a continuación (con el usuario root, si estás con operador deberás hacer el su -):
+Ya tenemos nuestro generador de códigos en sincronía con nuestra máquina, así que vamos a activarlo, para esto en primer lugar tenemos que editar el fichero `/etc/ssh/sshd_config` y modificar lo que se indica a continuación (con el usuario root, si estás con operador deberás hacer el `su -`):
 
-\[root@Jarvis ~\]# vi /etc/ssh/sshd\_config
+```
+[root@Jarvis ~]# vi /etc/ssh/sshd_config
 
 # Change to no to disable s/key passwords
 
 ChallengeResponseAuthentication no
+```
 
 Cambiamos esa línea, y **donde dice no ponemos yes**
 
 Ahora editamos el fichero `/etc/pam.d/sshd`, añadiendo una línea al principio del fichero (pulsando la combinación de teclas SHIFT + o, que nos añade una linea por encima de la actual):
 
-\[root@Jarvis ~\]# vi /etc/pam.d/sshd
+```
+[root@Jarvis ~]# vi /etc/pam.d/sshd
 
 #%PAM-1.0
 
-#auth required pam\_securetty.so #disable remote root
+#auth required pam_securetty.so #disable remote root
 
-auth required pam\_google\_authenticator.so
+auth required pam_google_authenticator.so
 
 Y ya sólo nos queda reiniciar sshd
 
-\[root@Jarvis ~\]# systemctl restart sshd
+[root@Jarvis ~]# systemctl restart sshd
+```
 
 Ahora, si hacemos una conexión veremos que no nos pide usuario/clave, sino que nos pide un código de verificación, que es el que nos genera nuestra aplicación móvil (ó alguno de aquellos códigos quemables que habíamos generado)
 
+```
 Verification code:
 Password:
 
 Last login: Mon Apr 15 19:16:10 2013 from 192.168.1.10
 
-\[operador@Jarvis ~\]$
+[operador@Jarvis ~]$
+```
 
 ## ¿Y ya estamos seguros?
 
