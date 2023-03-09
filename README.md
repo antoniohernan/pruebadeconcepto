@@ -7,5 +7,7 @@ Blog personal basado en Github Pages
 [![gitleaks](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/gitleaks.yml/badge.svg)](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/gitleaks.yml)
 [![dependabot](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)
 
+### Linters
+[![Repository Linter](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/repolint.yml/badge.svg)](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/repolint.yml)
 
 https://antoniohernan.github.io/pruebadeconcepto/
