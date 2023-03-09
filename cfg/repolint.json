@@ -1,0 +1,36 @@
+{
+    "axioms": {
+      "linguist":"language",
+      "licensee":"license",
+      "packagers":"packager"
+    },
+    "rules": {
+      "all": {
+        "license-file-exists:file-existence": ["error", {"files": ["LICENSE*", "COPYING*"], "nocase": true}],
+        "readme-file-exists:file-existence": ["error", {"files": ["README*"], "nocase": true}],  
+        "contributing-file-exists:file-existence": ["error", {"files": ["docs/CONTRIBUTING*"]}],
+        "code-of-conduct-file-exists:file-existence": ["error", {"files": ["docs/CODE_OF_CONDUCT.md"]}],
+        "changelog-file-exists:file-existence": ["error", {"files": ["CHANGELOG*"]}],
+        "security-file-exists:file-existence": ["error", {"files": ["docs/SECURITY.md"]}],
+        "support-file-exists:file-existence": ["error", {"files": ["docs/SUPPORT.md"]}],
+        "readme-references-license:file-contents": ["error", {"files": ["README*"], "content": "license", "flags": "i"}],
+        "integrates-with-ci:file-existence": ["error",{"files": [".github/workflows/deploy_gh-pages.yml"]}],
+        "code-of-conduct-file-contains-email:file-contents": [
+          "error",
+          {
+            "files": ["docs/CODE-OF-CONDUCT.md"],
+            "content": ".+@.+\\..+",
+            "flags": "i",
+            "human-readable-content": "email address"
+          }
+        ],
+        "source-license-headers-exist:file-starts-with": ["warning", {"files": ["**/*.tf"], "lineCount": 5, "patterns": ["Copyright", "License"], "flags": "i"}],
+        "github-issue-template-exists:file-existence": ["error", {"files": [".github/ISSUE_TEMPLATE/*"]}],
+        "github-pull-request-template-exists:file-existence": ["error", {"files": [".github/pull_request_template.md"]}]
+      },
+      "license=Apache-2.0": {
+        "notice-file-exists:apache-notice": ["error"]
+      }
+    }
+  }
+  
