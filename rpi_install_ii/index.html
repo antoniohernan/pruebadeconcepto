@@ -988,8 +988,8 @@ KiB Swap: 610300 total, 0 used, 610300 free, 20072 cached
 <p>Más cosas sobre la swap, <strong>podemos modificar su comportamiento</strong>, en el fichero <code>/etc/sysctl.conf</code>:
 <div class="highlight"><pre><span></span><code># Swapping too much or not enough? Disks spinning up when you&#39;d
 # rather they didn&#39;t? Tweak these.
-#vm.vfs\_cache\_pressure = 100
-#vm.laptop\_mode = 0
+#vm.vfs_cache_pressure = 100
+#vm.laptop_mode = 0
 #vm.swappiness = 60
 </code></pre></div></p>
 <p>Modificando el parámetro <strong>swappiness</strong> le indicamos al sistema su tendencia usar o no la swap, contra más cerca del 99 más paginará en este área.</p>
@@ -1015,7 +1015,7 @@ wireless_tools-29-8-armv6h 82.4 KiB 231K/s 00:00
 [#############################################] 100%
 (1/1) checking available disk space
 [#############################################] 100%
-(1/1) installing wireless\_tools
+(1/1) installing wireless_tools
 [#############################################] 100%
 </code></pre></div>
 <p>Ahora conectamos nuestro adaptador WIFI al puerto USB libre y reinicarmos el sistema para que se carguen los drivers del mismo <code>[root@Jarvis ~]# sync; reboot</code></p>

@@ -824,7 +824,7 @@
 <p>Es posible que queramos hacerlo manualmente, total es hacer la operación inversa a la de carga de la SD con la imagen original.</p>
 <p>Para esto, volveremos a usar el comando dd cambiando como es lógico los parámetros de entrada y salida de la información.</p>
 <p>Este sería el comando para volcar nuestra tarjeta SD en nuestra carpeta Descargas:</p>
-<div class="highlight"><pre><span></span><code>sudo dd bs=1m if=/dev/rdisk1 | gzip &gt; ~/downloads/2014-04-26\_Jarvis.img.gz
+<div class="highlight"><pre><span></span><code>sudo dd bs=1m if=/dev/rdisk1 | gzip &gt; ~/downloads/2014-04-26_Jarvis.img.gz
 </code></pre></div>
 <p>El parámetro <code>if</code> indica que nuestro origen será el disco (completo, no particiones) que corresponde a nuestra tarjeta SD (en mi caso es este, <code>/dev/rdisk1</code> pues monto con un USB porta SD, recordad como vimos como localizar nuestro dispositivo en el mensaje de instalación de la SD).</p>
 <p>Y ¿el parámetro de salida?, no está, se omite, por que la salida del comando, salida estándar o a pantalla se está enviando a un comando mediante el uso de ese <code>|</code>, esto es, la salida estándar del comando <code>dd</code> se está empleando como entrada estándar del comando <code>gzip</code> ( es la versión <a href="http://es.wikipedia.org/wiki/GNU">GNU</a> de nuestro conocido Zip), y la salida generada por gzip es enviada a un fichero mediante el uso de <code>&gt;</code> el cual se encuentra en la carpeta de Descargas (Downloads, recordad que el terminal del sistema operativo lo ve <strong>todo en inglés</strong>...) de la carpeta HOME del usuario, la cual viene indicada por el uso de nuestra amiga la virgulilla <code>~</code>.</p>

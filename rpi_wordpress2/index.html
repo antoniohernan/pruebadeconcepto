@@ -794,7 +794,7 @@
 
 <h2 id="y-ahora-si-por-fin-instalamos-wordpress">Y ahora si, por fin, instalamos WordPress!!<a class="headerlink" href="#y-ahora-si-por-fin-instalamos-wordpress" title="Permanent link">&para;</a></h2>
 <p>Ha costado un poquito pero ya está, ahora lo más rápido, montar WordPress, así que descargamos el paquete directamente de wordpress.org y los descomprimimos:</p>
-<p>[root@Jarvis http]# cd /srv
+<div class="highlight"><pre><span></span><code>[root@Jarvis http]# cd /srv
 [root@Jarvis http]# wget http://wordpress.org/latest.tar.gz
 --2014-03-25 22:55:41-- http://wordpress.org/latest.tar.gz
 Resolviendo wordpress.org (wordpress.org)... 66.155.40.249, 66.155.40.250
@@ -805,55 +805,67 @@ Grabando a: “latest.tar.gz”
 100%[======================================================================================================&gt;] 5.869.727
 1,49MB/s en 4,4s
 2014-03-25 22:55:46 (1,28 MB/s) - “latest.tar.gz” guardado [5869727/5869727]
-[root@Jarvis srv]# tar -xvf latest.tar.gz</p>
+[root@Jarvis srv]# tar -xvf latest.tar.gz
+</code></pre></div>
 <p>Solo nos resta hacer la configuración de WordPress, podemos echar mano de <a href="http://codex.wordpress.org/Installing_WordPress#Famous_5-Minute_Install">esta guía</a> relativa a la instalación de un WP en 5 minutos.</p>
 <p>Los pasos son estos:</p>
 <p>1.- Creamos una base de datos para nuestro WordPress, fácil, tenemos phpMyAdmin, nos conectamos y creamos.</p>
 <p>2.- Creamos un usuario para esta base de datos con permisos para crear/modificar objetos (nos aparece como “Otorgar todos los privilegios para la base de datos "WordPress”)</p>
 <p>Estos dos primeros pasos se pueden realizar, por supuesto, por línea de comando, las sentencias serían estas:</p>
-<p>[root@Jarvis http]# mysql -u root -p
+<div class="highlight"><pre><span></span><code>[root@Jarvis http]# mysql -u root -p
 Enter password:
-Welcome to the MariaDB monitor. Commands end with ; or \g.
+Welcome to the MariaDB monitor. Commands end with ; or \\g.
 Your MariaDB connection id is 8
 Server version: 5.5.36-MariaDB-log MariaDB Server
 Copyright (c) 2000, 2014, Oracle, Monty Program Ab and others.
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+Type &#39;help;&#39; or &#39;\h&#39; for help. Type &#39;\c&#39; to clear the current input statement.
 MariaDB [(none)]&gt; CREATE DATABASE blog;
 Query OK, 1 row affected (0.01 sec)
 MariaDB [(none)]&gt; CREATE USER wordpressuser@localhost;
 Query OK, 0 rows affected (0.00 sec)
-MariaDB [(none)]&gt; SET PASSWORD FOR wordpressuser@localhost=PASSWORD('clave');
+MariaDB [(none)]&gt; SET PASSWORD FOR wordpressuser@localhost=PASSWORD(&#39;clave&#39;);
 Query OK, 0 rows affected (0.01 sec)
-MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON blog.* TO wordpressuser@localhost IDENTIFIED BY 'clave';
+MariaDB [(none)]&gt; GRANT ALL PRIVILEGES ON blog.* TO wordpressuser@localhost IDENTIFIED BY &#39;clave&#39;;
 Query OK, 0 rows affected (0.00 sec)
 MariaDB [(none)]&gt; FLUSH PRIVILEGES;
 Query OK, 0 rows affected (0.01 sec)
 MariaDB [(none)]&gt; exit
 Bye
-[root@Jarvis http]#</p>
-<p>3.- Creamos el fichero wp-config.php a partir del fichero de ejemplos</p>
-<p>[root@Jarvis wordpress]# cp /srv/wordpress/wp-config-sample.php /srv/wordpress/wp-config.php</p>
-<p>4.- Editar este fichero <code>/srv/wordpress/wp-config.php</code> para modificar la información de la conexión a la base de datos que hemos creado en el punto 1, nombre de la base de datos, usuario y clave.</p>
-<p>define('DB_NAME', 'blog');
+[root@Jarvis http]#
+</code></pre></div>
+<p>3.- Creamos el fichero wp-config.php a partir del fichero de ejemplos
+<div class="highlight"><pre><span></span><code>[root@Jarvis wordpress]# cp /srv/wordpress/wp-config-sample.php /srv/wordpress/wp-config.php
+</code></pre></div></p>
+<p>4.- Editar este fichero <code>/srv/wordpress/wp-config.php</code> para modificar la información de la conexión a la base de datos que hemos creado en el punto 1, nombre de la base de datos, usuario y clave.
+<div class="highlight"><pre><span></span><code>define(&#39;DB_NAME&#39;, &#39;blog&#39;);
 /** MySQL database username */
-define('DB_USER', 'wordpressuser');
+define(&#39;DB_USER&#39;, &#39;wordpressuser&#39;);
 /** MySQL database password */
-define('DB_PASSWORD', 'clave');</p>
-<p>5.- Copiamos la instalación/configuración a su lugar bajo <code>/srv/http</code></p>
-<p>[root@Jarvis srv]# cd /srv/wordpress
-[root@Jarvis wordpress]# cp -pr * /srv/http</p>
-<p>Por último, la url para arrancar la configuración final de WordPress es esta: <a href="http://192.168.1.20/wp-admin/install.php">http://192.168.1.20/wp-admin/install.php</a></p>
-<p>Por si lo quieres tener en castellano, puedes hacerlo de dos maneras, bajando el paquete completo de instalación en castellano, que siempre va un poco por detrás en las nuevas versiones que las americanas, e instalando tal y como hemos hecho pero a partir de ese fichero, y la otra opción es poner tan sólo el fichero de lenguaje, que es lo que te cuento a continuación y que hasta ahora no he conseguido que funcione al 100% y siempre termina apareciendo algún que otro literal en otro idioma…</p>
-<p>Debes bajar la traducción de WordPress para la versión en concreto que tienes, ahora mismo es la 3.8.1.</p>
-<p>La descarga la hacemos así</p>
-<p>[root@Jarvis srv]# cd /srv
-[root@Jarvis srv]# wget http://es.wordpress.org/wordpress-3.8.1-es_ES.zip</p>
+define(&#39;DB_PASSWORD&#39;, &#39;clave&#39;);
+</code></pre></div></p>
+<p>5.- Copiamos la instalación/configuración a su lugar bajo <code>/srv/http</code>
+<div class="highlight"><pre><span></span><code>[root@Jarvis srv]# cd /srv/wordpress
+[root@Jarvis wordpress]# cp -pr * /srv/http
+````
+
+Por último, la url para arrancar la configuración final de WordPress es esta: [http://192.168.1.20/wp-admin/install.php](http://192.168.1.20/wp-admin/install.php)
+
+Por si lo quieres tener en castellano, puedes hacerlo de dos maneras, bajando el paquete completo de instalación en castellano, que siempre va un poco por detrás en las nuevas versiones que las americanas, e instalando tal y como hemos hecho pero a partir de ese fichero, y la otra opción es poner tan sólo el fichero de lenguaje, que es lo que te cuento a continuación y que hasta ahora no he conseguido que funcione al 100% y siempre termina apareciendo algún que otro literal en otro idioma…
+
+Debes bajar la traducción de WordPress para la versión en concreto que tienes, ahora mismo es la 3.8.1.
+
+La descarga la hacemos así
+</code></pre></div>
+[root@Jarvis srv]# cd /srv
+[root@Jarvis srv]# wget http://es.wordpress.org/wordpress-3.8.1-es_ES.zip
+``</p>
 <p>Debemos extraer de ese zip el fichero wordpress/wp-content/languages/es_ES.mo para copiarlo dentro de nuestra instalación en la misma ruta.</p>
-<p>[root@Jarvis srv]# unzip -jqq wordpress-3.8.1-es_ES.zip wordpress/wp-content/languages/es_ES.mo
+<div class="highlight"><pre><span></span><code>[root@Jarvis srv]# unzip -jqq wordpress-3.8.1-es_ES.zip wordpress/wp-content/languages/es_ES.mo
 [root@Jarvis srv]# mkdir /srv/http/wp-content/languages
-[root@Jarvis srv]# mv /srv/es_ES.mo /srv/http/wp-content/languages</p>
+[root@Jarvis srv]# mv /srv/es_ES.mo /srv/http/wp-content/languages
+</code></pre></div>
 <p>En último lugar debemos modificar el fichero de configuración de WordPress para que indicar el lenguaje que vamos a emplear, editando el fichero /srv/http/wp-config.php y modificando esta línea para que quede así:</p>
-<p>define('WPLANG', 'es_ES');</p>
+<p><code>define('WPLANG', 'es_ES');</code></p>
 <h2 id="acceso-desde-el-exterior-de-nuestra-red">Acceso desde el exterior de nuestra red<a class="headerlink" href="#acceso-desde-el-exterior-de-nuestra-red" title="Permanent link">&para;</a></h2>
 <p>Si queremos acceder a nuestro servidor desde fuera de nuestra red debemos habilitar el acceso a el en nuestro router.</p>
 <p>Pero claro, a no ser que tengas dirección IP fija tendremos problemas cuando el router obtenga una nueva dirección IP.</p>
@@ -865,8 +877,9 @@ define('DB_PASSWORD', 'clave');</p>
 <p>Ahora tenemos que abrir en nuestro router el acceso a nuestra máquina por el puerto que vamos a emplear, en este caso la Ip de la red local 192.168.1.20 que será accedido por el puerto 80. Así que sencillo, entramos a Nat-VirtualServers y añadimos para esta IP y este puerto la entrada correspondiente.</p>
 <p>Una nota al margen, los router ya emplean ese puerto, el 80 para la web de administración, normalmente cuando indicamos que vamos a emplear ese puerto para algo el router suele modificar su propio puerto y se lo lleva al 8080.</p>
 <p>Y ahora instalamos el cliente de no-ip.</p>
-<p>[root@Jarvis ~]# pacman -S noip</p>
-<p>resolviendo dependencias...
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# pacman -S noip
+
+resolviendo dependencias...
 verificando conflictos...
 Paquetes (1): noip-2.1.9-5
 Tamaño Total de Descarga: 0,02 MiB
@@ -879,23 +892,27 @@ noip-2.1.9-5-armv6h 15,6 KiB 129K/s 00:00        [##############################
 (1/1) cargando los archivos del paquete...       [################################################] 100%
 (1/1) verificando conflictos entre archivos      [################################################] 100%
 (1/1) verificando el espacio disponible en disco [################################################] 100%
-(1/1) instalando noip                            [################################################] 100%</p>
-<p>Before running noip2 you must configure it.
-To configure noip2 run the command "noip2 -C -Y"</p>
+(1/1) instalando noip                            [################################################] 100%
+
+Before running noip2 you must configure it.
+To configure noip2 run the command &quot;noip2 -C -Y&quot;
+</code></pre></div>
 <p>Como vemos el propio instalador nos indica la forma de realizar la configuración así que le hacemos caso:</p>
-<p>[root@Jarvis ~]# noip2 -C -Y
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# noip2 -C -Y
 Auto configuration for Linux client of no-ip.com.
 Please enter the login/email string for no-ip.com antonioXXXX@gmail.com
-Please enter the password for user 'antonioXXXX@gmail.com' ******
+Please enter the password for user &#39;antonioXXXX@gmail.com&#39; ******
 Only one host [gumcampi.no-ip.org] is registered to this account.
 It will be used.
 Please enter an update interval:[30] 30
 Do you wish to run something at successful update?[N] (y/N) N
-New configuration file '/etc/no-ip2.conf' created.</p>
+New configuration file &#39;/etc/no-ip2.conf&#39; created.
+</code></pre></div>
 <p>Y estando instalado y configurado tan sólo nos falta ejecutarlo y dejarlo activo para posteriores arranques automáticos del sistema</p>
-<p>[root@Jarvis ~]# systemctl start noip2
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# systemctl start noip2
 [root@Jarvis ~]# systemctl enable noip2
-ln -s '/usr/lib/systemd/system/noip2.service' '/etc/systemd/system/multi-user.target.wants/noip2.service'</p>
+ln -s &#39;/usr/lib/systemd/system/noip2.service&#39; &#39;/etc/systemd/system/multi-user.target.wants/noip2.service&#39;
+</code></pre></div>
 <p>Ahora podréis conectar desde el exterior siempre bajo esa dirección.</p>
 <p>Eso si, os aviso, si probáis esto desde vuestra casa es posible que os falle, ya que la mayoría de los router no os dejarán salir al exterior para volver a entrar a la red local, es lo que se denomina <a href="http://opensimulator.org/wiki/NAT_Loopback_Routers">NAT Loopback</a> y son pocos los routers que lo soportan.</p>
 <p>Y una última cosa, de cara a la configuración de WordPress, si accedéis así, recordad que tenéis que indicar en la página de configuración del site (http://192.168.1.20/wp-admin/options-general.php) el nombre del dominio por DDNS en vez de la dirección ip Local.</p>

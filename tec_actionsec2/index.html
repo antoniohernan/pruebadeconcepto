@@ -742,7 +742,7 @@
 <div class="highlight"><pre><span></span><code>aws ec2 authorize-security-group-ingress --group-id &quot;${{ secrets.AWS_SGWEB }}&quot; --protocol tcp --port &quot;${{ secrets.AWS_VMPORT }}&quot; --cidr &quot;${{ env.IP_RUNNER }}/32&quot;
 </code></pre></div></p>
 <p>4.- Preparamos el runner Para poder lanzar la conexión scp hacia nuestra instancia EC2 debemos tener la clave ssh en el runner, y configurarla donde corresponde, y todo de manera que no quede rastro en los logs de actividad de la action, así que recurrimos a los secrets de las actions para que aparezca en el log como  "***". El código es este, creamos los directorios necesarios, permisos en directorios y ficheros y volcamos el pem.
-<div class="highlight"><pre><span></span><code>config\_ssh=~/.ssh/config
+<div class="highlight"><pre><span></span><code>config_ssh=~/.ssh/config
 keyfile=~/.ssh/Key.pem
 mkdir ~/.ssh &amp;&amp; echo -e &quot;ExitOnForwardFailure=yes\\nStrictHostKeyChecking=no&quot; &gt; ${config_ssh} &amp;&amp; chmod 600 ${config_ssh}
 echo &quot;${AWSKEY}&quot; &gt; ${keyfile} &amp;&amp; chmod 600 ${keyfile}
@@ -751,7 +751,7 @@ echo &quot;${AWSKEY}&quot; &gt; ${keyfile} &amp;&amp; chmod 600 ${keyfile}
 <div class="highlight"><pre><span></span><code>uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
 </code></pre></div></p>
 <p>6.- Copiamos los ficheros de local (runner, repo clonado) hacia la instancia EC2 Un simple scp recursivo hacia un directorio de despliegues, con un usuario en el servidor no privilegiado. Todos los datos que no queramos que se pinten en los logs es mejor pasarlos como secretos, ya que así sólo veremos "***" en el log.
-<div class="highlight"><pre><span></span><code>scp -r -i ${keyfile} $GITHUB\_WORKSPACE/data/* ${AWSVMUSERNAME}@${AWSVMFQDN}:/${AWSDESTINATION} 2&gt;/dev/null
+<div class="highlight"><pre><span></span><code>scp -r -i ${keyfile} $GITHUB_WORKSPACE/data/* ${AWSVMUSERNAME}@${AWSVMFQDN}:/${AWSDESTINATION} 2&gt;/dev/null
 </code></pre></div>
 7.- Y por último, si o si, sea cual sea el resultado, cerramos el security group Y así cerramos el acceso del runner evitando dejar accesos permitidos que con el tiempo pueden ser difíciles de manejar. La clave de este paso es ese <code>if: always()</code>que hará que se ejecute siempre sea cual sea el estado de los pasos anteriores de nuestra action.
 <div class="highlight"><pre><span></span><code>if: always()
@@ -763,7 +763,7 @@ Hasta aquí sería la parte github, pero claro, el fichero/os se quedan en un di
 user=www-data
 group=www-data
 origin=/Deployments
-target=/var/www/&lt;virtualhost\_documentroot&gt;/
+target=/var/www/&lt;virtualhost_documentroot&gt;/
 
 # Check if another instance of script is running
 [[ $(lsof -t $0| wc -l) &gt; 1 ]] &amp;&amp; echo &quot;At least one of $0 is running&quot; &amp;&amp; exit
