@@ -239,8 +239,8 @@ Más cosas sobre la swap, **podemos modificar su comportamiento**, en el fichero
 ```
 # Swapping too much or not enough? Disks spinning up when you'd
 # rather they didn't? Tweak these.
-#vm.vfs\_cache\_pressure = 100
-#vm.laptop\_mode = 0
+#vm.vfs_cache_pressure = 100
+#vm.laptop_mode = 0
 #vm.swappiness = 60
 ```
 
@@ -271,7 +271,7 @@ wireless_tools-29-8-armv6h 82.4 KiB 231K/s 00:00
 [#############################################] 100%
 (1/1) checking available disk space
 [#############################################] 100%
-(1/1) installing wireless\_tools
+(1/1) installing wireless_tools
 [#############################################] 100%
 ```
 
@@ -289,7 +289,7 @@ Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 
 En el bus 001, el dispositivo 4 se correspondea nuestro adaptador Wifi. Y ahora lo vamos a configurar, para después activarlo. El comando de configuración es este, y os aparece un menu realtivamente intuitivo `[root@Jarvis ~]# wifi-menu`
 
-En este menú debemos ver nuestra BSSID listada, esto es, nuestra red Wifi, podremos introducir un nombre que le vamos a dar a la conexión y teclear la clave de la Wifi, ojo, que esta clave se muestra en plano en pantalla, no aparecen los \* para taparla. Ahora vamos a comprobar que se ha activado bien el interfaz de red. El comando con el que manejamos los interfaces de red es ifconfig, con el parámetro -a que nos los lista todos. En la salida de este comando deberemos localizar algo así:
+En este menú debemos ver nuestra BSSID listada, esto es, nuestra red Wifi, podremos introducir un nombre que le vamos a dar a la conexión y teclear la clave de la Wifi, ojo, que esta clave se muestra en plano en pantalla, no aparecen los * para taparla. Ahora vamos a comprobar que se ha activado bien el interfaz de red. El comando con el que manejamos los interfaces de red es ifconfig, con el parámetro -a que nos los lista todos. En la salida de este comando deberemos localizar algo así:
 
 ```
 [root@Jarvis ~]# ifconfig -a

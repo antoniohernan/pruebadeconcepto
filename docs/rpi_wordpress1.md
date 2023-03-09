@@ -320,8 +320,9 @@ Iniciamos el gestor de base de datos, para poder configurarlo, este inicio tarda
 
 Y ahora realizamos la configuración inicial de MariaDB empleando el script que esta documentación del paquete nos indica (hay un error en el script pero no afecta a su funcionalidad, lleva ahí desde hace varios meses…):
 
-\[root@Jarvis ~\]# /usr/bin/mysql\_secure\_installation
-/usr/bin/mysql\_secure\_installation: línea 379: find\_mysql\_client: no se encontró la orden
+```
+[root@Jarvis ~]# /usr/bin/mysql_secure_installation
+/usr/bin/mysql_secure_installation: línea 379: find_mysql_client: no se encontró la orden
 NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
 SERVERS IN PRODUCTION USE! PLEASE READ EACH STEP CAREFULLY!
 
@@ -334,7 +335,7 @@ OK, successfully used password, moving on...
 
 Setting the root password ensures that nobody can log into the MariaDB
 root user without the proper authorisation.
-Set root password? \[Y/n\] Y
+Set root password? [Y/n] Y
 New password: <ponemos clave>
 Re-enter new password: <repetimos clave>
 Password updated successfully!
@@ -346,18 +347,18 @@ to log into MariaDB without having to have a user account created for
 them. This is intended only for testing, and to make the installation
 go a bit smoother. You should remove them before moving into a
 production environment.
-Remove anonymous users? \[Y/n\] Y
+Remove anonymous users? [Y/n] Y
 ... Success!
 
 Normally, root should only be allowed to connect from 'localhost'. This
 ensures that someone cannot guess at the root password from the network.
-Disallow root login remotely? \[Y/n\] Y
+Disallow root login remotely? [Y/n] Y
 ... Success!
 
 By default, MariaDB comes with a database named 'test' that anyone can
 access. This is also intended only for testing, and should be removed
 before moving into a production environment.
-Remove test database and access to it? \[Y/n\] Y
+Remove test database and access to it? [Y/n] Y
 - Dropping test database...
 ... Success!
 
@@ -366,18 +367,21 @@ Remove test database and access to it? \[Y/n\] Y
 
 Reloading the privilege tables will ensure that all changes made so far
 will take effect immediately.
-Reload privilege tables now? \[Y/n\] Y
+Reload privilege tables now? [Y/n] Y
 ... Success!
 
 Cleaning up...
 All done! If you've completed all of the above steps, your MariaDB
 installation should now be secure.
 Thanks for using MariaDB!
+```
 
 Y una vez configurado todo, reincidamos el gestor de base de datos y lo habilitamos en el arranque de máquina
 
-\[root@Jarvis ~\]# systemctl restart mysqld
-\[root@Jarvis ~\]# systemctl enable mysqld
+```
+[root@Jarvis ~]# systemctl restart mysqld
+[root@Jarvis ~]# systemctl enable mysqld
+```
 
 ## Administración de MariaDB con PHPMyAdmin
 
@@ -387,28 +391,30 @@ Más que nada por que en cualquier Hosting de pago es el paquete que con casi to
 
 Recurrimos a pacman una vez más:
 
-\[root@Jarvis ~\]# pacman -S phpmyadmin php-mcrypt
+```
+[root@Jarvis ~]# pacman -S phpmyadmin php-mcrypt
 resolviendo dependencias...
 verificando conflictos...
 Paquetes (3): libmcrypt-2.5.8-3 php-mcrypt-5.5.10-1 phpmyadmin-4.1.11-1
 Tamaño Total de Descarga: 4,78 MiB
 Tamaño Total Instalado: 26,21 MiB
-:: ¿Continuar con la instalación? \[S/n\] S
+:: ¿Continuar con la instalación? [S/n] S
 :: Recuperando paquetes ...
-libmcrypt-2.5.8-3-armv6h 64,9 KiB 319K/s 00:00       \[##################################################\] 100%
-php-mcrypt-5.5.10-1-armv6h 9,9 KiB 236K/s 00:00      \[##################################################\] 100%
-phpmyadmin-4.1.11-1-any 4,7 MiB 2,52M/s 00:02        \[##################################################\] 100%
-(3/3) verificando llaves en el llavero               \[##################################################\] 100%
-(3/3) verificando la integridad de los paquetes      \[##################################################\] 100%
-(3/3) cargando los archivos del paquete...           \[##################################################\] 100%
-(3/3) verificando conflictos entre archivos          \[##################################################\] 100%
-(3/3) verificando el espacio disponible en disco     \[##################################################\] 100%
-(1/3) instalando phpmyadmin                          \[##################################################\] 100%
+libmcrypt-2.5.8-3-armv6h 64,9 KiB 319K/s 00:00       [##################################################] 100%
+php-mcrypt-5.5.10-1-armv6h 9,9 KiB 236K/s 00:00      [##################################################] 100%
+phpmyadmin-4.1.11-1-any 4,7 MiB 2,52M/s 00:02        [##################################################] 100%
+(3/3) verificando llaves en el llavero               [##################################################] 100%
+(3/3) verificando la integridad de los paquetes      [##################################################] 100%
+(3/3) cargando los archivos del paquete...           [##################################################] 100%
+(3/3) verificando conflictos entre archivos          [##################################################] 100%
+(3/3) verificando el espacio disponible en disco     [##################################################] 100%
+(1/3) instalando phpmyadmin                          [##################################################] 100%
 Check http://wiki.archlinux.org/index.php/Phpmyadmin for details.
 Dependencias opcionales para phpmyadmin
-php-mcrypt: to use phpMyAdmin internal authentication \[pendiente\]
-(2/3) instalando libmcrypt                           \[##################################################\] 100%
-(3/3) instalando php-mcrypt                          \[##################################################\] 100%
+php-mcrypt: to use phpMyAdmin internal authentication [pendiente]
+(2/3) instalando libmcrypt                           [##################################################] 100%
+(3/3) instalando php-mcrypt                          [##################################################] 100%
+```
 
 Por defecto la instalación se realiza dentro de la ruta `/usr/share/webapps/phpMyAdmin` y nuestro servidor web no está configurado para arrancar nada allí.
 
@@ -416,48 +422,52 @@ La solución, pues fácil, creamos un enlace de es ruta en nuestra ruta de servi
 
 Se podría mover/copiar el contenido de esa webapps a la carpeta, pero de cara a actualizaciones del paquete es más recomendable hacerlo por enlace.
 
-\[root@Jarvis ~\]# ln -s /usr/share/webapps/phpMyAdmin /srv/http/phpMyAdmin
+```
+[root@Jarvis ~]# ln -s /usr/share/webapps/phpMyAdmin /srv/http/phpMyAdmin
+```
 
 Y ahora tenemos que volver a modificar el fichero de configuración del servidor web `/etc/nginx/nginx.conf` , este sería el contenido del fichero que debemos tener:
 
+```
 #user html;
-worker\_processes 1;
-error\_log /var/log/error\_nginx.log;
+worker_processes 1;
+error_log /var/log/error_nginx.log;
 events {
-    worker\_connections 1024;
+    worker_connections 1024;
     }
 http {
     include mime.types;
-    default\_type application/octet-stream;
+    default_type application/octet-stream;
     sendfile on;
-    keepalive\_timeout 15;
+    keepalive_timeout 15;
     gzip on;
-    gzip\_comp\_level 1;
+    gzip_comp_level 1;
     server {
         listen 80;
-    server\_name localhost;
-    location ~ \\.php {
+    server_name localhost;
+    location ~ \.php {
             root /srv/http;
-            fastcgi\_pass unix:/var/run/php-fpm/php-fpm.sock;
-            fastcgi\_index index.php;
-            fastcgi\_param SCRIPT\_FILENAME $document\_root$fastcgi\_script\_name;
-            include /etc/nginx/fastcgi\_params;
+            fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+            fastcgi_index index.php;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include /etc/nginx/fastcgi_params;
             }
     location /phpmyadmin {
-            rewrite ^/\* /phpMyAdmin last;
+            rewrite ^/* /phpMyAdmin last;
             }
     location / {
             root /srv/http;
             index index.php;
             }
-    error\_page 500 502 503 504 /50x.html;
+    error_page 500 502 503 504 /50x.html;
     location = /50x.html {
     root /usr/share/nginx/html;
             }
     }
 }
+```
 
-También debemos modificar el fichero /etc/php/php.ini realizando estos cambios que a continuación se detallan:
+También debemos modificar el fichero `/etc/php/php.ini` realizando estos cambios que a continuación se detallan:
 
 Localizamos la línea que dice `open_basedir=` y ponemos esto:
 
@@ -465,17 +475,21 @@ Localizamos la línea que dice `open_basedir=` y ponemos esto:
 
 Localizamos estas líneas, y las descomentamos, esto es, quitamos el ; del principio de la línea (pulsando la letra x)
 
+```
 extension=mysqli.so
 extension=mysql.so
 extension=mcrypt.so
-mysqli.allow\_local\_infile = On
+mysqli.allow_local_infile = On
+```
 
 Como hemos realizado modificaciones que afectan a la configuración del servidor web y del FastCGI de PHP, vamos a reiniciar ambos procesos
 
-\[root@Jarvis nginx\]# systemctl restart nginx php-fpm
+```
+[root@Jarvis nginx]# systemctl restart nginx php-fpm
+```
 
 Y probamos para ver si hemos conseguido instalar todo bien.
 
 Para esto, entramos a la url http://192.168.1.20/phpmyadmin (por aquí tu IP) ([http://192.168.1.20/phpmyadmin](http://192.168.1.20/phpmyadmin))
 
-... [Continuará](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014-parte-7-practico1-wordpress2/) ...
+... [Continuará](rpi_wordpress2.md) ...

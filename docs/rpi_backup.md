@@ -40,7 +40,7 @@ Para esto, volveremos a usar el comando dd cambiando como es lógico los paráme
 Este sería el comando para volcar nuestra tarjeta SD en nuestra carpeta Descargas:
 
 ``` 
-sudo dd bs=1m if=/dev/rdisk1 | gzip > ~/downloads/2014-04-26\_Jarvis.img.gz
+sudo dd bs=1m if=/dev/rdisk1 | gzip > ~/downloads/2014-04-26_Jarvis.img.gz
 ```
 
 El parámetro `if` indica que nuestro origen será el disco (completo, no particiones) que corresponde a nuestra tarjeta SD (en mi caso es este, `/dev/rdisk1` pues monto con un USB porta SD, recordad como vimos como localizar nuestro dispositivo en el mensaje de instalación de la SD).
