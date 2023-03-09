@@ -27,11 +27,7 @@ jobs:
     - name: Install repo-linter
       run: |
         npm install -g repolinter
-        
-    - name: Run Repo Linter help
-      run: |
-        repolinter --help              
-      
+
     - name: Run Repo Linter
       run: |
-        repolinter lint .      
+        repolinter --rulesetFile cfg/repolint.json lint .      
