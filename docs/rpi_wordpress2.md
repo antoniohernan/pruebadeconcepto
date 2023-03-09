@@ -7,6 +7,7 @@ date: "2020-03-05"
 
 Ha costado un poquito pero ya está, ahora lo más rápido, montar WordPress, así que descargamos el paquete directamente de wordpress.org y los descomprimimos:
 
+```
 [root@Jarvis http]# cd /srv
 [root@Jarvis http]# wget http://wordpress.org/latest.tar.gz
 --2014-03-25 22:55:41-- http://wordpress.org/latest.tar.gz
@@ -19,6 +20,7 @@ Grabando a: “latest.tar.gz”
 1,49MB/s en 4,4s
 2014-03-25 22:55:46 (1,28 MB/s) - “latest.tar.gz” guardado [5869727/5869727]
 [root@Jarvis srv]# tar -xvf latest.tar.gz
+```
 
 Solo nos resta hacer la configuración de WordPress, podemos echar mano de [esta guía](http://codex.wordpress.org/Installing_WordPress#Famous_5-Minute_Install) relativa a la instalación de un WP en 5 minutos.
 
@@ -30,13 +32,14 @@ Los pasos son estos:
 
 Estos dos primeros pasos se pueden realizar, por supuesto, por línea de comando, las sentencias serían estas:
 
+```
 [root@Jarvis http]# mysql -u root -p
 Enter password:
 Welcome to the MariaDB monitor. Commands end with ; or \\g.
 Your MariaDB connection id is 8
 Server version: 5.5.36-MariaDB-log MariaDB Server
 Copyright (c) 2000, 2014, Oracle, Monty Program Ab and others.
-Type 'help;' or '\\h' for help. Type '\\c' to clear the current input statement.
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 MariaDB [(none)]> CREATE DATABASE blog;
 Query OK, 1 row affected (0.01 sec)
 MariaDB [(none)]> CREATE USER wordpressuser@localhost;
@@ -50,23 +53,27 @@ Query OK, 0 rows affected (0.01 sec)
 MariaDB [(none)]> exit
 Bye
 [root@Jarvis http]#
+```
 
 3.- Creamos el fichero wp-config.php a partir del fichero de ejemplos
-
+```
 [root@Jarvis wordpress]# cp /srv/wordpress/wp-config-sample.php /srv/wordpress/wp-config.php
+```
 
 4.- Editar este fichero `/srv/wordpress/wp-config.php` para modificar la información de la conexión a la base de datos que hemos creado en el punto 1, nombre de la base de datos, usuario y clave.
-
+```
 define('DB_NAME', 'blog');
 /** MySQL database username */
 define('DB_USER', 'wordpressuser');
 /** MySQL database password */
 define('DB_PASSWORD', 'clave');
+```
 
 5.- Copiamos la instalación/configuración a su lugar bajo `/srv/http`
-
+``` 
 [root@Jarvis srv]# cd /srv/wordpress
 [root@Jarvis wordpress]# cp -pr * /srv/http
+````
 
 Por último, la url para arrancar la configuración final de WordPress es esta: [http://192.168.1.20/wp-admin/install.php](http://192.168.1.20/wp-admin/install.php)
 
@@ -76,18 +83,22 @@ Debes bajar la traducción de WordPress para la versión en concreto que tienes,
 
 La descarga la hacemos así
 
+```
 [root@Jarvis srv]# cd /srv
 [root@Jarvis srv]# wget http://es.wordpress.org/wordpress-3.8.1-es_ES.zip
+``
 
 Debemos extraer de ese zip el fichero wordpress/wp-content/languages/es_ES.mo para copiarlo dentro de nuestra instalación en la misma ruta.
 
+```
 [root@Jarvis srv]# unzip -jqq wordpress-3.8.1-es_ES.zip wordpress/wp-content/languages/es_ES.mo
 [root@Jarvis srv]# mkdir /srv/http/wp-content/languages
 [root@Jarvis srv]# mv /srv/es_ES.mo /srv/http/wp-content/languages
+```
 
 En último lugar debemos modificar el fichero de configuración de WordPress para que indicar el lenguaje que vamos a emplear, editando el fichero /srv/http/wp-config.php y modificando esta línea para que quede así:
 
-define('WPLANG', 'es_ES');
+`define('WPLANG', 'es_ES');`
 
 ## Acceso desde el exterior de nuestra red
 
@@ -111,6 +122,7 @@ Una nota al margen, los router ya emplean ese puerto, el 80 para la web de admin
 
 Y ahora instalamos el cliente de no-ip.
 
+```
 [root@Jarvis ~]# pacman -S noip
 
 resolviendo dependencias...
@@ -130,9 +142,11 @@ noip-2.1.9-5-armv6h 15,6 KiB 129K/s 00:00        [##############################
 
 Before running noip2 you must configure it.
 To configure noip2 run the command "noip2 -C -Y"
+```
 
 Como vemos el propio instalador nos indica la forma de realizar la configuración así que le hacemos caso:
 
+```
 [root@Jarvis ~]# noip2 -C -Y
 Auto configuration for Linux client of no-ip.com.
 Please enter the login/email string for no-ip.com antonioXXXX@gmail.com
@@ -142,12 +156,15 @@ It will be used.
 Please enter an update interval:[30] 30
 Do you wish to run something at successful update?[N] (y/N) N
 New configuration file '/etc/no-ip2.conf' created.
+```
 
 Y estando instalado y configurado tan sólo nos falta ejecutarlo y dejarlo activo para posteriores arranques automáticos del sistema
 
+```
 [root@Jarvis ~]# systemctl start noip2
 [root@Jarvis ~]# systemctl enable noip2
 ln -s '/usr/lib/systemd/system/noip2.service' '/etc/systemd/system/multi-user.target.wants/noip2.service'
+```
 
 Ahora podréis conectar desde el exterior siempre bajo esa dirección.
 
