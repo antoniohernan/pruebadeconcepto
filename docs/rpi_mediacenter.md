@@ -21,7 +21,7 @@ Vamos a instalar entonces..
 
 La instalación es… según algunos blogs superdifícil y le tienes que dar opciones y paquetes adicionales y las opciones de la cpu y… es un comando de una línea y tres palabras…
 
-\[root@Jarvis ~\]# pacman -S xbmc
+[root@Jarvis ~]# pacman -S xbmc
 :: Existen 2 proveedores disponibles para xbmc:
 :: Repositorio alarm
 
@@ -29,7 +29,7 @@ La instalación es… según algunos blogs superdifícil y le tienes que dar opc
 Introduzca un número (por defecto=1): 1
 resolviendo dependencias...
 verificando conflictos...
-Paquetes (49): afpfs-ng-0.8.1-8 alsa-lib-1.0.27.2-1 bluez-libs-5.16-1 compositeproto-0.4.2-2 dmxproto-2.3.1-2 enca-1.15-1 flac-1.3.0-1 fribidi-0.19.6-1 inputproto-2.3-1 libao-1.2.0-1 libass-0.11.1-1 libbluray-0.5.0-1 libcddb-1.3.2-4 libcdio-0.92-1 libcec-2.1.4-1.1 libdmx-1.1.3-1 libmad-0.15.1b-7 libmicrohttpd-0.9.33-1 libmodplug-0.8.8.5-1 libmpeg2-0.5.1-4 libnfs-1.9.3-1 libogg-1.3.1-2 libplist-1.10-1 libsamplerate-0.1.8-3 libshairport-1.2.1.20121215-3 libsndfile-1.0.25-2 libssh-0.5.5-3 libva-1.3.0-1 libvorbis-1.3.4-1 libxcomposite-0.4.4-1 libxi-1.7.2-1 libxinerama-1.1.3-2 libxtst-1.2.2-1 libxxf86dga-1.1.4-1 lockdev-1.0.3\_1.5-4 raspberrypi-firmware-20140324-1 raspberrypifirmware-examples-20140324-1 recode-3.6-8 recordproto-1.14.2-1 rtmpdump-20131205-1 sdl-1.2.15-5 sdl\_image-1.2.12-3 swig-3.0.0-1 taglib-1.9.1-1 tinyxml-2.6.2-3 xf86dgaproto-2.1-2 xineramaproto-1.2.1-2 xorg-xdpyinfo-1.3.1-1 xbmc-rbp-12.3-1
+Paquetes (49): afpfs-ng-0.8.1-8 alsa-lib-1.0.27.2-1 bluez-libs-5.16-1 compositeproto-0.4.2-2 dmxproto-2.3.1-2 enca-1.15-1 flac-1.3.0-1 fribidi-0.19.6-1 inputproto-2.3-1 libao-1.2.0-1 libass-0.11.1-1 libbluray-0.5.0-1 libcddb-1.3.2-4 libcdio-0.92-1 libcec-2.1.4-1.1 libdmx-1.1.3-1 libmad-0.15.1b-7 libmicrohttpd-0.9.33-1 libmodplug-0.8.8.5-1 libmpeg2-0.5.1-4 libnfs-1.9.3-1 libogg-1.3.1-2 libplist-1.10-1 libsamplerate-0.1.8-3 libshairport-1.2.1.20121215-3 libsndfile-1.0.25-2 libssh-0.5.5-3 libva-1.3.0-1 libvorbis-1.3.4-1 libxcomposite-0.4.4-1 libxi-1.7.2-1 libxinerama-1.1.3-2 libxtst-1.2.2-1 libxxf86dga-1.1.4-1 lockdev-1.0.3_1.5-4 raspberrypi-firmware-20140324-1 raspberrypifirmware-examples-20140324-1 recode-3.6-8 recordproto-1.14.2-1 rtmpdump-20131205-1 sdl-1.2.15-5 sdl_image-1.2.12-3 swig-3.0.0-1 taglib-1.9.1-1 tinyxml-2.6.2-3 xf86dgaproto-2.1-2 xineramaproto-1.2.1-2 xorg-xdpyinfo-1.3.1-1 xbmc-rbp-12.3-1
 
 Tamaño Total de Descarga: 59,24 MiB
 Tamaño Total Instalado: 118,71 MiB
@@ -44,12 +44,12 @@ Otra curiosidad, si miráis la lista de paquetes de los que depende xbmc, tenemo
 
 Termina la instalación y esto es importante, nos aparece este mensaje:
 
-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
+****************************************************************
 
 If xbmc systemd service does not start, try adding a udev rule:
 echo 'SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"' > /etc/udev/rules.d/10-vchiq-permissions.rules
 
-\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
+****************************************************************
 
 Dependencias opcionales para xbmc-rbp
 
@@ -62,7 +62,7 @@ La primera parte nos dice que si nos encontramos problemas para arrancar con sys
 
 Pues mira, como que no hay que esperar a tener problemas para arrancar para ejecutar eso, que sólo modifica permisos…
 
-\[root@Jarvis ~\]# echo 'SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"' > /etc/udev/rules.d/10-vchiq-permissions.rules
+[root@Jarvis ~]# echo 'SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"' > /etc/udev/rules.d/10-vchiq-permissions.rules
 
 Las otras dependencias opcionales que nos marca, pues a gusto del consumidor… yo no he tenido que instalarlas para hacer funcionar mi XBMC.
 
@@ -76,7 +76,7 @@ Va a ir un poco más ligera, puede que no se enganche tanto, pero de ahí a que 
 
 Estos cambios los podemos hacer editando el fichero `config.txt` que está en el directorio /boot, ojo con tocar ahí que es el arranque de la máquina…
 
-\[root@Jarvis ~\]# vi /boot/config.txt
+[root@Jarvis ~]# vi /boot/config.txt
 
 En la parte final del fichero encontráis grupos de configuración según la frecuencia del procesador.
 
@@ -88,30 +88,30 @@ Si os sirve de guía, yo uso la recomendación Medium, y para esto, tan sólo te
 
 ##Medium
 
-#arm\_freq=900
-#core\_freq=333
-#sdram\_freq=450
-#over\_voltage=2
+#arm_freq=900
+#core_freq=333
+#sdram_freq=450
+#over_voltage=2
 
 Quedaría así
 
 ##Medium
 
-arm\_freq=900
-core\_freq=333
-sdram\_freq=450
-over\_voltage=2
+arm_freq=900
+core_freq=333
+sdram_freq=450
+over_voltage=2
 
 Del resto de parámetros, he visto ajuste de memoria de la gpu (cuanta ram le damos a la gráfica, así en palabras más llanas), pero a mi no me han supuesto gran cambio.
 
 Reiniciamos la máquina después de estos cambios.
 
-\[root@Jarvis ~\]# sync; reboot
+[root@Jarvis ~]# sync; reboot
 
 Y ahora, cuando haya terminado vamos a arrancar XBMC de manera manual para luego fijarlo y dejarlo en arranque automático.
 
-\[root@Jarvis ~\]# systemctl start xbmc
-\[root@Jarvis ~\]# systemctl enable xbmc
+[root@Jarvis ~]# systemctl start xbmc
+[root@Jarvis ~]# systemctl enable xbmc
 
 Si todo sale bien veremos en nuestra televisión por HDMI el logotipo y posteriormente el menú de nuestro Media Center.
 
@@ -123,9 +123,9 @@ Para un pendrive con formato Fat32 en el dispositivo`/dev/sdb` la línea a inclu
 
 Y una vez ejecutado el comando de montaje tendríamos el contenido del Pendrive:
 
-\[root@Jarvis /\]# mount -a
-\[root@Jarvis /\]# cd media
-\[root@Jarvis media\]# ls
+[root@Jarvis /]# mount -a
+[root@Jarvis /]# cd media
+[root@Jarvis media]# ls
 
 Documentales Peliculas Series
 
@@ -135,7 +135,7 @@ Para manejar el Media Center, se puede usar el mando de la televisión si esta e
 
 Antes de poder usar esta aplicación para manejar nuestro equipo, debemos habilitar el acceso por servicio web que viene desactivado, son 2 minutos.
 
-\[root@Jarvis ~\]# vi /var/lib/xbmc/.xbmc/userdata/guisettings.xml
+[root@Jarvis ~]# vi /var/lib/xbmc/.xbmc/userdata/guisettings.xml
 
 <webserver>false</webserver>
 
@@ -145,13 +145,13 @@ Por
 
 Salvamos el fichero y reincidamos XBMC
 
-\[root@Jarvis ~\]# systemctl restart xbmc
+[root@Jarvis ~]# systemctl restart xbmc
 
 Los ajustes de configuración de la App para iOS (en este caso para iPhone) son muy sencillos, y una vez que conecte, el icono cambie a verde en vez de rojo, podremos movernos por los menús libremente usado la opción de control remoto.
 
 Ahora vamos a añadir una fuente de contenido multimedia de tipo película, basada en un directorio de nuestra unidad externa.
 
-(\*Nota en 2020... las capturas de pantalla, se han perdido, obvio, es lo que pasa con los enlaces efímeros en los foros.)
+(*Nota en 2020... las capturas de pantalla, se han perdido, obvio, es lo que pasa con los enlaces efímeros en los foros.)
 
 En el menú principal nos vamos a Videos, y pulsando flecha abajo entramos a Files.
 

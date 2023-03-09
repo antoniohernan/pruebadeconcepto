@@ -21,11 +21,11 @@ Para poder hacer AirPrint necesitamos también instalar [Avahi](http://avahi.org
 
 Instalamos todo entonces, con ayuda de pacman (se instala python2 aunque ya lo teníamos instalado de antes, por sisólo quieres probar esto de la impresión…)
 
-\[root@Jarvis ~\]# pacman -Sy cups cups-pdf gutenprint avahi pycups python2
+[root@Jarvis ~]# pacman -Sy cups cups-pdf gutenprint avahi pycups python2
 
 :: Sincronizando las bases de datos de paquetes...
-core 153,6 KiB 464K/s 00:00    \[###############\] 100%
-extra 2031,8 KiB 1628K/s 00:01 \[###############\] 100%
+core 153,6 KiB 464K/s 00:00    [###############] 100%
+extra 2031,8 KiB 1628K/s 00:01 [###############] 100%
 community está actualizado
 alarm está actualizado
 aur está actualizado
@@ -37,7 +37,7 @@ Paquetes (56): bc-1.06.95-1.1 cairo-1.12.16-1 colord-1.0.6-1 cups-filters-1.0.49
 Tamaño Total de Descarga: 52,90 MiB
 Tamaño Total Instalado: 358,88 MiB
 Tamaño neto a actualizar: 356,75 MiB
-:: ¿Continuar con la instalación? \[S/n\] S
+:: ¿Continuar con la instalación? [S/n] S
 
 La instalación es un poco larga por la cantidad de paquetes que añade o actualiza en el sistema, pero no debe presentar problema alguno.
 
@@ -47,7 +47,7 @@ El fichero de configuración de cups está en /etc/cups/cupsd.conf
 
 Lo editamos para configurar el rango de direcciones IP que podrán hacer uso de su servicio WEB (y por tanto poder configurarlo por web desde otro equipo de la red), así como para dar permisos a la administración.
 
-\[root@Jarvis ~\]# vi /etc/cups/cupsd.conf
+[root@Jarvis ~]# vi /etc/cups/cupsd.conf
 
 Donde dice
 
@@ -91,7 +91,7 @@ Allow @LOCAL
 
 ## Iniciamos el servicio de impresión
 
-\[root@Jarvis ~\]# systemctl start cups
+[root@Jarvis ~]# systemctl start cups
 
 Y probamos si tenemos accesos la IP de nuestra máquina y el puerto 631 para la consola (http://192.168.1.20:631)
 
@@ -131,23 +131,23 @@ La verdad es que no se me ocurren muchos ejemplos de porqué podamos necesitar e
 
 Bien, vamos paso a paso, **arrancamos el demonio de Avahi**
 
-\[root@Jarvis ~\]# systemctl start avahi-daemon
+[root@Jarvis ~]# systemctl start avahi-daemon
 
 Creamos el directorio para la instalación de los programas Python y descargamos el que nos genera la configuración para AirPrint:
 
-\[root@Jarvis /\]# mkdir /opt/airprint
-\[root@Jarvis /\]# cd /opt/airprint
-\[root@Jarvis airprint\]# wget -O airprint-generate.py --no-check-certificate https://raw.github.com/tjfontaine/airprintgenerate/master/airprint-generate.py
+[root@Jarvis /]# mkdir /opt/airprint
+[root@Jarvis /]# cd /opt/airprint
+[root@Jarvis airprint]# wget -O airprint-generate.py --no-check-certificate https://raw.github.com/tjfontaine/airprintgenerate/master/airprint-generate.py
 
 --2014-03-29 15:11:17-- https://raw.github.com/tjfontaine/airprint-generate/master/airprint-generate.py
 
 Resolviendo raw.github.com (raw.github.com)... 185.31.16.133
-Conectando con raw.github.com (raw.github.com)\[185.31.16.133\]:443... conectado.
+Conectando con raw.github.com (raw.github.com)[185.31.16.133]:443... conectado.
 Petición HTTP enviada, esperando respuesta... 200 OK
-Longitud: 10093 (9,9K) \[text/plain\]
-Grabando a: “airprint-generate.py” 100% \[============================================================================================================>\]
+Longitud: 10093 (9,9K) [text/plain]
+Grabando a: “airprint-generate.py” 100% [============================================================================================================>]
 10.093 --.-K/s en 0,003s
-2014-03-29 15:11:18 (3,57 MB/s) - “airprint-generate.py” guardado \[10093/10093\]
+2014-03-29 15:11:18 (3,57 MB/s) - “airprint-generate.py” guardado [10093/10093]
 
 Como no usamos Python sino que usamos Python2 tenemos que modificar este fichero que nos hemos descargado.
 
@@ -157,9 +157,9 @@ Para esto, lo editamos con vi y modificamos la primera línea, añadiendo un 2 a
 
 Vamos a ejecutar por tanto este script en Pyhton para ver que información no genera:
 
-\[root@Jarvis airprint\]# chmod 755 airprint-generate.py
-\[root@Jarvis airprint\]# ./airprint-generate.py
-\[root@Jarvis airprint\]# mv AirPrint-Canon\_MP140\_series.service /etc/avahi/services
+[root@Jarvis airprint]# chmod 755 airprint-generate.py
+[root@Jarvis airprint]# ./airprint-generate.py
+[root@Jarvis airprint]# mv AirPrint-Canon_MP140_series.service /etc/avahi/services
 
 En la primera línea le hemos dado permisos de ejecución.
 
@@ -169,14 +169,14 @@ En caso de conectar posteriormente otra impresora pues sólo hay que repetir est
 
 Sólo nos queda reiniciar el demonio de Avahi y ver que reconozca nuestra impresora:
 
-\[root@Jarvis airprint\]# systemctl restart avahi-daemon
-\[root@Jarvis airprint\]# systemctl status avahi-daemon
+[root@Jarvis airprint]# systemctl restart avahi-daemon
+[root@Jarvis airprint]# systemctl status avahi-daemon
 
 avahi-daemon.service - Avahi mDNS/DNS-SD Stack
 Loaded: loaded (/usr/lib/systemd/system/avahi-daemon.service; disabled)
 Active: active (running) since sáb 2014-03-29 15:18:49 CET; 9s ago
-mar 29 15:18:51 Jarvis avahi-daemon\[1239\]: Service "AirPrint Canon\_MP140\_series @ Jarvis (/services/AirPrint-
-Canon\_MP140\_series.service) successfully established.
+mar 29 15:18:51 Jarvis avahi-daemon[1239]: Service "AirPrint Canon_MP140_series @ Jarvis (/services/AirPrint-
+Canon_MP140_series.service) successfully established.
 
 Y desde por ejemplo un iPad, podemos imprimir un PDF, usando el icono de compartir de Adobe Reader, veremos en **Imprimir** como sale nuestra “impresora AirPrint”.
 

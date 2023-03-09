@@ -11,7 +11,7 @@ No vamos a obtener el rendimiento de las consolas actuales ni mucho menos, pero 
 
 Podemos hacerlo de dos maneras, montando los distintos emuladores uno a uno… en algunos casos hay incluso que compilar y entras en una espiral de dependencias/compilaciones que te hace perder mucho tiempo para lo que obtienes… y la otra forma es usando (sin que sirva de precedente) una imagen que ya lo trae todo y es “Ready tu Play”, esta distribución es [PiMame](http://pimame.org)
 
-(\*Nota 2020 .. las capturas de este post.. también están perdidas)
+(*Nota 2020 .. las capturas de este post.. también están perdidas)
 
 ## Scumm VM en ARCH para juegos tipo “Lucas”
 
@@ -23,7 +23,7 @@ Vamos a instalar una máquina virtual para SCUMM, llamada SCUMMVM, la cual es mu
 
 Así que instalamos, como veis, ya existe como paquete “oficial” en los repositorios de ARCH, lo que confirma mis palabras anteriores…
 
-\[root@Jarvos ~\]# pacman -S scummvm
+[root@Jarvos ~]# pacman -S scummvm
 
 resolviendo dependencias...
 verificando conflictos...
@@ -31,8 +31,8 @@ Paquetes (9): faad2-2.7-4 fluidsynth-1.1.6-2 glu-9.0.0-2 jack-0.124.1-1 json-c-0
 
 Tamaño Total de Descarga: 7,31 MiB
 Tamaño Total Instalado: 27,55 MiB
-:: ¿Continuar con la instalación? \[S/n\]
-(6/9) instalando fluidsynth             \[########################################################################\] 100%
+:: ¿Continuar con la instalación? [S/n]
+(6/9) instalando fluidsynth             [########################################################################] 100%
 
 > To use FluidSynth as a daemon copy the service file from:
 /usr/lib/systemd/system/fluidsynth.service
@@ -49,10 +49,10 @@ Estos mensajes tan “feos” que vemos durante la instalación son por la insta
 
 Pero la realidad es que está todo hecho y con un entable y un start a través de systemctl solucionado, y así lo hacemos:
 
-\[root@Jarvis ~\]# systemctl enable fluidsynth
+[root@Jarvis ~]# systemctl enable fluidsynth
 ln -s '/usr/lib/systemd/system/fluidsynth.service' '/etc/systemd/system/multi-user.target.wants/fluidsynth.service'
 
-\[root@Jarvis ~\]# systemctl start fluidsynth
+[root@Jarvis ~]# systemctl start fluidsynth
 
 ## Cargando Monkey Island
 
@@ -62,7 +62,7 @@ Yo este juego lo tengo original, pero por desgracia a día de hoy imposible juga
 
 Para la Rom, hablamos en privado.
 
-\[root@Jarvis ~\]# scummvm
+[root@Jarvis ~]# scummvm
 
 WARNING: FSNode::createReadStream: '.scummvmrc' does not exist!
 Default configuration file missing, creating a new one
@@ -91,7 +91,7 @@ Como podréis comprobar, no hay sonido… **el sonido es algo puñetero en las R
 
 1.- Acutalizamos/completamos la instalación de Alsa
 
-\[root@Jarvis ~\]# pacman -S alsa-firmware alsa-lib alsa-plugins alsa-utils
+[root@Jarvis ~]# pacman -S alsa-firmware alsa-lib alsa-plugins alsa-utils
 
 atención: alsa-lib-1.0.27.2-1 está actualizado -- re-instalando
 resolviendo dependencias...
@@ -100,47 +100,47 @@ Paquetes (4): alsa-firmware-1.0.27-2 alsa-lib-1.0.27.2-1 alsa-plugins-1.0.27-2 a
 Tamaño Total de Descarga: 2,98 MiB
 Tamaño Total Instalado: 15,56 MiB
 Tamaño neto a actualizar: 14,12 MiB
-:: ¿Continuar con la instalación? \[S/n\] S
+:: ¿Continuar con la instalación? [S/n] S
 :: Recuperando paquetes ...
 
-alsa-firmware-1.0.27-2-any 2,0 MiB 1480K/s 00:01     \[#########################################################################\] 100%
-alsa-plugins-1.0.27-2-armv6h 50,4 KiB 245K/s 00:00   \[#########################################################################\] 100%
-alsa-utils-1.0.27.2-1-armv6h 905,8 KiB 1201K/s 00:01 \[#########################################################################\] 100%
-(4/4) verificando llaves en el llavero               \[#########################################################################\] 100%
-(4/4) verificando la integridad de los paquetes      \[#########################################################################\] 100%
-(4/4) cargando los archivos del paquete...           \[#########################################################################\] 100%
-(4/4) verificando conflictos entre archivos          \[#########################################################################\] 100%
-(4/4) verificando el espacio disponible en disco     \[#########################################################################\] 100%
-(1/4) instalando alsa-firmware                       \[#########################################################################\] 100%
-(2/4) reinstalando alsa-lib                          \[#########################################################################\] 100%
-(3/4) instalando alsa-plugins                        \[#########################################################################\] 100%
+alsa-firmware-1.0.27-2-any 2,0 MiB 1480K/s 00:01     [#########################################################################] 100%
+alsa-plugins-1.0.27-2-armv6h 50,4 KiB 245K/s 00:00   [#########################################################################] 100%
+alsa-utils-1.0.27.2-1-armv6h 905,8 KiB 1201K/s 00:01 [#########################################################################] 100%
+(4/4) verificando llaves en el llavero               [#########################################################################] 100%
+(4/4) verificando la integridad de los paquetes      [#########################################################################] 100%
+(4/4) cargando los archivos del paquete...           [#########################################################################] 100%
+(4/4) verificando conflictos entre archivos          [#########################################################################] 100%
+(4/4) verificando el espacio disponible en disco     [#########################################################################] 100%
+(1/4) instalando alsa-firmware                       [#########################################################################] 100%
+(2/4) reinstalando alsa-lib                          [#########################################################################] 100%
+(3/4) instalando alsa-plugins                        [#########################################################################] 100%
 
 Dependencias opcionales para alsa-plugins
-libpulse: PulseAudio plugin\[instalado\]
-jack: Jack plugin\[instalado\]
+libpulse: PulseAudio plugin[instalado]
+jack: Jack plugin[instalado]
 ffmpeg: libavcodec resampling plugin, a52 plugin
-libsamplerate: libsamplerate resampling plugin\[instalado\]
+libsamplerate: libsamplerate resampling plugin[instalado]
 speex: libspeexdsp resampling plugin
 (4/4) instalando alsa-utils
 
 2.- Activamos el módulo de sonido
 
-\[root@Jarvis ~\]# modprobe snd-bcm2835
+[root@Jarvis ~]# modprobe snd-bcm2835
 
 3.- Creamos el fichero de configuración del módulo `/etc/modules-load.d/snd-bcm2835.conf`
 
-\[root@Jarvis ~\]# echo "snd-bcm2835" >> /etc/modules-load.d/snd-bcm2835.conf
+[root@Jarvis ~]# echo "snd-bcm2835" >> /etc/modules-load.d/snd-bcm2835.conf
 
 4.- Arrancamos el “mezclador” para ver que no esté silencioado
 
-\[root@Jarvis ~\]# alsamixer
+[root@Jarvis ~]# alsamixer
 
 5.- Podemos hacer un test de altavoces
 
-\[root@Jarvis ~\]# speaker-test -c 2
+[root@Jarvis ~]# speaker-test -c 2
 speaker-test 1.0.27.2
 Playback device is default
-Stream parameters are 48000Hz, S16\_LE, 2 channels
+Stream parameters are 48000Hz, S16_LE, 2 channels
 Using 16 octaves of pink noise
 Rate set to 48000Hz (requested 48000Hz)
 Buffer size range from 256 to 16384
@@ -150,7 +150,7 @@ Periods = 4
 
 6.- Y salvamos los cambios
 
-\[root@GumPI ~\]# alsactl store
+[root@GumPI ~]# alsactl store
 
 Y ahora, si entramos a ScummVM y vamos a opciones podremos activar el sonido por Midi en los ajustes y tener sonido… o no… por que no he podido hacer más pruebas, pero cuando lo consiga aquí os actualizo la guía.
 

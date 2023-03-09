@@ -21,11 +21,11 @@ Lo primero que tenemos que hacer es, por un lado mirar si este protocolo está h
 
 Sería algo más o menos como esto:
 
-\[root@Jarvis ~\]# telnet 192.168.1.1
+[root@Jarvis ~]# telnet 192.168.1.1
 
 Trying 192.168.1.1...
 Connected to 192.168.1.1.
-Escape character is '^\]'.
+Escape character is '^]'.
 BCM963268 Broadband Router
 Login: USUARIOADMINISTRADOR
 Password: CLAVEADMINISTRADOR
@@ -41,24 +41,24 @@ Para esto utilizamos una maravilla llamada [Expect](http://en.wikipedia.org/wiki
 
 Lo instalamos como es habitual, con `pacman`
 
-\[root@Jarvis ~\]# pacman -S expect
+[root@Jarvis ~]# pacman -S expect
 
 resolving dependencies...
 looking for inter-conflicts...
 Packages (2): tcl-8.6.1-1 expect-5.45-3
 Total Download Size: 2.31 MiB
 Total Installed Size: 6.54 MiB
-:: Proceed with installation? \[Y/n\] Y
+:: Proceed with installation? [Y/n] Y
 :: Retrieving packages ...
-tcl-8.6.1-1-armv6h 2.1 MiB 2.16M/s       00:01 \[###############################\] 100%
-expect-5.45-3-armv6h 162.8 KiB 465K/s    00:00 \[###############################\] 100%
-(2/2) checking keys in keyring                 \[################################\] 100%
-(2/2) checking package integrity               \[################################\] 100%
-(2/2) loading package files                    \[################################\] 100%
-(2/2) checking for file conflicts              \[################################\] 100%
-(2/2) checking available disk space            \[################################\] 100%
-(1/2) installing tcl                           \[################################\] 100%
-(2/2) installing expect                        \[################################\] 100%
+tcl-8.6.1-1-armv6h 2.1 MiB 2.16M/s       00:01 [###############################] 100%
+expect-5.45-3-armv6h 162.8 KiB 465K/s    00:00 [###############################] 100%
+(2/2) checking keys in keyring                 [################################] 100%
+(2/2) checking package integrity               [################################] 100%
+(2/2) loading package files                    [################################] 100%
+(2/2) checking for file conflicts              [################################] 100%
+(2/2) checking available disk space            [################################] 100%
+(1/2) installing tcl                           [################################] 100%
+(2/2) installing expect                        [################################] 100%
 
 El script, al que yo he llamado `RebotaRouter.sh`tiene este contenido:
 
@@ -85,18 +85,18 @@ Entre una y otra establece un retardo de 1 segunto (sleep X donde X es el númer
 
 Tenemos que dar permisos de ejecución a este script
 
-\[root@Jarvis ~\]# chmod 700 RebotaRouter.sh
+[root@Jarvis ~]# chmod 700 RebotaRouter.sh
 
 El permiso es 700, que es -rwx------, esto es, todos los permisos para el propietario y nada para otros y grupo, más que nada por que en ese fichero hemos puesto las credenciales de nuestro router al completo.
 
 Salida de esta ejecución:
 
-\[root@Jarvis ~\]# ./rebota\_router.sh
+[root@Jarvis ~]# ./rebota_router.sh
 
 spawn telnet 192.168.1.1
 Trying 192.168.1.1...
 Connected to 192.168.1.1.
-Escape character is '^\]'.
+Escape character is '^]'.
 
 BCM963268 Broadband Router
 Login: USUARIOADMINISTRADOR
@@ -124,7 +124,7 @@ Sin más rollos, este es el script `RevisaRouter.sh`
 # Comprobacion del estado de la conexion a internet / router tostado.
 
 wget —tries=5 http://www.yahoo.com > /dev/null 2>&1
-if ! \[ "$?" -eq 0 \]
+if ! [ "$?" -eq 0 ]
 then
  # No hay conexion a internet.
  # Reiniciamos el router
@@ -141,14 +141,14 @@ Como véis he puesto también una llamada a `mutt` que ya teníamos configurado 
 
 Le damos permisos como antes:
 
-\[root@Jarvis ~\]# chmod 755 RevisaRouter.sh
+[root@Jarvis ~]# chmod 755 RevisaRouter.sh
 
 Para probar que esto funciona, soltáis el cable de teléfono del router (ADSL) o apagáis la ONT (FTTH) y ejecutáis el scrip, las luces del router os indicarán que el reinicio se está produciendo.
 
 Si queréis programarlo para que se ejecute cada cierto tiempo lo podéis incluir dentro de crontab
 
-\[root@Jarvis ~\]# crontab -e
+[root@Jarvis ~]# crontab -e
 
-0,10,20,30,40,50 \* \* \* \* /root/RevisaRouter.sh
+0,10,20,30,40,50 * * * * /root/RevisaRouter.sh
 
 Con esa línea nueva en crontab el script se ejecutaría siempre cada 10 minutos.

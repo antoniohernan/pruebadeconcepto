@@ -37,24 +37,24 @@ Así que me implementé este proceso. Creo que a través de un NAS y la Surveill
 
 Lo primero, para poder recibir correos electrónicos en nuestro móvil por ejemplo, es instalar [Mutt](http://www.mutt.org) , que es un cliente de correo, que nos permite en modo texto ó línea de comandos enviar correos interactuando con el smtp, incluso con documentos adjuntos.
 
-\[root@Jarvis ~\]# pacman -S mutt
+[root@Jarvis ~]# pacman -S mutt
 
 resolviendo dependencias...
 verificando conflictos...
 Paquetes (2): mime-types-9-1 mutt-1.5.23-1
 Tamaño Total de Descarga: 1,15 MiB
 Tamaño Total Instalado: 6,40 MiB
-:: ¿Continuar con la instalación? \[S/n\] S
+:: ¿Continuar con la instalación? [S/n] S
 :: Recuperando paquetes ...
-mime-types-9-1-any 14,6 KiB 176K/s 00:00        \[######################################################\] 100%
-mutt-1.5.23-1-armv6h 1166,8 KiB 1321K/s 00:01   \[######################################################\] 100%
-(2/2) verificando llaves en el llavero          \[######################################################\] 100%
-(2/2) verificando la integridad de los paquetes \[######################################################\] 100%
-(2/2) cargando los archivos del paquete...      \[######################################################\] 100%
-(2/2) verificando conflictos entre archivos     \[######################################################\] 100%
-(2/2) verificando el espacio disponible en disco\[######################################################\] 100%
-(1/2) instalando mime-types                     \[######################################################\] 100%
-(2/2) instalando mutt                           \[######################################################\] 100%
+mime-types-9-1-any 14,6 KiB 176K/s 00:00        [######################################################] 100%
+mutt-1.5.23-1-armv6h 1166,8 KiB 1321K/s 00:01   [######################################################] 100%
+(2/2) verificando llaves en el llavero          [######################################################] 100%
+(2/2) verificando la integridad de los paquetes [######################################################] 100%
+(2/2) cargando los archivos del paquete...      [######################################################] 100%
+(2/2) verificando conflictos entre archivos     [######################################################] 100%
+(2/2) verificando el espacio disponible en disco[######################################################] 100%
+(1/2) instalando mime-types                     [######################################################] 100%
+(2/2) instalando mutt                           [######################################################] 100%
 ==> For GPG support, add the following to your muttrc:
 ==> source /etc/Muttrc.gpg.dist
 
@@ -67,62 +67,62 @@ Si tenemos una cuenta de correo en Gmail por ejemplo, de las que usan autenticac
 
 Así pues, para configurar editamos el fichero `~/.muttrc`
 
-\[root@Jarvis ~\]# vi .muttrc
+[root@Jarvis ~]# vi .muttrc
 set from = "antonio.hernan@gmail.com"
 set realname = "Antonio J. Hernan"
-set imap\_user = "antonio.hernan@gmail.com"
-set imap\_pass = "mcabbahyqm"
+set imap_user = "antonio.hernan@gmail.com"
+set imap_pass = "mcabbahyqm"
 set folder = "imaps://imap.gmail.com:993"
 set spoolfile = "+INBOX"
-set postponed ="+\[Gmail\]/Drafts"
-set header\_cache =~/.mutt/cache/headers
-set message\_cachedir =~/.mutt/cache/bodies
-set certificate\_file =~/.mutt/certificates
-set smtp\_url = "smtp://antonio.hernan@smtp.gmail.com:587/"
-set smtp\_pass = "mcadahyqm"
+set postponed ="+[Gmail]/Drafts"
+set header_cache =~/.mutt/cache/headers
+set message_cachedir =~/.mutt/cache/bodies
+set certificate_file =~/.mutt/certificates
+set smtp_url = "smtp://antonio.hernan@smtp.gmail.com:587/"
+set smtp_pass = "mcadahyqm"
 set move = no
-set imap\_keepalive = 900
+set imap_keepalive = 900
 
 Si ejecutamos el comando:
 
-\[root@Jarvis ~\]# mutt -s "Prueba Jarvis” antonio.hernan@gmail.com
+[root@Jarvis ~]# mutt -s "Prueba Jarvis” antonio.hernan@gmail.com
 
 Entramos en el “cliente en modo texto” de envío de mail, y el resultado final es que nos llegará un mail a nuestra cuenta.
 
 Bien pues ahora que podemos enviar correos fácilmente por la línea de comandos, vamos con el script de vigilancia, que como veréis es muy sencillo pero que podemos ir complicando todo lo que queremos según vayamos incorporando nuevas cámaras o queramos establecer más puntos de control sobre las cámaras actuales.
 
-\[root@Jarvis ~\]# cat patrol.sh
+[root@Jarvis ~]# cat patrol.sh
 #!/usr/bin/bash
 
 # Mandamos a Preset 1, esperamos y tomamos imagen.
-wget -O - http://192.168.1.27:6159/decoder\_control.cgi?command=31\\&user=operador\\&pwd=CLAVE
+wget -O - http://192.168.1.27:6159/decoder_control.cgi?command=31\\&user=operador\\&pwd=CLAVE
 sleep 10
 wget -O /root/preset1.jpg http://192.168.1.27:6159/snapshot.cgi?resolution=32\\&user=operador\\&pwd=CLAVE
 
 # Mandamos a Preset 2, esperamos y tomamos imagen.
-wget -O - http://192.168.1.27:6159/decoder\_control.cgi?command=33\\&user=operador\\&pwd=CLAVE
+wget -O - http://192.168.1.27:6159/decoder_control.cgi?command=33\\&user=operador\\&pwd=CLAVE
 sleep 10
 wget -O /root/preset2.jpg http://192.168.1.27:6159/snapshot.cgi?resolution=32\\&user=operador\\&pwd=CLAVE
 
 # Mandamos a Preset 3, esperamos y tomamos imagen.
-wget -O - http://192.168.1.27:6159/decoder\_control.cgi?command=35\\&user=operador\\&pwd=CLAVE
+wget -O - http://192.168.1.27:6159/decoder_control.cgi?command=35\\&user=operador\\&pwd=CLAVE
 sleep 10
 wget -O /root/preset3.jpg http://192.168.1.27:6159/snapshot.cgi?resolution=32\\&user=operador\\&pwd=CLAVE
 
 # Mandamos a Preset 1, sin esperar
-wget -O - http://192.168.1.27:6159/decoder\_control.cgi?command=31\\&user=operador\\&pwd=CLAVE
+wget -O - http://192.168.1.27:6159/decoder_control.cgi?command=31\\&user=operador\\&pwd=CLAVE
 
 # Componemos el envio de correo con las imagenes tomadas
 echo "Envio Camara Foscam" > /root/patrol.txt
 echo "Fecha: " \`date '+%d/%m/%Y %H:%M:%S'\` >> /root/patrol.txt
 echo "" >> /root/patrol.txt
-mutt -s "Foscam" antonio.hernan@gmail.com < /root/patrol.txt -a /root/preset\*.jpg
+mutt -s "Foscam" antonio.hernan@gmail.com < /root/patrol.txt -a /root/preset*.jpg
 rm -f /root/patrol.txt > /dev/null 2>&1
-rm -f /root/preset\*.jpg > /dev/null 2>&1
+rm -f /root/preset*.jpg > /dev/null 2>&1
 
 Y ahora tan sólo nos falta dar permisos de ejecución a dicho script
 
-\[root@Jarvis ~\]# chmod 700 patrol.sh
+[root@Jarvis ~]# chmod 700 patrol.sh
 
 Y si queremos que se ejecute siguiendo alguna condición de hora, programarlo con el correspondiente crontab -e.
 
@@ -146,52 +146,52 @@ Para poder en marcha esta RazBerry, por desgracia nuestra, todo lo que el fabric
 
 1.- Crear los directorios donde vamos a instalar y el fichero de testigo de la versión
 
-\[root@Jarvis ~\]# mkdir -p /opt/z-way-server
-\[root@Jarvis ~\]# mkdir -p /etc/z-way
-\[root@Jarvis ~\]# echo "v1.5.0" > /etc/z-way/VERSION
+[root@Jarvis ~]# mkdir -p /opt/z-way-server
+[root@Jarvis ~]# mkdir -p /etc/z-way
+[root@Jarvis ~]# echo "v1.5.0" > /etc/z-way/VERSION
 
 2.- Instalamos las librerías de Yajl (otro gestor más Json, vamos intercambio de datos entre procesos basados en ficheros…)
 
-\[root@Jarvis ~\]# pacman -S yajl
+[root@Jarvis ~]# pacman -S yajl
 
 resolviendo dependencias...
 verificando conflictos...
 Paquetes (1): yajl-2.0.4-2
 Tamaño Total de Descarga: 0,03 MiB
 Tamaño Total Instalado: 0,18 MiB
-:: ¿Continuar con la instalación? \[S/n\] S
+:: ¿Continuar con la instalación? [S/n] S
 :: Recuperando paquetes ...
-yajl-2.0.4-2-armv6h 30,6 KiB 205K/s 00:00        \[######################################################\] 100%
-(1/1) verificando llaves en el llavero           \[######################################################\] 100%
-(1/1) verificando la integridad de los paquetes  \[######################################################\] 100%
-(1/1) cargando los archivos del paquete...       \[######################################################\] 100%
-(1/1) verificando conflictos entre archivos      \[######################################################\] 100%
-(1/1) verificando el espacio disponible en disco \[######################################################\] 100%
-(1/1) instalando yajl                            \[######################################################\] 100%
+yajl-2.0.4-2-armv6h 30,6 KiB 205K/s 00:00        [######################################################] 100%
+(1/1) verificando llaves en el llavero           [######################################################] 100%
+(1/1) verificando la integridad de los paquetes  [######################################################] 100%
+(1/1) cargando los archivos del paquete...       [######################################################] 100%
+(1/1) verificando conflictos entre archivos      [######################################################] 100%
+(1/1) verificando el espacio disponible en disco [######################################################] 100%
+(1/1) instalando yajl                            [######################################################] 100%
 
 3.- Descargamos los drivers y programas para RaZberry/ZWay
 
-\[root@Jarvis ~\]# cd ~Descargas
-\[root@Jarvis Descargas\]# wget http://razberry.z-wave.me/z-way-server-RaspberryPiXTools-v1.5.0.tgz
+[root@Jarvis ~]# cd ~Descargas
+[root@Jarvis Descargas]# wget http://razberry.z-wave.me/z-way-server-RaspberryPiXTools-v1.5.0.tgz
 --2014-03-30 18:24:25-- http://razberry.z-wave.me/z-way-server-RaspberryPiXTools-v1.5.0.tgz
 Resolviendo razberry.z-wave.me (razberry.z-wave.me)... 46.20.244.36
-Conectando con razberry.z-wave.me (razberry.z-wave.me)\[46.20.244.36\]:80... conectado.
+Conectando con razberry.z-wave.me (razberry.z-wave.me)[46.20.244.36]:80... conectado.
 Petición HTTP enviada, esperando respuesta... 200 OK
-Longitud: 8552999 (8,2M) \[application/x-gzip\]
+Longitud: 8552999 (8,2M) [application/x-gzip]
 Grabando a: “z-way-server-RaspberryPiXTools-v1.5.0.tgz”
-100%\[=================================================================================================================>\]
+100%[=================================================================================================================>]
 8.552.999 2,63MB/s en 3,1s
-2014-03-30 18:24:28 (2,63 MB/s) - “z-way-server-RaspberryPiXTools-v1.5.0.tgz” guardado \[8552999/8552999\]
+2014-03-30 18:24:28 (2,63 MB/s) - “z-way-server-RaspberryPiXTools-v1.5.0.tgz” guardado [8552999/8552999]
 
 4.- Descompresión de los ficheros
 
-\[root@Jarvis Descargas\]# cd /opt
-\[root@Jarvis opt\]# tar -xvzf ~/Descargas/z-way-server-RaspberryPiXTools-v1.5.0.tgz
+[root@Jarvis Descargas]# cd /opt
+[root@Jarvis opt]# tar -xvzf ~/Descargas/z-way-server-RaspberryPiXTools-v1.5.0.tgz
 
 5.- Ahora vamos a “engañar” a Z-Way por que espera una versión un tanto antiguo de una librería y le vamos a engañar con la nueva…
 
-\[root@Jarvis ~\]# cd /usr/lib
-\[root@Jarvis lib\]# ln -s /usr/lib/libarchive.so.13.1.2 /usr/lib/libarchive.so.12
+[root@Jarvis ~]# cd /usr/lib
+[root@Jarvis lib]# ln -s /usr/lib/libarchive.so.13.1.2 /usr/lib/libarchive.so.12
 
 Con esto, omitimos el error que nos daría en el arranque, algo así como:
 
@@ -210,11 +210,11 @@ console=ttyAMA0,115200 kgdboc=ttyAMA0,115200
 
 El fichero quedaría tal que así una vez modificado:
 
-\[operador@Jarvis boot\]$ cat cmdline.txt
-ipv6.disable=1 avoid\_safe\_mode=1 selinux=0 plymouth.enable=0 smsc95xx.turbo\_mode=N dwc\_otg.lpm\_enable=0 console=tty1
+[operador@Jarvis boot]$ cat cmdline.txt
+ipv6.disable=1 avoid_safe_mode=1 selinux=0 plymouth.enable=0 smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 console=tty1
 root=/dev/mmcblk0p5 rootfstype=ext4 elevator=noop rootwait
 
-\[operador@Jarvis boot\]$
+[operador@Jarvis boot]$
 
 7.- Preparamos el proceso de arranque y parada de ZWay.
 
@@ -224,22 +224,22 @@ En primer lugar modificamos el proceso de arranque/parada manual, de manera que 
 
 Editamos el fichero (nuevo) /root/Z-Way
 
-\[root@Jarvis ~\]# vi ~/Z-Way
+[root@Jarvis ~]# vi ~/Z-Way
 #!/bin/sh
 
 PATH=/bin:/usr/bin:/sbin:/usr/sbin
 NAME=z-way-server
-DAEMON\_PATH=/opt/z-way-server
+DAEMON_PATH=/opt/z-way-server
 PIDFILE=/run/$NAME.pid
 LOGFILE=/var/log/$NAME.log
 
 # adding z-way libs to library path
-export LD\_LIBRARY\_PATH=$LD\_LIBRARY\_PATH:/opt/z-way-server/libs
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/z-way-server/libs
 case "$1" in
  start)
   echo -n "Starting Z-Way: "
-  cd $DAEMON\_PATH  
-  nohup $DAEMON\_PATH/z-way-server & > /dev/null 2>&1
+  cd $DAEMON_PATH  
+  nohup $DAEMON_PATH/z-way-server & > /dev/null 2>&1
   echo "done."
   cd ~
   ps -e | grep 'z-way-server' | awk '{print $1}' > $PIDFILE
@@ -250,7 +250,7 @@ case "$1" in
   rm $PIDFILE
   echo "done."
   ;;
- \*)
+ *)
   echo "Usage: ~/Z-Way {start|stop}"
   exit 1
   ;;
@@ -263,39 +263,39 @@ Esto nos pude venir muy bien para otras cosas… ;)
 
 Editamos el fichero `/usr/lib/systemd/system/rc-local.service` y le ponemos este contenido:
 
-\[root@Jarvis ~\]# vi /usr/lib/systemd/system/rc-local.service
+[root@Jarvis ~]# vi /usr/lib/systemd/system/rc-local.service
 
-\[Unit\]
+[Unit]
 Description=/etc/rc.local Compatibility
 After=syslog.target network.target
 
-\[Service\]
+[Service]
 Type=forking
 ExecStart=/etc/rc.local start
 ExecStop=/etc/rc.local stop
 
-\[Install\]
+[Install]
 WantedBy=multi-user.target
 
 Creamos el fichero `/etc/rc.local` , para poner la ejecución del arranque de Z-Way
 
-\[root@Jarvis ~\]# vi /etc/rc.local
+[root@Jarvis ~]# vi /etc/rc.local
 
 #!/usr/bin/bash
 /root/Z-Way $1 >> /var/log/local.log 2>&1
 
 Y damos permisos de ejecución a los scripts creados, así como habilitar el arranque del servicio rc.local.
 
-\[root@Jarvis ~\]# chmod a+x /etc/rc.local
-\[root@Jarvis ~\]# chmod a+x /usr/lib/systemd/system/rc-local.service
-\[root@Jarvis ~\]# systemctl enable rc-local
+[root@Jarvis ~]# chmod a+x /etc/rc.local
+[root@Jarvis ~]# chmod a+x /usr/lib/systemd/system/rc-local.service
+[root@Jarvis ~]# systemctl enable rc-local
 ln -s '/usr/lib/systemd/system/rc-local.service' '/etc/systemd/system/multi-user.target.wants/rc-local.service'
 
 Y si reincidamos el equipo veremos como Z-Way se carga al arrancar a través de estos scripts, tenemos acceso al servidor web, tenemos en /var/log los ficheros de lo correspondientes, etc.
 
 ## Jugando un poco con Z-Wave
 
-\*Nota del 2020... las capturas de imágenes ya no están disponibles
+*Nota del 2020... las capturas de imágenes ya no están disponibles
 
 Si, digo jugando por que no me ha dado tiempo a hacer mucho más.
 

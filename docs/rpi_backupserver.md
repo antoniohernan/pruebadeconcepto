@@ -48,11 +48,11 @@ pid file = /run/rsyncd.pid
 
 Ahora vamos a poner a correr rsync en modo demonio y a probar a grabar desde nuestro equipo Mac
 
-\[root@Jarvis ~\]# systemctl start rsyncd
+[root@Jarvis ~]# systemctl start rsyncd
 
 En caso de que lo queramos dejar corriendo siempre que se inicie el sistema operativo de la máquina, este es el comando:
 
-\[root@Jarvis ~\]# systemctl enable rsyncd
+[root@Jarvis ~]# systemctl enable rsyncd
 
 Y la línea por ejemplo para copiar un directorio sobre el home del usuario operador (el único que puede conectar y autenticar por SSH) sería:
 
@@ -64,22 +64,22 @@ building file list ...
 3 files to consider
 created directory CopiaRemota
 ./
-A5\_Octavia\_OwnersManual.pdf
+A5_Octavia_OwnersManual.pdf
 4.05M 100% 6.34MB/s 0:00:00 (xfer#1, to-check=1/3)
-A5\_Octavia\_Swing\_CarRadio.pdf
+A5_Octavia_Swing_CarRadio.pdf
 671.79K 100% 831.48kB/s 0:00:00 (xfer#2, to-check=0/3)
 sent 4.72M bytes received 70 bytes 219.53K bytes/sec
 total size is 4.72M speedup is 1.00
 
 Como vemos la conexión a Rsync se hace sobre SSH, es una copia por tanto segura, es más, se nos está pidiendo autenticación en dos pasos y la copia se deja bajo el usuario operador:
 
-\[root@Jarvis CopiaRemota\]# pwd
+[root@Jarvis CopiaRemota]# pwd
 /home/operador/CopiaRemota
-\[root@Jarvis CopiaRemota\]# ls -l
+[root@Jarvis CopiaRemota]# ls -l
 
 total 4616
--rwxrwxrwx 1 operador operadores 4047332 ene 25 2012 A5\_Octavia\_OwnersManual.pdf
--rwxrwxrwx 1 operador operadores 671786 ene 25 2012 A5\_Octavia\_Swing\_CarRadio.pdf
+-rwxrwxrwx 1 operador operadores 4047332 ene 25 2012 A5_Octavia_OwnersManual.pdf
+-rwxrwxrwx 1 operador operadores 671786 ene 25 2012 A5_Octavia_Swing_CarRadio.pdf
 
 Bien, como habíamos pensado hacer ese proceso que nos haga copia de una serie de carpetas de nuestro OSX sobre la Rpi, y luego nos apague la máquina OSX, pues no podemos estar pendientes para poder introducir el famoso código de autenticación en dos pasos ni la contraseña del usuario, vamos a hacer lo que se llama una conexión transparente mediante generando para esto nuestra huella RSA propia.
 
@@ -89,23 +89,23 @@ cd ~/.ssh
 ssh-keygen -t rsa
 
 Generating public/private rsa key pair.
-Enter file in which to save the key (/Users/admin/.ssh/id\_rsa):
+Enter file in which to save the key (/Users/admin/.ssh/id_rsa):
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
-Your identification has been saved in /Users/admin/.ssh/id\_rsa.
-Your public key has been saved in /Users/admin/.ssh/id\_rsa.pub.
+Your identification has been saved in /Users/admin/.ssh/id_rsa.
+Your public key has been saved in /Users/admin/.ssh/id_rsa.pub.
 
 The key fingerprint is:
 f4:86:f3:50:3b:13:e9:e2:bf:2b:02:0e:a6:b8:3e:f3 admin@Hal9000.local
 
 The key's randomart image is:
-+--\[ RSA 2048\]----+
++--[ RSA 2048]----+
 |                 |
 | .               |
 | . +             |
 | . = o           |
 | S B             |
-| o . . \* o       |
+| o . . * o       |
 |.o o . . .       |
 |oo . . ..        |
 |oo+E . .+o       |
@@ -113,23 +113,23 @@ The key's randomart image is:
 
 Respondemos a todas las preguntas que nos hace este comando con INTRO.
 
-Ahora tenemos que copiar el fichero id\_rsa.pub que hemos generado en nuestro OSX a la máquina RPI, y debe quedar en el directorio /home/operador/.ssh, se debe llamar authorized\_keys y los permisos del directorio y del fichero deben excluir a grupo y otros por que de lo contrario todo esto se desactiva por temas relativos a la seguridad.
+Ahora tenemos que copiar el fichero id_rsa.pub que hemos generado en nuestro OSX a la máquina RPI, y debe quedar en el directorio /home/operador/.ssh, se debe llamar authorized_keys y los permisos del directorio y del fichero deben excluir a grupo y otros por que de lo contrario todo esto se desactiva por temas relativos a la seguridad.
 
 Para esta copia, podemos usar este comando en nuestro terminal OSX:
 
-Hal9000:.ssh admin$ scp id\_rsa.pub operador@192.168.1.20:id\_rsa.pub
+Hal9000:.ssh admin$ scp id_rsa.pub operador@192.168.1.20:id_rsa.pub
 
 Verification code:
 Password:
-id\_rsa.pub
+id_rsa.pub
 
 Como vemos es una copia con SSL, autenticación en dos pasos, clave, etc.
 
 El fichero se ha quedado en el home del usuario operador en la PI, así que estos son los siguientes pasos a dar:
 
-\[operador@Jarvis ~\]$ mkdir -p .ssh
-\[operador@Jarvis ~\]$ mv ./id\_rsa.pub ./.ssh/authorized\_keys
-\[operador@Jarvis ~\]$ chmod go-w . .ssh .ssh/authorized\_keys
+[operador@Jarvis ~]$ mkdir -p .ssh
+[operador@Jarvis ~]$ mv ./id_rsa.pub ./.ssh/authorized_keys
+[operador@Jarvis ~]$ chmod go-w . .ssh .ssh/authorized_keys
 
 Que pasa a partir de este punto, pues que las conexiones por SSH entre ese equipo que ha generado su clave RSA y se la ha enviado a nuestra RPI, y la RPI ya no precisan de usuario/clave ni código de verificación en dos pasos.
 
