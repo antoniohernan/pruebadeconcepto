@@ -81,17 +81,17 @@ Salvamos el fichero pero aún no montamos la unidad pues el directorio existe y 
 Copiamos el directorio srv con otro nombre y lo volvemos a crear para poder hacer el montaje de la unidad USB
 
 ```
-[root@Jarvis /]# cd /
-[root@Jarvis /]# mv /srv /srv2
-[root@Jarvis /]# mkdir /srv
+[root@Jarvis ]# cd /
+[root@Jarvis ]# mv /srv /srv2
+[root@Jarvis ]# mkdir /srv
 ```
 
 Ahora podemos montar la partición sin problemas y volver a mover el directorio donde estaba
 
 ```
-[root@GumPI /]# mount -a
-[root@GumPI /]# mv /srv2/* /srv
-[root@GumPI /]# rmdir srv2
+[root@GumPI ]# mount -a
+[root@GumPI ]# mv /srv2/* /srv
+[root@GumPI ]# rmdir srv2
 ```
 
 Y para comprobar que lo hemos hecho bien
@@ -157,88 +157,99 @@ Perfecto, ya tenemos el servidor web instalado, ahora instalamos PHP y PHP-FPM (
 
 Como siempre, con `pacman` , solicitamos a los repositorios los paquetes oficiales.
 
-\[root@Jasrvis ~\]# pacman -S php php-fpm
+```
+[root@Jasrvis ~]# pacman -S php php-fpm
 resolviendo dependencias...
 verificando conflictos...
 Paquetes (3): libxml2-2.9.1-5 php-5.5.10-1 php-fpm-5.5.10-1
 Tamaño Total de Descarga: 5,46 MiB
 Tamaño Total Instalado: 29,19 MiB
-:: ¿Continuar con la instalación? \[S/n\] S
+:: ¿Continuar con la instalación? [S/n] S
 :: Recuperando paquetes ...
-libxml2-2.9.1-5-armv6h 1090,4 KiB 2030K/s 00:01      \[##################################################\] 100%
-php-5.5.10-1-armv6h 2,8 MiB 3,16M/s 00:01            \[##################################################\] 100%
-php-fpm-5.5.10-1-armv6h 1675,1 KiB 4,21M/s 00:00     \[##################################################\] 100%
-(3/3) verificando llaves en el llavero               \[##################################################\] 100%
-(3/3) verificando la integridad de los paquetes      \[##################################################\] 100%
-(3/3) cargando los archivos del paquete...           \[##################################################\] 100%
-(3/3) verificando conflictos entre archivos          \[##################################################\] 100%
-(3/3) verificando el espacio disponible en disco     \[##################################################\] 100%
-(1/3) instalando libxml2                             \[##################################################\] 100%
-(2/3) instalando php                                 \[##################################################\] 100%
-(3/3) instalando php-fpm                             \[##################################################\] 100%
+libxml2-2.9.1-5-armv6h 1090,4 KiB 2030K/s 00:01      [##################################################] 100%
+php-5.5.10-1-armv6h 2,8 MiB 3,16M/s 00:01            [##################################################] 100%
+php-fpm-5.5.10-1-armv6h 1675,1 KiB 4,21M/s 00:00     [##################################################] 100%
+(3/3) verificando llaves en el llavero               [##################################################] 100%
+(3/3) verificando la integridad de los paquetes      [##################################################] 100%
+(3/3) cargando los archivos del paquete...           [##################################################] 100%
+(3/3) verificando conflictos entre archivos          [##################################################] 100%
+(3/3) verificando el espacio disponible en disco     [##################################################] 100%
+(1/3) instalando libxml2                             [##################################################] 100%
+(2/3) instalando php                                 [##################################################] 100%
+(3/3) instalando php-fpm                             [##################################################] 100%
+```
 
 Arrancamos PHP-FPM (FastGCI Process Manager, donde FastCGI es un Gateway para la conexión de procesos web…)
-
-\[root@Jarvis ~\]# systemctl start php-fpm
+```
+[root@Jarvis ~]# systemctl start php-fpm
+```
 
 Y configuramos el conjunto NginX PHP y PHP-FPM
 
-Por defecto NginX busca los ficheros en `/usr/share/nginx/html` , vamos a modificar su configuración básica para que los busque en /srv/http, ajustamos también algunos parámetros para la gestión de los lobs de errores, compresión de mensajes… etc.
+Por defecto NginX busca los ficheros en `/usr/share/nginx/html` , vamos a modificar su configuración básica para que los busque en `/srv/http`, ajustamos también algunos parámetros para la gestión de los lobs de errores, compresión de mensajes… etc.
 
-Editamos `/etc/nginx/nginx.conf` , borramos todo su contenido y lo reemplazamos con este
+Editamos `/etc/nginx/nginx.conf` , borramos todo su contenido y lo reemplazamos con este
 
+```
 #user html;
-worker\_processes 1;
-error\_log /var/log/error\_nginx.log;
+worker_processes 1;
+error_log /var/log/error_nginx.log;
 events {
-        worker\_connections 1024;
+        worker_connections 1024;
        }
 http {
       include mime.types;
-      default\_type application/octet-stream;
+      default_type application/octet-stream;
       sendfile on;
-      keepalive\_timeout 15;
+      keepalive_timeout 15;
       gzip on;
-      gzip\_comp\_level 1;
+      gzip_comp_level 1;
       server {
             listen 80;
-            server\_name localhost;
-            location ~ \\.php {
+            server_name localhost;
+            location ~ \.php {
                               root /srv/http;
-                              fastcgi\_pass unix:/var/run/php-fpm/php-fpm.sock;
-                              fastcgi\_index index.php;
-                              fastcgi\_param SCRIPT\_FILENAME $document\_root$fastcgi\_script\_name;
-                              include /etc/nginx/fastcgi\_params;
+                              fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+                              fastcgi_index index.php;
+                              fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                              include /etc/nginx/fastcgi_params;
                               }
             location / {
                         root /srv/http;
                         index index.php;
                         }
-            error\_page 500 502 503 504 /50x.html;
+            error_page 500 502 503 504 /50x.html;
             location = /50x.html {
                                   root /usr/share/nginx/html;
                                   }
       }
 }
+```
 
 Ahora creamos un fichero de prueban en php para ver si nuestra instalación y configuración son correctas, así que editamos el fichero `/srv/http/index.php` y usamos este contenido:
 
+```
 <?php
 echo "<p>Prueba</p>";
 ?>
+```
 
 Reiniciamos tanto NginX como PHP-FPM y probamos a ver si se ve esta prueba
 
-\[root@Jarvis ~\]# systemctl restart nginx php-fpm
+```
+[root@Jarvis ~]# systemctl restart nginx php-fpm
+```
 
 Probamos el acceso nuevamente a nuestro servidor web en la url http://192.168.1.20 (por aquí tu IP) ([http://192.168.1.20](http://192.168.1.20))
 
-Y tendremos que ver como el navegador web nos muestra en texto “**Prueba**” que se genera con ese sencillo .php de índice que hemos creado.
+Y tendremos que ver como el navegador web nos muestra en texto “**Prueba**” que se genera con ese sencillo `.php` de índice que hemos creado.
 
 Sólo nos falta dejar estos dos servicios activos en los futuros inicios de máquina mediante los comandos:
 
-\[root@Jarvis ~\]# systemctl enable nginx
-\[root@Jarvis ~\]# systemctl enable php-fpm
+```
+[root@Jarvis ~]# systemctl enable nginx
+[root@Jarvis ~]# systemctl enable php-fpm
+```
 
 ## Instalación y configuración de MariaDB
 
@@ -248,27 +259,28 @@ Nuestro amigo pacman, lo volvemos a emplear para la descarga del software, como 
 
 Prestad especial atención al final de la instalación por que este paquete ofrece una documentación “post-instalación” muy buena, de los pocos…
 
-\[root@ Jarvis ~\]# pacman -S mariadb
+``` 
+[root@ Jarvis ~]# pacman -S mariadb
 resolviendo dependencias...
 verificando conflictos...
 Paquetes (4): libaio-0.3.109-7 libmariadbclient-5.5.36-1 mariadb-clients-5.5.36-1 mariadb-5.5.36-1
 Tamaño Total de Descarga: 16,32 MiB
 Tamaño Total Instalado: 141,79 MiB
-:: ¿Continuar con la instalación? \[S/n\] S
+:: ¿Continuar con la instalación? [S/n] S
 :: Recuperando paquetes ...
-libaio-0.3.109-7-armv6h 4,1 KiB 4,03M/s 00:00            \[##################################################\] 100%
-libmariadbclient-5.5.36-1-armv6h 6,6 MiB 2,46M/s 00:03   \[##################################################\] 100%
-mariadb-clients-5.5.36-1-armv6h 799,6 KiB 1221K/s 00:01  \[##################################################\] 100%
-mariadb-5.5.36-1-armv6h 8,9 MiB 2,04M/s 00:04            \[##################################################\] 100%
-(4/4) verificando llaves en el llavero                   \[##################################################\] 100%
-(4/4) verificando la integridad de los paquetes          \[##################################################\] 100%
-(4/4) cargando los archivos del paquete...               \[##################################################\] 100%
-(4/4) verificando conflictos entre archivos              \[##################################################\] 100%
-(4/4) verificando el espacio disponible en disco         \[##################################################\] 100%
-(1/4) instalando libaio                                  \[##################################################\] 100%
-(2/4) instalando libmariadbclient                        \[##################################################\] 100%
-(3/4) instalando mariadb-clients                         \[##################################################\] 100%
-(4/4) instalando mariadb                                 \[##################################################\] 100%
+libaio-0.3.109-7-armv6h 4,1 KiB 4,03M/s 00:00            [##################################################] 100%
+libmariadbclient-5.5.36-1-armv6h 6,6 MiB 2,46M/s 00:03   [##################################################] 100%
+mariadb-clients-5.5.36-1-armv6h 799,6 KiB 1221K/s 00:01  [##################################################] 100%
+mariadb-5.5.36-1-armv6h 8,9 MiB 2,04M/s 00:04            [##################################################] 100%
+(4/4) verificando llaves en el llavero                   [##################################################] 100%
+(4/4) verificando la integridad de los paquetes          [##################################################] 100%
+(4/4) cargando los archivos del paquete...               [##################################################] 100%
+(4/4) verificando conflictos entre archivos              [##################################################] 100%
+(4/4) verificando el espacio disponible en disco         [##################################################] 100%
+(1/4) instalando libaio                                  [##################################################] 100%
+(2/4) instalando libmariadbclient                        [##################################################] 100%
+(3/4) instalando mariadb-clients                         [##################################################] 100%
+(4/4) instalando mariadb                                 [##################################################] 100%
 Installing MariaDB/MySQL system tables in '/var/lib/mysql' ... OK
 Filling help tables... OK
 To start mysqld at boot time you have to copy support-files/mysql.server to the right place for your system
@@ -277,7 +289,7 @@ To do so, start the server, then issue the following commands:
 '/usr/bin/mysqladmin' -u root password 'new-password'
 '/usr/bin/mysqladmin' -u root -h Jarvis password 'new-password'
 Alternatively you can run:
-'/usr/bin/mysql\_secure\_installation'
+'/usr/bin/mysql_secure_installation'
 which will also give you the option of removing the test
 databases and anonymous user created by default. This is
 strongly recommended for production servers.
@@ -285,7 +297,7 @@ strongly recommended for production servers.
 See the MariaDB Knowledgebase at http://mariadb.com/kb or the
 MySQL manual for more instructions.
 You can start the MariaDB daemon with:
-cd '/usr' ; /usr/bin/mysqld\_safe --datadir='/var/lib/mysql'
+cd '/usr' ; /usr/bin/mysqld_safe --datadir='/var/lib/mysql'
 You can test the MariaDB daemon with mysql-test-run.pl
 cd '/usr/mysql-test' ; perl mysql-test-run.pl
 Please report any problems at http://mariadb.org/jira
@@ -298,8 +310,9 @@ SkySQL Ab. You can contact us about this at sales@skysql.com.
 Alternatively consider joining our community based development effort:
 http://mariadb.com/kb/en/contributing-to-the-mariadb-project/
 
->> If you are migrating from MySQL, don't forget to run 'mysql\_upgrade'
+>> If you are migrating from MySQL, don't forget to run 'mysql_upgrade'
 after mysqld.service restart.
+```
 
 Iniciamos el gestor de base de datos, para poder configurarlo, este inicio tarda un poquito, no asustarse y correr a reiniciar el servidor
 
