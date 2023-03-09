@@ -33,9 +33,9 @@ El valor obtenido lo pasamos a una variable de entorno para poder utilizarlo má
 aws ec2 authorize-security-group-ingress --group-id "${{ secrets.AWS_SGWEB }}" --protocol tcp --port "${{ secrets.AWS_VMPORT }}" --cidr "${{ env.IP_RUNNER }}/32"
 ```
 
-4.- Preparamos el runner Para poder lanzar la conexión scp hacia nuestra instancia EC2 debemos tener la clave ssh en el runner, y configurarla donde corresponde, y todo de manera que no quede rastro en los logs de actividad de la action, así que recurrimos a los secrets de las actions para que aparezca en el log como  "\*\*\*". El código es este, creamos los directorios necesarios, permisos en directorios y ficheros y volcamos el pem.
+4.- Preparamos el runner Para poder lanzar la conexión scp hacia nuestra instancia EC2 debemos tener la clave ssh en el runner, y configurarla donde corresponde, y todo de manera que no quede rastro en los logs de actividad de la action, así que recurrimos a los secrets de las actions para que aparezca en el log como  "***". El código es este, creamos los directorios necesarios, permisos en directorios y ficheros y volcamos el pem.
 ```
-config\_ssh=~/.ssh/config
+config_ssh=~/.ssh/config
 keyfile=~/.ssh/Key.pem
 mkdir ~/.ssh && echo -e "ExitOnForwardFailure=yes\\nStrictHostKeyChecking=no" > ${config_ssh} && chmod 600 ${config_ssh}
 echo "${AWSKEY}" > ${keyfile} && chmod 600 ${keyfile}
@@ -46,9 +46,9 @@ echo "${AWSKEY}" > ${keyfile} && chmod 600 ${keyfile}
 uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8
 ```
 
-6.- Copiamos los ficheros de local (runner, repo clonado) hacia la instancia EC2 Un simple scp recursivo hacia un directorio de despliegues, con un usuario en el servidor no privilegiado. Todos los datos que no queramos que se pinten en los logs es mejor pasarlos como secretos, ya que así sólo veremos "\*\*\*" en el log.
+6.- Copiamos los ficheros de local (runner, repo clonado) hacia la instancia EC2 Un simple scp recursivo hacia un directorio de despliegues, con un usuario en el servidor no privilegiado. Todos los datos que no queramos que se pinten en los logs es mejor pasarlos como secretos, ya que así sólo veremos "***" en el log.
 ```
-scp -r -i ${keyfile} $GITHUB\_WORKSPACE/data/* ${AWSVMUSERNAME}@${AWSVMFQDN}:/${AWSDESTINATION} 2>/dev/null
+scp -r -i ${keyfile} $GITHUB_WORKSPACE/data/* ${AWSVMUSERNAME}@${AWSVMFQDN}:/${AWSDESTINATION} 2>/dev/null
 ```
 7.- Y por último, si o si, sea cual sea el resultado, cerramos el security group Y así cerramos el acceso del runner evitando dejar accesos permitidos que con el tiempo pueden ser difíciles de manejar. La clave de este paso es ese `if: always()`que hará que se ejecute siempre sea cual sea el estado de los pasos anteriores de nuestra action.
 ```
@@ -63,7 +63,7 @@ Hasta aquí sería la parte github, pero claro, el fichero/os se quedan en un di
 user=www-data
 group=www-data
 origin=/Deployments
-target=/var/www/<virtualhost\_documentroot>/
+target=/var/www/<virtualhost_documentroot>/
 
 # Check if another instance of script is running
 [[ $(lsof -t $0| wc -l) > 1 ]] && echo "At least one of $0 is running" && exit

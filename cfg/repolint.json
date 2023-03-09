@@ -1,9 +1,4 @@
 {
-    "axioms": {
-      "linguist":"language",
-      "licensee":"license",
-      "packagers":"packager"
-    },
     "rules": {
       "all": {
         "license-file-exists:file-existence": ["error", {"files": ["LICENSE*", "COPYING*"], "nocase": true}],
