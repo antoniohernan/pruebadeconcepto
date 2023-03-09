@@ -39,11 +39,13 @@ Para esto, volveremos a usar el comando dd cambiando como es lógico los paráme
 
 Este sería el comando para volcar nuestra tarjeta SD en nuestra carpeta Descargas:
 
+``` 
 sudo dd bs=1m if=/dev/rdisk1 | gzip > ~/downloads/2014-04-26\_Jarvis.img.gz
+```
 
 El parámetro `if` indica que nuestro origen será el disco (completo, no particiones) que corresponde a nuestra tarjeta SD (en mi caso es este, `/dev/rdisk1` pues monto con un USB porta SD, recordad como vimos como localizar nuestro dispositivo en el mensaje de instalación de la SD).
 
-Y ¿el parámetro de salida?, no está, se omite, por que la salida del comando, salida estándar o a pantalla se está enviando a un comando mediante el uso de ese `|`, esto es, la salida estándar del comando `dd` se está empleando como entrada estándar del comando `gzip` ( es la versión [GNU](http://es.wikipedia.org/wiki/GNU) de nuestro conocido Zip), y la salida generada por gzip es enviada a un fichero mediante el uso de `>` el cual se encuentra en la carpeta de Descargas (Downloads, recordad que el terminal del sistema operativo lo ve **todo en inglés**...) de la carpeta HOME del usuario, la cual viene indicada por el uso de nuestra amiga la virgulilla (~).
+Y ¿el parámetro de salida?, no está, se omite, por que la salida del comando, salida estándar o a pantalla se está enviando a un comando mediante el uso de ese `|`, esto es, la salida estándar del comando `dd` se está empleando como entrada estándar del comando `gzip` ( es la versión [GNU](http://es.wikipedia.org/wiki/GNU) de nuestro conocido Zip), y la salida generada por gzip es enviada a un fichero mediante el uso de `>` el cual se encuentra en la carpeta de Descargas (Downloads, recordad que el terminal del sistema operativo lo ve **todo en inglés**...) de la carpeta HOME del usuario, la cual viene indicada por el uso de nuestra amiga la virgulilla `~`.
 
 Importante, el tamaño del fichero de destino, en caso de no comprimirlo es el mismo que el tamaño de la tarjeta SD, esté esta llena o no, si nuestra tarjeta es de 32Gb nuestra imagen en disco será de esos 32Gb, pues la copia es literal, así pues, imprescindible comprimirla a no ser que dispongamos de Terabytes libres para regalar.
 
@@ -51,7 +53,7 @@ Importante, el tamaño del fichero de destino, en caso de no comprimirlo es el m
 
 Bien, pues ahora tenemos un punto de partida para poder restaurar nuestra máquina, a través de esas imágenes completas de tarjeta. Estas copias, por lo que tardan y por que debemos detener la máquina no las haremos con mucha frecuencia, yo en mi caso particular las hago una vez al mes... **mes arriba mes abajo** XD.
 
-Para las copias en caliente yo empleo dos métodos, uso [Rsync](http://es.wikipedia.org/wiki/Rsync)  y [Dump](http://en.wikipedia.org/wiki/Dump_(program))casi indistintamente, si bien rsync es bastante más frecuente y me fuerzo a usarlo bastante más regularmente pues es posible hacerlo incluso volcando sobre equipos que estén en nuestra red (p.e. un NAS)
+Para las copias en caliente yo empleo dos métodos, uso [Rsync](http://es.wikipedia.org/wiki/Rsync) y [Dump](http://en.wikipedia.org/wiki/Dump_(program)) casi indistintamente, si bien rsync es bastante más frecuente y me fuerzo a usarlo bastante más regularmente pues es posible hacerlo incluso volcando sobre equipos que estén en nuestra red (p.e. un NAS)
 
 Os voy a contar como opero con Rsync, para tratar de no hacer este tutorial demasiado extenso y dejamos por ahora el tema de dump para futuras revisiones de este texto. Además, como veremos un poco más adelante, el uso de rsync nos va a venir muy bien para utilizar nuestra máquina como centro de respaldo de nuestros equipos Apple, algo así como una **pequeña Time Capsule**.
 
@@ -63,26 +65,30 @@ En primer lugar, después de conectar el pendrive a la máquina, debemos identif
 
 Con el siguiente comando vemos como el dispositivo está conectado a la máquina y que es identificado por esta (en mi caso un lector de tarjeta Micro-SD):
 
-\[root@Jarvis log\]# lsusb
+```
+[root@Jarvis log]# lsusb
 
 Bus 001 Device 004: ID 1058:1103 Western Digital Technologies, Inc. My Book Studio
 Bus 001 Device 005: ID 05e3:0715 Genesys Logic, Inc. USB 2.0 microSD Reader
 Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp. SMSC9512/9514 Fast Ethernet Adapter
 Bus 001 Device 002: ID 0424:9512 Standard Microsystems Corp. SMC9512/9514 USB Hub
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+```
 
 Y la mejor manera de ver cual es el dispositivo de nuestro pendrive es guiarnos por la salida del comando fdisk y por las capacidades de los "discos":
 
-\[root@Jarvis ~\]# fdisk -l
+```
+[root@Jarvis ~]# fdisk -l
 
 Disk /dev/sdb: 3.7 GiB, 3965190144 bytes, 7744512 sectors
-Units: sectors of 1 \* 512 = 512 bytes
+Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 512 bytes / 512 bytes
 Disklabel type: dos
 Disk identifier: 0x00000000
 Device Boot Start End Blocks Id System
 /dev/sdb1 8192 7744511 3868160 b W95 FAT32
+```
 
 Nuestro pendrive es la unidad `/dev/sdb` y la partición es la 1 (única partición por otro lado), está formateado sistema de ficheros Fat32, así que vamos a hacer lo propio que es crear unas particiones más acordes con el sistema operativo con el que estamos tratando y a formatear estas particiones.
 
@@ -90,7 +96,8 @@ En concreto crearemos dos, una la vamos a emplear ahora en este paso de copias d
 
 Es posible usar el “disco” en Fat32, y así podremos compartir este pendrive entre sistemas, pero esto lo veremos en otra ocasión ya que necesitaríamos modificar las opciones de montaje del dispositivo (no vale emplear el defaults en fstab) y podemos tener algunos problemas de permisos, por no decir que tendremos la limitación de tamaño máximo de archivo que tiene Fat32 respecto a ext4.
 
-\[root@Jarvis ~\]# fdisk /dev/sdb
+```
+[root@Jarvis ~]# fdisk /dev/sdb
 
 Welcome to fdisk (util-linux 2.24.1).
 Changes will remain in memory only, until you decide to write them.
@@ -98,7 +105,7 @@ Be careful before using the write command.
 
 Orden (m para obtener ayuda): p
 Disk /dev/sdb: 7,5 GiB, 8017412096 bytes, 15659008 sectors
-Units: sectors of 1 \* 512 = 512 bytes
+Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 512 bytes / 512 bytes
 Disklabel type: dos
@@ -133,7 +140,7 @@ Created a new partition 2 of type 'Linux' and of size 4,5 GiB.
 
 Orden (m para obtener ayuda): p
 Disk /dev/sdb: 7,5 GiB, 8017412096 bytes, 15659008 sectors
-Units: sectors of 1 \* 512 = 512 bytes
+Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 512 bytes / 512 bytes
 Disklabel type: dos
@@ -146,10 +153,12 @@ Orden (m para obtener ayuda): w
 The partition table has been altered.
 Calling ioctl() to re-read partition table.
 Syncing disks.
+```
 
 Ahora creamos el FileSystem en esa partición de disco (de tipo [ext4](http://es.wikipedia.org/wiki/Ext4) ), y el directorio donde montaremos el disco:
 
-\[root@Jarvis ~\]# mkfs -t ext4 /dev/sdb1
+```
+[root@Jarvis ~]# mkfs -t ext4 /dev/sdb1
 
 mke2fs 1.42.8 (20-Jun-2013)
 Filesystem label=
@@ -171,74 +180,87 @@ Writing inode tables: done
 Creating journal (16384 blocks): done
 Writing superblocks and filesystem accounting information: done
 
-\[root@Jarvis /\]# mkdir /BCK
+[root@Jarvis /]# mkdir /BCK
+```
 
 Y por último, configuramos el punto de montaje, para lo que debemos editar nuestro fichero `/etc/fstab` (con VI por supuesto) y añadir la siguiente línea:
 
+```
 /dev/sdb1 /BCK ext4 defaults 0 0
+```
 
 Para añadir esa línea, después de haber tecleado `vi /etc/fstab` pulsamos las teclas SHIFT + G (que nos lleva al final del fichero) y una vez allí pulsamos la tecla o (o minúscula) para añadir una nueva línea a continuación de la actual(última en nuestro caso) y así entramos en modo edición, aquí podemos teclear la información o usar copiar y pegar de la que os he puesto si es que el nombre del dispositivo coincide.
 
 En caso de no realizar un nuevo particionamiento y aprovechar lo que tenemos en el pendrive (p.e. Fat32), la línea que debemos crear en `/etc/fstab` es la siguiente:
 
+```
 /dev/sdb1 /BCK vfat user,rw,umask=111,dmask=000 0 0
+```
 
 En los siguientes arranques de la máquina ese punto de montaje ya estará presente, y si queremos activarlo ahora, sin tener que reiniciar recurriremos al comando mount el cual nos montará los recursos pendientes de montaje tal y como aparecen en nuestro `/etc/fstab`
 
-\[root@Jarvis /\]# mount -a
-\[root@Jarvis /\]# df -kh
+```
+[root@Jarvis /]# mount -a
+[root@Jarvis /]# df -kh
 
 Filesystem Size Used Avail Use% Mounted on
 /dev/sdb1 3.6G 7.4M 3.4G 1% /BCK
+```
 
 Con la infraestructura necesaria para estas copias incrementales ya operativa vamos a ver los comandos y scripts necesarios para hacerla funcionar.
 
 Lo primero es instalar rsync que por defecto no está incluido en la instalación base, para esto:
 
+```
 sudo pacman -S rsync
+```
 
 El comando para hacer una copia completa de toda nuestra tarjeta sobre el directorio `/BCK/Copias` del pendrive es este:
 
-rsync -aAXv /\* /BCK --exclude={/dev/\*,/proc/\*,/sys/\*,/tmp/\*,/run/\*,/mnt/\*,/media/\*,/lost+found,/BCK/\*}
+```
+rsync -aAXv /* /BCK --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found,/BCK/*}
+```
 
 Los parámetros empleados, -aAX son para que la copia sea lo más literal posible en cuanto a permisos, ACLs, etc, así como para que el copiado se comporte de manera recursiva.
 
-En las exclusiones ponemos todos los directorios de los que cuelga el sistema “en vuelo”, esto es, en /proc por ejemplo tenemos los procesos que están corriendo, en /tmp los temporales que se pierden tras cada reinicio, etc.
+En las exclusiones ponemos todos los directorios de los que cuelga el sistema “en vuelo”, esto es, en `/proc` por ejemplo tenemos los procesos que están corriendo, en `/tmp` los temporales que se pierden tras cada reinicio, etc.
 
-Y por supuesto, debemos excluir la propia carpeta de copias, que en este caso está montada bajo / y sería tomada en cuenta por el /\*.
+Y por supuesto, debemos excluir la propia carpeta de copias, que en este caso está montada bajo `/` y sería tomada en cuenta por el `/*`.
 
 Si el comando finaliza bien podemos incorporarlo en un fichero de shell script y programarlo mediante [crontab](http://es.wikipedia.org/wiki/Cron_(Unix)) para su ejecución.
 
 Para esto, con el usuario root ejecutamos:
-
+```
 mkdir -p /home/operador/scripts
 mkdir -p /home/operador/logs
 chown operador:operadores /home/operador/scripts
 vi /home/operador/scripts/CopiaSeg.sh
+```
 
-El primer comando,`mkdir -p` crea el directorio scripts, el modificador -p lo que indica es que se cree toda la
-
-estructura de directorios que haga falta.
+El primer comando,`mkdir -p` crea el directorio scripts, el modificador -p lo que indica es que se cree toda la estructura de directorios que haga falta.
 
 El segundo comando,`chown` es de Change Owner, esto es, cambiar de propietario, el directorio que hemos creado es propiedad del usuario root, lo cambiamos para que sea propiedad del usuario operador y del grupo operadores.
 
 El contenido del fichero que estamos editando con VI será este:
-
+```
 #!/bin/bash
 
-rsync -aAXv /\* /BCK --exclude={/dev/\*,/proc/\*,/sys/\*,/tmp/\*,/run/\*,/mnt/\*,/media/\*,/lost+found,/BCK/\*} > /dev/null 2>/home/operador/logs/CopiaSeg.log
+rsync -aAXv /* /BCK --exclude={/dev/*,/proc/*,/sys/*,/tmp/*,/run/*,/mnt/*,/media/*,/lost+found,/BCK/*} > /dev/null 2>/home/operador/logs/CopiaSeg.log
 
 ESC + :wq!
+```
 
 Le damos permisos de ejecución al script con el comando chmod:
-
+```
 chmod u+x /home/operador/scripts/CopiaSeg.sh
+```
 
 Y por último editamos el crontab del usuario root para ponerlo que se ejecute a diario, todos los días de la semana a las 23:00 horas.
-
+```
 crontab -e
 
-0 23 \* \* \* /home/operador/scripts/CopiaSeg.sh
+0 23 * * * /home/operador/scripts/CopiaSeg.sh
+```
 
 Esto es **una aproximación** digamos que “decente” de un sistema de copias de seguridad, menos es nada, y por lo menos desde estas copias podréis volver a poner el sistema en marcha.
 
