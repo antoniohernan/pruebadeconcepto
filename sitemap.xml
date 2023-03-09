@@ -31,7 +31,52 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://pruebadeconcepto.es/rpi_airprint/</loc>
+         <lastmod>2023-03-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi_alternativas/</loc>
+         <lastmod>2023-03-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi_apendice1/</loc>
+         <lastmod>2023-03-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi_apendice2/</loc>
+         <lastmod>2023-03-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi_apendice3/</loc>
+         <lastmod>2023-03-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://pruebadeconcepto.es/rpi_backup/</loc>
+         <lastmod>2023-03-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi_backupserver/</loc>
+         <lastmod>2023-03-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi_domotica/</loc>
+         <lastmod>2023-03-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi_downmanager/</loc>
+         <lastmod>2023-03-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi_emulador/</loc>
          <lastmod>2023-03-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -47,6 +92,11 @@
     </url>
     <url>
          <loc>https://pruebadeconcepto.es/rpi_intro/</loc>
+         <lastmod>2023-03-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi_mediacenter/</loc>
          <lastmod>2023-03-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
