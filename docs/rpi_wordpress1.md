@@ -27,20 +27,23 @@ Puesto que tenemos instalada un pendrive USB vamos a emplearlo para montar sobre
 
 Por defecto en nuestra instalación ese directorio ya existe y está montado sobre el FS raíz del sistema:
 
-\[root@Jarvis srv\]# df -kh .
+```
+[root@Jarvis srv]# df -kh .
 S.ficheros Tamaño Usados Disp Uso% Montado en
 /dev/root 3,0G 676M 2,2G 24% /
 
-\[root@Jarvis srv\]# ls -lR
+[root@Jarvis srv]# ls -lR
 .: total 8
 dr-xr-xr-x 2 root ftp 4096 jun 4 2013 ftp
 drwxr-xr-x 2 root root 4096 jun 4 2013 http
+```
 
 Vamos a crear un nuevo sistema de ficheros en la partición que tenemos libre en el USB, movemos el actual directorio a otro nombre, montamos la unidad y devolvemos el directorio, fácil…
 
 Creamos el sistema de ficheros:
 
-\[root@Jarvis srv\]# mkfs -t ext4 /dev/sdb2
+``` 
+[root@Jarvis srv]# mkfs -t ext4 /dev/sdb2
 
 mke2fs 1.42.9 (28-Dec-2013)
 Etiqueta del sistema de ficheros=
@@ -61,12 +64,15 @@ Allocating group tables: hecho
 Escribiendo las tablas de nodos-i: hecho
 Creating journal (32768 blocks):hecho
 Escribiendo superbloques y la información contable del sistema de ficheros: hecho
+```
 
-Editamos el fichero `/etc/fstab` para configurar el punto de montaje
+Editamos el fichero `/etc/fstab` para configurar el punto de montaje
 
-\[root@Jarvis srv\]# vi /etc/fstab
+```
+[root@Jarvis srv]# vi /etc/fstab
 /dev/sdb1 /BCK ext4 defaults 0 0
 /dev/sdb2 /srv ext4 defaults 0 0
+```
 
 Añadimos la segunda línea que vemos.
 
@@ -74,69 +80,76 @@ Salvamos el fichero pero aún no montamos la unidad pues el directorio existe y 
 
 Copiamos el directorio srv con otro nombre y lo volvemos a crear para poder hacer el montaje de la unidad USB
 
-\[root@Jarvis /\]# cd /
-\[root@Jarvis /\]# mv /srv /srv2
-\[root@Jarvis /\]# mkdir /srv
+```
+[root@Jarvis /]# cd /
+[root@Jarvis /]# mv /srv /srv2
+[root@Jarvis /]# mkdir /srv
+```
 
 Ahora podemos montar la partición sin problemas y volver a mover el directorio donde estaba
 
-\[root@GumPI /\]# mount -a
-\[root@GumPI /\]# mv /srv2/\* /srv
-\[root@GumPI /\]# rmdir srv2
+```
+[root@GumPI /]# mount -a
+[root@GumPI /]# mv /srv2/* /srv
+[root@GumPI /]# rmdir srv2
+```
 
 Y para comprobar que lo hemos hecho bien
-
-\[root@Jarvis ~\]# cd /srv
-\[root@Jarvis srv\]# df -kh .
+```
+[root@Jarvis ~]# cd /srv
+[root@Jarvis srv]# df -kh .
 S.ficheros Tamaño Usados Disp Uso% Montado en
 /dev/sdb2 4,3G 9,0M 4,1G 1% /srv
 
-\[root@Jarvis srv\]# ls -lR
+[root@Jarvis srv]# ls -lR
 .:
 total 24
 dr-xr-xr-x 2 root ftp 4096 jun 4 2013 ftp
 drwxr-xr-x 2 root root 4096 jun 4 2013 http
 drwx------ 2 root root 16384 mar 25 19:03 lost+found
+```
 
 ## Instalamos el servidor WEB
 
 Con nuestro gestor de paquetes, `pacman` vamos a instalar el servidor web
 
-\[root@Jarvis ~\]# pacman -S nginx
+```
+[root@Jarvis ~]# pacman -S nginx
 resolviendo dependencias...
 verificando conflictos...
 Paquetes (1): nginx-1.4.7-1
 Tamaño Total de Descarga: 0,25 MiB
 Tamaño Total Instalado: 0,71 MiB
-:: ¿Continuar con la instalación? \[S/n\] S
+:: ¿Continuar con la instalación? [S/n] S
 :: Recuperando paquetes ...
-nginx-1.4.7-1-armv6h 251,9 KiB 913K/s 00:00      \[##################################################\] 100%
-(1/1) verificando llaves en el llavero           \[##################################################\] 100%
-(1/1) verificando la integridad de los paquetes  \[##################################################\] 100%
-(1/1) cargando los archivos del paquete...       \[##################################################\] 100%
-(1/1) verificando conflictos entre archivos      \[##################################################\] 100%
-(1/1) verificando el espacio disponible en disco \[##################################################\] 100%
-(1/1) instalando nginx                           \[##################################################\] 100%
+nginx-1.4.7-1-armv6h 251,9 KiB 913K/s 00:00      [##################################################] 100%
+(1/1) verificando llaves en el llavero           [##################################################] 100%
+(1/1) verificando la integridad de los paquetes  [##################################################] 100%
+(1/1) cargando los archivos del paquete...       [##################################################] 100%
+(1/1) verificando conflictos entre archivos      [##################################################] 100%
+(1/1) verificando el espacio disponible en disco [##################################################] 100%
+(1/1) instalando nginx                           [##################################################] 100%
+```
 
 Lo arrancamos para ver si todo funciona correctamente
 
-\[root@Jarvis ~\]# systemctl start nginx
+`[root@Jarvis ~]# systemctl start nginx`
 
 Y comprobamos que se puede acceder al servidor por el puerto web por defecto que es el 80.
 
 Nos conectamos a nuestra Raspberry 192.168.1.20 (_por aquí tu IP_) ([http://192.168.1.20](http://192.168.1.20)) y debemos ver un
-
 mensaje tal que así:
 
-_Welcome to nginx!_
+```
+Welcome to nginx!
+If you see this page, the nginx web server is successfully installed and working. Further configuration is required.
 
-_If you see this page, the nginx web server is successfully installed and working. Further configuration is required._
+For online documentation and support please refer to nginx.org.
 
-_For online documentation and support please refer to nginx.org._
+Commercial support is available at nginx.com.
 
-_Commercial support is available at nginx.com._
-
-_Thank you for using nginx._
+Thank you for using nginx.
+```
 
 Perfecto, ya tenemos el servidor web instalado, ahora instalamos PHP y PHP-FPM (es el FastCGI para PHP) y terminamos de configurarlo.
 
