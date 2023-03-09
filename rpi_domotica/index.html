@@ -907,9 +907,9 @@ wget -O /root/preset3.jpg http://192.168.1.27:6159/snapshot.cgi?resolution=32\&a
 <p>echo "Envio Camara Foscam" &gt; /root/patrol.txt
 echo "Fecha: " `date '+%d/%m/%Y %H:%M:%S'` &gt;&gt; /root/patrol.txt
 echo "" &gt;&gt; /root/patrol.txt
-mutt -s "Foscam" antonio.hernan@gmail.com &lt; /root/patrol.txt -a /root/preset*.jpg
+mutt -s "Foscam" antonio.hernan@gmail.com &lt; /root/patrol.txt -a /root/preset<em>.jpg
 rm -f /root/patrol.txt &gt; /dev/null 2&gt;&amp;1
-rm -f /root/preset*.jpg &gt; /dev/null 2&gt;&amp;1</p>
+rm -f /root/preset</em>.jpg &gt; /dev/null 2&gt;&amp;1</p>
 <p>Y ahora tan sólo nos falta dar permisos de ejecución a dicho script</p>
 <p>[root@Jarvis ~]# chmod 700 patrol.sh</p>
 <p>Y si queremos que se ejecute siguiendo alguna condición de hora, programarlo con el correspondiente crontab -e.</p>

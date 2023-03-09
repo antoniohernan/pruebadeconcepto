@@ -871,7 +871,7 @@ rm -f /root/index.html &gt; /dev/null 2&gt;&amp;1</p>
 <p>Para probar que esto funciona, soltáis el cable de teléfono del router (ADSL) o apagáis la ONT (FTTH) y ejecutáis el scrip, las luces del router os indicarán que el reinicio se está produciendo.</p>
 <p>Si queréis programarlo para que se ejecute cada cierto tiempo lo podéis incluir dentro de crontab</p>
 <p>[root@Jarvis ~]# crontab -e</p>
-<p>0,10,20,30,40,50 * * * * /root/RevisaRouter.sh</p>
+<p>0,10,20,30,40,50 * <em> * </em> /root/RevisaRouter.sh</p>
 <p>Con esa línea nueva en crontab el script se ejecutaría siempre cada 10 minutos.</p>
 
 
