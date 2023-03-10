@@ -26,7 +26,7 @@ Aquí iré actualizando un índice de las distintas partes de este grupo de mens
 - [Copias de Seguridad](rpi_backup.md)
 - [Práctico 1 - Servidor de WordPress (I)](rpi_wordpress1.md)
 - [Práctico 1 - Servidor de WordPress (II)](rpi_wordpress2.md)
-- [Práctico 2 - Gestor de Descargas](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014/instalando-una-raspberrypi-todo-uso-en-2014-parte-8-practico-2-gestor-de-descargas/)
+- [Práctico 2 - Gestor de Descargas](rpi_downmanager.md)
 - [Práctico 3 - Servidor Impresión/AirPrint](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014/instalando-una-raspberrypi-todo-uso-en-2014-parte-9-practico-3-servidor-airprint/)
 - [Práctico 4 - Servidor Copias de Seguridad](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014/instalando-una-raspberrypi-todo-uso-en-2014-parte-10-practico-4-servidor-copias-de-seguridad/)
 - [Práctico 5 - Domótica, Cámaras IP y RaZberry](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014/instalando-una-raspberrypi-todo-uso-en-2014-parte-11-practico-5-domotica/)
