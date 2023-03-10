@@ -13,6 +13,10 @@
         <link rel="canonical" href="https://pruebadeconcepto.es/rpi_downmanager/">
       
       
+        <link rel="prev" href="../rpi_wordpress2/">
+      
+      
+        <link rel="next" href="../about_acercademi/">
       
       <link rel="icon" href="../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.1">
@@ -247,13 +251,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../rpi_intro/" class="md-tabs__link">
+      <a href="../rpi_intro/" class="md-tabs__link md-tabs__link--active">
         RaspberryPi
       </a>
     </li>
@@ -495,14 +501,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
       
       
       
@@ -511,7 +519,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           RaspberryPi
@@ -611,6 +619,106 @@
       <a href="../rpi_wordpress2/" class="md-nav__link">
         Práctico 1 - Wordpress 2
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Práctico 2 - Gestor de Descargas
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Práctico 2 - Gestor de Descargas
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gestor-de-descargas" class="md-nav__link">
+    Gestor de descargas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#infraestructura-previa" class="md-nav__link">
+    Infraestructura previa
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#descarga-p2p" class="md-nav__link">
+    Descarga P2P
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#descarga-directa-megaconz" class="md-nav__link">
+    Descarga directa mega.co.nz
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#automatizacion-de-descargas" class="md-nav__link">
+    Automatización de descargas
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#uso-de-feeds-rss-para-gestion-de-series" class="md-nav__link">
+    Uso de Feeds RSS para gestión de series
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vamos-a-editar-la-configuracion-de-flexget" class="md-nav__link">
+    Vamos a editar la configuración de FlexGet.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exportacion-samba" class="md-nav__link">
+    Exportación SAMBA
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -745,64 +853,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usrbinperl" class="md-nav__link">
-    !/usr/bin/perl
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#gestion-de-fichero-de" class="md-nav__link">
-    Gestion de fichero de
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variables-de-entorno" class="md-nav__link">
-    Variables de entorno
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#bucle-de-ejecucion" class="md-nav__link">
-    Bucle de ejecucion
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#filtrado-previo" class="md-nav__link">
-    Filtrado previo
-  </a>
-  
-    <nav class="md-nav" aria-label="Filtrado previo">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#uso-de-feeds-rss-para-gestion-de-series" class="md-nav__link">
     Uso de Feeds RSS para gestión de series
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#vamos-a-editar-la-configuracion-de-flexget" class="md-nav__link">
     Vamos a editar la configuración de FlexGet.
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#exportacion-samba" class="md-nav__link">
     Exportación SAMBA
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -821,8 +888,10 @@
                   
 
 
+  <h1>Práctico 2 - Gestor de Descargas</h1>
+
 <h2 id="gestor-de-descargas">Gestor de descargas<a class="headerlink" href="#gestor-de-descargas" title="Permanent link">&para;</a></h2>
-<p>No debemos perder de vista que el gasto energético de estas máquinas es mínimo, se puede situar en casi todos los casos por debajo de los 5W.</p>
+<p>No debemos perder de vista que el gasto energético de estas máquinas es mínimo, se puede situar en casi todos los casos <strong>por debajo de los 5W</strong>.</p>
 <p>Esto lo hace que sean ideales para tener como máquinas que estén permanentemente conectadas a la red con el propósito de descargar y compartir contenidos, bien sea por redes P2P como por servicio de descarga directa.</p>
 <p>En cualquier caso, necesitaremos conectar a la máquina una unidad de disco externo por los puertos USB, y este disco que se conecte no puede tener un consumo elevado pues la máquina no podrá con ello.</p>
 <p>Todo lo que sea más grande de un pendrive es necesario que esté autoalimentado (con su propio adaptador de corriente) o bien que este conectado a un HUB o regleta USB que esté a su vez autoalimentada.</p>
@@ -835,17 +904,18 @@
 <p>Y borramos las particiones que tenga para crear otra nueva, dándole todo el espacio disponible en el disco o bien creando varias particiones por, por ejemplo, tamaño en Gb.</p>
 <p>Terminado el particionamiento, como hemos visto antes, creamos el sistema de ficheros ext4 y lo montamos modificando el fichero <code>/etc/fstab</code> .</p>
 <p>Como leéis he pasado un poco de puntillas por este paso inicial, pero es algo que ya llevo contadas al menos un par de veces… mirad atrás que si no la guía saldrá kilométrica.</p>
-<p>En mi caso, para hacer estas pruebas he seguido usando el pendrive de pasos anteriores, el que está montado sobre /BCK y /srv.</p>
+<p>En mi caso, para hacer estas pruebas he seguido usando el pendrive de pasos anteriores, el que está montado sobre <code>/BCK</code> y <code>/srv</code>.</p>
 <p>Lo único que yo creo es una estructura de directorios para tenerlo todo organizado, pero como siempre digo, esto es como yo lo hago, que no es ni la mejor ni la única manera.</p>
-<p>[root@Jarvis ~]# mkdir -p /srv/downloads/Torrent/Finalizadas
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# mkdir -p /srv/downloads/Torrent/Finalizadas
 [root@Jarvis ~]# mkdir -p /srv/downloads/Torrent/EnCurso
-[root@Jarvis ~]# mkdir -p /srv/downloads/Directas</p>
+[root@Jarvis ~]# mkdir -p /srv/downloads/Directas
+</code></pre></div>
 <h2 id="descarga-p2p">Descarga P2P<a class="headerlink" href="#descarga-p2p" title="Permanent link">&para;</a></h2>
 <p>Para la gestión de descargas de la red Torrent (¿Aun existe algo en las redes Emule??) el cliente que por lo menos a mi me resulta más fácil de instalar, configurar y que menos recursos consume en el sistema es <a href="http://www.transmissionbt.com">Transmission</a>.</p>
 <p>Además, este cliente también está disponible en el mismo “formato” para nuestros Mac OSX por lo que es posible que a muchos les suene.</p>
 <p>Los pasos de instalación son extremadamente simples, no así la configuración que tiene un punto delicado que ahora os cuento.</p>
 <p>Para instalar, lo de siempre, <code>pacman</code> …</p>
-<p>[root@Jarvis srv]# pacman -S transmission-cli
+<div class="highlight"><pre><span></span><code>[root@Jarvis srv]# pacman -S transmission-cli
 resolviendo dependencias...
 verificando conflictos...
 Paquetes (2): libevent-2.0.21-3 transmission-cli-2.82-1
@@ -863,19 +933,23 @@ transmission-cli-2.82-1-armv6h 491,8 KiB 700K/s 00:01 [################] 100%
 (1/2) instalando libevent [################] 100%
 Dependencias opcionales para libevent
 python2: to use event_rpcgen.py
-(2/2) instalando transmission-cli [################] 100%</p>
+(2/2) instalando transmission-cli [################] 100%
+</code></pre></div>
 <p>Este paquete, además de instalar el producto nos crea un usuario:</p>
-<p>[root@Jarvis srv]# tail -1 /etc/passwd
-transmission<img alt="❌" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/274c.svg" title=":x:" />169:169:Transmission BitTorrent Client:/var/lib/transmission:/bin/false</p>
+<div class="highlight"><pre><span></span><code>[root@Jarvis srv]# tail -1 /etc/passwd
+transmission:x:169:169:Transmission BitTorrent Client:/var/lib/transmission:/bin/false
+</code></pre></div>
 <p>Nos ha creado un usuario transmission, incluso un grupo transmission y su home de usuario en <code>/var/lib/transmission</code></p>
 <p>Es precisamente en esa ruta donde se guarda el fichero de configuración de Transmission y el que debemos modificar.</p>
 <p>El “problema” de este fichero es que se carga en memoria cuando se arranca el cliente, y si realizamos alguna modificación sobre el los cambios no se verán reflejados en los siguientes arranques… y esto puede mosquear un poco y volverte algo loco, haces cambios y luego no los ves ahí donde habías tocado… XD</p>
 <p>Arrancamos el cliente, porqué hasta que no se hace el primer arranque no se genera el fichero de configuración, y acto seguido lo paramos para poder modificarlo sin problemas.</p>
-<p>[root@Jarvis srv]# systemctl start transmission
-[root@Jarvis srv]# systemctl stop transmission</p>
-<p>Ahora en el home del usuario transmission (recordar nuestra amiga la virgulilla <code>~transmission</code> ) se ha generado un directorio <code>.config</code></p>
-<p>[root@Jarvis srv]# cd ~transmission/.config/transmission-daemon/
-[root@Jarvis srv]# vi settings.json</p>
+<div class="highlight"><pre><span></span><code>[root@Jarvis srv]# systemctl start transmission
+[root@Jarvis srv]# systemctl stop transmission
+</code></pre></div>
+<p>Ahora en el home del usuario transmission (recordar nuestra amiga la virgulilla <code>~transmission</code> ) se ha generado un directorio <code>.config</code>
+<div class="highlight"><pre><span></span><code>[root@Jarvis srv]# cd ~transmission/.config/transmission-daemon/
+[root@Jarvis srv]# vi settings.json
+</code></pre></div></p>
 <p>Los parámetros que podemos configurar son muchos y no tienen mucha pérdida pero os cuento más o menos lo que suelo modificar yo (atención con las <strong>,</strong> al final de cada línea!!):</p>
 <p><code>"download-dir": “/srv/downloads/Torrent/Finalizadas”,</code>  Directorio donde se quedan los ficheros cuando se ha terminado la descarga.</p>
 <p><code>"download-queue-enabled": true,</code>  Habilitamos la cola de descargas.</p>
@@ -893,9 +967,10 @@ transmission<img alt="❌" class="twemoji" src="https://cdnjs.cloudflare.com/aja
 <p>Así, con todos estos parámetros vemos por ejemplo que la url de administración de ese transmission será http://IP_De_Tu_Rpi:9091/transmission</p>
 <p>En cuando a la clave, se pone en claro la primera vez, pero cuando arranquemos luego transmission, se cifra y aparecerá un chorro de números y letras.</p>
 <p>Y el resto de parámetros, pues si queremos esos ya podemos cambiarlos por el cliente web, por que haciendo estos cuatro cambios que os digo ya tendríais todo salvo la configuración de velocidades máxima/mínima, el scheduler para las zonas horarias en las que poder tener distinta velocidad, etc.</p>
-<p>Arrancamos el cliente y lo fijamos para que en los sucesivos rearranques del servidor se active.</p>
-<p>[root@Jarvis srv]# systemctl start transmission
-[root@Jarvis srv]# systemctl enable transmission</p>
+<p>Arrancamos el cliente y lo fijamos para que en los sucesivos rearranques del servidor se active.
+<div class="highlight"><pre><span></span><code>[root@Jarvis srv]# systemctl start transmission
+[root@Jarvis srv]# systemctl enable transmission
+</code></pre></div></p>
 <h2 id="descarga-directa-megaconz">Descarga directa mega.co.nz<a class="headerlink" href="#descarga-directa-megaconz" title="Permanent link">&para;</a></h2>
 <p>Para la descarga desde servicios directos podemos emplear software como Jdownloader2, y ahí tendríamos todas las posibilidades de hostings disponibles.</p>
 <p>A mi, personalmente no me gusta mucho, el tema de la resolución de Capchas no termina de ir bien o debes buscar algún servicio de resolución de capuchas que también te llevan un tiempo y al final terminas haciéndolo todo a mano o buscado los enlaces en mega.co.nz que no tiene capchas, y encima da una velocidad de descarga de escándalo.</p>
@@ -906,7 +981,7 @@ transmission<img alt="❌" class="twemoji" src="https://cdnjs.cloudflare.com/aja
 <p>Debemos <strong>descargar los fuentes del software y compilarlo</strong>.</p>
 <p>No os asustéis por que esto es de lo más normal y no todos los productos deben existir en formato paquete en repositorio para poder ser instalado.</p>
 <p>Necesitamos por tanto los fuentes del software que descargamos así:</p>
-<p>[root@Jarvis ~]# cd /root/Descargas
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# cd /root/Descargas
 [root@Jarvis Descargas]# wget http://megatools.megous.com/builds/megatools-1.9.91.tar.gz
 --2014-03-28 18:58:33-- http://megatools.megous.com/builds/megatools-1.9.91.tar.gz
 Resolviendo megatools.megous.com (megatools.megous.com)... 77.93.202.41
@@ -915,9 +990,10 @@ Petición HTTP enviada, esperando respuesta... 200 OK
 Longitud: 450518 (440K) [application/x-gzip]
 Grabando a: “megatools-1.9.91.tar.gz”
 100%[=============================================&gt;] 450.518 830KB/s en 0,5s
-2014-03-28 18:58:34 (830 KB/s) - “megatools-1.9.91.tar.gz” guardado [450518/450518]</p>
-<p>Y los compiladores para generar el programa ejecutable, que se obtienen así:</p>
-<p>[root@Jarvis Descargas]# pacman -S make gcc glib-networking curl fuse pkg-config
+2014-03-28 18:58:34 (830 KB/s) - “megatools-1.9.91.tar.gz” guardado [450518/450518]
+</code></pre></div>
+<p>Y los compiladores para generar el programa ejecutable, que se obtienen así:
+<div class="highlight"><pre><span></span><code>[root@Jarvis Descargas]# pacman -S make gcc glib-networking curl fuse pkg-config
 atención: make-4.0-2 está actualizado -- re-instalando
 atención: gcc-4.8.2-7 está actualizado -- re-instalando
 resolviendo dependencias...
@@ -935,56 +1011,70 @@ Tamaño neto a actualizar: 0,00 MiB
 (2/2) verificando el espacio disponible en disco [################] 100%
 (1/2) reinstalando make [################] 100%
 (2/2) reinstalando gcc [################] 100%
-…</p>
-<p>Descomprimimos los fuentes:</p>
-<p>[root@Jarvis Descargas]# tar -xvzf megatools-1.9.91.tar.gz
+…
+</code></pre></div></p>
+<p>Descomprimimos los fuentes:
+<div class="highlight"><pre><span></span><code>[root@Jarvis Descargas]# tar -xvzf megatools-1.9.91.tar.gz
 megatools-1.9.91/
-megatools-1.9.91/Makefile.in</p>
-<p>…</p>
-<p>megatools-1.9.91/m4/lt~obsolete.m4
-megatools-1.9.91/install-sh</p>
-<p>Y ahora la secuencia de comandos de configuración, compilación e instalación son los siguientes:</p>
-<p>[root@Jarvis ~]# cd ~/Descargas/megatools-1.9.91
+megatools-1.9.91/Makefile.in
+
+…
+
+megatools-1.9.91/m4/lt~obsolete.m4
+megatools-1.9.91/install-sh
+</code></pre></div></p>
+<p>Y ahora la secuencia de comandos de configuración, compilación e instalación son los siguientes:
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# cd ~/Descargas/megatools-1.9.91
 [root@Jarvis megatools-1.9.91]# ./configure
 [root@Jarvis megatools-1.9.91]# make
-[root@Jarvis megatools-1.9.91]# make install</p>
-<p>Llegados a este último punto, si no hemos encontrado errores (que aparecen en grande en la pantalla…) tendremos</p>
+[root@Jarvis megatools-1.9.91]# make install
+</code></pre></div>
+Llegados a este último punto, si no hemos encontrado errores (que aparecen en grande en la pantalla…) tendremos</p>
 <p>en la ruta <code>/usr/local/bin</code>instalados los programas.</p>
-<p>Si queremos podemos eliminar la descarga de fuentes de megatools que no nos harán falta más:</p>
-<p>[root@Jarvis megatools-1.9.91]# cd ~/Descargas
-[root@Jarvis Descargas]# rm -fr megatools-1.9.91*</p>
-<p>Ahora hacemos una prueba de descarga, necesitamos un enlace válido a <a href="http://mega.co.nz">mega.co.nz</a> para probarlo.</p>
+<p>Si queremos podemos eliminar la descarga de fuentes de megatools que no nos harán falta más:
+<div class="highlight"><pre><span></span><code>[root@Jarvis megatools-1.9.91]# cd ~/Descargas
+[root@Jarvis Descargas]# rm -fr megatools-1.9.91*
+</code></pre></div>
+Ahora hacemos una prueba de descarga, necesitamos un enlace válido a <a href="http://mega.co.nz">mega.co.nz</a> para probarlo.</p>
 <p>Por ejemplo este: <a href="https://mega.co.nz/#!fNQkWTDR!vXyDZ1EbBVvYzBLVCqCzUfVi2CVW-uhfmKevIxn9ZWU">https://mega.co.nz/#!fNQkWTDR!vXyDZ1EbBVvYzBLVCqCzUfVi2CVW-uhfmKevIxn9ZWU</a></p>
-<p>El comando que ejecutaríamos es:</p>
-<p>[root@Jarvis Descargas]# megadl 'https://mega.co.nz/#!fNQkWTDR!vXyDZ1EbBVvYzBLVCqCzUfVi2CVW-uhfmKevIxn9ZWU'</p>
-<p>True Detective 1x01 [josele].avi: 2% - 15,2 MiB of 622,0 MiB</p>
+<p>El comando que ejecutaríamos es:
+<div class="highlight"><pre><span></span><code>[root@Jarvis Descargas]# megadl &#39;https://mega.co.nz/#!fNQkWTDR!vXyDZ1EbBVvYzBLVCqCzUfVi2CVW-uhfmKevIxn9ZWU&#39;
+
+True Detective 1x01 [josele].avi: 2% - 15,2 MiB of 622,0 MiB
+</code></pre></div></p>
 <h2 id="automatizacion-de-descargas">Automatización de descargas<a class="headerlink" href="#automatizacion-de-descargas" title="Permanent link">&para;</a></h2>
 <p>Llegados a este punto podemos descargar tanto de la red Torrent como de las descargas directas de Mega.</p>
 <p>Ahora queremos automatizar las descargas, para la parte Torrent lo vemos ahora después.</p>
 <p>Para la parte de Mega la forma de automatizarlo exige un poco de programación.</p>
 <p>Esto que os pongo a continuación es un pequeño script, hecho de una manera un tanto improvisada pero que cumple con su cometido.</p>
 <p>Lee de un fichero los enlaces que le digamos uno a uno, los descarga y una vez que esta descarga ha finalizado los borra del fichero y sigue con el siguiente.</p>
-<h1 id="usrbinperl">!/usr/bin/perl<a class="headerlink" href="#usrbinperl" title="Permanent link">&para;</a></h1>
-<h1 id="gestion-de-fichero-de">Gestion de fichero de<a class="headerlink" href="#gestion-de-fichero-de" title="Permanent link">&para;</a></h1>
-<h1 id="variables-de-entorno">Variables de entorno<a class="headerlink" href="#variables-de-entorno" title="Permanent link">&para;</a></h1>
-<p>$FICENTRADA="~/enlaces.txt";
-$FICTMP="/tmp/enlaces.tmp";
-$EXEMEGA="/usr/local/bin/megadl";</p>
-<h1 id="bucle-de-ejecucion">Bucle de ejecucion<a class="headerlink" href="#bucle-de-ejecucion" title="Permanent link">&para;</a></h1>
-<h1 id="filtrado-previo">Filtrado previo<a class="headerlink" href="#filtrado-previo" title="Permanent link">&para;</a></h1>
-<p>system("cat ${FICENTRADA} 2&gt;/dev/null | grep '^http' &gt; ${FICTMP}; mv ${FICTMP} ${FICENTRADA} 2&gt;/dev/null");
-@ENLACES=`cat ${FICENTRADA} 2&gt;/dev/null | grep '^http'`;
+<div class="highlight"><pre><span></span><code>#!/usr/bin/perl
+# Gestion de fichero de
+# Variables de entorno
+
+$FICENTRADA=&quot;~/enlaces.txt&quot;;
+$FICTMP=&quot;/tmp/enlaces.tmp&quot;;
+$EXEMEGA=&quot;/usr/local/bin/megadl&quot;;
+
+# Bucle de ejecucion
+# Filtrado previo
+
+system(&quot;cat ${FICENTRADA} 2&gt;/dev/null | grep &#39;^http&#39; &gt; ${FICTMP}; mv ${FICTMP} ${FICENTRADA} 2&gt;/dev/null&quot;);
+@ENLACES=\`cat ${FICENTRADA} 2&gt;/dev/null | grep &#39;^http&#39;\`;
 if (@ENLACES)
  {
   foreach(@ENLACES)
   {
-  $ENLACE=$_; chomp($ENLACE);</p>
-<p No="No" _92_n="&quot;\n" descargar_92_n_="descargar\n&quot;;" enlaces="enlaces" existen="existen" por="por" print="print"># Ejecutamos la descarga y esperamos a que termine
-  @SALIDA=`${EXEMEGA} --no-progress '${ENLACE}' 2&gt;/dev/null`;
-  system("grep -v '${ENLACE}' ${FICENTRADA} &gt; ${FICTMP}; mv ${FICTMP} ${FICENTRADA}");
+  $ENLACE=$_; chomp($ENLACE);
+
+  # Ejecutamos la descarga y esperamos a que termine
+  @SALIDA=\`${EXEMEGA} --no-progress &#39;${ENLACE}&#39; 2&gt;/dev/null\`;
+  system(&quot;grep -v &#39;${ENLACE}&#39; ${FICENTRADA} &gt; ${FICTMP}; mv ${FICTMP} ${FICENTRADA}&quot;);
   }
  }
-else</p>
+else
+ { print &quot;\\n No existen enlaces por descargar\\n&quot;; }
+</code></pre></div>
 <p>Por supuesto que esto se puede superar, no es difícil…</p>
 <p>El proceso se programar para que se inicie su ejecución cada X horas, sólo algunos días de la semana, etc. Recordar que antes os conté como funciona crontab y que es muy fácil establecer un patrón de comportamiento de un programa, es darle vueltas a como queremos que nos funcione.</p>
 <p>Imaginad que sólo queréis que esté descargando de lunes a viernes por la noche, y que los ficheros de descarga se los habéis dejado a última hora del día… No se, es un ejemplo, yo de hecho lo hago así, se ejecuta sólo por las noches y coge los enlaces que le he ido dejando a lo largo del día.</p>
@@ -993,11 +1083,12 @@ else</p>
 <h2 id="uso-de-feeds-rss-para-gestion-de-series">Uso de Feeds RSS para gestión de series<a class="headerlink" href="#uso-de-feeds-rss-para-gestion-de-series" title="Permanent link">&para;</a></h2>
 <p>Una de las opciones de descarga más interesantes es la gestión desasistida de nuevos contenidos, en concreto de las series, no tener que preocuparnos cuando aparece un nuevo episodio, etc.</p>
 <p>Para esto, el montaje que tenemos hecho con trasmission es perfectamente válido, pero además tenemos que añadir algún que otro componente más, en este caso se llama <a href="http://flexget.com">FlexGet</a> , y por supuesto necesitaremos los correspondientes Feeds de los que obtener la información, como por ejemplo <a href="http://showrss.info">showrss.info</a> .</p>
-<p>Empezamos, paramos transmission si es que no lo habíamos hecho ya:</p>
-<p>[root@Jarvis ~]# systemctl stop transmission</p>
-<p>Instalamos FlexGet, recurrimos a pacmac y no os asustéis por la cantidad de dependencias que encuentra pacman por satisfacer y cosas a instalar.</p>
-<p>Hay una dependencia que en el listado os saldría al final como opcional pero que aquí va a ser necesaria, para poder comunicar con python al rpc de transmission, así que esta a la añadimos a mano en la línea de comando de pacman.</p>
-<p>[root@Jarvis ~]# pacman -S flexget python2-transmissionrpc
+<p>Empezamos, paramos transmission si es que no lo habíamos hecho ya:
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# systemctl stop transmission
+</code></pre></div>
+Instalamos FlexGet, recurrimos a pacmac y no os asustéis por la cantidad de dependencias que encuentra pacman por satisfacer y cosas a instalar.</p>
+<p>Hay una dependencia que en el listado os saldría al final como opcional pero que aquí va a ser necesaria, para poder comunicar con python al rpc de transmission, así que esta a la añadimos a mano en la línea de comando de pacman.
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# pacman -S flexget python2-transmissionrpc
 resolviendo dependencias...
 verificando conflictos...
 Paquetes (23): libyaml-0.1.5-1 python2-2.7.6-3 python2-beautifulsoup4-4.3.2-1 python2-certifi-1.0.0-1 python2-dateutil-2.1-2.1-8
@@ -1011,16 +1102,18 @@ python2-yaml-3.10-3 sqlite-3.8.4.1-1 flexget-1.2.58-1
 Tamaño Total de Descarga: 12,67 MiB
 Tamaño Total Instalado: 82,94 MiB
 :: ¿Continuar con la instalación? [S/n] s
-:: Recuperando paquetes ...</p>
-<p>Ahora nos vamos a registrar en la página de los rss, que es algo sencillo, sin correos ni nada de por medio.</p>
+:: Recuperando paquetes ...
+</code></pre></div>
+Ahora nos vamos a registrar en la página de los rss, que es algo sencillo, sin correos ni nada de por medio.</p>
 <p>Allí pues puedes configurar si quieres un RSS para todas tus series filtrados por HD o no HD, si quieres un RSS para una serie en concreto… es darle vueltas por que no es nada complicado, tan sólo hay que echarle unos minutillos de tiempo.</p>
 <h2 id="vamos-a-editar-la-configuracion-de-flexget">Vamos a editar la configuración de FlexGet.<a class="headerlink" href="#vamos-a-editar-la-configuracion-de-flexget" title="Permanent link">&para;</a></h2>
 <p>El fichero de configuración es bastante crítico, en el sentido de que cada línea de texto que aparece en el debe estar convenientemente escrita en cuanto a posición de espacios se refiere.</p>
 <p>Ahora en cuanto veáis un ejemplo lo veréis más claro.</p>
-<p>Configuramos…</p>
-<p>[root@Jarvis ~]# mkdir ~/.flexget
-[root@Jarvis .flexget]# vi config.yml</p>
-<p>tasks:
+<p>Configuramos…
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# mkdir ~/.flexget
+[root@Jarvis .flexget]# vi config.yml
+
+tasks:
 rss:
 rss: http://showrss.info/feeds/699.rss
 all_series: yes
@@ -1028,14 +1121,14 @@ quality: 720p+
 transmission:
 host: 192.128.1.20
 port: 9091
-username: 'operador'
-password: 'operador'
+username: &#39;operador&#39;
+password: &#39;operador&#39;
 ratio: -1
 path: /srv/downloads/Torrent/EnCurso/
 sort-files:
 find:
 path: /srv/downloads/Torrent/EnCurso/
-regexp: '.*\.(avi|mkv|mp4)$'
+regexp: &#39;.*\\.(avi|mkv|mp4)$&#39;
 recursive: yes
 accept_all: yes
 seen: local
@@ -1044,35 +1137,37 @@ all_series:
 parse_only: yes
 move:
 to: /srv/downloads/Torrent/Finalizadas/{{ tvdb_series_name }}/
-filename: '{{ tvdb_series_name }} - {{ series_id }} - {{ tvdb_ep_name }}{{ location | pathext }}'</p>
-<p>El fichero básico no tiene mucha complejidad, la URL de nuestro FEED, las claves y url de nuestro transmission, rutas donde llegan los ficheros, la conexión al repositorio de thetvdb para que ponga el nombre a las series y por último que mueva el contenido descargado a la ruta definitiva.</p>
+filename: &#39;{{ tvdb_series_name }} - {{ series_id }} - {{ tvdb_ep_name }}{{ location | pathext }}&#39;
+</code></pre></div>
+El fichero básico no tiene mucha complejidad, la URL de nuestro FEED, las claves y url de nuestro transmission, rutas donde llegan los ficheros, la conexión al repositorio de thetvdb para que ponga el nombre a las series y por último que mueva el contenido descargado a la ruta definitiva.</p>
 <p>Ahora sólo nos faltan dos cosas por hacer.</p>
-<p>La primera es arrancar y dejar arrancando transmission:</p>
-<p>[root@Jarvis ~]# systemctl start transmission
-[root@Jarvis ~]# systemctl enable transmission</p>
-<p>Y automatizar flexget para que se ejecute cada cierto tiempo y mire lo que hay para descargar, lo que se está descargando y lo que se ha finalizado de descargar…</p>
+<p>La primera es arrancar y dejar arrancando transmission:
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# systemctl start transmission
+[root@Jarvis ~]# systemctl enable transmission
+</code></pre></div>
+Y automatizar flexget para que se ejecute cada cierto tiempo y mire lo que hay para descargar, lo que se está descargando y lo que se ha finalizado de descargar…</p>
 <p>Y para esto lo mejor es emplear <code>crontab -e</code> del cual ya hemos hablado.</p>
-<p>Una última nota, si queremos probar si nuestra configuración es correcta antes de poner todo esto en marcha:</p>
-<p>[root@Jarvis .flexget]# flexget --test --logfile /var/log/flexget.log execute
-2014-03-29 10:15 WARNING details sort-files Task didn't produce any entries. This is likely due to a misconfigured or non-functional input.
+<p>Una última nota, si queremos probar si nuestra configuración es correcta antes de poner todo esto en marcha:
+<div class="highlight"><pre><span></span><code>[root@Jarvis .flexget]# flexget --test --logfile /var/log/flexget.log execute
+2014-03-29 10:15 WARNING details sort-files Task didn&#39;t produce any entries. This is likely due to a misconfigured or non-functional input.
 2014-03-29 10:15 VERBOSE details sort-files Summary - Accepted: 0 (Rejected: 0 Undecided: 0 Failed: 0)
 2014-03-29 10:15 INFO transmission rss Trying to connect to transmission...
 2014-03-29 10:15 INFO transmission rss Successfully connected to transmission.
 2014-03-29 10:15 VERBOSE details rss Produced 14 entries.
-2014-03-29 10:15 VERBOSE task rss REJECTED: `True Detective 1x08 Form and Void` by quality plugin because hdtv h264 does not match quality requirement [<Requirements(720p+)>]
-2014-03-29 10:15 VERBOSE task rss REJECTED: `True Detective 1x07 After You've Gone` by quality plugin because hdtv h264 does not match quality requirement [<Requirements(720p+)>]
-2014-03-29 10:15 VERBOSE task rss REJECTED: `True Detective 1x06 Haunted Houses` by quality plugin because hdtv h264 does not match quality requirement [<Requirements(720p+)>]
-2014-03-29 10:15 VERBOSE task rss REJECTED: `True Detective 1x05 The Secret Fate Of All Life` by quality plugin because hdtv h264 does not match quality requirement [<Requirements(720p+)>]
-2014-03-29 10:15 VERBOSE task rss REJECTED: `True Detective 1x04 Who Goes There?` by quality plugin because hdtv h264 does not match quality requirement [<Requirements(720p+)>]
-2014-03-29 10:15 VERBOSE task rss REJECTED: `True Detective 1x03 The Locked Room` by quality plugin because hdtv h264 does not match quality requirement [<Requirements(720p+)>]
-2014-03-29 10:15 VERBOSE task rss REJECTED: `True Detective 1x02` by quality plugin because hdtv h264 does not match quality requirement [<Requirements(720p+)>]
-2014-03-29 10:15 VERBOSE task rss ACCEPTED: `True Detective 1x02 720p` by series plugin because choosing best available quality
-2014-03-29 10:15 VERBOSE task rss ACCEPTED: `True Detective 1x05 The Secret Fate Of All Life 720p` by series plugin because choosing best available quality
-2014-03-29 10:15 VERBOSE task rss ACCEPTED: `True Detective 1x07 After You've Gone 720p` by series plugin because choosing best available quality
-2014-03-29 10:15 VERBOSE task rss ACCEPTED: `True Detective 1x08 Form and Void 720p` by series plugin because choosing best available quality
-2014-03-29 10:15 VERBOSE task rss ACCEPTED: `True Detective 1x04 Who Goes There? 720p` by series plugin because choosing best available quality
-2014-03-29 10:15 VERBOSE task rss ACCEPTED: `True Detective 1x06 Haunted Houses 720p` by series plugin because choosing best available quality
-2014-03-29 10:15 VERBOSE task rss ACCEPTED: `True Detective 1x03 The Locked Room 720p` by series plugin because choosing best available quality
+2014-03-29 10:15 VERBOSE task rss REJECTED: \`True Detective 1x08 Form and Void\` by quality plugin because hdtv h264 does not match quality requirement [&lt;Requirements(720p+)&gt;]
+2014-03-29 10:15 VERBOSE task rss REJECTED: \`True Detective 1x07 After You&#39;ve Gone\` by quality plugin because hdtv h264 does not match quality requirement [&lt;Requirements(720p+)&gt;]
+2014-03-29 10:15 VERBOSE task rss REJECTED: \`True Detective 1x06 Haunted Houses\` by quality plugin because hdtv h264 does not match quality requirement [&lt;Requirements(720p+)&gt;]
+2014-03-29 10:15 VERBOSE task rss REJECTED: \`True Detective 1x05 The Secret Fate Of All Life\` by quality plugin because hdtv h264 does not match quality requirement [&lt;Requirements(720p+)&gt;]
+2014-03-29 10:15 VERBOSE task rss REJECTED: \`True Detective 1x04 Who Goes There?\` by quality plugin because hdtv h264 does not match quality requirement [&lt;Requirements(720p+)&gt;]
+2014-03-29 10:15 VERBOSE task rss REJECTED: \`True Detective 1x03 The Locked Room\` by quality plugin because hdtv h264 does not match quality requirement [&lt;Requirements(720p+)&gt;]
+2014-03-29 10:15 VERBOSE task rss REJECTED: \`True Detective 1x02\` by quality plugin because hdtv h264 does not match quality requirement [&lt;Requirements(720p+)&gt;]
+2014-03-29 10:15 VERBOSE task rss ACCEPTED: \`True Detective 1x02 720p\` by series plugin because choosing best available quality
+2014-03-29 10:15 VERBOSE task rss ACCEPTED: \`True Detective 1x05 The Secret Fate Of All Life 720p\` by series plugin because choosing best available quality
+2014-03-29 10:15 VERBOSE task rss ACCEPTED: \`True Detective 1x07 After You&#39;ve Gone 720p\` by series plugin because choosing best available quality
+2014-03-29 10:15 VERBOSE task rss ACCEPTED: \`True Detective 1x08 Form and Void 720p\` by series plugin because choosing best available quality
+2014-03-29 10:15 VERBOSE task rss ACCEPTED: \`True Detective 1x04 Who Goes There? 720p\` by series plugin because choosing best available quality
+2014-03-29 10:15 VERBOSE task rss ACCEPTED: \`True Detective 1x06 Haunted Houses 720p\` by series plugin because choosing best available quality
+2014-03-29 10:15 VERBOSE task rss ACCEPTED: \`True Detective 1x03 The Locked Room 720p\` by series plugin because choosing best available quality
 2014-03-29 10:15 VERBOSE details rss Summary - Accepted: 7 (Rejected: 7 Undecided: 0 Failed: 0)
 2014-03-29 10:15 INFO transmission rss Would add magnet:?xt=urn:btih:2DB3E1CAA8CDE3D9651C7B539CA887F714322E35&amp;dn=True+Detective+S01E08+720p+HDTV+x264+2HD&amp;tr=udp://tracker.openbittorrent.com:80&amp;tr=udp://tracker.to transmission
 2014-03-29 10:15 INFO transmission rss Would add magnet:?xt=urn:btih:41AFF51BA027C488280E248511A9C13C11A9FA11&amp;dn=True+Detective+S01E07+720p+HDTV+x264+KILLERS&amp;tr=udp://tracker.openbittorrent.com:80&amp;tr=udp://tracker.to transmission
@@ -1081,48 +1176,57 @@ filename: '{{ tvdb_series_name }} - {{ series_id }} - {{ tvdb_ep_name }}{{ locat
 2014-03-29 10:15 INFO transmission rss Would add magnet:?xt=urn:btih:ABE95E4C2BF49C1FD99EBA0DBE0591B965439042&amp;dn=True+Detective+S01E04+720p+HDTV+x264+KILLERS&amp;tr=udp://tracker.openbittorrent.com:80&amp;tr=udp://tracker.to transmission
 2014-03-29 10:15 INFO transmission rss Would add magnet:?xt=urn:btih:A7D60019E259A95921B1310509783DE7AC80ECD9&amp;dn=True+Detective+S01E03+720p+HDTV+x264+KILLERS&amp;tr=udp://tracker.openbittorrent.com:80&amp;tr=udp://tracker.to transmission
 2014-03-29 10:15 INFO transmission rss Would add magnet:?xt=urn:btih:C6545AC26191F13DF03B06FC42DC485BA92384C4&amp;dn=True+Detective+S01E02+720p+HDTV+x264+KILLERS&amp;tr=udp://tracker.openbittorrent.com:80&amp;tr=udp://tracker.to transmission
-2014-03-29 10:15 INFO manager Removed test database</p>
+2014-03-29 10:15 INFO manager Removed test database
+</code></pre></div></p>
 <h2 id="exportacion-samba">Exportación SAMBA<a class="headerlink" href="#exportacion-samba" title="Permanent link">&para;</a></h2>
 <p>Ahora vamos a exportar el contenido de algunas de nuestras carpetas para hacerlos visibles en nuestros escritorios MAC Osx.</p>
 <p>Hay otras alternativas de conexión, como <a href="http://es.wikipedia.org/wiki/NFS">NFS</a> , depende de para que algunas son más robustas y otras my fáciles de configurar.</p>
 <p>Si bien a día de hoy parece que Samba (http://es.wikipedia.org/wiki/Samba_(programa)) ha cogido mucha fuerza y es difícil encontrar un dispositivo que no pueda realizar una conexión con este protocolo.</p>
 <p>Vamos a exportar una serie de directorios de nuestra RPI para montarlos luego en el MAC y poder hacer operativas tales como el uso de Hazel, Automator, o simplemente visualizar los ficheros e incluso reproducirlos en nuestro MAC Osx.</p>
-<p>Primero, tenemos que instalar Samba</p>
-<p>[root@Jarvis ~]# pacman -S samba</p>
-<p>resolviendo dependencias...
-verificando conflictos...</p>
-<p>Paquetes (16): cifs-utils-6.2-1 gamin-0.1.10-8 iniparser-3.1-4 ldb-1.1.16-1 libbsd-0.6.0-2 libcap-ng-0.7.3-1 libcups-1.7.1-4 libjpeg-turbo-1.3.0-4 libpng-1.6.10-1 libtiff-4.0.3-4 libwbclient-4.1.6-1
+<p>Primero, tenemos que instalar Samba
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# pacman -S samba
+
+resolviendo dependencias...
+verificando conflictos...
+
+Paquetes (16): cifs-utils-6.2-1 gamin-0.1.10-8 iniparser-3.1-4 ldb-1.1.16-1 libbsd-0.6.0-2 libcap-ng-0.7.3-1 libcups-1.7.1-4 libjpeg-turbo-1.3.0-4 libpng-1.6.10-1 libtiff-4.0.3-4 libwbclient-4.1.6-1
 smbclient-4.1.6-1 talloc-2.1.0-1 tdb-1.2.12-1 tevent-0.9.21-2 samba-4.1.6-1
 Tamaño Total de Descarga: 10,25 MiB
 Tamaño Total Instalado: 53,20 MiB
 :: ¿Continuar con la instalación? [S/n]
 :: Recuperando paquetes ...
 libjpeg-turbo-1.3.0-4-armv6h 240,1 KiB 416K/s   00:01 [################] 100%
-…</p>
-<p>(15/16) instalando smbclient                          [################] 100%
-(16/16) instalando samba                              [################] 100%</p>
-<p>Y lo configuramos, el fichero de configuración de ejemplo de samba es una locura… recurrimos a una plantilla:</p>
-<p>[root@Jarvis ~]# vi /etc/samba/smb.conf
+…
+
+(15/16) instalando smbclient                          [################] 100%
+(16/16) instalando samba                              [################] 100%
+</code></pre></div>
+Y lo configuramos, el fichero de configuración de ejemplo de samba es una locura… recurrimos a una plantilla:
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# vi /etc/samba/smb.conf
 [global]
 workgroup = JarvisGRP
 security = user
-load printers = no</p>
-<p>[DescargasDirectas]
+load printers = no
+
+[DescargasDirectas]
 path = /srv/downloads/Directas
 public = no
 writeable = yes
 browseable = yes
-valid users = root</p>
-<p>Arrancamos samba y lo dejamos corriendo como proceso en arranque de máquina:</p>
-<p>[root@Jarvis ~]# systemctl start smbd nmbd
+valid users = root
+</code></pre></div>
+Arrancamos samba y lo dejamos corriendo como proceso en arranque de máquina:
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# systemctl start smbd nmbd
 [root@Jarvis ~]# systemctl enable smbd nmbd
-ln -s '/usr/lib/systemd/system/samba.service' '/etc/systemd/system/multi-user.target.wants/samba.service'</p>
-<p>Y como tenemos la seguridad por usuario, debemos crear el usuario en las tablas de usuarios propias de samba, así que:</p>
-<p>[root@Jarvis ~]# smbpasswd -a root
+ln -s &#39;/usr/lib/systemd/system/samba.service&#39; &#39;/etc/systemd/system/multi-user.target.wants/samba.service&#39;
+</code></pre></div>
+Y como tenemos la seguridad por usuario, debemos crear el usuario en las tablas de usuarios propias de samba, así que:
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# smbpasswd -a root
 New SMB password:
 Retype new SMB password:
-Added user root.</p>
-<p>Para conectarnos desde nuestros Mac Osx a esta carpeta compartida, tenemos que abrir una nueva ventana de Finder CMD+N y a continuación conectarnos al servidor CMD+K</p>
+Added user root.
+</code></pre></div>
+Para conectarnos desde nuestros Mac Osx a esta carpeta compartida, tenemos que abrir una nueva ventana de Finder CMD+N y a continuación conectarnos al servidor CMD+K</p>
 <p>En la conexión del servidor pondremos:</p>
 <p><code>smb://192.168.1.20/DescargasDirectas</code></p>
 <p>Nos pedirá usuario y clave, que serán el usuario que hemos configurados en <code>smb.conf</code> y la clave la que hemos generado con <code>smbpasswd</code> y a partir de ese momento se comportará como una carpeta local al sistema Osx.</p>
