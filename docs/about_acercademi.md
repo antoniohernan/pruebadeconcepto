@@ -1,6 +1,7 @@
 ---
 title: "Acerca de mí y mis pruebas de concepto"
 date: "2019-05-23"
+copy: "Copyright &copy; 2019-2023 Antonio Hernan"
 ---
 
 **Antonio Hernán**
