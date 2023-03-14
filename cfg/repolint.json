@@ -24,7 +24,7 @@
         ],
         "source-license-headers-exist:file-starts-with": ["warning", {"files": ["**/*.tf"], "lineCount": 5, "patterns": ["Copyright", "License"], "flags": "i"}],
         "github-issue-template-exists:file-existence": ["error", {"files": [".github/ISSUE_TEMPLATE/*"]}],
-        "github-pull-request-template-exists:file-existence": ["error", {"files": [".github/pull_request_template.md"]}]
+        "github-pull-request-template-exists:file-existence": ["error", {"files": [".github/PULL_REQUEST_TEMPLATE/pull_request_template.md"]}]
       },
       "license=Apache-2.0": {
         "notice-file-exists:apache-notice": ["error"]
