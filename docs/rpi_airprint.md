@@ -21,8 +21,9 @@ Vamos a instalar los paquetes que se corresponden a Cups, Cups-pdf (que nos perm
 
 Para poder hacer AirPrint necesitamos también instalar [Avahi](http://avahi.org) , que no es más que un [Bonjour](http://www.apple.com/es/support/bonjour/) (esto es sonará más), esto es, sirve para anunciar los servicios que tu equipo ofrece al resto de equipos de la red.
 
-Instalamos todo entonces, con ayuda de pacman (se instala python2 aunque ya lo teníamos instalado de antes, por sisólo quieres probar esto de la impresión…)
+Instalamos todo entonces, con ayuda de `pacman` (se instala `python2` aunque ya lo teníamos instalado de antes, por sisólo quieres probar esto de la impresión…)
 
+```
 [root@Jarvis ~]# pacman -Sy cups cups-pdf gutenprint avahi pycups python2
 
 :: Sincronizando las bases de datos de paquetes...
@@ -40,30 +41,32 @@ Tamaño Total de Descarga: 52,90 MiB
 Tamaño Total Instalado: 358,88 MiB
 Tamaño neto a actualizar: 356,75 MiB
 :: ¿Continuar con la instalación? [S/n] S
+```
 
 La instalación es un poco larga por la cantidad de paquetes que añade o actualiza en el sistema, pero no debe presentar problema alguno.
 
 ## Configuración
 
-El fichero de configuración de cups está en /etc/cups/cupsd.conf
+El fichero de configuración de cups está en `/etc/cups/cupsd.conf`
 
 Lo editamos para configurar el rango de direcciones IP que podrán hacer uso de su servicio WEB (y por tanto poder configurarlo por web desde otro equipo de la red), así como para dar permisos a la administración.
-
+`
 [root@Jarvis ~]# vi /etc/cups/cupsd.conf
-
+`
 Donde dice
 
-\# Only listen for connections from the local machine.
+``` 
+# Only listen for connections from the local machine.
 Listen localhost:631
-
+```
 Por
-
-\# Only listen for connections from the local machine.
+```
+# Only listen for connections from the local machine.
 Listen 0.0.0.0:631
-
+```
 Y también añadimos el acceso desde la red local mediante la modificación de estas otras entradas:
-
-\# Restrict access to the server...
+```
+# Restrict access to the server...
 
 <Location />
 Order allow,deny
@@ -74,10 +77,10 @@ Order allow,deny
 <Location /admin>
 Order allow,deny
 </Location>
-
+```
 Por estas
-
-\# Restrict access to the server...
+```
+# Restrict access to the server...
 
 <Location />
 Order allow,deny
@@ -90,10 +93,11 @@ Allow @LOCAL
 Order allow,deny
 Allow @LOCAL
 </Location>
+```
 
 ## Iniciamos el servicio de impresión
 
-[root@Jarvis ~]# systemctl start cups
+`[root@Jarvis ~]# systemctl start cups`
 
 Y probamos si tenemos accesos la IP de nuestra máquina y el puerto 631 para la consola (http://192.168.1.20:631)
 
@@ -133,10 +137,11 @@ La verdad es que no se me ocurren muchos ejemplos de porqué podamos necesitar e
 
 Bien, vamos paso a paso, **arrancamos el demonio de Avahi**
 
-[root@Jarvis ~]# systemctl start avahi-daemon
+`[root@Jarvis ~]# systemctl start avahi-daemon`
 
 Creamos el directorio para la instalación de los programas Python y descargamos el que nos genera la configuración para AirPrint:
 
+```
 [root@Jarvis /]# mkdir /opt/airprint
 [root@Jarvis /]# cd /opt/airprint
 [root@Jarvis airprint]# wget -O airprint-generate.py --no-check-certificate https://raw.github.com/tjfontaine/airprintgenerate/master/airprint-generate.py
@@ -150,18 +155,22 @@ Longitud: 10093 (9,9K) [text/plain]
 Grabando a: “airprint-generate.py” 100% [============================================================================================================>]
 10.093 --.-K/s en 0,003s
 2014-03-29 15:11:18 (3,57 MB/s) - “airprint-generate.py” guardado [10093/10093]
+```
 
 Como no usamos Python sino que usamos Python2 tenemos que modificar este fichero que nos hemos descargado.
 
 Para esto, lo editamos con vi y modificamos la primera línea, añadiendo un 2 al final para que quede así:
 
+```
 #!/usr/bin/env python2
+```
 
 Vamos a ejecutar por tanto este script en Pyhton para ver que información no genera:
-
+```
 [root@Jarvis airprint]# chmod 755 airprint-generate.py
 [root@Jarvis airprint]# ./airprint-generate.py
 [root@Jarvis airprint]# mv AirPrint-Canon_MP140_series.service /etc/avahi/services
+```
 
 En la primera línea le hemos dado permisos de ejecución.
 
@@ -170,7 +179,7 @@ En la segunda lo ejecutamos y en la tercera vemos como se nos ha generado el ser
 En caso de conectar posteriormente otra impresora pues sólo hay que repetir este paso para poder tener otra impresora sirviendo AirPrint.
 
 Sólo nos queda reiniciar el demonio de Avahi y ver que reconozca nuestra impresora:
-
+```
 [root@Jarvis airprint]# systemctl restart avahi-daemon
 [root@Jarvis airprint]# systemctl status avahi-daemon
 
@@ -179,7 +188,7 @@ Loaded: loaded (/usr/lib/systemd/system/avahi-daemon.service; disabled)
 Active: active (running) since sáb 2014-03-29 15:18:49 CET; 9s ago
 mar 29 15:18:51 Jarvis avahi-daemon[1239]: Service "AirPrint Canon_MP140_series @ Jarvis (/services/AirPrint-
 Canon_MP140_series.service) successfully established.
-
+```
 Y desde por ejemplo un iPad, podemos imprimir un PDF, usando el icono de compartir de Adobe Reader, veremos en **Imprimir** como sale nuestra “impresora AirPrint”.
 
 O mientras estamos navegando con Safari, podemos usar el botón de compartir, escoger la opción de imprimir y ahí veremos nuestra impresora.
