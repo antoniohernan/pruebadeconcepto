@@ -1,6 +1,8 @@
 ---
 title: "¿Y esto tiene discos SSD?"
 date: "2019-05-27"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "informaticaviejuna"
 ---
