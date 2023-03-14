@@ -1,6 +1,8 @@
 ---
 title: "Envía ficheros desde Github a EC2 con actions"
 date: "2022-10-17"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "tecnologia"
 tags: 

@@ -1,6 +1,8 @@
 ---
 title: "Instalando una RaspberryPI todo uso... en 2014"
 date: "2019-12-13"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 ---
 
 Pues sí, **en 2014**, en el momento de escribir este mensaje son algo más de 6 años, pero claro, **6 años en tecnología son mucho tiempo**.

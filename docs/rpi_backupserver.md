@@ -1,6 +1,8 @@
 ---
 title: "Instalando una RaspberryPI todo uso… en 2014 (parte 10) – práctico 4 - Servidor copias de Seguridad"
 date: "2020-02-08"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 ---
 
 ## Servidor de Copias de Seguridad

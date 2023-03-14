@@ -1,6 +1,8 @@
 ---
 title: "Instalando una RaspberryPI todo uso… en 2014 (parte 17) – Apéndice III"
 date: "2020-02-08"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 ---
 
 ## Administrar por consola WEB nuestra Raspberry

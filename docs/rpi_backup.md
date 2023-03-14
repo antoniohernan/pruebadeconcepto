@@ -1,6 +1,8 @@
 ---
 title: "Instalando una RaspberryPI todo uso… en 2014 (parte 5) – Copias de Seguridad"
 date: "2020-02-03"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 ---
 
 ## Copias de seguridad

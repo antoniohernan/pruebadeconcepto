@@ -1,6 +1,8 @@
 ---
 title: "Instalando una RaspberryPI todo uso… en 2014 (parte 3) – Instalación básica (II)"
 date: "2019-12-23"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 ---
 
 ## … Continuamos con la personalización
