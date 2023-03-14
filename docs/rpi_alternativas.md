@@ -1,6 +1,8 @@
 ---
 title: "Instalando una RaspberryPI todo uso… en 2014 (parte 14) – Alternativas a RaspberryPI"
 date: "2020-02-08"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 ---
 
 ## Alternativas a Rpasberry Pi
