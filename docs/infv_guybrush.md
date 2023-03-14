@@ -1,6 +1,8 @@
 ---
 title: "¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!"
 date: "2019-05-23"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "informaticaviejuna"
 ---
