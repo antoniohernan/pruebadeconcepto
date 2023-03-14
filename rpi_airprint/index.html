@@ -745,56 +745,29 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#restrict-access-to-the-admin-pages" class="md-nav__link">
-    Restrict access to the admin pages...
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#restrict-access-to-the-admin-pages_1" class="md-nav__link">
-    Restrict access to the admin pages...
-  </a>
-  
-    <nav class="md-nav" aria-label="Restrict access to the admin pages...">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#iniciamos-el-servicio-de-impresion" class="md-nav__link">
     Iniciamos el servicio de impresión
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#configuracion-impresora" class="md-nav__link">
     Configuración impresora
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#compartiendo-esta-impresora-para-osx" class="md-nav__link">
     Compartiendo esta impresora para OSX
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#airprint" class="md-nav__link">
-    AirPrint
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
-  <a href="#usrbinenv-python2" class="md-nav__link">
-    !/usr/bin/env python2
+  <a href="#airprint" class="md-nav__link">
+    AirPrint
   </a>
   
 </li>
@@ -814,6 +787,8 @@
                   
 
 
+  <h1>Instalando una RaspberryPI todo uso… en 2014 (parte 9) – práctico 3 - Servidor AirPrint</h1>
+
 <h2 id="servidor-de-impresion">Servidor de Impresión<a class="headerlink" href="#servidor-de-impresion" title="Permanent link">&para;</a></h2>
 <p>Vamos a instalar en nuestra RPI el software necesario para convertirla en una estación de impresión en red, así como en un servidor de impresión compatible con AirPrint.</p>
 <p>De esta manera, nuestra impresora que no tiene ni Wifi ni es compatible con AirPrint pasaría a serlo.</p>
@@ -822,9 +797,10 @@
 <h2 id="instalacion">Instalación<a class="headerlink" href="#instalacion" title="Permanent link">&para;</a></h2>
 <p>Vamos a instalar los paquetes que se corresponden a Cups, Cups-pdf (que nos permite realizar impresiones sobre pdf) y <a href="http://en.wikipedia.org/wiki/Gutenprint">Gutenprint</a> (que son los drivers para casi todas las impresoras).</p>
 <p>Para poder hacer AirPrint necesitamos también instalar <a href="http://avahi.org">Avahi</a> , que no es más que un <a href="http://www.apple.com/es/support/bonjour/">Bonjour</a> (esto es sonará más), esto es, sirve para anunciar los servicios que tu equipo ofrece al resto de equipos de la red.</p>
-<p>Instalamos todo entonces, con ayuda de pacman (se instala python2 aunque ya lo teníamos instalado de antes, por sisólo quieres probar esto de la impresión…)</p>
-<p>[root@Jarvis ~]# pacman -Sy cups cups-pdf gutenprint avahi pycups python2</p>
-<p>:: Sincronizando las bases de datos de paquetes...
+<p>Instalamos todo entonces, con ayuda de <code>pacman</code> (se instala <code>python2</code> aunque ya lo teníamos instalado de antes, por sisólo quieres probar esto de la impresión…)</p>
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# pacman -Sy cups cups-pdf gutenprint avahi pycups python2
+
+:: Sincronizando las bases de datos de paquetes...
 core 153,6 KiB 464K/s 00:00    [###############] 100%
 extra 2031,8 KiB 1628K/s 00:01 [###############] 100%
 community está actualizado
@@ -833,44 +809,56 @@ aur está actualizado
 atención: avahi-0.6.31-11 está actualizado -- re-instalando
 resolviendo dependencias...
 verificando conflictos...
-Paquetes (56): bc-1.06.95-1.1 cairo-1.12.16-1 colord-1.0.6-1 cups-filters-1.0.49-1 damageproto-1.2.1-2 dconf-0.18.0-1 elfutils-0.158-1 fixesproto-5.0-2 fontconfig-2.11.0-1 freetype2-2.5.3-2 ghostscript-9.10-3 graphite-1:1.2.4-1 harfbuzz-0.9.26-1 hicolor-icon-theme-0.13-1 jasper-1.900.1-10 js-17.0.0-1 kbproto-1.0.6-1 lcms2-2.5-2 libdrm-2.4.52-1 libgusb-0.1.6-1 libice-1.0.8-2 libpaper-1.1.24-7 libpciaccess-0.13.2-2 libsm-1.2.2-2 libvdpau-0.7-1 libx11-1.6.2-1 libxau-1.0.8-2 libxcb-1.10-1 libxdamage-1.1.4-1 libxdmcp-1.1.1-1 libxext-1.3.2-1 libxfixes-5.0.1-1 libxrender-0.9.8-1 libxshmfence-1.1-1 libxt-1.1.4-1 libxxf86vm-1.1.3-1 llvm-libs-3.4-1 mesa-10.1.0-4 mesa-libgl-10.1.0-4 nspr-4.10.4-1 openjpeg-1.5.1-2 pixman-0.32.4-1 polkit-0.112-1 poppler-0.24.5-1 qpdf-5.1.1-1 renderproto-0.11.1-2 shared-colorprofiles-0.1.5-1 wayland-1.4.0-1 xcb-proto-1.10-2 xextproto-.3.0-1 xf86vidmodeproto-2.3.1-2 xproto-7.0.25-1 avahi-0.6.31-11 cups-1.7.1-4 cups-pdf-2.6.1-2 gutenprint-5.2.9-2</p>
-<p>Tamaño Total de Descarga: 52,90 MiB
+Paquetes (56): bc-1.06.95-1.1 cairo-1.12.16-1 colord-1.0.6-1 cups-filters-1.0.49-1 damageproto-1.2.1-2 dconf-0.18.0-1 elfutils-0.158-1 fixesproto-5.0-2 fontconfig-2.11.0-1 freetype2-2.5.3-2 ghostscript-9.10-3 graphite-1:1.2.4-1 harfbuzz-0.9.26-1 hicolor-icon-theme-0.13-1 jasper-1.900.1-10 js-17.0.0-1 kbproto-1.0.6-1 lcms2-2.5-2 libdrm-2.4.52-1 libgusb-0.1.6-1 libice-1.0.8-2 libpaper-1.1.24-7 libpciaccess-0.13.2-2 libsm-1.2.2-2 libvdpau-0.7-1 libx11-1.6.2-1 libxau-1.0.8-2 libxcb-1.10-1 libxdamage-1.1.4-1 libxdmcp-1.1.1-1 libxext-1.3.2-1 libxfixes-5.0.1-1 libxrender-0.9.8-1 libxshmfence-1.1-1 libxt-1.1.4-1 libxxf86vm-1.1.3-1 llvm-libs-3.4-1 mesa-10.1.0-4 mesa-libgl-10.1.0-4 nspr-4.10.4-1 openjpeg-1.5.1-2 pixman-0.32.4-1 polkit-0.112-1 poppler-0.24.5-1 qpdf-5.1.1-1 renderproto-0.11.1-2 shared-colorprofiles-0.1.5-1 wayland-1.4.0-1 xcb-proto-1.10-2 xextproto-.3.0-1 xf86vidmodeproto-2.3.1-2 xproto-7.0.25-1 avahi-0.6.31-11 cups-1.7.1-4 cups-pdf-2.6.1-2 gutenprint-5.2.9-2
+
+Tamaño Total de Descarga: 52,90 MiB
 Tamaño Total Instalado: 358,88 MiB
 Tamaño neto a actualizar: 356,75 MiB
-:: ¿Continuar con la instalación? [S/n] S</p>
+:: ¿Continuar con la instalación? [S/n] S
+</code></pre></div>
 <p>La instalación es un poco larga por la cantidad de paquetes que añade o actualiza en el sistema, pero no debe presentar problema alguno.</p>
 <h2 id="configuracion">Configuración<a class="headerlink" href="#configuracion" title="Permanent link">&para;</a></h2>
-<p>El fichero de configuración de cups está en /etc/cups/cupsd.conf</p>
-<p>Lo editamos para configurar el rango de direcciones IP que podrán hacer uso de su servicio WEB (y por tanto poder configurarlo por web desde otro equipo de la red), así como para dar permisos a la administración.</p>
-<p>[root@Jarvis ~]# vi /etc/cups/cupsd.conf</p>
-<p>Donde dice</p>
-<p># Only listen for connections from the local machine.
-Listen localhost:631</p>
-<p>Por</p>
-<p># Only listen for connections from the local machine.
-Listen 0.0.0.0:631</p>
-<p>Y también añadimos el acceso desde la red local mediante la modificación de estas otras entradas:</p>
-<p># Restrict access to the server...</p>
-<p><Location />
+<p>El fichero de configuración de cups está en <code>/etc/cups/cupsd.conf</code></p>
+<p>Lo editamos para configurar el rango de direcciones IP que podrán hacer uso de su servicio WEB (y por tanto poder configurarlo por web desde otro equipo de la red), así como para dar permisos a la administración.
+<code>[root@Jarvis ~]# vi /etc/cups/cupsd.conf</code>
+Donde dice</p>
+<p><div class="highlight"><pre><span></span><code># Only listen for connections from the local machine.
+Listen localhost:631
+</code></pre></div>
+Por
+<div class="highlight"><pre><span></span><code># Only listen for connections from the local machine.
+Listen 0.0.0.0:631
+</code></pre></div>
+Y también añadimos el acceso desde la red local mediante la modificación de estas otras entradas:
+<div class="highlight"><pre><span></span><code># Restrict access to the server...
+
+&lt;Location /&gt;
 Order allow,deny
-</Location></p>
-<h1 id="restrict-access-to-the-admin-pages">Restrict access to the admin pages...<a class="headerlink" href="#restrict-access-to-the-admin-pages" title="Permanent link">&para;</a></h1>
-<p><Location /admin>
+&lt;/Location&gt;
+
+# Restrict access to the admin pages...
+
+&lt;Location /admin&gt;
 Order allow,deny
-</Location></p>
-<p>Por estas</p>
-<p># Restrict access to the server...</p>
-<p><Location />
+&lt;/Location&gt;
+</code></pre></div>
+Por estas
+<div class="highlight"><pre><span></span><code># Restrict access to the server...
+
+&lt;Location /&gt;
 Order allow,deny
 Allow @LOCAL
-</Location></p>
-<h1 id="restrict-access-to-the-admin-pages_1">Restrict access to the admin pages...<a class="headerlink" href="#restrict-access-to-the-admin-pages_1" title="Permanent link">&para;</a></h1>
-<p><Location /admin>
+&lt;/Location&gt;
+
+# Restrict access to the admin pages...
+
+&lt;Location /admin&gt;
 Order allow,deny
 Allow @LOCAL
-</Location></p>
+&lt;/Location&gt;
+</code></pre></div></p>
 <h2 id="iniciamos-el-servicio-de-impresion">Iniciamos el servicio de impresión<a class="headerlink" href="#iniciamos-el-servicio-de-impresion" title="Permanent link">&para;</a></h2>
-<p>[root@Jarvis ~]# systemctl start cups</p>
+<p><code>[root@Jarvis ~]# systemctl start cups</code></p>
 <p>Y probamos si tenemos accesos la IP de nuestra máquina y el puerto 631 para la consola (http://192.168.1.20:631)</p>
 <h2 id="configuracion-impresora">Configuración impresora<a class="headerlink" href="#configuracion-impresora" title="Permanent link">&para;</a></h2>
 <p>Conectamos nuestra impresora por USB a la RPI y entramos a la url antes mencionada.</p>
@@ -890,38 +878,45 @@ Allow @LOCAL
 <p>Y aquí lo divertido de todo esto, poder utilizarla como impresora AirPrint para poder imprimir cosas desde nuestros iPhones e iPads.</p>
 <p>La verdad es que no se me ocurren muchos ejemplos de porqué podamos necesitar esta funcionalidad, tan sólo se me viene a la cabeza la impresión de entradas que compres en la web y cosas similares, o imprimir una receta que tengas en pdf para no tener el iPad en la cocina al lado de los fogones.. etc.</p>
 <p>Bien, vamos paso a paso, <strong>arrancamos el demonio de Avahi</strong></p>
-<p>[root@Jarvis ~]# systemctl start avahi-daemon</p>
+<p><code>[root@Jarvis ~]# systemctl start avahi-daemon</code></p>
 <p>Creamos el directorio para la instalación de los programas Python y descargamos el que nos genera la configuración para AirPrint:</p>
-<p>[root@Jarvis /]# mkdir /opt/airprint
+<div class="highlight"><pre><span></span><code>[root@Jarvis /]# mkdir /opt/airprint
 [root@Jarvis /]# cd /opt/airprint
-[root@Jarvis airprint]# wget -O airprint-generate.py --no-check-certificate https://raw.github.com/tjfontaine/airprintgenerate/master/airprint-generate.py</p>
-<p>--2014-03-29 15:11:17-- https://raw.github.com/tjfontaine/airprint-generate/master/airprint-generate.py</p>
-<p>Resolviendo raw.github.com (raw.github.com)... 185.31.16.133
+[root@Jarvis airprint]# wget -O airprint-generate.py --no-check-certificate https://raw.github.com/tjfontaine/airprintgenerate/master/airprint-generate.py
+
+--2014-03-29 15:11:17-- https://raw.github.com/tjfontaine/airprint-generate/master/airprint-generate.py
+
+Resolviendo raw.github.com (raw.github.com)... 185.31.16.133
 Conectando con raw.github.com (raw.github.com)[185.31.16.133]:443... conectado.
 Petición HTTP enviada, esperando respuesta... 200 OK
 Longitud: 10093 (9,9K) [text/plain]
 Grabando a: “airprint-generate.py” 100% [============================================================================================================&gt;]
 10.093 --.-K/s en 0,003s
-2014-03-29 15:11:18 (3,57 MB/s) - “airprint-generate.py” guardado [10093/10093]</p>
+2014-03-29 15:11:18 (3,57 MB/s) - “airprint-generate.py” guardado [10093/10093]
+</code></pre></div>
 <p>Como no usamos Python sino que usamos Python2 tenemos que modificar este fichero que nos hemos descargado.</p>
 <p>Para esto, lo editamos con vi y modificamos la primera línea, añadiendo un 2 al final para que quede así:</p>
-<h1 id="usrbinenv-python2">!/usr/bin/env python2<a class="headerlink" href="#usrbinenv-python2" title="Permanent link">&para;</a></h1>
-<p>Vamos a ejecutar por tanto este script en Pyhton para ver que información no genera:</p>
-<p>[root@Jarvis airprint]# chmod 755 airprint-generate.py
+<div class="highlight"><pre><span></span><code>#!/usr/bin/env python2
+</code></pre></div>
+<p>Vamos a ejecutar por tanto este script en Pyhton para ver que información no genera:
+<div class="highlight"><pre><span></span><code>[root@Jarvis airprint]# chmod 755 airprint-generate.py
 [root@Jarvis airprint]# ./airprint-generate.py
-[root@Jarvis airprint]# mv AirPrint-Canon_MP140_series.service /etc/avahi/services</p>
+[root@Jarvis airprint]# mv AirPrint-Canon_MP140_series.service /etc/avahi/services
+</code></pre></div></p>
 <p>En la primera línea le hemos dado permisos de ejecución.</p>
 <p>En la segunda lo ejecutamos y en la tercera vemos como se nos ha generado el servicio de nuestra impresora conectada (la Canon MP140 ;)), así que movemos este fichero de configuración del servicio a la ruta adecuada.</p>
 <p>En caso de conectar posteriormente otra impresora pues sólo hay que repetir este paso para poder tener otra impresora sirviendo AirPrint.</p>
-<p>Sólo nos queda reiniciar el demonio de Avahi y ver que reconozca nuestra impresora:</p>
-<p>[root@Jarvis airprint]# systemctl restart avahi-daemon
-[root@Jarvis airprint]# systemctl status avahi-daemon</p>
-<p>avahi-daemon.service - Avahi mDNS/DNS-SD Stack
+<p>Sólo nos queda reiniciar el demonio de Avahi y ver que reconozca nuestra impresora:
+<div class="highlight"><pre><span></span><code>[root@Jarvis airprint]# systemctl restart avahi-daemon
+[root@Jarvis airprint]# systemctl status avahi-daemon
+
+avahi-daemon.service - Avahi mDNS/DNS-SD Stack
 Loaded: loaded (/usr/lib/systemd/system/avahi-daemon.service; disabled)
 Active: active (running) since sáb 2014-03-29 15:18:49 CET; 9s ago
-mar 29 15:18:51 Jarvis avahi-daemon[1239]: Service "AirPrint Canon_MP140_series @ Jarvis (/services/AirPrint-
-Canon_MP140_series.service) successfully established.</p>
-<p>Y desde por ejemplo un iPad, podemos imprimir un PDF, usando el icono de compartir de Adobe Reader, veremos en <strong>Imprimir</strong> como sale nuestra “impresora AirPrint”.</p>
+mar 29 15:18:51 Jarvis avahi-daemon[1239]: Service &quot;AirPrint Canon_MP140_series @ Jarvis (/services/AirPrint-
+Canon_MP140_series.service) successfully established.
+</code></pre></div>
+Y desde por ejemplo un iPad, podemos imprimir un PDF, usando el icono de compartir de Adobe Reader, veremos en <strong>Imprimir</strong> como sale nuestra “impresora AirPrint”.</p>
 <p>O mientras estamos navegando con Safari, podemos usar el botón de compartir, escoger la opción de imprimir y ahí veremos nuestra impresora.</p>
 <p>No es un sistema rápido, por que hay muchos intermediarios… mucha red, mucha conversiones, pero si tienes una impresora y no quieres invertir en una nueva con su Wifi, su AirPrint y demás, pues con la Rpi puedes además de hacer todo lo “otro” que hagas con ella, usarla como centro de impresión.</p>
 
