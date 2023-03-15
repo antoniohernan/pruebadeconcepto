@@ -29,35 +29,35 @@ Así pues, para esto no tenemos que hacer nada, tan sólo saber que tenemos este
 
 Podemos incluso utilizar un cliente de FTP para que nos haga el entorno más amigable a la par de gráfico, por ejemplo podemos emplear [Filezilla](https://filezilla-project.org) , configurando la conexión como del tipo SFTP - SSH File Transfer Protocol y el modo de acceso Interactivo, para que veamos el mensaje del sistema en el que se nos solicita el código de verificación en dos pasos que implementamos.
 
-Esto lo comento aunque no es el recurso de copia de seguridad que vamos a emplear para este fin, es “otra” forma más de poder pasar contenidos a nuestra máquina de backup.
+Esto lo comento aunque no es el recurso de copia de seguridad que vamos a emplear para este fin, es "otra" forma más de poder pasar contenidos a nuestra máquina de backup.
 
 ## Servidor RSYNC
 
 Sobre Rsync ya hablamos en el capítulo de copias de seguridad, y ahora vamos a ampliar la información por que este software también podemos explotarlo como parte servidor, esto es, activarlo de manera que otros equipos actúen como clientes y puedan hacer copia sobre nuestra RPI.
 
-Para eso tan sólo tenemos que configurarlo adecuadamente y ejecutarlo de manera que se quede funcionando en la máquina en modo “demonio”.
+Para eso tan sólo tenemos que configurarlo adecuadamente y ejecutarlo de manera que se quede funcionando en la máquina en modo "demonio".
 
 La configuración es sencilla, en primer lugar tenemos el fichero de configuración `/etc/rsyncd.conf`
 
 Aquí un ejemplo a usar:
-
+```
 uid = nobody
 gid = nobody
 use chroot = no
 max connections = 4
 syslog facility = local5
 pid file = /run/rsyncd.pid
-
+```
 Ahora vamos a poner a correr rsync en modo demonio y a probar a grabar desde nuestro equipo Mac
 
-[root@Jarvis ~]# systemctl start rsyncd
+`[root@Jarvis ~]# systemctl start rsyncd`
 
 En caso de que lo queramos dejar corriendo siempre que se inicie el sistema operativo de la máquina, este es el comando:
 
-[root@Jarvis ~]# systemctl enable rsyncd
+`[root@Jarvis ~]# systemctl enable rsyncd`
 
 Y la línea por ejemplo para copiar un directorio sobre el home del usuario operador (el único que puede conectar y autenticar por SSH) sería:
-
+```
 Hal9000:~ $ rsync --progress -avhe ssh /Users/admin/Documents/Vehiculos/Octavia/Manuales/ operador@192.168.1.20:CopiaRemota/
 
 Verification code:
@@ -72,9 +72,9 @@ A5_Octavia_Swing_CarRadio.pdf
 671.79K 100% 831.48kB/s 0:00:00 (xfer#2, to-check=0/3)
 sent 4.72M bytes received 70 bytes 219.53K bytes/sec
 total size is 4.72M speedup is 1.00
-
+```
 Como vemos la conexión a Rsync se hace sobre SSH, es una copia por tanto segura, es más, se nos está pidiendo autenticación en dos pasos y la copia se deja bajo el usuario operador:
-
+```
 [root@Jarvis CopiaRemota]# pwd
 /home/operador/CopiaRemota
 [root@Jarvis CopiaRemota]# ls -l
@@ -82,11 +82,11 @@ Como vemos la conexión a Rsync se hace sobre SSH, es una copia por tanto segura
 total 4616
 -rwxrwxrwx 1 operador operadores 4047332 ene 25 2012 A5_Octavia_OwnersManual.pdf
 -rwxrwxrwx 1 operador operadores 671786 ene 25 2012 A5_Octavia_Swing_CarRadio.pdf
-
+```
 Bien, como habíamos pensado hacer ese proceso que nos haga copia de una serie de carpetas de nuestro OSX sobre la Rpi, y luego nos apague la máquina OSX, pues no podemos estar pendientes para poder introducir el famoso código de autenticación en dos pasos ni la contraseña del usuario, vamos a hacer lo que se llama una conexión transparente mediante generando para esto nuestra huella RSA propia.
 
-En nuestro equipo OSX, abrimos un terminal y nos vamos a nuestro home de usuario (recordar, la virgulilla), y dentro del home al directorio .ssh
-
+En nuestro equipo OSX, abrimos un terminal y nos vamos a nuestro home de usuario (recordad, la virgulilla), y dentro del home al directorio `.ssh`
+```
 cd ~/.ssh
 ssh-keygen -t rsa
 
@@ -112,41 +112,42 @@ The key's randomart image is:
 |oo . . ..        |
 |oo+E . .+o       |
 +-----------------+
-
+```
 Respondemos a todas las preguntas que nos hace este comando con INTRO.
 
-Ahora tenemos que copiar el fichero id_rsa.pub que hemos generado en nuestro OSX a la máquina RPI, y debe quedar en el directorio /home/operador/.ssh, se debe llamar authorized_keys y los permisos del directorio y del fichero deben excluir a grupo y otros por que de lo contrario todo esto se desactiva por temas relativos a la seguridad.
+Ahora tenemos que copiar el fichero `id_rsa.pub` que hemos generado en nuestro OSX a la máquina RPI, y debe quedar en el directorio `/home/operador/.ssh`, se debe llamar `authorized_keys` y los permisos del directorio y del fichero deben excluir a grupo y otros por que de lo contrario todo esto se desactiva por temas relativos a la seguridad.
 
 Para esta copia, podemos usar este comando en nuestro terminal OSX:
-
+```
 Hal9000:.ssh admin$ scp id_rsa.pub operador@192.168.1.20:id_rsa.pub
 
 Verification code:
 Password:
 id_rsa.pub
-
+```
 Como vemos es una copia con SSL, autenticación en dos pasos, clave, etc.
 
 El fichero se ha quedado en el home del usuario operador en la PI, así que estos son los siguientes pasos a dar:
-
+```
 [operador@Jarvis ~]$ mkdir -p .ssh
 [operador@Jarvis ~]$ mv ./id_rsa.pub ./.ssh/authorized_keys
 [operador@Jarvis ~]$ chmod go-w . .ssh .ssh/authorized_keys
-
+```
 Que pasa a partir de este punto, pues que las conexiones por SSH entre ese equipo que ha generado su clave RSA y se la ha enviado a nuestra RPI, y la RPI ya no precisan de usuario/clave ni código de verificación en dos pasos.
 
 Y ahora, por ejemplo, si repetimos en nuestro OSX el comando de copia rsync sobre la RPi ya no nos pide nada y lo podemos ejecutar en modo desatendido:
-
+```
 Hal9000: ~$ rsync --progress -avhe ssh /Users/admin/Documents/Vehiculos/Octavia/Manuales/ operador@192.168.1.20:CopiaRemota/
 building file list ...
 3 files to consider
 
 sent 161 bytes received 20 bytes 362.00 bytes/sec
 total size is 4.72M speedup is 26072.48
+```
 
 ## Script de copia y apagado del MAC
 
-Y ahora, juntando todas estas piezas que hemos ido viendo podremos implementar lo siguiente, nuestra idea inicial, poder pulsar un “botón” y que se haga copia de lo que quiero y luego se apague el equipo.
+Y ahora, juntando todas estas piezas que hemos ido viendo podremos implementar lo siguiente, nuestra idea inicial, poder pulsar un "botón" y que se haga copia de lo que quiero y luego se apague el equipo.
 
 Para esto, necesitamos hacer una simple tarea en nuestro OSx con Automator.
 
@@ -154,6 +155,6 @@ Se trata de abrir automator y crear un nuevo flujo de trabajo.
 
 En primer lugar, el flujo ejecutará una secuencia de Shell Scrip, en esta secuencia es donde pegamos nuestra línea de Rsync con la que hacíamos copia de la carpeta.
 
-El siguiente elemento de ese flujo es la ejecución de un script hecho en AppleScript, este ejecuta el comando tell application "Finder" to shut down.
+El siguiente elemento de ese flujo es la ejecución de un script hecho en AppleScript, este ejecuta el comando `tell application "Finder" to shut down`.
 
 Y listo, ahora guardamos este flujo de Automator como aplicación y la grabamos donde queramos, en al carpeta de aplicaciones, en nuestra carpeta personal, da igual, cuando ejecutemos nos hará en primer lugar la copia por rsync y al finalizar apaga el equipo al completo.
