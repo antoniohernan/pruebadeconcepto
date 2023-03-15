@@ -30,7 +30,7 @@ Aquí iré actualizando un índice de las distintas partes de este grupo de mens
 - [Práctico 1 - Servidor de WordPress (II)](rpi_wordpress2.md)
 - [Práctico 2 - Gestor de Descargas](rpi_downmanager.md)
 - [Práctico 3 - Servidor Impresión/AirPrint](rpi_airprint.md)
-- [Práctico 4 - Servidor Copias de Seguridad](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014/instalando-una-raspberrypi-todo-uso-en-2014-parte-10-practico-4-servidor-copias-de-seguridad/)
+- [Práctico 4 - Servidor Copias de Seguridad](rpi_backupserver.md)
 - [Práctico 5 - Domótica, Cámaras IP y RaZberry](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014/instalando-una-raspberrypi-todo-uso-en-2014-parte-11-practico-5-domotica/)
 - [Práctico 6 - Media Center](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014-parte-12-practico-6-media-center/)
 - [Práctico 7 - Emulación de juegos](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014/instalando-una-raspberrypi-todo-uso-en-2014-parte-13-practico-7-emulador-de-videojuegos/)
