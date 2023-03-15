@@ -13,6 +13,10 @@
         <link rel="canonical" href="https://pruebadeconcepto.es/rpi_backupserver/">
       
       
+        <link rel="prev" href="../rpi_airprint/">
+      
+      
+        <link rel="next" href="../about_acercademi/">
       
       <link rel="icon" href="../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.2">
@@ -247,13 +251,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../rpi_intro/" class="md-tabs__link">
+      <a href="../rpi_intro/" class="md-tabs__link md-tabs__link--active">
         RaspberryPi
       </a>
     </li>
@@ -495,14 +501,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
       
       
       
@@ -511,7 +519,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           RaspberryPi
@@ -639,6 +647,78 @@
       <a href="../rpi_airprint/" class="md-nav__link">
         Práctico 3 - Servidor Impresión/AirPrint
       </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Práctico 4 - Servidor Copias de Seguridad
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Práctico 4 - Servidor Copias de Seguridad
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#servidor-de-copias-de-seguridad" class="md-nav__link">
+    Servidor de Copias de Seguridad
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#servidor-ftp" class="md-nav__link">
+    Servidor FTP
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#servidor-rsync" class="md-nav__link">
+    Servidor RSYNC
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#script-de-copia-y-apagado-del-mac" class="md-nav__link">
+    Script de copia y apagado del MAC
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -780,7 +860,7 @@
                   
 
 
-  <h1>Instalando una RaspberryPI todo uso… en 2014 (parte 10) – práctico 4 - Servidor copias de Seguridad</h1>
+  <h1>Práctico 4 - Servidor Copias de Seguridad</h1>
 
 <h2 id="servidor-de-copias-de-seguridad">Servidor de Copias de Seguridad<a class="headerlink" href="#servidor-de-copias-de-seguridad" title="Permanent link">&para;</a></h2>
 <p>Si, ya sé que con nuestros MACs tenemos la estupenda utilidad de Time Machine, que funciona a las mil maravillas, e incluso si queremos tenemos también SuperDuper que es un muy buen complemento para nuestras copias en Time Machine.</p>
@@ -794,25 +874,27 @@
 <p>Y como en nuestra conexión, en el apartado de securización hemos, por un lado <strong>eliminado el acceso</strong> directo <strong>con el usuario root</strong>, y por otro <strong>activado la autenticación en dos pasos</strong> para el usuario operador, pues aquí nos pasará lo mismo, si abrimos una conexión sftp a nuestra máquina veremos como con el usuario root es imposible que obtengamos una sesión, y que cuando la abrimos con el usuario operador nos solicita lo primero el código de verificación de la autenticación en dos pasos y luego la contraseña del usuario.</p>
 <p>Así pues, para esto no tenemos que hacer nada, tan sólo saber que tenemos este tipo de conexión disponible y que podemos pasar, tanto de ida como de vuelta, documentos y ficheros de todo tipo, eso sí, siempre basándonos en el perfilado del usuario con el que nos conectamos.</p>
 <p>Podemos incluso utilizar un cliente de FTP para que nos haga el entorno más amigable a la par de gráfico, por ejemplo podemos emplear <a href="https://filezilla-project.org">Filezilla</a> , configurando la conexión como del tipo SFTP - SSH File Transfer Protocol y el modo de acceso Interactivo, para que veamos el mensaje del sistema en el que se nos solicita el código de verificación en dos pasos que implementamos.</p>
-<p>Esto lo comento aunque no es el recurso de copia de seguridad que vamos a emplear para este fin, es “otra” forma más de poder pasar contenidos a nuestra máquina de backup.</p>
+<p>Esto lo comento aunque no es el recurso de copia de seguridad que vamos a emplear para este fin, es "otra" forma más de poder pasar contenidos a nuestra máquina de backup.</p>
 <h2 id="servidor-rsync">Servidor RSYNC<a class="headerlink" href="#servidor-rsync" title="Permanent link">&para;</a></h2>
 <p>Sobre Rsync ya hablamos en el capítulo de copias de seguridad, y ahora vamos a ampliar la información por que este software también podemos explotarlo como parte servidor, esto es, activarlo de manera que otros equipos actúen como clientes y puedan hacer copia sobre nuestra RPI.</p>
-<p>Para eso tan sólo tenemos que configurarlo adecuadamente y ejecutarlo de manera que se quede funcionando en la máquina en modo “demonio”.</p>
+<p>Para eso tan sólo tenemos que configurarlo adecuadamente y ejecutarlo de manera que se quede funcionando en la máquina en modo "demonio".</p>
 <p>La configuración es sencilla, en primer lugar tenemos el fichero de configuración <code>/etc/rsyncd.conf</code></p>
-<p>Aquí un ejemplo a usar:</p>
-<p>uid = nobody
+<p>Aquí un ejemplo a usar:
+<div class="highlight"><pre><span></span><code>uid = nobody
 gid = nobody
 use chroot = no
 max connections = 4
 syslog facility = local5
-pid file = /run/rsyncd.pid</p>
-<p>Ahora vamos a poner a correr rsync en modo demonio y a probar a grabar desde nuestro equipo Mac</p>
-<p>[root@Jarvis ~]# systemctl start rsyncd</p>
+pid file = /run/rsyncd.pid
+</code></pre></div>
+Ahora vamos a poner a correr rsync en modo demonio y a probar a grabar desde nuestro equipo Mac</p>
+<p><code>[root@Jarvis ~]# systemctl start rsyncd</code></p>
 <p>En caso de que lo queramos dejar corriendo siempre que se inicie el sistema operativo de la máquina, este es el comando:</p>
-<p>[root@Jarvis ~]# systemctl enable rsyncd</p>
-<p>Y la línea por ejemplo para copiar un directorio sobre el home del usuario operador (el único que puede conectar y autenticar por SSH) sería:</p>
-<p>Hal9000:~ $ rsync --progress -avhe ssh /Users/admin/Documents/Vehiculos/Octavia/Manuales/ operador@192.168.1.20:CopiaRemota/</p>
-<p>Verification code:
+<p><code>[root@Jarvis ~]# systemctl enable rsyncd</code></p>
+<p>Y la línea por ejemplo para copiar un directorio sobre el home del usuario operador (el único que puede conectar y autenticar por SSH) sería:
+<div class="highlight"><pre><span></span><code>Hal9000:~ $ rsync --progress -avhe ssh /Users/admin/Documents/Vehiculos/Octavia/Manuales/ operador@192.168.1.20:CopiaRemota/
+
+Verification code:
 Password:
 building file list ...
 3 files to consider
@@ -823,27 +905,33 @@ A5_Octavia_OwnersManual.pdf
 A5_Octavia_Swing_CarRadio.pdf
 671.79K 100% 831.48kB/s 0:00:00 (xfer#2, to-check=0/3)
 sent 4.72M bytes received 70 bytes 219.53K bytes/sec
-total size is 4.72M speedup is 1.00</p>
-<p>Como vemos la conexión a Rsync se hace sobre SSH, es una copia por tanto segura, es más, se nos está pidiendo autenticación en dos pasos y la copia se deja bajo el usuario operador:</p>
-<p>[root@Jarvis CopiaRemota]# pwd
+total size is 4.72M speedup is 1.00
+</code></pre></div>
+Como vemos la conexión a Rsync se hace sobre SSH, es una copia por tanto segura, es más, se nos está pidiendo autenticación en dos pasos y la copia se deja bajo el usuario operador:
+<div class="highlight"><pre><span></span><code>[root@Jarvis CopiaRemota]# pwd
 /home/operador/CopiaRemota
-[root@Jarvis CopiaRemota]# ls -l</p>
-<p>total 4616
+[root@Jarvis CopiaRemota]# ls -l
+
+total 4616
 -rwxrwxrwx 1 operador operadores 4047332 ene 25 2012 A5_Octavia_OwnersManual.pdf
--rwxrwxrwx 1 operador operadores 671786 ene 25 2012 A5_Octavia_Swing_CarRadio.pdf</p>
-<p>Bien, como habíamos pensado hacer ese proceso que nos haga copia de una serie de carpetas de nuestro OSX sobre la Rpi, y luego nos apague la máquina OSX, pues no podemos estar pendientes para poder introducir el famoso código de autenticación en dos pasos ni la contraseña del usuario, vamos a hacer lo que se llama una conexión transparente mediante generando para esto nuestra huella RSA propia.</p>
-<p>En nuestro equipo OSX, abrimos un terminal y nos vamos a nuestro home de usuario (recordar, la virgulilla), y dentro del home al directorio .ssh</p>
-<p>cd ~/.ssh
-ssh-keygen -t rsa</p>
-<p>Generating public/private rsa key pair.
+-rwxrwxrwx 1 operador operadores 671786 ene 25 2012 A5_Octavia_Swing_CarRadio.pdf
+</code></pre></div>
+Bien, como habíamos pensado hacer ese proceso que nos haga copia de una serie de carpetas de nuestro OSX sobre la Rpi, y luego nos apague la máquina OSX, pues no podemos estar pendientes para poder introducir el famoso código de autenticación en dos pasos ni la contraseña del usuario, vamos a hacer lo que se llama una conexión transparente mediante generando para esto nuestra huella RSA propia.</p>
+<p>En nuestro equipo OSX, abrimos un terminal y nos vamos a nuestro home de usuario (recordad, la virgulilla), y dentro del home al directorio <code>.ssh</code>
+<div class="highlight"><pre><span></span><code>cd ~/.ssh
+ssh-keygen -t rsa
+
+Generating public/private rsa key pair.
 Enter file in which to save the key (/Users/admin/.ssh/id_rsa):
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
 Your identification has been saved in /Users/admin/.ssh/id_rsa.
-Your public key has been saved in /Users/admin/.ssh/id_rsa.pub.</p>
-<p>The key fingerprint is:
-f4:86:f3:50:3b:13:e9:e2:bf:2b:02:0e:a6:b8:3e:f3 admin@Hal9000.local</p>
-<p>The key's randomart image is:
+Your public key has been saved in /Users/admin/.ssh/id_rsa.pub.
+
+The key fingerprint is:
+f4:86:f3:50:3b:13:e9:e2:bf:2b:02:0e:a6:b8:3e:f3 admin@Hal9000.local
+
+The key&#39;s randomart image is:
 +--[ RSA 2048]----+
 |                 |
 | .               |
@@ -854,32 +942,38 @@ f4:86:f3:50:3b:13:e9:e2:bf:2b:02:0e:a6:b8:3e:f3 admin@Hal9000.local</p>
 |.o o . . .       |
 |oo . . ..        |
 |oo+E . .+o       |
-+-----------------+</p>
-<p>Respondemos a todas las preguntas que nos hace este comando con INTRO.</p>
-<p>Ahora tenemos que copiar el fichero id_rsa.pub que hemos generado en nuestro OSX a la máquina RPI, y debe quedar en el directorio /home/operador/.ssh, se debe llamar authorized_keys y los permisos del directorio y del fichero deben excluir a grupo y otros por que de lo contrario todo esto se desactiva por temas relativos a la seguridad.</p>
-<p>Para esta copia, podemos usar este comando en nuestro terminal OSX:</p>
-<p>Hal9000:.ssh admin$ scp id_rsa.pub operador@192.168.1.20:id_rsa.pub</p>
-<p>Verification code:
++-----------------+
+</code></pre></div>
+Respondemos a todas las preguntas que nos hace este comando con INTRO.</p>
+<p>Ahora tenemos que copiar el fichero <code>id_rsa.pub</code> que hemos generado en nuestro OSX a la máquina RPI, y debe quedar en el directorio <code>/home/operador/.ssh</code>, se debe llamar <code>authorized_keys</code> y los permisos del directorio y del fichero deben excluir a grupo y otros por que de lo contrario todo esto se desactiva por temas relativos a la seguridad.</p>
+<p>Para esta copia, podemos usar este comando en nuestro terminal OSX:
+<div class="highlight"><pre><span></span><code>Hal9000:.ssh admin$ scp id_rsa.pub operador@192.168.1.20:id_rsa.pub
+
+Verification code:
 Password:
-id_rsa.pub</p>
-<p>Como vemos es una copia con SSL, autenticación en dos pasos, clave, etc.</p>
-<p>El fichero se ha quedado en el home del usuario operador en la PI, así que estos son los siguientes pasos a dar:</p>
-<p>[operador@Jarvis ~]$ mkdir -p .ssh
+id_rsa.pub
+</code></pre></div>
+Como vemos es una copia con SSL, autenticación en dos pasos, clave, etc.</p>
+<p>El fichero se ha quedado en el home del usuario operador en la PI, así que estos son los siguientes pasos a dar:
+<div class="highlight"><pre><span></span><code>[operador@Jarvis ~]$ mkdir -p .ssh
 [operador@Jarvis ~]$ mv ./id_rsa.pub ./.ssh/authorized_keys
-[operador@Jarvis ~]$ chmod go-w . .ssh .ssh/authorized_keys</p>
-<p>Que pasa a partir de este punto, pues que las conexiones por SSH entre ese equipo que ha generado su clave RSA y se la ha enviado a nuestra RPI, y la RPI ya no precisan de usuario/clave ni código de verificación en dos pasos.</p>
-<p>Y ahora, por ejemplo, si repetimos en nuestro OSX el comando de copia rsync sobre la RPi ya no nos pide nada y lo podemos ejecutar en modo desatendido:</p>
-<p>Hal9000: ~$ rsync --progress -avhe ssh /Users/admin/Documents/Vehiculos/Octavia/Manuales/ operador@192.168.1.20:CopiaRemota/
+[operador@Jarvis ~]$ chmod go-w . .ssh .ssh/authorized_keys
+</code></pre></div>
+Que pasa a partir de este punto, pues que las conexiones por SSH entre ese equipo que ha generado su clave RSA y se la ha enviado a nuestra RPI, y la RPI ya no precisan de usuario/clave ni código de verificación en dos pasos.</p>
+<p>Y ahora, por ejemplo, si repetimos en nuestro OSX el comando de copia rsync sobre la RPi ya no nos pide nada y lo podemos ejecutar en modo desatendido:
+<div class="highlight"><pre><span></span><code>Hal9000: ~$ rsync --progress -avhe ssh /Users/admin/Documents/Vehiculos/Octavia/Manuales/ operador@192.168.1.20:CopiaRemota/
 building file list ...
-3 files to consider</p>
-<p>sent 161 bytes received 20 bytes 362.00 bytes/sec
-total size is 4.72M speedup is 26072.48</p>
+3 files to consider
+
+sent 161 bytes received 20 bytes 362.00 bytes/sec
+total size is 4.72M speedup is 26072.48
+</code></pre></div></p>
 <h2 id="script-de-copia-y-apagado-del-mac">Script de copia y apagado del MAC<a class="headerlink" href="#script-de-copia-y-apagado-del-mac" title="Permanent link">&para;</a></h2>
-<p>Y ahora, juntando todas estas piezas que hemos ido viendo podremos implementar lo siguiente, nuestra idea inicial, poder pulsar un “botón” y que se haga copia de lo que quiero y luego se apague el equipo.</p>
+<p>Y ahora, juntando todas estas piezas que hemos ido viendo podremos implementar lo siguiente, nuestra idea inicial, poder pulsar un "botón" y que se haga copia de lo que quiero y luego se apague el equipo.</p>
 <p>Para esto, necesitamos hacer una simple tarea en nuestro OSx con Automator.</p>
 <p>Se trata de abrir automator y crear un nuevo flujo de trabajo.</p>
 <p>En primer lugar, el flujo ejecutará una secuencia de Shell Scrip, en esta secuencia es donde pegamos nuestra línea de Rsync con la que hacíamos copia de la carpeta.</p>
-<p>El siguiente elemento de ese flujo es la ejecución de un script hecho en AppleScript, este ejecuta el comando tell application "Finder" to shut down.</p>
+<p>El siguiente elemento de ese flujo es la ejecución de un script hecho en AppleScript, este ejecuta el comando <code>tell application "Finder" to shut down</code>.</p>
 <p>Y listo, ahora guardamos este flujo de Automator como aplicación y la grabamos donde queramos, en al carpeta de aplicaciones, en nuestra carpeta personal, da igual, cuando ejecutemos nos hará en primer lugar la copia por rsync y al finalizar apaga el equipo al completo.</p>
 
 
