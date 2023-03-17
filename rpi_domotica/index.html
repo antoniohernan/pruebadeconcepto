@@ -875,7 +875,7 @@
 <p>En el caso de los Home Center de Fibaro, el modelo Lite está basado al igual que nuestras Rpi en arquitectural ARM, en concreto un Cortext A8, que es un procesador ligeramente superior al que incorporan las Rpi.</p>
 <p>Con las RPI también tenemos que tener en cuenta las posibilidades de ampliación a través del puerto GPIO, y la expansión hacia sistemas bien consolidados como son los Arduinos.</p>
 <p>En este sentido, en la “domotización” de los elementos de la vida cotidiana, como puede por ejemplo un simple acuario, Arduido barre, haced la prueba y buscar en google acuario + arduino y ya veréis lo que sale, auténticos sistemas domóticos para el control hasta del más mínimo detalle del sistema.</p>
-<p>Estos sistemas basados en Arduino están empezando a pasarse a Raspberry, dejando la “lógica” del proceso en manos de la RPI y el trabajo más “mecánico” o “eléctrico” en manos de las placas Arduino.</p>
+<p>Estos sistemas basados en Arduino están empezando a pasarse a Raspberry, dejando la "lógica" del proceso en manos de la RPI y el trabajo más "mecánico" o "eléctrico" en manos de las placas Arduino.</p>
 <p>En este sentido tenemos una placa, que se incorpora a nuestra Rpi en el puerto GPIO llamada <a href="http://razberry.z-wave.me">RaZberry</a>.</p>
 <p>Esta placa en su última versión de software, la 1.5 permite incluso la ejecución de código Java a través de sus APIs para la gestión de la red y componentes Z-wave que tengamos establecida.</p>
 <p>Pero primero, antes de ir a esto que es algo más complejo, vamos a probar con cosas más sencillas</p>
@@ -886,8 +886,9 @@
 <p>Esto no es por capricho, a mi me surgía la necesidad de poder saber si mi cámara estaba operativa en casa, si estaba bien enfocada donde le había dicho, y como estaba el resto de la sala, no podía cada X tiempo andar entrado en aplicaciones como CamViewer para mirar con el consumo de datos tan grande que tiene esa aplicación.</p>
 <p>Así que me implementé este proceso. Creo que a través de un NAS y la Surveillance Station se puede hacer algo similar, pero en cuanto que hay más de una cámara hay que andar pagando licencias, en este caso es gratis…</p>
 <p>Lo primero, para poder recibir correos electrónicos en nuestro móvil por ejemplo, es instalar <a href="http://www.mutt.org">Mutt</a> , que es un cliente de correo, que nos permite en modo texto ó línea de comandos enviar correos interactuando con el smtp, incluso con documentos adjuntos.</p>
-<p>[root@Jarvis ~]# pacman -S mutt</p>
-<p>resolviendo dependencias...
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# pacman -S mutt
+
+resolviendo dependencias...
 verificando conflictos...
 Paquetes (2): mime-types-9-1 mutt-1.5.23-1
 Tamaño Total de Descarga: 1,15 MiB
@@ -904,30 +905,34 @@ mutt-1.5.23-1-armv6h 1166,8 KiB 1321K/s 00:01   [###############################
 (1/2) instalando mime-types                     [######################################################] 100%
 (2/2) instalando mutt                           [######################################################] 100%
 ==&gt; For GPG support, add the following to your muttrc:
-==&gt; source /etc/Muttrc.gpg.dist</p>
-<p>Dependencias opcionales para mutt
-smtp-forwarder: to send mail</p>
+==&gt; source /etc/Muttrc.gpg.dist
+
+Dependencias opcionales para mutt
+smtp-forwarder: to send mail
+</code></pre></div>
 <p>Ahora vamos a configurarlo, la configuración se hace a nivel de usuario, y básicamente lo que vamos a configurar es el uso de un servicio smtp, y nada más.</p>
 <p>Si tenemos una cuenta de correo en Gmail por ejemplo, de las que usan autenticación en dos pasos recordad que la contraseña del servicio smtp debemos generarla para poder usarla, ya que de otra manera nada de nada, nos dará error de conexión todo el tiempo.</p>
 <p>Así pues, para configurar editamos el fichero <code>~/.muttrc</code></p>
-<p>[root@Jarvis ~]# vi .muttrc
-set from = "antonio.hernan@gmail.com"
-set realname = "Antonio J. Hernan"
-set imap_user = "antonio.hernan@gmail.com"
-set imap_pass = "mcabbahyqm"
-set folder = "imaps://imap.gmail.com:993"
-set spoolfile = "+INBOX"
-set postponed ="+[Gmail]/Drafts"
+<p><div class="highlight"><pre><span></span><code>[root@Jarvis ~]# vi .muttrc
+set from = &quot;antonio.hernan@gmail.com&quot;
+set realname = &quot;Antonio J. Hernan&quot;
+set imap_user = &quot;antonio.hernan@gmail.com&quot;
+set imap_pass = &quot;mcabbahyqm&quot;
+set folder = &quot;imaps://imap.gmail.com:993&quot;
+set spoolfile = &quot;+INBOX&quot;
+set postponed =&quot;+[Gmail]/Drafts&quot;
 set header_cache =~/.mutt/cache/headers
 set message_cachedir =~/.mutt/cache/bodies
 set certificate_file =~/.mutt/certificates
-set smtp_url = "smtp://antonio.hernan@smtp.gmail.com:587/"
-set smtp_pass = "mcadahyqm"
+set smtp_url = &quot;smtp://antonio.hernan@smtp.gmail.com:587/&quot;
+set smtp_pass = &quot;mcadahyqm&quot;
 set move = no
-set imap_keepalive = 900</p>
-<p>Si ejecutamos el comando:</p>
-<p>[root@Jarvis ~]# mutt -s "Prueba Jarvis” antonio.hernan@gmail.com</p>
-<p>Entramos en el “cliente en modo texto” de envío de mail, y el resultado final es que nos llegará un mail a nuestra cuenta.</p>
+set imap_keepalive = 900
+</code></pre></div>
+Si ejecutamos el comando:
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# mutt -s &quot;Prueba Jarvis” antonio.hernan@gmail.com
+</code></pre></div>
+Entramos en el "cliente en modo texto" de envío de mail, y el resultado final es que nos llegará un mail a nuestra cuenta.</p>
 <p>Bien pues ahora que podemos enviar correos fácilmente por la línea de comandos, vamos con el script de vigilancia, que como veréis es muy sencillo pero que podemos ir complicando todo lo que queremos según vayamos incorporando nuevas cámaras o queramos establecer más puntos de control sobre las cámaras actuales.</p>
 <p>[root@Jarvis ~]# cat patrol.sh</p>
 <h1 id="usrbinbash">!/usr/bin/bash<a class="headerlink" href="#usrbinbash" title="Permanent link">&para;</a></h1>
