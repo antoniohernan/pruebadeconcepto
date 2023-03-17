@@ -17,7 +17,7 @@ Con las RPI también tenemos que tener en cuenta las posibilidades de ampliació
 
 En este sentido, en la “domotización” de los elementos de la vida cotidiana, como puede por ejemplo un simple acuario, Arduido barre, haced la prueba y buscar en google acuario + arduino y ya veréis lo que sale, auténticos sistemas domóticos para el control hasta del más mínimo detalle del sistema.
 
-Estos sistemas basados en Arduino están empezando a pasarse a Raspberry, dejando la “lógica” del proceso en manos de la RPI y el trabajo más “mecánico” o “eléctrico” en manos de las placas Arduino.
+Estos sistemas basados en Arduino están empezando a pasarse a Raspberry, dejando la "lógica" del proceso en manos de la RPI y el trabajo más "mecánico" o "eléctrico" en manos de las placas Arduino.
 
 En este sentido tenemos una placa, que se incorpora a nuestra Rpi en el puerto GPIO llamada [RaZberry](http://razberry.z-wave.me).
 
@@ -39,6 +39,7 @@ Así que me implementé este proceso. Creo que a través de un NAS y la Surveill
 
 Lo primero, para poder recibir correos electrónicos en nuestro móvil por ejemplo, es instalar [Mutt](http://www.mutt.org) , que es un cliente de correo, que nos permite en modo texto ó línea de comandos enviar correos interactuando con el smtp, incluso con documentos adjuntos.
 
+```
 [root@Jarvis ~]# pacman -S mutt
 
 resolviendo dependencias...
@@ -62,6 +63,7 @@ mutt-1.5.23-1-armv6h 1166,8 KiB 1321K/s 00:01   [###############################
 
 Dependencias opcionales para mutt
 smtp-forwarder: to send mail
+```
 
 Ahora vamos a configurarlo, la configuración se hace a nivel de usuario, y básicamente lo que vamos a configurar es el uso de un servicio smtp, y nada más.
 
@@ -69,6 +71,7 @@ Si tenemos una cuenta de correo en Gmail por ejemplo, de las que usan autenticac
 
 Así pues, para configurar editamos el fichero `~/.muttrc`
 
+```
 [root@Jarvis ~]# vi .muttrc
 set from = "antonio.hernan@gmail.com"
 set realname = "Antonio J. Hernan"
@@ -84,12 +87,12 @@ set smtp_url = "smtp://antonio.hernan@smtp.gmail.com:587/"
 set smtp_pass = "mcadahyqm"
 set move = no
 set imap_keepalive = 900
-
+```
 Si ejecutamos el comando:
-
+```
 [root@Jarvis ~]# mutt -s "Prueba Jarvis” antonio.hernan@gmail.com
-
-Entramos en el “cliente en modo texto” de envío de mail, y el resultado final es que nos llegará un mail a nuestra cuenta.
+```
+Entramos en el "cliente en modo texto" de envío de mail, y el resultado final es que nos llegará un mail a nuestra cuenta.
 
 Bien pues ahora que podemos enviar correos fácilmente por la línea de comandos, vamos con el script de vigilancia, que como veréis es muy sencillo pero que podemos ir complicando todo lo que queremos según vayamos incorporando nuevas cámaras o queramos establecer más puntos de control sobre las cámaras actuales.
 
