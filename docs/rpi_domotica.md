@@ -95,7 +95,7 @@ Si ejecutamos el comando:
 Entramos en el "cliente en modo texto" de envío de mail, y el resultado final es que nos llegará un mail a nuestra cuenta.
 
 Bien pues ahora que podemos enviar correos fácilmente por la línea de comandos, vamos con el script de vigilancia, que como veréis es muy sencillo pero que podemos ir complicando todo lo que queremos según vayamos incorporando nuevas cámaras o queramos establecer más puntos de control sobre las cámaras actuales.
-
+```
 [root@Jarvis ~]# cat patrol.sh
 #!/usr/bin/bash
 
@@ -124,12 +124,12 @@ echo "" >> /root/patrol.txt
 mutt -s "Foscam" antonio.hernan@gmail.com < /root/patrol.txt -a /root/preset*.jpg
 rm -f /root/patrol.txt > /dev/null 2>&1
 rm -f /root/preset*.jpg > /dev/null 2>&1
-
+```
 Y ahora tan sólo nos falta dar permisos de ejecución a dicho script
-
+``` 
 [root@Jarvis ~]# chmod 700 patrol.sh
-
-Y si queremos que se ejecute siguiendo alguna condición de hora, programarlo con el correspondiente crontab -e.
+```
+Y si queremos que se ejecute siguiendo alguna condición de hora, programarlo con el correspondiente `crontab -e`.
 
 Como veis es muy sencillo, el comando 31 lleva al preset 1, el 33 al preset 2, el 35 al preset 3, etc.
 
