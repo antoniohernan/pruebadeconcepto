@@ -766,57 +766,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usrbinbash" class="md-nav__link">
-    !/usr/bin/bash
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mandamos-a-preset-1-esperamos-y-tomamos-imagen" class="md-nav__link">
-    Mandamos a Preset 1, esperamos y tomamos imagen.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mandamos-a-preset-2-esperamos-y-tomamos-imagen" class="md-nav__link">
-    Mandamos a Preset 2, esperamos y tomamos imagen.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mandamos-a-preset-3-esperamos-y-tomamos-imagen" class="md-nav__link">
-    Mandamos a Preset 3, esperamos y tomamos imagen.
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mandamos-a-preset-1-sin-esperar" class="md-nav__link">
-    Mandamos a Preset 1, sin esperar
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#componemos-el-envio-de-correo-con-las-imagenes-tomadas" class="md-nav__link">
-    Componemos el envio de correo con las imagenes tomadas
-  </a>
-  
-    <nav class="md-nav" aria-label="Componemos el envio de correo con las imagenes tomadas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#razberry-y-modulos-z-wave" class="md-nav__link">
     RaZberry y módulos Z-Wave
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -835,7 +787,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usrbinbash_1" class="md-nav__link">
+  <a href="#usrbinbash" class="md-nav__link">
     !/usr/bin/bash
   </a>
   
@@ -933,33 +885,40 @@ Si ejecutamos el comando:
 <div class="highlight"><pre><span></span><code>[root@Jarvis ~]# mutt -s &quot;Prueba Jarvis” antonio.hernan@gmail.com
 </code></pre></div>
 Entramos en el "cliente en modo texto" de envío de mail, y el resultado final es que nos llegará un mail a nuestra cuenta.</p>
-<p>Bien pues ahora que podemos enviar correos fácilmente por la línea de comandos, vamos con el script de vigilancia, que como veréis es muy sencillo pero que podemos ir complicando todo lo que queremos según vayamos incorporando nuevas cámaras o queramos establecer más puntos de control sobre las cámaras actuales.</p>
-<p>[root@Jarvis ~]# cat patrol.sh</p>
-<h1 id="usrbinbash">!/usr/bin/bash<a class="headerlink" href="#usrbinbash" title="Permanent link">&para;</a></h1>
-<h1 id="mandamos-a-preset-1-esperamos-y-tomamos-imagen">Mandamos a Preset 1, esperamos y tomamos imagen.<a class="headerlink" href="#mandamos-a-preset-1-esperamos-y-tomamos-imagen" title="Permanent link">&para;</a></h1>
-<p>wget -O - http://192.168.1.27:6159/decoder_control.cgi?command=31\&amp;user=operador\&amp;pwd=CLAVE
+<p>Bien pues ahora que podemos enviar correos fácilmente por la línea de comandos, vamos con el script de vigilancia, que como veréis es muy sencillo pero que podemos ir complicando todo lo que queremos según vayamos incorporando nuevas cámaras o queramos establecer más puntos de control sobre las cámaras actuales.
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# cat patrol.sh
+#!/usr/bin/bash
+
+# Mandamos a Preset 1, esperamos y tomamos imagen.
+wget -O - http://192.168.1.27:6159/decoder_control.cgi?command=31\\&amp;user=operador\\&amp;pwd=CLAVE
 sleep 10
-wget -O /root/preset1.jpg http://192.168.1.27:6159/snapshot.cgi?resolution=32\&amp;user=operador\&amp;pwd=CLAVE</p>
-<h1 id="mandamos-a-preset-2-esperamos-y-tomamos-imagen">Mandamos a Preset 2, esperamos y tomamos imagen.<a class="headerlink" href="#mandamos-a-preset-2-esperamos-y-tomamos-imagen" title="Permanent link">&para;</a></h1>
-<p>wget -O - http://192.168.1.27:6159/decoder_control.cgi?command=33\&amp;user=operador\&amp;pwd=CLAVE
+wget -O /root/preset1.jpg http://192.168.1.27:6159/snapshot.cgi?resolution=32\\&amp;user=operador\\&amp;pwd=CLAVE
+
+# Mandamos a Preset 2, esperamos y tomamos imagen.
+wget -O - http://192.168.1.27:6159/decoder_control.cgi?command=33\\&amp;user=operador\\&amp;pwd=CLAVE
 sleep 10
-wget -O /root/preset2.jpg http://192.168.1.27:6159/snapshot.cgi?resolution=32\&amp;user=operador\&amp;pwd=CLAVE</p>
-<h1 id="mandamos-a-preset-3-esperamos-y-tomamos-imagen">Mandamos a Preset 3, esperamos y tomamos imagen.<a class="headerlink" href="#mandamos-a-preset-3-esperamos-y-tomamos-imagen" title="Permanent link">&para;</a></h1>
-<p>wget -O - http://192.168.1.27:6159/decoder_control.cgi?command=35\&amp;user=operador\&amp;pwd=CLAVE
+wget -O /root/preset2.jpg http://192.168.1.27:6159/snapshot.cgi?resolution=32\\&amp;user=operador\\&amp;pwd=CLAVE
+
+# Mandamos a Preset 3, esperamos y tomamos imagen.
+wget -O - http://192.168.1.27:6159/decoder_control.cgi?command=35\\&amp;user=operador\\&amp;pwd=CLAVE
 sleep 10
-wget -O /root/preset3.jpg http://192.168.1.27:6159/snapshot.cgi?resolution=32\&amp;user=operador\&amp;pwd=CLAVE</p>
-<h1 id="mandamos-a-preset-1-sin-esperar">Mandamos a Preset 1, sin esperar<a class="headerlink" href="#mandamos-a-preset-1-sin-esperar" title="Permanent link">&para;</a></h1>
-<p>wget -O - http://192.168.1.27:6159/decoder_control.cgi?command=31\&amp;user=operador\&amp;pwd=CLAVE</p>
-<h1 id="componemos-el-envio-de-correo-con-las-imagenes-tomadas">Componemos el envio de correo con las imagenes tomadas<a class="headerlink" href="#componemos-el-envio-de-correo-con-las-imagenes-tomadas" title="Permanent link">&para;</a></h1>
-<p>echo "Envio Camara Foscam" &gt; /root/patrol.txt
-echo "Fecha: " `date '+%d/%m/%Y %H:%M:%S'` &gt;&gt; /root/patrol.txt
-echo "" &gt;&gt; /root/patrol.txt
-mutt -s "Foscam" antonio.hernan@gmail.com &lt; /root/patrol.txt -a /root/preset<em>.jpg
+wget -O /root/preset3.jpg http://192.168.1.27:6159/snapshot.cgi?resolution=32\\&amp;user=operador\\&amp;pwd=CLAVE
+
+# Mandamos a Preset 1, sin esperar
+wget -O - http://192.168.1.27:6159/decoder_control.cgi?command=31\\&amp;user=operador\\&amp;pwd=CLAVE
+
+# Componemos el envio de correo con las imagenes tomadas
+echo &quot;Envio Camara Foscam&quot; &gt; /root/patrol.txt
+echo &quot;Fecha: &quot; \`date &#39;+%d/%m/%Y %H:%M:%S&#39;\` &gt;&gt; /root/patrol.txt
+echo &quot;&quot; &gt;&gt; /root/patrol.txt
+mutt -s &quot;Foscam&quot; antonio.hernan@gmail.com &lt; /root/patrol.txt -a /root/preset*.jpg
 rm -f /root/patrol.txt &gt; /dev/null 2&gt;&amp;1
-rm -f /root/preset</em>.jpg &gt; /dev/null 2&gt;&amp;1</p>
-<p>Y ahora tan sólo nos falta dar permisos de ejecución a dicho script</p>
-<p>[root@Jarvis ~]# chmod 700 patrol.sh</p>
-<p>Y si queremos que se ejecute siguiendo alguna condición de hora, programarlo con el correspondiente crontab -e.</p>
+rm -f /root/preset*.jpg &gt; /dev/null 2&gt;&amp;1
+</code></pre></div>
+Y ahora tan sólo nos falta dar permisos de ejecución a dicho script
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# chmod 700 patrol.sh
+</code></pre></div>
+Y si queremos que se ejecute siguiendo alguna condición de hora, programarlo con el correspondiente <code>crontab -e</code>.</p>
 <p>Como veis es muy sencillo, el comando 31 lleva al preset 1, el 33 al preset 2, el 35 al preset 3, etc.</p>
 <p>Todo está explicado en el manual que os adjunto.</p>
 <p>Hay mucho más comandos que se pueden emplear, como los que activa y desactiva en sensor de movimiento, el sensor de voz, la luz infrarroja, la grabación sobre ftp y un largo etc, esto que os he puesto tan sólo es un esqueleto básico.</p>
@@ -1069,7 +1028,7 @@ ExecStop=/etc/rc.local stop</p>
 WantedBy=multi-user.target</p>
 <p>Creamos el fichero <code>/etc/rc.local</code> , para poner la ejecución del arranque de Z-Way</p>
 <p>[root@Jarvis ~]# vi /etc/rc.local</p>
-<h1 id="usrbinbash_1">!/usr/bin/bash<a class="headerlink" href="#usrbinbash_1" title="Permanent link">&para;</a></h1>
+<h1 id="usrbinbash">!/usr/bin/bash<a class="headerlink" href="#usrbinbash" title="Permanent link">&para;</a></h1>
 <p>/root/Z-Way $1 &gt;&gt; /var/log/local.log 2&gt;&amp;1</p>
 <p>Y damos permisos de ejecución a los scripts creados, así como habilitar el arranque del servicio rc.local.</p>
 <p>[root@Jarvis ~]# chmod a+x /etc/rc.local
