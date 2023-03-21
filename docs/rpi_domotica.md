@@ -143,20 +143,20 @@ RaZberry es una placa hija para conectar en nuestras RaspBerryPI, en su puerto G
 
 Una vez conectado y configurados nos permite crear nuestra red mallada con nuestros dispositivos Z-Wave.
 
-![](images/RaZberry-300x282.jpg)
+![](images/razberry.png)
 
 Una vez que tengamos funcionando nuestra Rpi+RaZberry podremos establecer comunicación con los módulos a través de sus APIs y Cgis, de manera que será muy similar a lo que hemos visto hace un momento con la cámara IP, o podremos instalar algunos de los productos que hoy en día están en desarrollo para tener una central de domótica algo más completa, como son Z-Way y todo lo que se está moviendo a través de OpenRemote.
 
 Para poder en marcha esta RazBerry, por desgracia nuestra, todo lo que el fabricante ha puesto a disposición de su público está basado en Debian, por tanto si no tenemos una RaspBerryPi que corra con raspbmc, raspbian y openelec no podremos usar los instaladores que nos da el fabricante y tendremos que hacerlo mediante este método que os cuento a continuación.
 
 1.- Crear los directorios donde vamos a instalar y el fichero de testigo de la versión
-
+```
 [root@Jarvis ~]# mkdir -p /opt/z-way-server
 [root@Jarvis ~]# mkdir -p /etc/z-way
 [root@Jarvis ~]# echo "v1.5.0" > /etc/z-way/VERSION
-
+```
 2.- Instalamos las librerías de Yajl (otro gestor más Json, vamos intercambio de datos entre procesos basados en ficheros…)
-
+```
 [root@Jarvis ~]# pacman -S yajl
 
 resolviendo dependencias...
@@ -173,9 +173,9 @@ yajl-2.0.4-2-armv6h 30,6 KiB 205K/s 00:00        [##############################
 (1/1) verificando conflictos entre archivos      [######################################################] 100%
 (1/1) verificando el espacio disponible en disco [######################################################] 100%
 (1/1) instalando yajl                            [######################################################] 100%
-
+```
 3.- Descargamos los drivers y programas para RaZberry/ZWay
-
+```
 [root@Jarvis ~]# cd ~Descargas
 [root@Jarvis Descargas]# wget http://razberry.z-wave.me/z-way-server-RaspberryPiXTools-v1.5.0.tgz
 --2014-03-30 18:24:25-- http://razberry.z-wave.me/z-way-server-RaspberryPiXTools-v1.5.0.tgz
@@ -187,39 +187,42 @@ Grabando a: “z-way-server-RaspberryPiXTools-v1.5.0.tgz”
 100%[=================================================================================================================>]
 8.552.999 2,63MB/s en 3,1s
 2014-03-30 18:24:28 (2,63 MB/s) - “z-way-server-RaspberryPiXTools-v1.5.0.tgz” guardado [8552999/8552999]
-
+```
 4.- Descompresión de los ficheros
-
+```
 [root@Jarvis Descargas]# cd /opt
 [root@Jarvis opt]# tar -xvzf ~/Descargas/z-way-server-RaspberryPiXTools-v1.5.0.tgz
+```
 
 5.- Ahora vamos a “engañar” a Z-Way por que espera una versión un tanto antiguo de una librería y le vamos a engañar con la nueva…
-
+```
 [root@Jarvis ~]# cd /usr/lib
 [root@Jarvis lib]# ln -s /usr/lib/libarchive.so.13.1.2 /usr/lib/libarchive.so.12
-
+```
 Con esto, omitimos el error que nos daría en el arranque, algo así como:
-
+```
 /opt/z-way-server/z-way-server: error while loading shared libraries: libarchive.so.12: cannot open shared object file:
 No such file or directory
+```
 
 6.- Eliminamos la carga de ttyAMA0
 
-Debemos editar el fichero de arranque del sistema /boot/cmdline.txt, importante tener prevista una copia de seguridad por si lo hacemos mal, el sistema es posible que no arranque.
+Debemos editar el fichero de arranque del sistema `/boot/cmdline.txt`, importante tener prevista una copia de seguridad por si lo hacemos mal, el sistema es posible que no arranque.
 
 Lo que vamos a hacer es evitar que el sistema operativo trate de hacer uso de la UART, esto es, trate de activar para su uso propio el puerto GPIO, [aquí](http://elinux.org/RPi_Serial_Connection#Preventing_Linux_using_the_serial_port) os cuentan con más detalle lo que es esto.
 
 Tenemos que eliminar de este fichero el texto que dice:
-
+```
 console=ttyAMA0,115200 kgdboc=ttyAMA0,115200
-
+```
 El fichero quedaría tal que así una vez modificado:
-
+```
 [operador@Jarvis boot]$ cat cmdline.txt
 ipv6.disable=1 avoid_safe_mode=1 selinux=0 plymouth.enable=0 smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 console=tty1
 root=/dev/mmcblk0p5 rootfstype=ext4 elevator=noop rootwait
 
 [operador@Jarvis boot]$
+```
 
 7.- Preparamos el proceso de arranque y parada de ZWay.
 
@@ -227,8 +230,9 @@ Como está pensado para distribuciones Debian, los scripts de arranque y parada 
 
 En primer lugar modificamos el proceso de arranque/parada manual, de manera que desde el home del usuario root podamos arrancar y parar el proceso a petición:
 
-Editamos el fichero (nuevo) /root/Z-Way
+Editamos el fichero (nuevo) `/root/Z-Way`
 
+```
 [root@Jarvis ~]# vi ~/Z-Way
 #!/bin/sh
 
@@ -261,6 +265,7 @@ case "$1" in
   ;;
 esac
 exit 0
+```
 
 Ahora vamos a crearnos una unidad para carga en SystemD que simulará lo que hace un tiempo teníamos como los rc.local, que era un script donde el usuario podía libremente meter todo lo que quisiese que se ejecutase al finalizar el arranque de la máquina.
 
@@ -268,6 +273,7 @@ Esto nos pude venir muy bien para otras cosas… ;)
 
 Editamos el fichero `/usr/lib/systemd/system/rc-local.service` y le ponemos este contenido:
 
+```
 [root@Jarvis ~]# vi /usr/lib/systemd/system/rc-local.service
 
 [Unit]
@@ -281,9 +287,10 @@ ExecStop=/etc/rc.local stop
 
 [Install]
 WantedBy=multi-user.target
+```
 
 Creamos el fichero `/etc/rc.local` , para poner la ejecución del arranque de Z-Way
-
+```
 [root@Jarvis ~]# vi /etc/rc.local
 
 #!/usr/bin/bash
@@ -295,12 +302,13 @@ Y damos permisos de ejecución a los scripts creados, así como habilitar el arr
 [root@Jarvis ~]# chmod a+x /usr/lib/systemd/system/rc-local.service
 [root@Jarvis ~]# systemctl enable rc-local
 ln -s '/usr/lib/systemd/system/rc-local.service' '/etc/systemd/system/multi-user.target.wants/rc-local.service'
+```
 
 Y si reincidamos el equipo veremos como Z-Way se carga al arrancar a través de estos scripts, tenemos acceso al servidor web, tenemos en /var/log los ficheros de lo correspondientes, etc.
 
 ## Jugando un poco con Z-Wave
 
-*Nota del 2020... las capturas de imágenes ya no están disponibles
+*Nota del 2020... las capturas de imágenes ya no están disponibles*
 
 Si, digo jugando por que no me ha dado tiempo a hacer mucho más.
 
