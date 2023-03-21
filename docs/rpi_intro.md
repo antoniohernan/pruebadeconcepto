@@ -31,7 +31,7 @@ Aquí iré actualizando un índice de las distintas partes de este grupo de mens
 - [Práctico 2 - Gestor de Descargas](rpi_downmanager.md)
 - [Práctico 3 - Servidor Impresión/AirPrint](rpi_airprint.md)
 - [Práctico 4 - Servidor Copias de Seguridad](rpi_backupserver.md)
-- [Práctico 5 - Domótica, Cámaras IP y RaZberry](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014/instalando-una-raspberrypi-todo-uso-en-2014-parte-11-practico-5-domotica/)
+- [Práctico 5 - Domótica, Cámaras IP y RaZberry](rpi_domotica.md)
 - [Práctico 6 - Media Center](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014-parte-12-practico-6-media-center/)
 - [Práctico 7 - Emulación de juegos](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014/instalando-una-raspberrypi-todo-uso-en-2014-parte-13-practico-7-emulador-de-videojuegos/)
 - [Alternativas a RPi](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014/instalando-una-raspberrypi-todo-uso-en-2014-parte-14-alternativas-a-raspberrypi/)
