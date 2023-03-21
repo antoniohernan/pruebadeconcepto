@@ -773,36 +773,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#binsh" class="md-nav__link">
-    !/bin/sh
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#adding-z-way-libs-to-library-path" class="md-nav__link">
-    adding z-way libs to library path
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usrbinbash" class="md-nav__link">
-    !/usr/bin/bash
-  </a>
-  
-    <nav class="md-nav" aria-label="!/usr/bin/bash">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#jugando-un-poco-con-z-wave" class="md-nav__link">
     Jugando un poco con Z-Wave
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -820,6 +793,8 @@
                 
                   
 
+
+  <h1>Instalando una RaspberryPI todo uso… en 2014 (parte 11) – práctico 5 - Domótica</h1>
 
 <h2 id="pequena-central-domotica">Pequeña central domótica<a class="headerlink" href="#pequena-central-domotica" title="Permanent link">&para;</a></h2>
 <p>Aunque la máquina por hardware es pequeña, no lo es más que otras centralitas de domótica que actualmente se encuentran en el mercado.</p>
@@ -925,16 +900,18 @@ Y si queremos que se ejecute siguiendo alguna condición de hora, programarlo co
 <h2 id="razberry-y-modulos-z-wave">RaZberry y módulos Z-Wave<a class="headerlink" href="#razberry-y-modulos-z-wave" title="Permanent link">&para;</a></h2>
 <p>RaZberry es una placa hija para conectar en nuestras RaspBerryPI, en su puerto GPIO.</p>
 <p>Una vez conectado y configurados nos permite crear nuestra red mallada con nuestros dispositivos Z-Wave.</p>
-<p><img alt="" src="images/RaZberry-300x282.jpg" /></p>
+<p><img alt="" src="../images/razberry.png" /></p>
 <p>Una vez que tengamos funcionando nuestra Rpi+RaZberry podremos establecer comunicación con los módulos a través de sus APIs y Cgis, de manera que será muy similar a lo que hemos visto hace un momento con la cámara IP, o podremos instalar algunos de los productos que hoy en día están en desarrollo para tener una central de domótica algo más completa, como son Z-Way y todo lo que se está moviendo a través de OpenRemote.</p>
 <p>Para poder en marcha esta RazBerry, por desgracia nuestra, todo lo que el fabricante ha puesto a disposición de su público está basado en Debian, por tanto si no tenemos una RaspBerryPi que corra con raspbmc, raspbian y openelec no podremos usar los instaladores que nos da el fabricante y tendremos que hacerlo mediante este método que os cuento a continuación.</p>
-<p>1.- Crear los directorios donde vamos a instalar y el fichero de testigo de la versión</p>
-<p>[root@Jarvis ~]# mkdir -p /opt/z-way-server
+<p>1.- Crear los directorios donde vamos a instalar y el fichero de testigo de la versión
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# mkdir -p /opt/z-way-server
 [root@Jarvis ~]# mkdir -p /etc/z-way
-[root@Jarvis ~]# echo "v1.5.0" &gt; /etc/z-way/VERSION</p>
-<p>2.- Instalamos las librerías de Yajl (otro gestor más Json, vamos intercambio de datos entre procesos basados en ficheros…)</p>
-<p>[root@Jarvis ~]# pacman -S yajl</p>
-<p>resolviendo dependencias...
+[root@Jarvis ~]# echo &quot;v1.5.0&quot; &gt; /etc/z-way/VERSION
+</code></pre></div>
+2.- Instalamos las librerías de Yajl (otro gestor más Json, vamos intercambio de datos entre procesos basados en ficheros…)
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# pacman -S yajl
+
+resolviendo dependencias...
 verificando conflictos...
 Paquetes (1): yajl-2.0.4-2
 Tamaño Total de Descarga: 0,03 MiB
@@ -947,9 +924,10 @@ yajl-2.0.4-2-armv6h 30,6 KiB 205K/s 00:00        [##############################
 (1/1) cargando los archivos del paquete...       [######################################################] 100%
 (1/1) verificando conflictos entre archivos      [######################################################] 100%
 (1/1) verificando el espacio disponible en disco [######################################################] 100%
-(1/1) instalando yajl                            [######################################################] 100%</p>
-<p>3.- Descargamos los drivers y programas para RaZberry/ZWay</p>
-<p>[root@Jarvis ~]# cd ~Descargas
+(1/1) instalando yajl                            [######################################################] 100%
+</code></pre></div>
+3.- Descargamos los drivers y programas para RaZberry/ZWay
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# cd ~Descargas
 [root@Jarvis Descargas]# wget http://razberry.z-wave.me/z-way-server-RaspberryPiXTools-v1.5.0.tgz
 --2014-03-30 18:24:25-- http://razberry.z-wave.me/z-way-server-RaspberryPiXTools-v1.5.0.tgz
 Resolviendo razberry.z-wave.me (razberry.z-wave.me)... 46.20.244.36
@@ -959,85 +937,103 @@ Longitud: 8552999 (8,2M) [application/x-gzip]
 Grabando a: “z-way-server-RaspberryPiXTools-v1.5.0.tgz”
 100%[=================================================================================================================&gt;]
 8.552.999 2,63MB/s en 3,1s
-2014-03-30 18:24:28 (2,63 MB/s) - “z-way-server-RaspberryPiXTools-v1.5.0.tgz” guardado [8552999/8552999]</p>
-<p>4.- Descompresión de los ficheros</p>
-<p>[root@Jarvis Descargas]# cd /opt
-[root@Jarvis opt]# tar -xvzf ~/Descargas/z-way-server-RaspberryPiXTools-v1.5.0.tgz</p>
-<p>5.- Ahora vamos a “engañar” a Z-Way por que espera una versión un tanto antiguo de una librería y le vamos a engañar con la nueva…</p>
-<p>[root@Jarvis ~]# cd /usr/lib
-[root@Jarvis lib]# ln -s /usr/lib/libarchive.so.13.1.2 /usr/lib/libarchive.so.12</p>
-<p>Con esto, omitimos el error que nos daría en el arranque, algo así como:</p>
-<p>/opt/z-way-server/z-way-server: error while loading shared libraries: libarchive.so.12: cannot open shared object file:
-No such file or directory</p>
+2014-03-30 18:24:28 (2,63 MB/s) - “z-way-server-RaspberryPiXTools-v1.5.0.tgz” guardado [8552999/8552999]
+</code></pre></div>
+4.- Descompresión de los ficheros
+<div class="highlight"><pre><span></span><code>[root@Jarvis Descargas]# cd /opt
+[root@Jarvis opt]# tar -xvzf ~/Descargas/z-way-server-RaspberryPiXTools-v1.5.0.tgz
+</code></pre></div></p>
+<p>5.- Ahora vamos a “engañar” a Z-Way por que espera una versión un tanto antiguo de una librería y le vamos a engañar con la nueva…
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# cd /usr/lib
+[root@Jarvis lib]# ln -s /usr/lib/libarchive.so.13.1.2 /usr/lib/libarchive.so.12
+</code></pre></div>
+Con esto, omitimos el error que nos daría en el arranque, algo así como:
+<div class="highlight"><pre><span></span><code>/opt/z-way-server/z-way-server: error while loading shared libraries: libarchive.so.12: cannot open shared object file:
+No such file or directory
+</code></pre></div></p>
 <p>6.- Eliminamos la carga de ttyAMA0</p>
-<p>Debemos editar el fichero de arranque del sistema /boot/cmdline.txt, importante tener prevista una copia de seguridad por si lo hacemos mal, el sistema es posible que no arranque.</p>
+<p>Debemos editar el fichero de arranque del sistema <code>/boot/cmdline.txt</code>, importante tener prevista una copia de seguridad por si lo hacemos mal, el sistema es posible que no arranque.</p>
 <p>Lo que vamos a hacer es evitar que el sistema operativo trate de hacer uso de la UART, esto es, trate de activar para su uso propio el puerto GPIO, <a href="http://elinux.org/RPi_Serial_Connection#Preventing_Linux_using_the_serial_port">aquí</a> os cuentan con más detalle lo que es esto.</p>
-<p>Tenemos que eliminar de este fichero el texto que dice:</p>
-<p>console=ttyAMA0,115200 kgdboc=ttyAMA0,115200</p>
-<p>El fichero quedaría tal que así una vez modificado:</p>
-<p>[operador@Jarvis boot]$ cat cmdline.txt
+<p>Tenemos que eliminar de este fichero el texto que dice:
+<div class="highlight"><pre><span></span><code>console=ttyAMA0,115200 kgdboc=ttyAMA0,115200
+</code></pre></div>
+El fichero quedaría tal que así una vez modificado:
+<div class="highlight"><pre><span></span><code>[operador@Jarvis boot]$ cat cmdline.txt
 ipv6.disable=1 avoid_safe_mode=1 selinux=0 plymouth.enable=0 smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 console=tty1
-root=/dev/mmcblk0p5 rootfstype=ext4 elevator=noop rootwait</p>
-<p>[operador@Jarvis boot]$</p>
+root=/dev/mmcblk0p5 rootfstype=ext4 elevator=noop rootwait
+
+[operador@Jarvis boot]$
+</code></pre></div></p>
 <p>7.- Preparamos el proceso de arranque y parada de ZWay.</p>
 <p>Como está pensado para distribuciones Debian, los scripts de arranque y parada de todo esto están bajo el init de SystemV, deberíamos transformar esto para que puedan operar bajo SystemD que es lo que emplea ArchLinux.</p>
 <p>En primer lugar modificamos el proceso de arranque/parada manual, de manera que desde el home del usuario root podamos arrancar y parar el proceso a petición:</p>
-<p>Editamos el fichero (nuevo) /root/Z-Way</p>
-<p>[root@Jarvis ~]# vi ~/Z-Way</p>
-<h1 id="binsh">!/bin/sh<a class="headerlink" href="#binsh" title="Permanent link">&para;</a></h1>
-<p>PATH=/bin:/usr/bin:/sbin:/usr/sbin
+<p>Editamos el fichero (nuevo) <code>/root/Z-Way</code></p>
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# vi ~/Z-Way
+#!/bin/sh
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
 NAME=z-way-server
 DAEMON_PATH=/opt/z-way-server
 PIDFILE=/run/$NAME.pid
-LOGFILE=/var/log/$NAME.log</p>
-<h1 id="adding-z-way-libs-to-library-path">adding z-way libs to library path<a class="headerlink" href="#adding-z-way-libs-to-library-path" title="Permanent link">&para;</a></h1>
-<p>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/z-way-server/libs
-case "$1" in
+LOGFILE=/var/log/$NAME.log
+
+# adding z-way libs to library path
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/z-way-server/libs
+case &quot;$1&quot; in
  start)
-  echo -n "Starting Z-Way: "
-  cd $DAEMON_PATH<br />
+  echo -n &quot;Starting Z-Way: &quot;
+  cd $DAEMON_PATH  
   nohup $DAEMON_PATH/z-way-server &amp; &gt; /dev/null 2&gt;&amp;1
-  echo "done."
+  echo &quot;done.&quot;
   cd ~
-  ps -e | grep 'z-way-server' | awk '{print $1}' &gt; $PIDFILE
+  ps -e | grep &#39;z-way-server&#39; | awk &#39;{print $1}&#39; &gt; $PIDFILE
   ;;
  stop)
-  echo -n "Stopping Z-Way: "
-  kill -9 `cat $PIDFILE`
+  echo -n &quot;Stopping Z-Way: &quot;
+  kill -9 \`cat $PIDFILE\`
   rm $PIDFILE
-  echo "done."
+  echo &quot;done.&quot;
   ;;
  *)
-  echo "Usage: ~/Z-Way {start|stop}"
+  echo &quot;Usage: ~/Z-Way {start|stop}&quot;
   exit 1
   ;;
 esac
-exit 0</p>
+exit 0
+</code></pre></div>
 <p>Ahora vamos a crearnos una unidad para carga en SystemD que simulará lo que hace un tiempo teníamos como los rc.local, que era un script donde el usuario podía libremente meter todo lo que quisiese que se ejecutase al finalizar el arranque de la máquina.</p>
 <p>Esto nos pude venir muy bien para otras cosas… ;)</p>
 <p>Editamos el fichero <code>/usr/lib/systemd/system/rc-local.service</code> y le ponemos este contenido:</p>
-<p>[root@Jarvis ~]# vi /usr/lib/systemd/system/rc-local.service</p>
-<p>[Unit]
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# vi /usr/lib/systemd/system/rc-local.service
+
+[Unit]
 Description=/etc/rc.local Compatibility
-After=syslog.target network.target</p>
-<p>[Service]
+After=syslog.target network.target
+
+[Service]
 Type=forking
 ExecStart=/etc/rc.local start
-ExecStop=/etc/rc.local stop</p>
-<p>[Install]
-WantedBy=multi-user.target</p>
-<p>Creamos el fichero <code>/etc/rc.local</code> , para poner la ejecución del arranque de Z-Way</p>
-<p>[root@Jarvis ~]# vi /etc/rc.local</p>
-<h1 id="usrbinbash">!/usr/bin/bash<a class="headerlink" href="#usrbinbash" title="Permanent link">&para;</a></h1>
-<p>/root/Z-Way $1 &gt;&gt; /var/log/local.log 2&gt;&amp;1</p>
-<p>Y damos permisos de ejecución a los scripts creados, así como habilitar el arranque del servicio rc.local.</p>
-<p>[root@Jarvis ~]# chmod a+x /etc/rc.local
+ExecStop=/etc/rc.local stop
+
+[Install]
+WantedBy=multi-user.target
+</code></pre></div>
+<p>Creamos el fichero <code>/etc/rc.local</code> , para poner la ejecución del arranque de Z-Way
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# vi /etc/rc.local
+
+#!/usr/bin/bash
+/root/Z-Way $1 &gt;&gt; /var/log/local.log 2&gt;&amp;1
+
+Y damos permisos de ejecución a los scripts creados, así como habilitar el arranque del servicio rc.local.
+
+[root@Jarvis ~]# chmod a+x /etc/rc.local
 [root@Jarvis ~]# chmod a+x /usr/lib/systemd/system/rc-local.service
 [root@Jarvis ~]# systemctl enable rc-local
-ln -s '/usr/lib/systemd/system/rc-local.service' '/etc/systemd/system/multi-user.target.wants/rc-local.service'</p>
+ln -s &#39;/usr/lib/systemd/system/rc-local.service&#39; &#39;/etc/systemd/system/multi-user.target.wants/rc-local.service&#39;
+</code></pre></div></p>
 <p>Y si reincidamos el equipo veremos como Z-Way se carga al arrancar a través de estos scripts, tenemos acceso al servidor web, tenemos en /var/log los ficheros de lo correspondientes, etc.</p>
 <h2 id="jugando-un-poco-con-z-wave">Jugando un poco con Z-Wave<a class="headerlink" href="#jugando-un-poco-con-z-wave" title="Permanent link">&para;</a></h2>
-<p>*Nota del 2020... las capturas de imágenes ya no están disponibles</p>
+<p><em>Nota del 2020... las capturas de imágenes ya no están disponibles</em></p>
 <p>Si, digo jugando por que no me ha dado tiempo a hacer mucho más.</p>
 <p>Tan sólo tengo un módulo prestado, un Wall Plug de Fibaro con el que he podido hacer alguna prueba y ver hasta donde podemos llegar.</p>
 <p>Una vez iniciado el sistema podemos entrar en la URL de administración de ese Z-Way (<a href="http://192.168.1.20:8083/expert">http://192.168.1.20:8083/expert</a>).</p>
