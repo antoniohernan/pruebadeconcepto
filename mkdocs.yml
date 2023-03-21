@@ -86,6 +86,7 @@ nav:
       - Práctico 2 - Gestor de Descargas: rpi_downmanager.md
       - Práctico 3 - Servidor Impresión/AirPrint: rpi_airprint.md
       - Práctico 4 - Servidor Copias de Seguridad: rpi_backupserver.md
+      - Práctico 5 - Domótica, Cámaras IP y RaZberry: rpi_domotica.md
     - Acerca de:
       - Acerca de mi y mis pruebas de concepto: about_acercademi.md
       - Política de privacidad: about_privacy-policy.md
