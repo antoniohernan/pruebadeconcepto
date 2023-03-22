@@ -878,27 +878,33 @@
 <p>Yo trabajo con un disco de 1Tb y por ahora no tengo problemas ni de espacio ni de rendimiento, claro que yo borro cosas, no soy ningún Diógenes digital.</p>
 <p>Vamos a instalar entonces..</p>
 <h2 id="instalacion-paquete-xmbc">Instalación paquete XMBC<a class="headerlink" href="#instalacion-paquete-xmbc" title="Permanent link">&para;</a></h2>
-<p>La instalación es… según algunos blogs superdifícil y le tienes que dar opciones y paquetes adicionales y las opciones de la cpu y… es un comando de una línea y tres palabras…</p>
-<p>[root@Jarvis ~]# pacman -S xbmc
+<p>La instalación es… según algunos blogs superdifícil y le tienes que dar opciones y paquetes adicionales y las opciones de la cpu y… es un comando de una línea y tres palabras…
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# pacman -S xbmc
 :: Existen 2 proveedores disponibles para xbmc:
-:: Repositorio alarm</p>
-<p>1) xbmc-rbp 2) xbmc-rbp-git
+:: Repositorio alarm
+
+1) xbmc-rbp 2) xbmc-rbp-git
 Introduzca un número (por defecto=1): 1
 resolviendo dependencias...
 verificando conflictos...
-Paquetes (49): afpfs-ng-0.8.1-8 alsa-lib-1.0.27.2-1 bluez-libs-5.16-1 compositeproto-0.4.2-2 dmxproto-2.3.1-2 enca-1.15-1 flac-1.3.0-1 fribidi-0.19.6-1 inputproto-2.3-1 libao-1.2.0-1 libass-0.11.1-1 libbluray-0.5.0-1 libcddb-1.3.2-4 libcdio-0.92-1 libcec-2.1.4-1.1 libdmx-1.1.3-1 libmad-0.15.1b-7 libmicrohttpd-0.9.33-1 libmodplug-0.8.8.5-1 libmpeg2-0.5.1-4 libnfs-1.9.3-1 libogg-1.3.1-2 libplist-1.10-1 libsamplerate-0.1.8-3 libshairport-1.2.1.20121215-3 libsndfile-1.0.25-2 libssh-0.5.5-3 libva-1.3.0-1 libvorbis-1.3.4-1 libxcomposite-0.4.4-1 libxi-1.7.2-1 libxinerama-1.1.3-2 libxtst-1.2.2-1 libxxf86dga-1.1.4-1 lockdev-1.0.3_1.5-4 raspberrypi-firmware-20140324-1 raspberrypifirmware-examples-20140324-1 recode-3.6-8 recordproto-1.14.2-1 rtmpdump-20131205-1 sdl-1.2.15-5 sdl_image-1.2.12-3 swig-3.0.0-1 taglib-1.9.1-1 tinyxml-2.6.2-3 xf86dgaproto-2.1-2 xineramaproto-1.2.1-2 xorg-xdpyinfo-1.3.1-1 xbmc-rbp-12.3-1</p>
-<p>Tamaño Total de Descarga: 59,24 MiB
-Tamaño Total Instalado: 118,71 MiB</p>
-<p>Y ya… le decimos a pacman que nos instale el paquete xbmc y ya está, no tiene más, el valida las dependencias e instala lo que falte.</p>
+Paquetes (49): afpfs-ng-0.8.1-8 alsa-lib-1.0.27.2-1 bluez-libs-5.16-1 compositeproto-0.4.2-2 dmxproto-2.3.1-2 enca-1.15-1 flac-1.3.0-1 fribidi-0.19.6-1 inputproto-2.3-1 libao-1.2.0-1 libass-0.11.1-1 libbluray-0.5.0-1 libcddb-1.3.2-4 libcdio-0.92-1 libcec-2.1.4-1.1 libdmx-1.1.3-1 libmad-0.15.1b-7 libmicrohttpd-0.9.33-1 libmodplug-0.8.8.5-1 libmpeg2-0.5.1-4 libnfs-1.9.3-1 libogg-1.3.1-2 libplist-1.10-1 libsamplerate-0.1.8-3 libshairport-1.2.1.20121215-3 libsndfile-1.0.25-2 libssh-0.5.5-3 libva-1.3.0-1 libvorbis-1.3.4-1 libxcomposite-0.4.4-1 libxi-1.7.2-1 libxinerama-1.1.3-2 libxtst-1.2.2-1 libxxf86dga-1.1.4-1 lockdev-1.0.3_1.5-4 raspberrypi-firmware-20140324-1 raspberrypifirmware-examples-20140324-1 recode-3.6-8 recordproto-1.14.2-1 rtmpdump-20131205-1 sdl-1.2.15-5 sdl_image-1.2.12-3 swig-3.0.0-1 taglib-1.9.1-1 tinyxml-2.6.2-3 xf86dgaproto-2.1-2 xineramaproto-1.2.1-2 xorg-xdpyinfo-1.3.1-1 xbmc-rbp-12.3-1
+
+Tamaño Total de Descarga: 59,24 MiB
+Tamaño Total Instalado: 118,71 MiB
+</code></pre></div>
+Y ya… le decimos a pacman que nos instale el paquete xbmc y ya está, no tiene más, el valida las dependencias e instala lo que falte.</p>
 <p>Como veis, hay dos paquetes xbmc, que son 1) xbmc-rbp y 2) xbmc-rbp-git, <strong>el primero es el paquete ESTABLE</strong>, el probado y liberado en condiciones para nuestra plataforma, el otro, el GIT es el paquete en desarrollo y como tal podemos dar con BETAS muy avanzadas (como la Beta 3 de Gotham) y con <strong>otras que sean un desastre</strong>.</p>
 <p>Así que, a no ser que sufras de insomnio por las noches pensando en esta o aquella nueva funcionalidad que con la Beta podrías estar disfrutando… yo pondría la estable… en tu mano lo dejo.</p>
 <p>Otra curiosidad, si miráis la lista de paquetes de los que depende xbmc, tenemos en primer lugar <a href="http://sourceforge.net/projects/afpfs-ng/">afpfs-ng</a>, que es un protocolo para poder conectarnos a una unidad Mac OSX exportada por <a href="http://es.wikipedia.org/wiki/Apple_Filing_Protocol">AFP</a>  sobre nuestra red TCP.</p>
-<p>Termina la instalación y esto es importante, nos aparece este mensaje:</p>
-<hr />
-<p>If xbmc systemd service does not start, try adding a udev rule:
-echo 'SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"' &gt; /etc/udev/rules.d/10-vchiq-permissions.rules</p>
-<hr />
-<p>Dependencias opcionales para xbmc-rbp</p>
+<p>Termina la instalación y esto es importante, nos aparece este mensaje:
+<div class="highlight"><pre><span></span><code>****************************************************************
+
+If xbmc systemd service does not start, try adding a udev rule:
+echo &#39;SUBSYSTEM==&quot;vchiq&quot;,GROUP=&quot;video&quot;,MODE=&quot;0660&quot;&#39; &gt; /etc/udev/rules.d/10-vchiq-permissions.rules
+
+****************************************************************
+</code></pre></div>
+Dependencias opcionales para xbmc-rbp</p>
 <p>lirc: remote controller support
 udisks: automount external drives
 upower: used to trigger power management functionality
