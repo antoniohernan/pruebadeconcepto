@@ -22,7 +22,7 @@ Vamos a instalar entonces..
 ## Instalación paquete XMBC
 
 La instalación es… según algunos blogs superdifícil y le tienes que dar opciones y paquetes adicionales y las opciones de la cpu y… es un comando de una línea y tres palabras…
-
+```
 [root@Jarvis ~]# pacman -S xbmc
 :: Existen 2 proveedores disponibles para xbmc:
 :: Repositorio alarm
@@ -35,7 +35,7 @@ Paquetes (49): afpfs-ng-0.8.1-8 alsa-lib-1.0.27.2-1 bluez-libs-5.16-1 compositep
 
 Tamaño Total de Descarga: 59,24 MiB
 Tamaño Total Instalado: 118,71 MiB
-
+```
 Y ya… le decimos a pacman que nos instale el paquete xbmc y ya está, no tiene más, el valida las dependencias e instala lo que falte.
 
 Como veis, hay dos paquetes xbmc, que son 1) xbmc-rbp y 2) xbmc-rbp-git, **el primero es el paquete ESTABLE**, el probado y liberado en condiciones para nuestra plataforma, el otro, el GIT es el paquete en desarrollo y como tal podemos dar con BETAS muy avanzadas (como la Beta 3 de Gotham) y con **otras que sean un desastre**.
@@ -45,14 +45,14 @@ Así que, a no ser que sufras de insomnio por las noches pensando en esta o aque
 Otra curiosidad, si miráis la lista de paquetes de los que depende xbmc, tenemos en primer lugar [afpfs-ng](http://sourceforge.net/projects/afpfs-ng/), que es un protocolo para poder conectarnos a una unidad Mac OSX exportada por [AFP](http://es.wikipedia.org/wiki/Apple_Filing_Protocol)  sobre nuestra red TCP.
 
 Termina la instalación y esto es importante, nos aparece este mensaje:
-
+```
 ****************************************************************
 
 If xbmc systemd service does not start, try adding a udev rule:
 echo 'SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"' > /etc/udev/rules.d/10-vchiq-permissions.rules
 
 ****************************************************************
-
+```
 Dependencias opcionales para xbmc-rbp
 
 lirc: remote controller support
