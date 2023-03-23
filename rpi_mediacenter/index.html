@@ -787,71 +787,23 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#medium" class="md-nav__link">
-    Medium
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#arm_freq900" class="md-nav__link">
-    arm_freq=900
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#core_freq333" class="md-nav__link">
-    core_freq=333
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sdram_freq450" class="md-nav__link">
-    sdram_freq=450
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#over_voltage2" class="md-nav__link">
-    over_voltage=2
-  </a>
-  
-    <nav class="md-nav" aria-label="over_voltage=2">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#medium_1" class="md-nav__link">
-    Medium
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#multimedia-y-configuracion-scrapers" class="md-nav__link">
     Multimedia y Configuración Scrapers
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#configuracion-airplay" class="md-nav__link">
     Configuración AirPlay
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#plug-ins" class="md-nav__link">
     Plug-INS
   </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -869,6 +821,8 @@
                 
                   
 
+
+  <h1>Instalando una RaspberryPI todo uso… en 2014 (parte 12) – práctico 6 - Media Center</h1>
 
 <h2 id="media-center-xbmc">Media Center - XBMC<a class="headerlink" href="#media-center-xbmc" title="Permanent link">&para;</a></h2>
 <p>Este uso sea quizás el más extendido para las Rpi.</p>
@@ -905,60 +859,76 @@ echo &#39;SUBSYSTEM==&quot;vchiq&quot;,GROUP=&quot;video&quot;,MODE=&quot;0660&q
 ****************************************************************
 </code></pre></div>
 Dependencias opcionales para xbmc-rbp</p>
-<p>lirc: remote controller support
+<div class="highlight"><pre><span></span><code>lirc: remote controller support
 udisks: automount external drives
 upower: used to trigger power management functionality
-unrar: access compressed files without unpacking them</p>
-<p>La primera parte nos dice que si nos encontramos problemas para arrancar con systemd, que ejecutemos ese comando (ese echo...)</p>
-<p>Pues mira, como que no hay que esperar a tener problemas para arrancar para ejecutar eso, que sólo modifica permisos…</p>
-<p>[root@Jarvis ~]# echo 'SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"' &gt; /etc/udev/rules.d/10-vchiq-permissions.rules</p>
-<p>Las otras dependencias opcionales que nos marca, pues a gusto del consumidor… yo no he tenido que instalarlas para hacer funcionar mi XBMC.</p>
+unrar: access compressed files without unpacking them
+</code></pre></div>
+<p>La primera parte nos dice que si nos encontramos problemas para arrancar con <code>systemd</code>, que ejecutemos ese comando (ese echo...)</p>
+<p>Pues mira, como que no hay que esperar a tener problemas para arrancar para ejecutar eso, que sólo modifica permisos…
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# echo &#39;SUBSYSTEM==&quot;vchiq&quot;,GROUP=&quot;video&quot;,MODE=&quot;0660&quot;&#39; &gt; /etc/udev/rules.d/10-vchiq-permissions.rules
+</code></pre></div>
+Las otras dependencias opcionales que nos marca, pues a gusto del consumidor… yo no he tenido que instalarlas para hacer funcionar mi XBMC.</p>
 <h2 id="configuracion-de-cpu">Configuración de CPU<a class="headerlink" href="#configuracion-de-cpu" title="Permanent link">&para;</a></h2>
 <p>Aunque parezca un poco increíble a nuestra placa le podemos alterar ligeramente los parámetros de frecuencia del procesador y alguna que otra cosilla.</p>
 <p>Con esto ¿conseguiremos que vaya todo mejor, más fluido y pueda correr más cosas a la vez?, pues no.</p>
 <p>Va a ir un poco más ligera, puede que no se enganche tanto, pero de ahí a que se note… ya os digo.. no…</p>
-<p>Estos cambios los podemos hacer editando el fichero <code>config.txt</code> que está en el directorio /boot, ojo con tocar ahí que es el arranque de la máquina…</p>
-<p>[root@Jarvis ~]# vi /boot/config.txt</p>
-<p>En la parte final del fichero encontráis grupos de configuración según la frecuencia del procesador.</p>
+<p>Estos cambios los podemos hacer editando el fichero <code>config.txt</code> que está en el directorio <code>/boot</code>, ojo con tocar ahí que es el arranque de la máquina…
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# vi /boot/config.txt
+</code></pre></div>
+En la parte final del fichero encontráis grupos de configuración según la frecuencia del procesador.</p>
 <p>Por defecto, este procesador arm v6 funciona a 700Mhz, el límite teórico estaría en 1000Mhz (1Ghz), que por lo visto degrada bastante el componente y le acorta bastante su vida útil.</p>
 <p>Así que, nuevamente, a gusto del consumidor, eso sí, si optas por las frecuencias más altas no estaría de más que comprases un kit de disipadores pasivos para refrigerar un poco esa placa, por lo que pueda pasar.</p>
-<p>Si os sirve de guía, yo uso la recomendación Medium, y para esto, tan sólo tenemos que eliminar el carácter # del principio de la línea, moviéndonos con los cursores en VI y pulsando la tecla x (x minúscula) cuando estemos sobre ello.</p>
-<h2 id="medium">Medium<a class="headerlink" href="#medium" title="Permanent link">&para;</a></h2>
-<h1 id="arm_freq900">arm_freq=900<a class="headerlink" href="#arm_freq900" title="Permanent link">&para;</a></h1>
-<h1 id="core_freq333">core_freq=333<a class="headerlink" href="#core_freq333" title="Permanent link">&para;</a></h1>
-<h1 id="sdram_freq450">sdram_freq=450<a class="headerlink" href="#sdram_freq450" title="Permanent link">&para;</a></h1>
-<h1 id="over_voltage2">over_voltage=2<a class="headerlink" href="#over_voltage2" title="Permanent link">&para;</a></h1>
-<p>Quedaría así</p>
-<h2 id="medium_1">Medium<a class="headerlink" href="#medium_1" title="Permanent link">&para;</a></h2>
-<p>arm_freq=900
+<p>Si os sirve de guía, yo uso la recomendación Medium, y para esto, tan sólo tenemos que eliminar el carácter # del principio de la línea, moviéndonos con los cursores en VI y pulsando la tecla x (x minúscula) cuando estemos sobre ello.
+<div class="highlight"><pre><span></span><code>##Medium
+
+#arm_freq=900
+#core_freq=333
+#sdram_freq=450
+#over_voltage=2
+
+Quedaría así
+
+##Medium
+
+arm_freq=900
 core_freq=333
 sdram_freq=450
-over_voltage=2</p>
-<p>Del resto de parámetros, he visto ajuste de memoria de la gpu (cuanta ram le damos a la gráfica, así en palabras más llanas), pero a mi no me han supuesto gran cambio.</p>
-<p>Reiniciamos la máquina después de estos cambios.</p>
-<p>[root@Jarvis ~]# sync; reboot</p>
-<p>Y ahora, cuando haya terminado vamos a arrancar XBMC de manera manual para luego fijarlo y dejarlo en arranque automático.</p>
-<p>[root@Jarvis ~]# systemctl start xbmc
-[root@Jarvis ~]# systemctl enable xbmc</p>
-<p>Si todo sale bien veremos en nuestra televisión por HDMI el logotipo y posteriormente el menú de nuestro Media Center.</p>
+over_voltage=2
+</code></pre></div>
+Del resto de parámetros, he visto ajuste de memoria de la gpu (cuanta ram le damos a la gráfica, así en palabras más llanas), pero a mi no me han supuesto gran cambio.</p>
+<p>Reiniciamos la máquina después de estos cambios.
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# sync; reboot
+</code></pre></div>
+Y ahora, cuando haya terminado vamos a arrancar XBMC de manera manual para luego fijarlo y dejarlo en arranque automático.
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# systemctl start xbmc
+[root@Jarvis ~]# systemctl enable xbmc
+</code></pre></div>
+Si todo sale bien veremos en nuestra televisión por HDMI el logotipo y posteriormente el menú de nuestro Media Center.</p>
 <p>Y una última cosa, para la unidad USB a conectar, por ejemplo, en mi caso un pendrive USB, tenemos que saber que dispositivo es, que tipo de partición y debemos montarlo.</p>
-<p>Para un pendrive con formato Fat32 en el dispositivo<code>/dev/sdb</code> la línea a incluir en <code>/etc/fstab</code> es la siguiente:</p>
-<p>/dev/sdb1 /media vfat defaults 0 0</p>
-<p>Y una vez ejecutado el comando de montaje tendríamos el contenido del Pendrive:</p>
-<p>[root@Jarvis /]# mount -a
+<p>Para un pendrive con formato Fat32 en el dispositivo<code>/dev/sdb</code> la línea a incluir en <code>/etc/fstab</code> es la siguiente:
+<div class="highlight"><pre><span></span><code>/dev/sdb1 /media vfat defaults 0 0
+</code></pre></div>
+Y una vez ejecutado el comando de montaje tendríamos el contenido del Pendrive:
+<div class="highlight"><pre><span></span><code>[root@Jarvis /]# mount -a
 [root@Jarvis /]# cd media
-[root@Jarvis media]# ls</p>
-<p>Documentales Peliculas Series</p>
+[root@Jarvis media]# ls
+</code></pre></div>
+Documentales Peliculas Series</p>
 <h2 id="multimedia-y-configuracion-scrapers">Multimedia y Configuración Scrapers<a class="headerlink" href="#multimedia-y-configuracion-scrapers" title="Permanent link">&para;</a></h2>
 <p>Para manejar el Media Center, se puede usar el mando de la televisión si esta es más o menos moderna y dispone de HDMI CEC, pero lo mejor, con diferencia… instalar la aplicación disponible para iOS, la de iPad es una maravilla, se manera todo perfectamente y sincroniza datos con la Rpi en un instante, aportándonos información acerca de lo que estamos viendo procedente de los repositorios de películas/series/documentales en la red, en múltiples idiomas.</p>
-<p>Antes de poder usar esta aplicación para manejar nuestro equipo, debemos habilitar el acceso por servicio web que viene desactivado, son 2 minutos.</p>
-<p>[root@Jarvis ~]# vi /var/lib/xbmc/.xbmc/userdata/guisettings.xml</p>
-<p><webserver>false</webserver></p>
-<p>Por</p>
-<p><webserver>true</webserver></p>
-<p>Salvamos el fichero y reincidamos XBMC</p>
-<p>[root@Jarvis ~]# systemctl restart xbmc</p>
-<p>Los ajustes de configuración de la App para iOS (en este caso para iPhone) son muy sencillos, y una vez que conecte, el icono cambie a verde en vez de rojo, podremos movernos por los menús libremente usado la opción de control remoto.</p>
+<p>Antes de poder usar esta aplicación para manejar nuestro equipo, debemos habilitar el acceso por servicio web que viene desactivado, son 2 minutos.
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# vi /var/lib/xbmc/.xbmc/userdata/guisettings.xml
+
+&lt;webserver&gt;false&lt;/webserver&gt;
+</code></pre></div>
+Por
+<div class="highlight"><pre><span></span><code>&lt;webserver&gt;true&lt;/webserver&gt;
+</code></pre></div>
+Salvamos el fichero y reincidamos XBMC
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# systemctl restart xbmc
+</code></pre></div>
+Los ajustes de configuración de la App para iOS (en este caso para iPhone) son muy sencillos, y una vez que conecte, el icono cambie a verde en vez de rojo, podremos movernos por los menús libremente usado la opción de control remoto.</p>
 <p>Ahora vamos a añadir una fuente de contenido multimedia de tipo película, basada en un directorio de nuestra unidad externa.</p>
 <p>(*Nota en 2020... las capturas de pantalla, se han perdido, obvio, es lo que pasa con los enlaces efímeros en los foros.)</p>
 <p>En el menú principal nos vamos a Videos, y pulsando flecha abajo entramos a Files.</p>
@@ -978,11 +948,11 @@ over_voltage=2</p>
 <p>Finalizamos con OK, que nos devuelve a la pantalla anterior, botón a la derecha y de nuevo OK.</p>
 <p>Nos aparece una pantalla en la que se nos pregunta si queremos actualizar con al información del Path, y le decimos que si (yes) y nos aparecerán nuestras películas ya en condiciones. Por si acaso, si no os reconoce alguna vez una película, revisad que el nombre del fichero está bien escrito, siempre es eso…</p>
 <p>(http://i62.tinypic.com/b9hqp4.jpg)</p>
-<p>En la app de iOs, si entramos en “Movies” y refrescamos (desplazar hacia abajo) veremos como esta información también nos aparece.</p>
+<p>En la app de iOs, si entramos en "Movies" y refrescamos (desplazar hacia abajo) veremos como esta información también nos aparece.</p>
 <p>Ahora vamos con el Scraper de Series y también para documentales.</p>
 <p>El alta del scrapper es el mismo, añadir vídeos, elegir ruta, elegir el scrapper, que es lo que cambia, y el resto todo igual, el idioma.. etc.</p>
 <p>Este es el scrapper para las series y documentales.</p>
-<p>En mi caso, he añadido dos carpetas a este scraper /media/Series y /media/Documentales.</p>
+<p>En mi caso, he añadido dos carpetas a este scraper <code>/media/Series</code> y <code>/media/Documentales</code>.</p>
 <p>Esta es la pantalla de elección del scrapper para series.</p>
 <p>(http://i61.tinypic.com/50nlud.jpg)</p>
 <p>Estos son los settings de ese scrapper</p>
@@ -993,29 +963,30 @@ over_voltage=2</p>
 <p>La configuración es la más sencilla de todas.</p>
 <p>En el menú principal vamos a sistema SYSTEM.</p>
 <p>En este menú vamos a servicios SERVICE.</p>
-<p>Bajamos hasta AirPlay, pulsamos botón a la derecha y se nos ilumina “Allow XBMC to receive AirPlay content”, pulsamos con el botón central, se ilumina en azul la “bolita” y listo, podemos salir al menú principal con el botón de salir/volver de nuestro mando remoto.</p>
+<p>Bajamos hasta AirPlay, pulsamos botón a la derecha y se nos ilumina "Allow XBMC to receive AirPlay content", pulsamos con el botón central, se ilumina en azul la "bolita" y listo, podemos salir al menú principal con el botón de salir/volver de nuestro mando remoto.</p>
 <p>Tan sólo tendremos que reiniciar para que se activen los cambios.</p>
-<p>Para usar Airplay, pues por ejemplo, desde el iPhone / iPad en la App de fotos, pulsamos sobre el botón de compartir (el cuadradito con la flecha hacia arriba) y aquí escogemos “AirPlay”, y nos saldrá un listado de máquinas que hacen de servidores de AirPlay, entre ellas esta nuestra.</p>
+<p>Para usar Airplay, pues por ejemplo, desde el iPhone / iPad en la App de fotos, pulsamos sobre el botón de compartir (el cuadradito con la flecha hacia arriba) y aquí escogemos "AirPlay", y nos saldrá un listado de máquinas que hacen de servidores de AirPlay, entre ellas esta nuestra.</p>
 <p>Y en el caso del vídeo es igual, compartir por airplay y seleccionar nuestra máquina, no debería dar ningún problema, ni con video ni con audio.</p>
 <h2 id="plug-ins">Plug-INS<a class="headerlink" href="#plug-ins" title="Permanent link">&para;</a></h2>
-<p>Sobre plugins para XBMC se puede hablar mucho, bueno, no tanto, hay cosas que no se pueden decir en público e imagino que todos sabéis de “que” y el “porqué”.</p>
+<p>Sobre plugins para XBMC se puede hablar mucho, bueno, no tanto, hay cosas que no se pueden decir en público e imagino que todos sabéis de "que" y el "porqué".</p>
 <p>Os cuento como instalar un plugin bastante interesante, el de <a href="http://wiki.xbmc.org/index.php?title=Add-on:XBMC_Subtitles">búsqueda automática de subtítulos</a> .</p>
 <p>El fichero a descargar es <a href="http://www.mediafire.com/?bb3u85ogfdvqetu">este</a> , y una vez descargado el zip en nuestro equipo, lo pasamos a la RPI, el método a utilizar el que queramos, podemos usar Samba que más atrás hemos configurado, una conexión Sftp, la cuestión es hacer llegar ese fichero zip.</p>
-<p>Hal9000:Downloads admin$ sftp operador@192.168.1.20
+<div class="highlight"><pre><span></span><code>Hal9000:Downloads admin$ sftp operador@192.168.1.20
 Connected to 192.168.1.20.
 sftp&gt; put script.xbmc.subtitles.zip
 Uploading script.xbmc.subtitles.zip to /home/operador/script.xbmc.subtitles.zip
 script.xbmc.subtitles.zip 100% 1519KB 1.5MB/s
 00:01
-sftp&gt; bye</p>
-<p>Ahora, con nuestra app de gestión de XBMC vamos a “Remote Control” y nos movemos con las flechas por el menú hasta que aparece SYSTEM, pulsamos el centro y en el nuevo menú que se nos abre bajamos hasta Add-ons.</p>
+sftp&gt; bye
+</code></pre></div>
+<p>Ahora, con nuestra app de gestión de XBMC vamos a "Remote Control" y nos movemos con las flechas por el menú hasta que aparece SYSTEM, pulsamos el centro y en el nuevo menú que se nos abre bajamos hasta Add-ons.</p>
 <p>Pulsamos de nuevo en el centro, y en la nueva pantalla escogemos Install from zip file.</p>
 <p>Termina sin decirnos gran cosa… parece que incluso no ha ido bien por que no haya hecho nada pero si, está ahí.</p>
 <p>Entramos en la opción (seguimos dentro de System -&gt; Add-ons) Enable Add-ons.</p>
-<p>Buscamos nuestro “Subtitles” y entramos.</p>
+<p>Buscamos nuestro "Subtitles" y entramos.</p>
 <p>Nuevamente pulsamos para entrar a configurar este add-on.</p>
 <p>(http://i58.tinypic.com/2rrxg28.jpg)</p>
-<p>Y ahora si, por fin lo vamos a configurar, entramos en “Configure” y ya podemos escoger los idiomas por orden, salimos como “Spanish”.</p>
+<p>Y ahora si, por fin lo vamos a configurar, entramos en "Configure" y ya podemos escoger los idiomas por orden, salimos como "Spanish".</p>
 <p>(http://i57.tinypic.com/2mmxnr4.jpg)</p>
 <p>Terminado esto, botón a la derecha para marchar los servicios de subtítulos que emplearemos, yo tengo puestos subtitulos.es, subdivx.es y openSubtitles.</p>
 <p>Volvemos a pulsar a la derecha para ir a la tercera pestaña de opciones, donde podemos da preferencia a un motor de búsqueda de subtítulos en concreto para películas y para series.</p>
