@@ -33,7 +33,7 @@ Aquí iré actualizando un índice de las distintas partes de este grupo de mens
 - [Práctico 4 - Servidor Copias de Seguridad](rpi_backupserver.md)
 - [Práctico 5 - Domótica, Cámaras IP y RaZberry](rpi_domotica.md)
 - [Práctico 6 - Media Center](rpi_mediacenter.md)
-- [Práctico 7 - Emulación de juegos](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014/instalando-una-raspberrypi-todo-uso-en-2014-parte-13-practico-7-emulador-de-videojuegos/)
+- [Práctico 7 - Emulación de juegos](rpi_emulador.md)
 - [Alternativas a RPi](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014/instalando-una-raspberrypi-todo-uso-en-2014-parte-14-alternativas-a-raspberrypi/)
 - [Apéndices (I) - Reinicio de router](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014/instalando-una-raspberrypi-todo-uso-en-2014-parte-15-apendice-i/)
 - [Apéndices (II) - XBMC con MariaDB para BBDD distribuida](http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014/instalando-una-raspberrypi-todo-uso-en-2014-parte-16-apendice-ii/)
