@@ -30,7 +30,7 @@ Eso sí, si alguien os ve alguna vez esta consola y os pregunta, por favor, no l
 ## Instalación de Webmin
 
 Os recomiendo que antes de instalar Webmin ejecutéis el comando de actualización completa de máquina
-
+```
 [root@Jarvis ~]# pacman -Suy
 
 :: Synchronizing package databases...
@@ -51,13 +51,13 @@ Net Upgrade Size: 0.01 MiB
 …
 
 [root@Jarvis ~]# sync; reboot
-
+```
 Y después de reiniciar también es una buena idea “apagar” los servicios que tengáis corriendo en la máquina para evitar conflictos de ficheros abiertos.
-
+```
 [root@Jarvis ~]# systemctl stop xbmc mysqld smbd nmbd
-
+```
 Instalamos el paquete de Webmin, que como siempre, gracias a pacman es muy fácil
-
+```
 [root@Jarvis ~]# pacman -S webmin
 
 resolving dependencies...
@@ -89,34 +89,34 @@ Setup:
 ==> If you want to have ssl encryption please install 'perl-net-ssleay' additional.
 
 synchronizing filesystem...
-
+```
 ## Configuración de Webmin
 
 Como podéis leer en el mensaje post-instalación el acceso a la máquina para administrarla con webmin es por http al puerto 1000, este valor se puede cambiar y poner otro que no sea tan estándar, aunque siendo webmin un tanto “coladero” os dará igual.
 
-Más, la conexión es en plano, http, no hay cifrado a no ser que instaléis las librerías de perl para ssl como os indica este mismo mensaje, pero bueno… como webmin es un “coladero”…
+Más, la conexión es en plano, http, no hay cifrado a no ser que instaléis las librerías de perl para ssl como os indica este mismo mensaje, pero bueno… como webmin es un "coladero"…
 
-Así que sólo os queda modificar este fichero /etc/webmin/miniserv.conf para añadir la dirección IP desde la que podréis acceder a administrar el equipo, vamos, la dirección o direcciones ip de vuestra red LOCAL (tu mac, tu iphone, tu ipad) que podrán acceder, que nadie abra Webmin al exterior en el router, por si no os lo he dicho, webmin es un “coladero”.
+Así que sólo os queda modificar este fichero `/etc/webmin/miniserv.conf` para añadir la dirección IP desde la que podréis acceder a administrar el equipo, vamos, la dirección o direcciones ip de vuestra red LOCAL (tu mac, tu iphone, tu ipad) que podrán acceder, que nadie abra Webmin al exterior en el router, por si no os lo he dicho, webmin es un “coladero”.
 
-En caso contrario, no añadir vuestras IPs de red local, no podréis hacer nada pues Webmin por defecto solo admite conexiones procedente de 127.0.0.1 (localhost).
+En caso contrario, no añadir vuestras IPs de red local, no podréis hacer nada pues Webmin por defecto solo admite conexiones procedente de `127.0.0.1` (localhost).
 
 En mi caso esa línea se queda tal que así, con la dirección de mi iMac y del iPhone
-
+``` 
 allow=127.0.0.1 192.168.1.11 192.168.1.18
-
+```
 Lo activamos para que se arranque al inicio del sistema y lo arrancamos para poder entrar
-
+```
 [root@Jarvis ~]# systemctl enable webmin
 ln -s '/usr/lib/systemd/system/webmin.service' '/etc/systemd/system/multi-user.target.wants/webmin.service'
 
 [root@Jarvis ~]# systemctl start webmin
-
+```
 Y como es lógico no funciona… (la línea de comandos si… Webmin 0 - Linea de Comandos 1 mu ha ha ha), el log `/var/log/webmin/miniserv.err` nos indica que le falta un paquete del intérprete de Perl para PAM (recordar, los módulos de autenticación, como el google_authenticator que montamos).
 
 Esto pasa por no leer la documentación de instalación ([http://www.webmin.com/udownload.html](http://www.webmin.com/udownload.html)) que lo dice muy clarito en sus requisitos.
 
 Por si acaso, vamos a instalar las perl-net-ssl por si acaso decidimos montar el acceso por SSL.
-
+```
 [root@Jarvis ~]# pacman -S perl-net-ssleay
 
 resolving dependencies...
@@ -135,11 +135,11 @@ perl-net-ssleay-1.58-1-armv6h 172.1 KiB 486K/s 00:00 [##########################
 (1/1) installing perl-net-ssleay                     [############################################] 100%
 
 synchronizing filesystem...
-
+``` 
 Y ahora vamos con ese módulo para PAM en perl que hay que compilarlo (Webmin 0 - Linea de Comandos 2)
 
 Nos creamos un directorio temporal, descargamos los fuentes desde CPAN y compilamos siguiente las instrucciones de su README.
-
+```
 [root@Jarvis ~]# mkdir ~/Builds
 [root@Jarvis ~]# cd ~/Builds/
 
@@ -230,16 +230,20 @@ Installing /usr/lib/perl5/site_perl/Authen/PAM/FAQ.pod
 Installing /usr/share/man/man3/Authen::PAM.3pm
 Installing /usr/share/man/man3/Authen::PAM::FAQ.3pm
 Appending installation info to /usr/lib/perl5/core_perl/perllocal.pod
+```
 
 Reiniciamos webmin para que se cargue con los cambios y librerías nuevas
 
+```
 [root@Jarvis ~]# systemctl restart webmin
+```
 
 Y nueva prueba, por lo menos ahora al arrancar el log nos dice que ha cargado el módulo de PAM, que ya es algo
-
+```
 [06/May/2014:21:26:45 +0200] miniserv.pl started
 [06/May/2014:21:26:45 +0200] Using MD5 module Digest::MD5
 [06/May/2014:21:26:45 +0200] PAM authentication enabled
+```
 
 Y probamos a entrar a la url de gestión por Webmin, eso si, recordad que ahora estamos con SSL y por tanto será algo así como https://192.168.1.20:10000
 
@@ -271,7 +275,7 @@ Así como añadir módulos adicionales de servicios que tengáis en marcha, como
 
 (http://i60.tinypic.com/24o65ax.png)
 
-Otra opción importante a activar es la autenticación en dos pasos, esto ya lo hemos visto y bueno, por si no os lo he dicho, webmin es un “coladero”, así que siempre viene bien un poco más de seguridad.
+Otra opción importante a activar es la autenticación en dos pasos, esto ya lo hemos visto y bueno, por si no os lo he dicho, webmin es un "coladero", así que siempre viene bien un poco más de seguridad.
 
 (http://i62.tinypic.com/ztamg1.png)
 
