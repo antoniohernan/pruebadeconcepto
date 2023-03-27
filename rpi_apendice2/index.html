@@ -13,6 +13,10 @@
         <link rel="canonical" href="https://pruebadeconcepto.es/rpi_apendice2/">
       
       
+        <link rel="prev" href="../rpi_alternativas/">
+      
+      
+        <link rel="next" href="../rpi_apendice3/">
       
       <link rel="icon" href="../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
@@ -247,13 +251,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../rpi_intro/" class="md-tabs__link">
+      <a href="../rpi_intro/" class="md-tabs__link md-tabs__link--active">
         RaspberryPi
       </a>
     </li>
@@ -495,14 +501,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
       
       
       
@@ -511,7 +519,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           RaspberryPi
@@ -700,6 +708,99 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_alternativas/" class="md-nav__link">
+        Alternativas a RPi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_apendices1.md" class="md-nav__link">
+        Apéndices (I) - Reinicio de router
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Apéndices (II) - XBMC con MariaDB para BBDD distribuida
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Apéndices (II) - XBMC con MariaDB para BBDD distribuida
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#xbmc-con-mariadb-para-instalacion-distribuida" class="md-nav__link">
+    XBMC con MariaDB para instalación distribuida
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_apendice3/" class="md-nav__link">
+        Apéndices (III) - Administración con Webmin
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -815,21 +916,23 @@
                   
 
 
-  <h1>Instalando una RaspberryPI todo uso… en 2014 (parte 16) – Apéndice II</h1>
+  <h1>Apéndices (II) - XBMC con MariaDB para BBDD distribuida</h1>
 
 <h2 id="xbmc-con-mariadb-para-instalacion-distribuida">XBMC con MariaDB para instalación distribuida<a class="headerlink" href="#xbmc-con-mariadb-para-instalacion-distribuida" title="Permanent link">&para;</a></h2>
 <p>Como imagino que no seré el único que se encuentra tarde o temprano desplazado del televisor del salón, os cuento la forma de adaptar vuestros XBMC para que se puedan seguir usando tanto los ficheros de media de vuestros discos duros conectados a la Pi, como la base de datos de contenidos para las marcas de capítulos vistos, punto de reproducción etc.</p>
 <p>En principio está todo bastante basado en una guía que publico Arthurbetico en NasyMas, adaptándolo a mi uso y necesidades por que claro, yo no tengo NAS.</p>
-<p>Evalúa de todas maneras si esto que he hecho te sirve para algo, yo ahora mismo tengo la versión Frodo 12.3, la versión Gotham 13 está a pocas semanas de salir y anuncian cambios en todo esto de la “compartición” de contenidos, lo mismo luego es mucho más fácil… o no…</p>
-<p>De lo que se trata es de instalar un motor de base de datos (MariaDB), configurar XBMC para que use este motor, y además crear los “Scrapers” de una forma determinada para que todo se comporte igual estemos ejecutando XBMC en nuestra Rpi o en nuestro iMac/MacBook o Pc con Windows (arggg).</p>
-<p>Debemos tener en cuenta que todos los “clientes” de XBMC que empleemos deberán ser la misma versión, esto es, o todos con Frodo 12.3 o ninguno...</p>
+<p>Evalúa de todas maneras si esto que he hecho te sirve para algo, yo ahora mismo tengo la versión Frodo 12.3, la versión Gotham 13 está a pocas semanas de salir y anuncian cambios en todo esto de la "compartición" de contenidos, lo mismo luego es mucho más fácil… o no…</p>
+<p>De lo que se trata es de instalar un motor de base de datos (MariaDB), configurar XBMC para que use este motor, y además crear los "Scrapers" de una forma determinada para que todo se comporte igual estemos ejecutando XBMC en nuestra Rpi o en nuestro iMac/MacBook o Pc con Windows (arggg).</p>
+<p>Debemos tener en cuenta que todos los "clientes" de XBMC que empleemos deberán ser la misma versión, esto es, o todos con Frodo 12.3 o ninguno...</p>
 <p>Una implicación que tiene esto es que vais a perder toda la información de vuestra base de datos de XMBC, marcadores de visto/no visto, etc.</p>
-<p>He probado las opciones de exportación/importanción de datos pero no he sido capaz de hacerlo funcionar, por otro lado el cambio que os voy a comentar a continuación en los scrapers no es compatible con los datos que tendríais en esas bases de datos actuales basadas en ficheros de texto y nos exigiría realizar tareas de actualización de datos en la base de datos MariaDB a manita… yo ya me he visto en estas cosas miles de veces por trabajo, pero a alguno se le puede fundir el “fusible” así que mejor esto otro…</p>
-<p>Por partes entonces, lo primero parar xbmc si lo tenemos funcionando.</p>
-<p>[root@Jarvis ~]# systemctl stop xbmc</p>
-<p>Ahora instalamos MariaDB</p>
-<p>[root@Jarvis ~]# pacman -S mariadb</p>
-<p>resolving dependencies...
+<p>He probado las opciones de exportación/importanción de datos pero no he sido capaz de hacerlo funcionar, por otro lado el cambio que os voy a comentar a continuación en los scrapers no es compatible con los datos que tendríais en esas bases de datos actuales basadas en ficheros de texto y nos exigiría realizar tareas de actualización de datos en la base de datos MariaDB a manita… yo ya me he visto en estas cosas miles de veces por trabajo, pero a alguno se le puede fundir el "fusible" así que mejor esto otro…</p>
+<p>Por partes entonces, lo primero parar xbmc si lo tenemos funcionando.
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# systemctl stop xbmc
+</code></pre></div>
+Ahora instalamos MariaDB
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# pacman -S mariadb
+
+resolving dependencies...
 looking for inter-conflicts...
 Packages (1): mariadb-5.5.36-1
 Total Download Size: 8.90 MiB
@@ -842,148 +945,172 @@ mariadb-5.5.36-1-armv6h 8.9 MiB 2.80M/s 00:03 [#################################
 (1/1) loading package files                   [##########################################] 100%
 (1/1) checking for file conflicts             [##########################################] 100%
 (1/1) checking available disk space           [##########################################] 100%
-(1/1) installing mariadb                      [##########################################] 100%</p>
-<blockquote>
-<blockquote>
-<p>If you are migrating from MySQL, don't forget to run 'mysql_upgrade'
+(1/1) installing mariadb                      [##########################################] 100%
+
+&gt;&gt; If you are migrating from MySQL, don&#39;t forget to run &#39;mysql_upgrade&#39;
 after mysqld.service restart.
-synchronizing filesystem...</p>
-</blockquote>
-</blockquote>
-<p>Arrancamos MariaDB y la configuramos:</p>
-<p>[root@Jarvis lib]# systemctl start mysqld</p>
-<p>[root@Jarvis lib]# systemctl enable mysqld
-ln -s '/usr/lib/systemd/system/mysqld.service' '/etc/systemd/system/multi-user.target.wants/mysqld.service'</p>
-<p>[root@Jarvis lib]# mysql_secure_installation
+synchronizing filesystem...
+</code></pre></div>
+Arrancamos MariaDB y la configuramos:
+<div class="highlight"><pre><span></span><code>[root@Jarvis lib]# systemctl start mysqld
+
+[root@Jarvis lib]# systemctl enable mysqld
+ln -s &#39;/usr/lib/systemd/system/mysqld.service&#39; &#39;/etc/systemd/system/multi-user.target.wants/mysqld.service&#39;
+
+[root@Jarvis lib]# mysql_secure_installation
 /usr/bin/mysql_secure_installation: line 379: find_mysql_client: command not found
 NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
 SERVERS IN PRODUCTION USE! PLEASE READ EACH STEP CAREFULLY!
-In order to log into MariaDB to secure it, we'll need the current
-password for the root user. If you've just installed MariaDB, and
-you haven't set the root password yet, the password will be blank,
-so you should just press enter here.</p>
-<p>Enter current password for root (enter for none):
-OK, successfully used password, moving on...</p>
-<p>Setting the root password ensures that nobody can log into the MariaDB
-root user without the proper authorisation.</p>
-<p>Set root password? [Y/n] Y
+In order to log into MariaDB to secure it, we&#39;ll need the current
+password for the root user. If you&#39;ve just installed MariaDB, and
+you haven&#39;t set the root password yet, the password will be blank,
+so you should just press enter here.
+
+Enter current password for root (enter for none):
+OK, successfully used password, moving on...
+
+Setting the root password ensures that nobody can log into the MariaDB
+root user without the proper authorisation.
+
+Set root password? [Y/n] Y
 New password:
 Re-enter new password:
-Password updated successfully!</p>
-<p>Reloading privilege tables..
-... Success!</p>
-<p>By default, a MariaDB installation has an anonymous user, allowing anyone
+Password updated successfully!
+
+Reloading privilege tables..
+... Success!
+
+By default, a MariaDB installation has an anonymous user, allowing anyone
 to log into MariaDB without having to have a user account created for
 them. This is intended only for testing, and to make the installation
 go a bit smoother. You should remove them before moving into a
-production environment.</p>
-<p>Remove anonymous users? [Y/n] Y
-... Success!</p>
-<p>Normally, root should only be allowed to connect from 'localhost'. This
+production environment.
+
+Remove anonymous users? [Y/n] Y
+... Success!
+
+Normally, root should only be allowed to connect from &#39;localhost&#39;. This
 ensures that someone cannot guess at the root password from the network.
 Disallow root login remotely? [Y/n] Y
-... Success!</p>
-<p>By default, MariaDB comes with a database named 'test' that anyone can
+... Success!
+
+By default, MariaDB comes with a database named &#39;test&#39; that anyone can
 access. This is also intended only for testing, and should be removed
 before moving into a production environment.
-Remove test database and access to it? [Y/n] Y</p>
-<ul>
-<li>
-<p>Dropping test database...
-... Success!</p>
-</li>
-<li>
-<p>Removing privileges on test database...
-... Success!</p>
-</li>
-</ul>
-<p>Reloading the privilege tables will ensure that all changes made so far
-will take effect immediately.</p>
-<p>Reload privilege tables now? [Y/n] Y
-... Success!</p>
-<p>Cleaning up...</p>
-<p>All done! If you've completed all of the above steps, your MariaDB
-installation should now be secure.</p>
-<p>Thanks for using MariaDB!</p>
+Remove test database and access to it? [Y/n] Y
+
+- Dropping test database...
+... Success!
+
+- Removing privileges on test database...
+... Success!
+
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+
+Reload privilege tables now? [Y/n] Y
+... Success!
+
+Cleaning up...
+
+All done! If you&#39;ve completed all of the above steps, your MariaDB
+installation should now be secure.
+
+Thanks for using MariaDB!
+</code></pre></div></p>
 <p>Bien, ahora vamos a crear un usuario dentro de nuestro gestor de base de datos, con privilegios para crear su propia base de datos.</p>
-<p>Recordar que la contraseña del usuario root que hemos puesto hace un momento al configurar MariaDB (ó Mysql) es la del usuario root de la base de datos, no del sistema operativo!!.</p>
-<p>[root@Jarvis ~]# mysql -u root -p</p>
-<p>Enter password:
-Welcome to the MariaDB monitor. Commands end with ; or \g.
+<p>Recordar que la contraseña del usuario root que hemos puesto hace un momento al configurar MariaDB (ó Mysql) es la del usuario <code>root</code> <strong>de la base de datos, no del sistema operativo!!</strong>.
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# mysql -u root -p
+
+Enter password:
+Welcome to the MariaDB monitor. Commands end with ; or \\g.
 Your MariaDB connection id is 141
 Server version: 5.5.37-MariaDB-log MariaDB Server
 Copyright (c) 2000, 2014, Oracle, Monty Program Ab and others.
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-MariaDB [(none)]&gt; create user 'xbmc' identified by 'xbmc';
-MariaDB [(none)]&gt; grant all on <em>.</em> to 'xbmc';
+Type &#39;help;&#39; or &#39;\\h&#39; for help. Type &#39;\\c&#39; to clear the current input statement.
+MariaDB [(none)]&gt; create user &#39;xbmc&#39; identified by &#39;xbmc&#39;;
+MariaDB [(none)]&gt; grant all on *.* to &#39;xbmc&#39;;
 MariaDB [(none)]&gt; flush privileges;
 MariaDB [(none)]&gt; exit
-Bye</p>
+Bye
+</code></pre></div></p>
 <p>Siguiente paso, configurar XBMC para que utilice esa base de datos.</p>
 <p>El fichero de configuración será el mismo que empleemos luego en nuestros clientes xbmc en el entorno MAC.</p>
-<p>Debemos ejecutar la siguiente cadena de comandos:</p>
-<p>[root@Jarvis ~]# vi ~xbmc/.xbmc/userdata/advancedsettings.xml</p>
-<p>Introducir este contenido y salvar documento.</p>
-<p><advancedsettings>
- <videodatabase>
-  <type>mysql</type>
-  <host>192.168.1.20</host>
-  <name>xbmc_video</name>
-  <port>3306</port>
-  <user>xbmc</user>
-  <pass>xbmc</pass>
- </videodatabase>
- <musicdatabase>
-  <type>mysql</type>
-  <host>192.168.1.20</host>
-  <name>xbmc_music</name>
-  <port>3306</port>
-  <user>xbmc</user>
-  <pass>xbmc</pass>
- </musicdatabase>
-</advancedsettings></p>
+<p>Debemos ejecutar la siguiente cadena de comandos:
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# vi ~xbmc/.xbmc/userdata/advancedsettings.xml
+
+Introducir este contenido y salvar documento.
+
+&lt;advancedsettings&gt;
+ &lt;videodatabase&gt;
+  &lt;type&gt;mysql&lt;/type&gt;
+  &lt;host&gt;192.168.1.20&lt;/host&gt;
+  &lt;name&gt;xbmc_video&lt;/name&gt;
+  &lt;port&gt;3306&lt;/port&gt;
+  &lt;user&gt;xbmc&lt;/user&gt;
+  &lt;pass&gt;xbmc&lt;/pass&gt;
+ &lt;/videodatabase&gt;
+ &lt;musicdatabase&gt;
+  &lt;type&gt;mysql&lt;/type&gt;
+  &lt;host&gt;192.168.1.20&lt;/host&gt;
+  &lt;name&gt;xbmc_music&lt;/name&gt;
+  &lt;port&gt;3306&lt;/port&gt;
+  &lt;user&gt;xbmc&lt;/user&gt;
+  &lt;pass&gt;xbmc&lt;/pass&gt;
+ &lt;/musicdatabase&gt;
+&lt;/advancedsettings&gt;
+</code></pre></div></p>
 <p>Importante, cambiad la IP de vuestra máquina en vuestra LAN.</p>
-<p>Como hemos editado con root, le damos el fichero al usuario xbmc:</p>
-<p>[root@Jarvis ~]# chown xbmc:xbmc ~xbmc/.xbmc/userdata/advancedsettings.xml</p>
+<p>Como hemos editado con root, le damos el fichero al usuario xbmc:
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# chown xbmc:xbmc ~xbmc/.xbmc/userdata/advancedsettings.xml
+</code></pre></div></p>
 <p>Y ahora, por último antes de arrancar y empezar a configurar scrapers en XBMC nos faltan dos tareas, la primera es exportar nuestra biblioteca de medios por SAMBA.</p>
 <p>¿Por que?, pues porqué así el resto de equipos de la red van a ver los ficheros compartidos, es más, nuestra propia RPi va a acceder a sus propios ficheros de media por SAMBA, si, el local accediendo por SAMBA, por que así es la única manera de mantener un acceso único y uniforme al fichero, todos accediendo por igual.</p>
 <p>Sin más líos, SAMBA <a href="http://pruebadeconcepto.es/instalando-una-raspberrypi-todo-uso-en-2014/instalando-una-raspberrypi-todo-uso-en-2014-parte-8-practico-2-gestor-de-descargas/">ya hemos visto como ponerlo en marcha</a>, basta con decir que tenemos que exportar esto:</p>
-<p>[root@Jarvis ~]# vi /etc/samba/smb.conf
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# vi /etc/samba/smb.conf
 [global]
 workgroup = JarvisGRP
 security = user
-load printers = no</p>
-<p>[Videos]
+load printers = no
+
+[Videos]
 path = Videos
 public = no
 writable = yes
 browseable = yes
-valid users = root</p>
+valid users = root
+</code></pre></div>
 <p>Yo tengo colgando de <code>/Videos</code> las carpetas <code>/Videos/Series</code> , <code>/Videos/Pelis</code> y <code>/Videos/Documentales</code> .</p>
 <p>Así que el acceso por SAMBA <a href="smb://192.168.1.20/Videos">smb://192.168.1.20/Videos</a> será nuestro punto de entrada al sistema de medios.</p>
 <p>Podéis incluso probar que funciona, desde vuestros OSX, abriendo un nuevo finder (CMD + N) y pulsado sobre conectar a servidor (CMD +K) con ese <a href="smb://vuestraIP/vuestroShare">smb://vuestraIP/vuestroShare</a> podréis acceder a la Rpi por SAMBA.</p>
-<p>Recordad activar samba en el inicio con</p>
-<p>[root@Jarvis ~]# systemctl restart smbd nmbd
-[root@Jarvis ~]# systemctl enable smbd nmbd</p>
+<p>Recordad activar samba en el inicio con
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# systemctl restart smbd nmbd
+[root@Jarvis ~]# systemctl enable smbd nmbd
+</code></pre></div></p>
 <p>La otra tarea que hace falta hacer es el arranque de MariaDB, ahora está puesto en automático que arranque siempre cuando se inicie el sistema, pero siendo un proceso algo pesado, pues quizás nos sea más conveniente que se inicie siempre solo cuando XMBC esté activado también para arrancar ¿no?, total, van a ir de la mano.</p>
 <p>Para esto que parece que es mucho y no es nada, editamos el fichero <code>/usr/lib/systemd/system/xbmc.service</code> para añadir en After y Requires el servicio de base de datos:</p>
-<p>[Unit]</p>
-<p>Description = Starts instance of XBMC using xinit
+<p><div class="highlight"><pre><span></span><code>[Unit]
+
+Description = Starts instance of XBMC using xinit
 After = remote-fs.target mysqld.service
-Requires = mysqld.service</p>
-<p>Y en el fichero <code>/usr/lib/systemd/system/mysqld.service</code> añadir esto en Before:</p>
-<p>[Unit]</p>
-<p>Description=MariaDB database server
+Requires = mysqld.service
+</code></pre></div>
+Y en el fichero <code>/usr/lib/systemd/system/mysqld.service</code> añadir esto en Before:
+<div class="highlight"><pre><span></span><code>[Unit]
+
+Description=MariaDB database server
 After=syslog.target
-Before = xbmc.service</p>
-<p>Si tenemos los servicios de xbmc y mysqld ya activos en el inicio debemos refrescar esos demonios, ejecutando esto:</p>
-<p>[root@Jarvis system]# systemctl daemon-reload</p>
+Before = xbmc.service
+</code></pre></div></p>
+<p>Si tenemos los servicios de xbmc y mysqld ya activos en el inicio debemos refrescar esos demonios, ejecutando esto:
+<div class="highlight"><pre><span></span><code>[root@Jarvis system]# systemctl daemon-reload
+</code></pre></div></p>
 <p>Y listo, vamos a empezar, arrancamos XBMC, se nos arrancará la base de datos, bien, sin problemas.</p>
 <p>Ahora BORRAMOS los scrapers y todo lo que tuviésemos de antes (ojo borrar datos, no ficheros) y volvemos a empezar a crear de nuevo.</p>
 <p>Cuando entremos a crear los scrapers de nuevo, en la ventana en la que escogemos la ruta debemos desplazarnos hasta que encontremos una que nos indica acceso por Samba o por SMB, esa es la nuestra, tan sólo seguir los pasos de la pantalla, poner usuarios y claves donde nos lo pida y listo.</p>
 <p>No es muy complicado y ya lo hemos hecho una vez, a ver si puedo poner unas capturas de pantalla.</p>
 <p>Al terminar todo habremos reconstruido nuestra base de datos pero utilizando una base de datos a la que podemos atacar desde el exterior, en nuestra LAN.</p>
-<p>La parte de OSX, pues muy fácil, instalamos XBMC (misma versión que en la RPI, recordad) y generamos el fichero advancedsettings.xml tal y como tenemos en nuestra RPI, el mismo contenido.</p>
+<p>La parte de OSX, pues muy fácil, instalamos XBMC (misma versión que en la RPI, recordad) y generamos el fichero <code>advancedsettings.xml</code> tal y como tenemos en nuestra RPI, el mismo contenido.</p>
 <p>Este fichero está en <code>/Users/TUUAURIO/Library/Application Support/XBMC/userdata</code> y si no existe lo debéis crear.</p>
 <p>Cuando os arranque XBMC de vuestro OSX es crear los scrapers tal y como hemos hecho en la RPi (acceso único por samba. genial verdad?!!) y listo, ya veréis como las marcas de visto/no visto se sincronizan y los puntos de reproducción también.</p>
 <p>Pendiente dejo lo de las capturas… que ando con lío.</p>

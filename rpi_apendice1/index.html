@@ -700,6 +700,62 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_alternativas/" class="md-nav__link">
+        Alternativas a RPi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_apendices1.md" class="md-nav__link">
+        Apéndices (I) - Reinicio de router
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_apendice2/" class="md-nav__link">
+        Apéndices (II) - XBMC con MariaDB para BBDD distribuida
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rpi_apendice3/" class="md-nav__link">
+        Apéndices (III) - Administración con Webmin
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -801,35 +857,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#usrbinexpect" class="md-nav__link">
-    !/usr/bin/expect
-  </a>
-  
-    <nav class="md-nav" aria-label="!/usr/bin/expect">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#validamos-nuestra-conexion" class="md-nav__link">
     Validamos nuestra conexión
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usrbinbash" class="md-nav__link">
-    !/usr/bin/bash
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#comprobacion-del-estado-de-la-conexion-a-internet-router-tostado" class="md-nav__link">
-    Comprobacion del estado de la conexion a internet / router tostado.
   </a>
   
 </li>
@@ -849,6 +878,8 @@
                   
 
 
+  <h1>Instalando una RaspberryPI todo uso… en 2014 (parte 15) – Apéndice I</h1>
+
 <h2 id="reiniciar-nuestro-router">Reiniciar nuestro router<a class="headerlink" href="#reiniciar-nuestro-router" title="Permanent link">&para;</a></h2>
 <p>Me ha pasado alguna vez que me encuentro el router de casa tostado.</p>
 <p>Da igual el modelo y el tipo de conectividad porqué me ha pasado siempre, con ADSL, con Fibra, routers buenos y no tan buenos, etc.</p>
@@ -858,23 +889,24 @@
 <p>Pero no pasa nada (o casi nada) ya que esta conexión sólo está disponible en la red interna, en nuestra LAN, no es posible acceder desde fuera.</p>
 <p>Lo primero que tenemos que hacer es, por un lado mirar si este protocolo está habilitado en nuestro router, y en segundo lugar mirar cual es el comando de reinicio del mismo, que suele ser un comando al estilo <code>reboot</code></p>
 <p>Sería algo más o menos como esto:</p>
-<p>[root@Jarvis ~]# telnet 192.168.1.1</p>
-<p>Trying 192.168.1.1...
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# telnet 192.168.1.1
+
+Trying 192.168.1.1...
 Connected to 192.168.1.1.
-Escape character is '^]'.
+Escape character is &#39;^]&#39;.
 BCM963268 Broadband Router
 Login: USUARIOADMINISTRADOR
-Password: CLAVEADMINISTRADOR</p>
-<blockquote>
-<p>reboot</p>
-</blockquote>
+Password: CLAVEADMINISTRADOR
+&gt; reboot
+</code></pre></div>
 <p>Como véis, en mi router, un VG8050 de FTTH el comando de reinicio es reboot.</p>
 <p>Para adivinar el vuestro, cuando el router os de línea de comando, tendréis que teclear help y mirar los comandos disponibles, no será difícil, reboot, restart o similar.</p>
-<p>Bien, pues ahora la parte que hacemos en la RPI, vamos a implementar un mecanismo por el que simulamos esta interacción con el router, de manera que lanzamos el comado de Telnet, y luego vamos esperando cadenas de texto y enviamos más información según se nos pide.</p>
+<p>Bien, pues ahora la parte que hacemos en la RPI, vamos a implementar un mecanismo por el que simulamos esta interacción con el router, de manera que lanzamos el comado de <code>telnet</code>, y luego vamos esperando cadenas de texto y enviamos más información según se nos pide.</p>
 <p>Para esto utilizamos una maravilla llamada <a href="http://en.wikipedia.org/wiki/Expect">Expect</a> , que nos permite diseñar un script que haga esto que precisamente os cuento.</p>
 <p>Lo instalamos como es habitual, con <code>pacman</code></p>
-<p>[root@Jarvis ~]# pacman -S expect</p>
-<p>resolving dependencies...
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# pacman -S expect
+
+resolving dependencies...
 looking for inter-conflicts...
 Packages (2): tcl-8.6.1-1 expect-5.45-3
 Total Download Size: 2.31 MiB
@@ -889,73 +921,81 @@ expect-5.45-3-armv6h 162.8 KiB 465K/s    00:00 [###############################]
 (2/2) checking for file conflicts              [################################] 100%
 (2/2) checking available disk space            [################################] 100%
 (1/2) installing tcl                           [################################] 100%
-(2/2) installing expect                        [################################] 100%</p>
+(2/2) installing expect                        [################################] 100%
+</code></pre></div>
 <p>El script, al que yo he llamado <code>RebotaRouter.sh</code>tiene este contenido:</p>
-<h1 id="usrbinexpect">!/usr/bin/expect<a class="headerlink" href="#usrbinexpect" title="Permanent link">&para;</a></h1>
-<p>spawn telnet 192.168.1.1
-expect "Login:"
+<div class="highlight"><pre><span></span><code>#!/usr/bin/expect
+spawn telnet 192.168.1.1
+expect &quot;Login:&quot;
 send USUARIOADMINISTRADOR
-send "\r"
-expect "Password:"
+send &quot;\\r&quot;
+expect &quot;Password:&quot;
 send CLAVEADMINISTRADOR
-send "\r"
-expect -exact " &gt; "
-send "reboot"
-send "\r"
+send &quot;\\r&quot;
+expect -exact &quot; &gt; &quot;
+send &quot;reboot&quot;
+send &quot;\\r&quot;
 sleep 1
 interact
-exit</p>
-<p>Tenemos que prestar atención a la IP de nuestro router (en mi caso 192.68.1.1), el usuario y clave que usamos para administrar el router por http, y el comando de reinicio (reboot en mi caso).</p>
-<p>El código es bastate legible, espera esta cadena (expect) y manda esta otra (send).</p>
-<p>Entre una y otra establece un retardo de 1 segunto (sleep X donde X es el número de segundos a esperar).</p>
+exit
+</code></pre></div>
+<p>Tenemos que prestar atención a la IP de nuestro router (en mi caso 192.68.1.1), el usuario y clave que usamos para administrar el router por http, y el comando de reinicio (<code>reboot</code> en mi caso).</p>
+<p>El código es bastate legible, espera esta cadena (<code>expect</code>) y manda esta otra (<code>send</code>).</p>
+<p>Entre una y otra establece un retardo de 1 segunto (<code>sleep X</code> donde X es el número de segundos a esperar).</p>
 <p>Tenemos que dar permisos de ejecución a este script</p>
-<p>[root@Jarvis ~]# chmod 700 RebotaRouter.sh</p>
-<p>El permiso es 700, que es -rwx------, esto es, todos los permisos para el propietario y nada para otros y grupo, más que nada por que en ese fichero hemos puesto las credenciales de nuestro router al completo.</p>
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# chmod 700 RebotaRouter.sh
+</code></pre></div>
+<p>El permiso es 700, que es <code>-rwx------</code>, esto es, todos los permisos para el propietario y nada para otros y grupo, más que nada por que en ese fichero hemos puesto las credenciales de nuestro router al completo.</p>
 <p>Salida de esta ejecución:</p>
-<p>[root@Jarvis ~]# ./rebota_router.sh</p>
-<p>spawn telnet 192.168.1.1
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# ./rebota_router.sh
+
+spawn telnet 192.168.1.1
 Trying 192.168.1.1...
 Connected to 192.168.1.1.
-Escape character is '^]'.</p>
-<p>BCM963268 Broadband Router
+Escape character is &#39;^]&#39;.
+
+BCM963268 Broadband Router
 Login: USUARIOADMINISTRADOR
-Password:</p>
-<blockquote>
-<p>reboot</p>
-</blockquote>
-<p>The system shell is being reset. Please wait...</p>
-<blockquote>
-<p>Connection closed by foreign host.</p>
-</blockquote>
+Password:
+&gt; reboot
+
+The system shell is being reset. Please wait...
+&gt; Connection closed by foreign host.
+</code></pre></div>
 <p>Y ya estaría, el router se reinicia, lo primero es probar que esto es así y que os funciona esta primera parte.</p>
 <h2 id="validamos-nuestra-conexion">Validamos nuestra conexión<a class="headerlink" href="#validamos-nuestra-conexion" title="Permanent link">&para;</a></h2>
 <p>Ahora vamos a hacer otro script, el cual valida que tenemos conexión a internet, y para esto lo mejor es descargaralgo.</p>
 <p>Para la descarga empleamos <code>wget</code> y nos bajamos una página que sabemos que existe, activamos el parámetro de reintentos a 5, que por defecto son 20 (muchos) y comprobamos el resultado de este comando.</p>
-<p>Los comandos en Unx/Lnx siempre dan un retorno, <code>0</code> si todo va bien y <code>&gt;0</code> si hay algún problema.</p>
+<p>Los comandos en <strong>Unx/Lnx</strong> siempre dan un retorno, <code>0</code> si todo va bien y <code>&gt;0</code> si hay algún problema.</p>
 <p>Con la variable de entorno <code>$?</code> obtenemos el código de retorno del último comando que hemos ejecutado.</p>
 <p>Sin más rollos, este es el script <code>RevisaRouter.sh</code></p>
-<h1 id="usrbinbash">!/usr/bin/bash<a class="headerlink" href="#usrbinbash" title="Permanent link">&para;</a></h1>
-<h1 id="comprobacion-del-estado-de-la-conexion-a-internet-router-tostado">Comprobacion del estado de la conexion a internet / router tostado.<a class="headerlink" href="#comprobacion-del-estado-de-la-conexion-a-internet-router-tostado" title="Permanent link">&para;</a></h1>
-<p>wget —tries=5 http://www.yahoo.com &gt; /dev/null 2&gt;&amp;1
-if ! [ "$?" -eq 0 ]
+<div class="highlight"><pre><span></span><code>#!/usr/bin/bash
+# Comprobacion del estado de la conexion a internet / router tostado.
+
+wget —tries=5 http://www.yahoo.com &gt; /dev/null 2&gt;&amp;1
+if ! [ &quot;$?&quot; -eq 0 ]
 then
  # No hay conexion a internet.
  # Reiniciamos el router
  /root/RebotaRouter.sh
  sleep 90 # esperamos 90 segundos al reinicio
- echo "Envio Router Comtrend " &gt; /root/router.txt
- echo "Fecha: " `date '+%d/%m/%Y %H:%M:%S'` &gt;&gt; /root/router.txt
- echo "Reinicio de router" &gt;&gt; /root/router.txt
- mutt -s "Router" tumail@gmail.com &lt; /root/router.txt
+ echo &quot;Envio Router Comtrend &quot; &gt; /root/router.txt
+ echo &quot;Fecha: &quot; \`date &#39;+%d/%m/%Y %H:%M:%S&#39;\` &gt;&gt; /root/router.txt
+ echo &quot;Reinicio de router&quot; &gt;&gt; /root/router.txt
+ mutt -s &quot;Router&quot; tumail@gmail.com &lt; /root/router.txt
 fi
-rm -f /root/index.html &gt; /dev/null 2&gt;&amp;1</p>
+rm -f /root/index.html &gt; /dev/null 2&gt;&amp;1
+</code></pre></div>
 <p>Como véis he puesto también una llamada a <code>mutt</code> que ya teníamos configurado de haberlo usado antes, para que nos notifique por mail que se ha producido un reinicio de la conexión.</p>
 <p>Le damos permisos como antes:</p>
-<p>[root@Jarvis ~]# chmod 755 RevisaRouter.sh</p>
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# chmod 755 RevisaRouter.sh
+</code></pre></div>
 <p>Para probar que esto funciona, soltáis el cable de teléfono del router (ADSL) o apagáis la ONT (FTTH) y ejecutáis el scrip, las luces del router os indicarán que el reinicio se está produciendo.</p>
-<p>Si queréis programarlo para que se ejecute cada cierto tiempo lo podéis incluir dentro de crontab</p>
-<p>[root@Jarvis ~]# crontab -e</p>
-<p>0,10,20,30,40,50 * <em> * </em> /root/RevisaRouter.sh</p>
+<p>Si queréis programarlo para que se ejecute cada cierto tiempo lo podéis incluir dentro de crontab
+<div class="highlight"><pre><span></span><code>[root@Jarvis ~]# crontab -e
+
+0,10,20,30,40,50 * * * * /root/RevisaRouter.sh
+</code></pre></div></p>
 <p>Con esa línea nueva en crontab el script se ejecutaría siempre cada 10 minutos.</p>
 
 
