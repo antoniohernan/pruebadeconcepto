@@ -71,8 +71,8 @@ nav:
     - Generales:
       - Hola mundo!!: gen_hello-world.md
     - Informática Viejuna:
-      - ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!: infv_guybrush.md
-      - ¿Y esto tiene discos SSD?: infv_discossd.md
+      - ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!: infov/infv_guybrush.md
+      - ¿Y esto tiene discos SSD?: infov/infv_discossd.md
     - Tecnología:
       - Envía ficheros desde Github a EC2 con actions: tec_actionsec2.md
     - RaspberryPi:
@@ -90,7 +90,7 @@ nav:
       - Práctico 6 - Media Center: rpi_mediacenter.md
       - Práctico 7 - Emulación de juegos: rpi_emulador.md
       - Alternativas a RPi: rpi_alternativas.md
-      - Apéndices (I) - Reinicio de router: rpi_apendices1.md
+      - Apéndices (I) - Reinicio de router: rpi_apendice1.md
       - Apéndices (II) - XBMC con MariaDB para BBDD distribuida: rpi_apendice2.md
       - Apéndices (III) - Administración con Webmin: rpi_apendice3.md
     - Acerca de:
