@@ -74,7 +74,7 @@ nav:
       - ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!: infov/infv_guybrush.md
       - ¿Y esto tiene discos SSD?: infov/infv_discossd.md
     - Tecnología:
-      - Envía ficheros desde Github a EC2 con actions: tec_actionsec2.md
+      - Envía ficheros desde Github a EC2 con actions: tec/tec_actionsec2.md
     - RaspberryPi:
       - Introducción: rpi_intro.md
       - Instalación Básica I: rpi_install_i.md
