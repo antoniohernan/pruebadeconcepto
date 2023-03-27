@@ -90,7 +90,7 @@ nav:
       - Práctico 6 - Media Center: rpi_mediacenter.md
       - Práctico 7 - Emulación de juegos: rpi_emulador.md
       - Alternativas a RPi: rpi_alternativas.md
-      - Apéndices (I) - Reinicio de router: rpi_apendices1.md
+      - Apéndices (I) - Reinicio de router: rpi_apendice1.md
       - Apéndices (II) - XBMC con MariaDB para BBDD distribuida: rpi_apendice2.md
       - Apéndices (III) - Administración con Webmin: rpi_apendice3.md
     - Acerca de:
