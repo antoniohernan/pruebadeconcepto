@@ -106,17 +106,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pruebadeconcepto.es/tec_actionsec2/</loc>
-         <lastmod>2023-03-27</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://pruebadeconcepto.es/infov/infv_discossd/</loc>
          <lastmod>2023-03-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pruebadeconcepto.es/infov/infv_guybrush/</loc>
+         <lastmod>2023-03-27</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/tec/tec_actionsec2/</loc>
          <lastmod>2023-03-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
