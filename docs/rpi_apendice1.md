@@ -23,6 +23,7 @@ Lo primero que tenemos que hacer es, por un lado mirar si este protocolo está h
 
 Sería algo más o menos como esto:
 
+```
 [root@Jarvis ~]# telnet 192.168.1.1
 
 Trying 192.168.1.1...
@@ -32,17 +33,19 @@ BCM963268 Broadband Router
 Login: USUARIOADMINISTRADOR
 Password: CLAVEADMINISTRADOR
 > reboot
+```
 
 Como véis, en mi router, un VG8050 de FTTH el comando de reinicio es reboot.
 
 Para adivinar el vuestro, cuando el router os de línea de comando, tendréis que teclear help y mirar los comandos disponibles, no será difícil, reboot, restart o similar.
 
-Bien, pues ahora la parte que hacemos en la RPI, vamos a implementar un mecanismo por el que simulamos esta interacción con el router, de manera que lanzamos el comado de Telnet, y luego vamos esperando cadenas de texto y enviamos más información según se nos pide.
+Bien, pues ahora la parte que hacemos en la RPI, vamos a implementar un mecanismo por el que simulamos esta interacción con el router, de manera que lanzamos el comado de `telnet`, y luego vamos esperando cadenas de texto y enviamos más información según se nos pide.
 
 Para esto utilizamos una maravilla llamada [Expect](http://en.wikipedia.org/wiki/Expect) , que nos permite diseñar un script que haga esto que precisamente os cuento.
 
 Lo instalamos como es habitual, con `pacman`
 
+```
 [root@Jarvis ~]# pacman -S expect
 
 resolving dependencies...
@@ -61,9 +64,11 @@ expect-5.45-3-armv6h 162.8 KiB 465K/s    00:00 [###############################]
 (2/2) checking available disk space            [################################] 100%
 (1/2) installing tcl                           [################################] 100%
 (2/2) installing expect                        [################################] 100%
+```
 
 El script, al que yo he llamado `RebotaRouter.sh`tiene este contenido:
 
+```
 #!/usr/bin/expect
 spawn telnet 192.168.1.1
 expect "Login:"
@@ -78,21 +83,25 @@ send "\\r"
 sleep 1
 interact
 exit
+```
 
-Tenemos que prestar atención a la IP de nuestro router (en mi caso 192.68.1.1), el usuario y clave que usamos para administrar el router por http, y el comando de reinicio (reboot en mi caso).
+Tenemos que prestar atención a la IP de nuestro router (en mi caso 192.68.1.1), el usuario y clave que usamos para administrar el router por http, y el comando de reinicio (`reboot` en mi caso).
 
-El código es bastate legible, espera esta cadena (expect) y manda esta otra (send).
+El código es bastate legible, espera esta cadena (`expect`) y manda esta otra (`send`).
 
-Entre una y otra establece un retardo de 1 segunto (sleep X donde X es el número de segundos a esperar).
+Entre una y otra establece un retardo de 1 segunto (`sleep X` donde X es el número de segundos a esperar).
 
 Tenemos que dar permisos de ejecución a este script
 
+```
 [root@Jarvis ~]# chmod 700 RebotaRouter.sh
+```
 
-El permiso es 700, que es -rwx------, esto es, todos los permisos para el propietario y nada para otros y grupo, más que nada por que en ese fichero hemos puesto las credenciales de nuestro router al completo.
+El permiso es 700, que es `-rwx------`, esto es, todos los permisos para el propietario y nada para otros y grupo, más que nada por que en ese fichero hemos puesto las credenciales de nuestro router al completo.
 
 Salida de esta ejecución:
 
+```
 [root@Jarvis ~]# ./rebota_router.sh
 
 spawn telnet 192.168.1.1
@@ -107,6 +116,7 @@ Password:
 
 The system shell is being reset. Please wait...
 > Connection closed by foreign host.
+```
 
 Y ya estaría, el router se reinicia, lo primero es probar que esto es así y que os funciona esta primera parte.
 
@@ -116,12 +126,13 @@ Ahora vamos a hacer otro script, el cual valida que tenemos conexión a internet
 
 Para la descarga empleamos `wget` y nos bajamos una página que sabemos que existe, activamos el parámetro de reintentos a 5, que por defecto son 20 (muchos) y comprobamos el resultado de este comando.
 
-Los comandos en Unx/Lnx siempre dan un retorno, `0` si todo va bien y `>0` si hay algún problema.
+Los comandos en **Unx/Lnx** siempre dan un retorno, `0` si todo va bien y `>0` si hay algún problema.
 
 Con la variable de entorno `$?` obtenemos el código de retorno del último comando que hemos ejecutado.
 
 Sin más rollos, este es el script `RevisaRouter.sh`
 
+```
 #!/usr/bin/bash
 # Comprobacion del estado de la conexion a internet / router tostado.
 
@@ -138,19 +149,23 @@ then
  mutt -s "Router" tumail@gmail.com < /root/router.txt
 fi
 rm -f /root/index.html > /dev/null 2>&1
+```
 
 Como véis he puesto también una llamada a `mutt` que ya teníamos configurado de haberlo usado antes, para que nos notifique por mail que se ha producido un reinicio de la conexión.
 
 Le damos permisos como antes:
 
+```
 [root@Jarvis ~]# chmod 755 RevisaRouter.sh
+```
 
 Para probar que esto funciona, soltáis el cable de teléfono del router (ADSL) o apagáis la ONT (FTTH) y ejecutáis el scrip, las luces del router os indicarán que el reinicio se está produciendo.
 
 Si queréis programarlo para que se ejecute cada cierto tiempo lo podéis incluir dentro de crontab
-
+```
 [root@Jarvis ~]# crontab -e
 
 0,10,20,30,40,50 * * * * /root/RevisaRouter.sh
+```
 
 Con esa línea nueva en crontab el script se ejecutaría siempre cada 10 minutos.
