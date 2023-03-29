@@ -1,0 +1,1020 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Un informático de siempre… en estos tiempos modernos">
+      
+      
+      
+        <link rel="canonical" href="https://pruebadeconcepto.es/tec/tec_comoestamontado/">
+      
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
+    
+    
+      
+        <title>Monta tu blog en AWS por 0€ - parte 1 - Prueba de Concepto</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.240905d7.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Prueba de Concepto" class="md-header__button md-logo" aria-label="Prueba de Concepto" data-md-component="logo">
+      
+  <img src="../../images/logo_white.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Prueba de Concepto
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Monta tu blog en AWS por 0€ - parte 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_3" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_3">
+          
+            <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      Inicio
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../gen_hello-world/" class="md-tabs__link">
+        Generales
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../infov/infv_guybrush/" class="md-tabs__link">
+        Informática Viejuna
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tec_actionsec2/" class="md-tabs__link">
+        Tecnología
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../rpi_intro/" class="md-tabs__link">
+        RaspberryPi
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../about_acercademi/" class="md-tabs__link">
+        Acerca de
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Prueba de Concepto" class="md-nav__button md-logo" aria-label="Prueba de Concepto" data-md-component="logo">
+      
+  <img src="../../images/logo_white.png" alt="logo">
+
+    </a>
+    Prueba de Concepto
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Inicio
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Generales
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Generales
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gen_hello-world/" class="md-nav__link">
+        Hola mundo!!
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Informática Viejuna
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Informática Viejuna
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infov/infv_guybrush/" class="md-nav__link">
+        ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../infov/infv_discossd/" class="md-nav__link">
+        ¿Y esto tiene discos SSD?
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          Tecnología
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Tecnología
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tec_actionsec2/" class="md-nav__link">
+        Envía ficheros desde Github a EC2 con actions
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          RaspberryPi
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          RaspberryPi
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_intro/" class="md-nav__link">
+        Introducción
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_install_i/" class="md-nav__link">
+        Instalación Básica I
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_install_ii/" class="md-nav__link">
+        Instalación Básica II
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_securizacion/" class="md-nav__link">
+        Securización
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_backup/" class="md-nav__link">
+        Copias de Seguridad
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_wordpress1/" class="md-nav__link">
+        Práctico 1 - Wordpress 1
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_wordpress2/" class="md-nav__link">
+        Práctico 1 - Wordpress 2
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_downmanager/" class="md-nav__link">
+        Práctico 2 - Gestor de Descargas
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_airprint/" class="md-nav__link">
+        Práctico 3 - Servidor Impresión/AirPrint
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_backupserver/" class="md-nav__link">
+        Práctico 4 - Servidor Copias de Seguridad
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_domotica/" class="md-nav__link">
+        Práctico 5 - Domótica, Cámaras IP y RaZberry
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_mediacenter/" class="md-nav__link">
+        Práctico 6 - Media Center
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_emulador/" class="md-nav__link">
+        Práctico 7 - Emulación de juegos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_alternativas/" class="md-nav__link">
+        Alternativas a RPi
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_apendice1/" class="md-nav__link">
+        Apéndices (I) - Reinicio de router
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_apendice2/" class="md-nav__link">
+        Apéndices (II) - XBMC con MariaDB para BBDD distribuida
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../rpi_apendice3/" class="md-nav__link">
+        Apéndices (III) - Administración con Webmin
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          Acerca de
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Acerca de
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about_acercademi/" class="md-nav__link">
+        Acerca de mi y mis pruebas de concepto
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about_privacy-policy/" class="md-nav__link">
+        Política de privacidad
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>Monta tu blog en AWS por 0€ - parte 1</h1>
+
+<p>Monté este blog animado por la <a href="https://aws.amazon.com/es/free">capa gratuita</a> de Amazón en su AWS.</p>
+<p>Antes de esto había experimentado con <a href="http://pruebadeconcepto.es/?p=1">otras opciones</a> de lo más variopintas, tuve <strong>algún blog funcionando con una pequeña RaspberryPi sujeta con velcro</strong> detrás de la televisión cercana al router... todo un ejercicio de optimización de recursos aquello... no puedes desperdiciar un byte de la escasa ram y optimizas el gasto de CPU como cuando de "mozo" mirabas cada línea de código pensando en que alguien vendría con los dichosos MIPS... (esto ya os lo contaré)</p>
+<p><strong>AWS te permite tener los siguientes elementos</strong> en su denominada free-tier:</p>
+<ul>
+<li>Instancia EC2 tipo t2.micro (750 horas mes)</li>
+<li>Instancia RDS db2.micro (750 horas mes)</li>
+<li>S3 5GB gratis 20k gets y 2k puts</li>
+</ul>
+<p>Tenemos que en un mes ( de los largos de 31 días ) son unas 744 horas, así que nos regalan un mes + unas pocas horas, <strong>durante un año</strong>.</p>
+<p>Y está aquí el truco, un año, vas a necesitar por tanto registrar año tras año una cuenta a la que mover tu servicio (tu servidor, tu base de datos, tus ficheros), a cambio de tenerlo todo gratis y <strong>con una calidad que no tiene que envidiar a servicios dedicados</strong> (para un blog personal de poco calado como este).</p>
+<p>Así que.. empezamos, es posible que AWS no te deje crear nada hasta que no validen tu tarjeta de crédito, te suelen hacer un cargo de 1€, no recuerdo si luego lo devuelven, pero vamos, que por 1€ un año de alojamiento no está mal.</p>
+<p>Y <strong>no solo de alojamiento</strong>, que <strong>tendrás un "servidor" en Internet</strong> para usos múltiples, tu VPN, máquina de salto, lanzar algunos "tests" (escaneo de puertos, pruebas de vulnerabilidades, etc.) y <strong>todo lo que se te pueda ocurrir</strong>.</p>
+<p>Empezamos creado dos Security Groups.</p>
+<p><strong>Web-SG</strong> en el que vamos a dar acceso a todo el mundo para HTTP y HTTPS (80 y 443), y acceso SSH (22) para nuestras ips personales (la de casa, la del trabajo, etc.)</p>
+<p><strong>RDS-SG</strong> en el que vamos a dar acceso al servicio MySql con el origen del Security Group Web-SG, esto es, las peticiones a la base de datos podrán llegar únicamente desde el frontal web.</p>
+<p>Esto lo <strong>podéis hacer por consola</strong>, o <strong>ponerle un poco más de emoción</strong> al asunto y hacerlo por línea de comando usando el <a href="https://aws.amazon.com/es/cli/">cliente</a>, al que tendréis que configurar unas credenciales de <a href="https://aws.amazon.com/es/iam/">IAM</a> (más que contado en internet).</p>
+<p>Creamos el Security Group WEB-SG, dentro de nuestra VPC por defecto (id vpc-b689b1XX) y capturamos la salida del comando para filtrar el identificador que nos genera AWS.</p>
+<p>root@WOPR:~# aws ec2 create-security-group \</p>
+<blockquote>
+<p>--group-name "WEB-SG" \
+--description "Acceso WEB" \
+--vpc-id "vpc-b689b1XX" --output json | /usr/bin/jq '.GroupId' | tr -d '"'
+sg-0022389898cf38226</p>
+</blockquote>
+<p>Ahora nombramos a nuestro SG:</p>
+<p>root@WOPR:~# aws ec2 create-tags \</p>
+<blockquote>
+<p>--resources "sg-0022389898cf38226" \
+--tags Key=Name,Value="WEB-SG"</p>
+</blockquote>
+<p>Y por último abrimos las comunicaciones de los puertos indicados antes:</p>
+<p>root@WOPR:~# aws ec2 authorize-security-group-ingress \</p>
+<blockquote>
+<p>--group-id "sg-0022389898cf38226" \
+--protocol tcp --port 22 \
+--cidr "XXX.XXX.XXX.XXX/32"</p>
+</blockquote>
+<p>root@WOPR:~# aws ec2 authorize-security-group-ingress \</p>
+<blockquote>
+<p>--group-id "sg-0022389898cf38226" \
+--protocol tcp --port 80 \
+--cidr "0.0.0.0/0"</p>
+</blockquote>
+<p>root@WOPR:~# aws ec2 authorize-security-group-ingress \</p>
+<blockquote>
+<p>--group-id "sg-0022389898cf38226" \
+--protocol tcp --port 443 \
+--cidr "0.0.0.0/0"</p>
+</blockquote>
+<p>Creamos el Security Group RDS-SG:</p>
+<p>root@WOPR:~# aws ec2 create-security-group \</p>
+<blockquote>
+<p>--group-name "RDS-SG" \
+--description "Acceso RDS" \
+--vpc-id "vpc-b689b1XX" --output json | /usr/bin/jq '.GroupId' | tr -d '"'
+sg-0729ab6694bef3faa</p>
+</blockquote>
+<p>Con ese identificador nombramos el SG:</p>
+<p>root@WOPR:~# aws ec2 create-tags \</p>
+<blockquote>
+<p>--resources "sg-0729ab6694bef3faa" \
+--tags Key=Name,Value="RDS-SG"</p>
+</blockquote>
+<p>Y abrimos las comunicaciones para MySql en el 3306 para el origen SG WEB-SG:</p>
+<p>root@WOPR:~# aws ec2 authorize-security-group-ingress \
+--group-id "sg-0729ab6694bef3faa" \
+--protocol tcp --port 3306 \
+--source-group "sg-0022389898cf38226"</p>
+<p>El resultado de estos comando en la consola será similar a esto:</p>
+<p><img alt="" src="../../images/Selecci%C3%B3n_438.png" /></p>
+<p>Para poder crear (por fin) nuestra máquina en EC2 debemos tener:</p>
+<p>1.- <strong>KeyPair</strong> para poder acceder a ella por SSH. La generamos así (guarda bien esta información!!)</p>
+<p>pi@WOPR:~ $ aws ec2 create-key-pair --key-name "KP_MIEC2"
+{
+"KeyFingerprint": "4b:2e:5a:94:cb:6b:8a<img alt="🆎" class="twemoji" src="https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/1f18e.svg" title=":ab:" />59:73:77:3f:4a:37:38:6c:d3:d2:5a:d7",
+"KeyName": "KP_MIEC2",
+"KeyMaterial": "-----BEGIN RSA PRIVATE KEY-----\n TEXTO ELIMINADO INTENCIONADAMENTE \n-----END RSA PRIVATE KEY-----"
+}</p>
+<p>2.- Conocer cuales son nuestras <strong>subredes</strong> y las <strong>zonas de disponibilidad</strong>:</p>
+<p>pi@WOPR:~ $ aws ec2 describe-subnets --output text | awk '{print $3" "$12}'
+eu-west-1a subnet-c1f2449b
+eu-west-1c subnet-4630740e
+eu-west-1b subnet-88a8ddee</p>
+<p>(* <em>notamental</em>... manejar mejor las salidas usando formato Json y filtrar con query jq...)</p>
+<p>3.- Conocer el id de AMI que vamos a utilizar, para Ubuntu 18.04 es esta:</p>
+<p>pi@WOPR:~ $ aws ec2 describe-images --owners 099720109477 --filters 'Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-??????????' 'Name=state,Values=available' --output json | jq -r '.Images | sort_by(.CreationDate) | last(.[]).ImageId'
+ami-0b2a4d260c54e8d3d</p>
+<p>Con todo esto montamos un fichero (p.e. specification.json) que emplearemos ahora después como plantilla:<br />
+<strong>specifications.json</strong></p>
+<p>{
+"ImageId": "ami-0b2a4d260c54e8d3d",
+"InstanceType": "t2.micro",
+"KeyName": "KP_MIEC2",
+"Placement": { "AvailabilityZone": "eu-west-1a" },
+"SecurityGroupIds": [ "sg-072526f914e7202f8" ],
+"SubnetId": "subnet-c1f2449b",
+"DryRun": true
+}</p>
+<p>(* <em>DryRun</em> está a true para probar que todo va bien)</p>
+<p>Y ahora si, por fin, vamos a generar nuestra máquina:</p>
+<p>pi@WOPR:~ $ aws ec2 run-instances --cli-input-json file://specifications.json</p>
+<p>An error occurred (DryRunOperation) when calling the RunInstances operation: Request would have succeeded, but DryRun flag is set.</p>
+<p>Si el mensaje <strong>es como este</strong> podemos editar el fichero de especificaciones, poner <em>DryRun</em> a false y volver a ejecutar para crear nuestra instancia.</p>
+<p><strong>Para terminar esta primer parte</strong>, vamos a conectarnos, empleando la clave SSH que tenemos descargada.<br />
+Primero obtenemos <strong>los datos de nuestra instancia</strong>:</p>
+<p>pi@WOPR:~ $ aws ec2 describe-instances --filter Name="instance-type",Values="t2.micro" Name="instance-state-name",Values="running" --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,State.Name,PrivateIpAddress,PublicIpAddress'] --output text
+i-0594d4acc5XX1c465 t2.micro running 172.31.22.120 52.17.XX.126</p>
+<p>Y nos conectamos a ella por SSH:</p>
+<p>pi@WOPR:~ $ ssh -i KP_MIEC2.pem ubuntu@52.17.XX.126
+Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-1039-aws x86_64)</p>
+<p>... <a href="http://pruebadeconcepto.es/?p=140">continuará</a> ...</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2019-2023 Antonio Hernan
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.top"], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.19047be9.min.js"></script>
+      
+    
+  </body>
+</html>
