@@ -7,13 +7,13 @@ categories:
   - "informaticaviejuna"
 ---
 
-![](images/guybrush.jpg)
+![](../images/guybrush.jpg)
 
 Anda que no ha llovido... y eso que Monkey Island no fue ni mucho menos el primer contacto que tuve con un ordenador, pero a buen seguro que fue el que más me marcó.
 
 No tuve la suerte de tener un ZX, ni siquiera un Amstrad, en esto fui unos meses con retraso respecto a los vecinos, un año todo lo más y entré directamente en el mundillo de las computadoras con un MSX, y su correspondiente unidad de cinta Computone (y ese destornillador para ajustar el azimut!!!)
 
-![](images/kung-fu-master-scr-1.png)
+![](../images/kung-fu-master-scr-1.png)
 
 Fui el rey del barrio, con los cartuchos que cargaban al instante, que de horas con el Kung-Fu Master!!.
 
@@ -23,7 +23,7 @@ Hay sonidos y luces que no se olvidan, el arranque de esta máquina, con el disc
 
 Recuerdos que están casi a la misma altura que los sonidos de un modem de 9600 [baudios](https://es.wikipedia.org/wiki/Tasa_de_baudios) (¿baudios?, los jóvenes que no diferencian un bit de un byte ni saben que eso existe..) y sus luces intermitentes con el cuarto a oscuras, que fueron la mayoría de mis "discotecas" de juventud.
 
-![](images/pollodegoma-150x150.png)
+![](../images/pollodegoma-150x150.png)
 
 Los chicos de hoy en día, si no tienen equipos que generan miles de millones de triángulos por segundo y texturas reales... pues no les vale nada.
 
