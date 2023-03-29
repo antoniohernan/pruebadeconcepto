@@ -11,7 +11,7 @@ La muerte reciente de Eduardo Punset me ha traído a la cabeza cuando en mi empr
 
  
 
-![](images/Selección_440.png)
+![](../images/Selección_440.png)
 
 Aparecieron **frases célebres, desgastadas por el uso**...
 
