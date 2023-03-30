@@ -6,16 +6,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pruebadeconcepto.es/about_acercademi/</loc>
-         <lastmod>2023-03-30</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://pruebadeconcepto.es/about_privacy-policy/</loc>
-         <lastmod>2023-03-30</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://pruebadeconcepto.es/gen_hello-world/</loc>
          <lastmod>2023-03-30</lastmod>
          <changefreq>daily</changefreq>
@@ -102,6 +92,16 @@
     </url>
     <url>
          <loc>https://pruebadeconcepto.es/rpi_wordpress2/</loc>
+         <lastmod>2023-03-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/about/about_acercademi/</loc>
+         <lastmod>2023-03-30</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/about/about_privacy-policy/</loc>
          <lastmod>2023-03-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
