@@ -76,7 +76,7 @@ nav:
     - Tecnología:
       - Envía ficheros desde Github a EC2 con actions: tec/tec_actionsec2.md
     - RaspberryPi:
-      - Introducción: rpi_intro.md
+      - Introducción: rpi/rpi_intro.md
       - Instalación Básica I: rpi_install_i.md
       - Instalación Básica II: rpi_install_ii.md
       - Securización: rpi_securizacion.md
@@ -89,7 +89,7 @@ nav:
       - Práctico 5 - Domótica, Cámaras IP y RaZberry: rpi_domotica.md
       - Práctico 6 - Media Center: rpi_mediacenter.md
       - Práctico 7 - Emulación de juegos: rpi_emulador.md
-      - Alternativas a RPi: rpi_alternativas.md
+      - Alternativas a RPi: rpi/rpi_alternativas.md
       - Apéndices (I) - Reinicio de router: rpi_apendice1.md
       - Apéndices (II) - XBMC con MariaDB para BBDD distribuida: rpi_apendice2.md
       - Apéndices (III) - Administración con Webmin: rpi_apendice3.md

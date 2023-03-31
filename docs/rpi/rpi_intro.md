@@ -21,7 +21,7 @@ Lógicamente esto **a día de hoy no vale para mucho**, en 6 años hay nuevas ve
 
 Aquí iré actualizando un índice de las distintas partes de este grupo de mensajes por si queréis ir saltando a alguna parte que os interese más.
 
-- [Introducción](rpi_intro.md)
+- [Introducción](rpi/rpi_intro.md)
 - [Instalación básica (I)](rpi_install_i.md)
 - [Instalación básica (II)](rpi_install_ii.md)
 - [Securización](rpi_securizacion.md)
@@ -29,12 +29,12 @@ Aquí iré actualizando un índice de las distintas partes de este grupo de mens
 - [Práctico 1 - Servidor de WordPress (I)](rpi_wordpress1.md)
 - [Práctico 1 - Servidor de WordPress (II)](rpi_wordpress2.md)
 - [Práctico 2 - Gestor de Descargas](rpi_downmanager.md)
-- [Práctico 3 - Servidor Impresión/AirPrint](rpi_airprint.md)
+- [Práctico 3 - Servidor Impresión/AirPrint](rpi/rpi_airprint.md)
 - [Práctico 4 - Servidor Copias de Seguridad](rpi_backupserver.md)
 - [Práctico 5 - Domótica, Cámaras IP y RaZberry](rpi_domotica.md)
 - [Práctico 6 - Media Center](rpi_mediacenter.md)
 - [Práctico 7 - Emulación de juegos](rpi_emulador.md)
-- [Alternativas a RPi](rpi_alternativas.md)
+- [Alternativas a RPi](rpi/rpi_alternativas.md)
 - [Apéndices (I) - Reinicio de router](rpi_apendice1.md)
 - [Apéndices (II) - XBMC con MariaDB para BBDD distribuida](rpi_apendice2.md)
 - [Apéndices (III) - Administración con Webmin](rpi_apendice3.md)

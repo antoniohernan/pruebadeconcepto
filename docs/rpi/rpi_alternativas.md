@@ -15,7 +15,7 @@ Hay dos aspectos en los que es difícil competir con la RPI, que son por un lado
 
 **MinnowBoard MAX** ([http://www.minnowboard.org/meet-minnowboard-max/](http://www.minnowboard.org/meet-minnowboard-max/)), de las más recientes
 
-![](images/MinnowBoard.jpg)
+![](../images/MinnowBoard.jpg)
 
 Es la respuesta de INTEL a todo este mercado que está perdido frente a los micros ARM.
 
@@ -27,7 +27,7 @@ Lo tiene todo, eso sí, el precio de salida son los 99$ para la versión más ba
 
 **BeagleBone Black** ([http://beagleboard.org/Products/BeagleBone+Black](http://beagleboard.org/Products/BeagleBone+Black)), de las primeras en atacar fuerte
 
-![](images/Beagle.jpg)
+![](../images/Beagle.jpg)
 
 Esta placa lleva un tiempo en el mercado y fue de las primeras que salieron apostando por ofrecer más hardware frente a la Rpi para ver si llamaban más a los futuros usuarios.
 
@@ -35,7 +35,7 @@ Si bien sus diferencias de hardware tampoco son tantas y el punto fuerte en el q
 
 **CubieBoard, CubieBoard 2 y ahora CubieTruck** ([http://www.cubietruck.com](http://www.cubietruck.com)), los que más rápido parece que avanzan.
 
-![](images/Cubieboard.jpeg)
+![](../images/Cubieboard.jpeg)
 
 Aquí ya estamos hablando de palabras mayores en cuanto a hardware por que son dual cores, memoria de verdad (DDR3), mucha conectividad (Satas, ethernet a Giga), antena Wifi integrada.
 
@@ -53,7 +53,7 @@ Edito el mensaje para añadir esta última placa que está causando furor...
 
 **Banana PI** ([http://www.bananapi.org](http://www.bananapi.org))
 
-![](images/banana.jpg)
+![](../images/banana.jpg)
 
 Esta placa que muchos llaman el "clon-chino" de las Rpi es eso, un clon en toda regla.
 
