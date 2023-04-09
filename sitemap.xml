@@ -6,87 +6,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://pruebadeconcepto.es/gen_hello-world/</loc>
-         <lastmod>2023-04-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://pruebadeconcepto.es/rpi_apendice1/</loc>
-         <lastmod>2023-04-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://pruebadeconcepto.es/rpi_apendice2/</loc>
-         <lastmod>2023-04-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://pruebadeconcepto.es/rpi_apendice3/</loc>
-         <lastmod>2023-04-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://pruebadeconcepto.es/rpi_backup/</loc>
-         <lastmod>2023-04-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://pruebadeconcepto.es/rpi_backupserver/</loc>
-         <lastmod>2023-04-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://pruebadeconcepto.es/rpi_domotica/</loc>
-         <lastmod>2023-04-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://pruebadeconcepto.es/rpi_downmanager/</loc>
-         <lastmod>2023-04-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://pruebadeconcepto.es/rpi_emulador/</loc>
-         <lastmod>2023-04-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://pruebadeconcepto.es/rpi_install_i/</loc>
-         <lastmod>2023-04-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://pruebadeconcepto.es/rpi_install_ii/</loc>
-         <lastmod>2023-04-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://pruebadeconcepto.es/rpi_mediacenter/</loc>
-         <lastmod>2023-04-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://pruebadeconcepto.es/rpi_securizacion/</loc>
-         <lastmod>2023-04-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://pruebadeconcepto.es/rpi_wordpress1/</loc>
-         <lastmod>2023-04-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://pruebadeconcepto.es/rpi_wordpress2/</loc>
-         <lastmod>2023-04-09</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://pruebadeconcepto.es/about/about_acercademi/</loc>
          <lastmod>2023-04-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pruebadeconcepto.es/about/about_privacy-policy/</loc>
+         <lastmod>2023-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/gen/gen_hello-world/</loc>
          <lastmod>2023-04-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -141,7 +71,77 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://pruebadeconcepto.es/rpi/rpi_apendice1/</loc>
+         <lastmod>2023-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi/rpi_apendice2/</loc>
+         <lastmod>2023-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi/rpi_apendice3/</loc>
+         <lastmod>2023-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi/rpi_backup/</loc>
+         <lastmod>2023-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi/rpi_backupserver/</loc>
+         <lastmod>2023-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi/rpi_domotica/</loc>
+         <lastmod>2023-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi/rpi_downmanager/</loc>
+         <lastmod>2023-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi/rpi_emulador/</loc>
+         <lastmod>2023-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi/rpi_install_i/</loc>
+         <lastmod>2023-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi/rpi_install_ii/</loc>
+         <lastmod>2023-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://pruebadeconcepto.es/rpi/rpi_intro/</loc>
+         <lastmod>2023-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi/rpi_mediacenter/</loc>
+         <lastmod>2023-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi/rpi_securizacion/</loc>
+         <lastmod>2023-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi/rpi_wordpress1/</loc>
+         <lastmod>2023-04-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/rpi/rpi_wordpress2/</loc>
          <lastmod>2023-04-09</lastmod>
          <changefreq>daily</changefreq>
     </url>
