@@ -77,6 +77,7 @@ nav:
       - Diagramas de flujo e ISO 5807: infov/infv_diagramasflujo.md
       - Elecciones del siglo 21, que ya va tocando: infov/infv_eleccionesrancias.md
       - ¿Quien mueve los hilos?? (de mi ethernet): infov/infv_hilosethernet.md
+      - Mirror para todos los públicos: infov/infv_mirrorpublicos.md
     - Tecnología:
       - Envía ficheros desde Github a EC2 con actions: tec/tec_actionsec2.md
     - RaspberryPi:
