@@ -1,6 +1,8 @@
 ---
 title: "Elecciones del siglo 21, que ya va tocando"
 date: "2019-11-12"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "informaticaviejuna"
 ---
