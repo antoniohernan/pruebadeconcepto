@@ -69,7 +69,7 @@ plugins:
 nav:
     - Inicio: index.md
     - Generales:
-      - Hola mundo!!: gen_hello-world.md
+      - Hola mundo!!: gen/gen_hello-world.md
     - Informática Viejuna:
       - ¡Hola! Me llamo Guybrush Threepwood, ¡y quiero ser un pirata!: infov/infv_guybrush.md
       - ¿Y esto tiene discos SSD?: infov/infv_discossd.md
@@ -77,22 +77,22 @@ nav:
       - Envía ficheros desde Github a EC2 con actions: tec/tec_actionsec2.md
     - RaspberryPi:
       - Introducción: rpi/rpi_intro.md
-      - Instalación Básica I: rpi_install_i.md
-      - Instalación Básica II: rpi_install_ii.md
-      - Securización: rpi_securizacion.md
-      - Copias de Seguridad: rpi_backup.md
-      - Práctico 1 - Wordpress 1: rpi_wordpress1.md
-      - Práctico 1 - Wordpress 2: rpi_wordpress2.md
-      - Práctico 2 - Gestor de Descargas: rpi_downmanager.md
-      - Práctico 3 - Servidor Impresión/AirPrint: rpi_airprint.md
-      - Práctico 4 - Servidor Copias de Seguridad: rpi_backupserver.md
-      - Práctico 5 - Domótica, Cámaras IP y RaZberry: rpi_domotica.md
-      - Práctico 6 - Media Center: rpi_mediacenter.md
-      - Práctico 7 - Emulación de juegos: rpi_emulador.md
+      - Instalación Básica I: rpi/rpi_install_i.md
+      - Instalación Básica II: rpi/rpi_install_ii.md
+      - Securización: rpi/rpi_securizacion.md
+      - Copias de Seguridad: rpi/rpi_backup.md
+      - Práctico 1 - Wordpress 1: rpi/rpi_wordpress1.md
+      - Práctico 1 - Wordpress 2: rpi/rpi_wordpress2.md
+      - Práctico 2 - Gestor de Descargas: rpi/rpi_downmanager.md
+      - Práctico 3 - Servidor Impresión/AirPrint: rpi/rpi_airprint.md
+      - Práctico 4 - Servidor Copias de Seguridad: rpi/rpi_backupserver.md
+      - Práctico 5 - Domótica, Cámaras IP y RaZberry: rpi/rpi_domotica.md
+      - Práctico 6 - Media Center: rpi/rpi_mediacenter.md
+      - Práctico 7 - Emulación de juegos: rpi/rpi_emulador.md
       - Alternativas a RPi: rpi/rpi_alternativas.md
-      - Apéndices (I) - Reinicio de router: rpi_apendice1.md
-      - Apéndices (II) - XBMC con MariaDB para BBDD distribuida: rpi_apendice2.md
-      - Apéndices (III) - Administración con Webmin: rpi_apendice3.md
+      - Apéndices (I) - Reinicio de router: rpi/rpi_apendice1.md
+      - Apéndices (II) - XBMC con MariaDB para BBDD distribuida: rpi/rpi_apendice2.md
+      - Apéndices (III) - Administración con Webmin: rpi/rpi_apendice3.md
     - Acerca de:
       - Acerca de mi y mis pruebas de concepto: about/about_acercademi.md
       - Política de privacidad: about/about_privacy-policy.md
