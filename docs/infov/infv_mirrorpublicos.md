@@ -1,6 +1,8 @@
 ---
 title: "Mirror para todos los públicos"
 date: "2019-05-29"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "informaticaviejuna"
 ---
@@ -25,7 +27,7 @@ Y aquí fue donde aparezco yo a tener que explicar su poltergeist, lo que el que
 
 Ni que decir que esto es un despropósito, al sacar el disco de la primera NAS, el raid 1 se queda en alarma, le falta un disco en su configuración, y seguirá asi hasta que le pongas el disco y le digas que se reconstruya.
 
-![](images/xScreen_Shot_2018-05-04_at_8_43_17_AM.jpg.pagespeed.gpjpjwpjwsjsrjrprwricpmd.ic_.vtdD56cB1Q.jpg)
+![](../images/xScreen_Shot_2018-05-04_at_8_43_17_AM.jpg.pagespeed.gpjpjwpjwsjsrjrprwricpmd.ic_.vtdD56cB1Q.jpg)
 
 Lo mismo en la NAS de destino, al sacar el disco aquella NAS se queda en alarma hasta que volvemos a reconstruirlo todo.
 

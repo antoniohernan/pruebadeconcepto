@@ -1,6 +1,8 @@
 ---
 title: "Tarifa plana YA!!"
 date: "2019-05-27"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "informaticaviejuna"
 ---
@@ -8,8 +10,6 @@ categories:
 En 1999 estuve en la sede de [Digital Equipment Corporation](https://es.wikipedia.org/wiki/Digital_Equipment_Corporation), recién **adquirida por Compaq y en pleno proceso de desmantelamiento**. Íbamos a hacer unos **bancos de pruebas de nuestro software** en las DEC ES40, uno de los servidores que recuerdo con más cariño, unos buenos trastos, como otros de la familia Tsunami.
 
 Aterrizamos en Bostón después de hacer escala en el JFK y nos dieron un Diskette (1.44) de propaganda con uno de los **famosos kit de conexión a internet gratis**.
-
- 
 
 En España también los teníamos, alguno se acodará de **los modems**, de **los kits gratis, que no eran tan gratis** y de **la interminable espera para la tarifa plana famosa** que fue otro [atraco a mano armada](https://elpais.com/diario/1999/10/07/sociedad/939247213_850215.html) y un cachondeo en nuestra cara.. siempre en el vagón de cola de las comunicaciones.
 
@@ -23,4 +23,4 @@ Estamos ya tan a**costumbrados a los MBs y MBs de conexión, por encima de la ce
 
 Como recuerdo de aquel viaje a Estados Unidos, hace ya.. madre mía.. 20 años!!! tengo mi taza de "Digital", ha perdido casi todo el color y casi el grabado, pero es indudable que está hecha con espíritu americano, **Made to Last.**
 
-![](images/IMG_0737-e1558955583725-225x300.jpg)
+![](../images/IMG_0737-e1558955583725-225x300.jpg)
