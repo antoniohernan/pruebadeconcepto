@@ -1,6 +1,8 @@
 ---
 title: "¿Quien mueve los hilos?? (de mi ethernet)"
 date: "2019-06-19"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "informaticaviejuna"
 ---
@@ -13,11 +15,11 @@ Algunas veces **me sorprendí a mi mismo** antes de entrar o conectarme a estas 
 
 En una de estas tocó explicar la **comunicación [Multicast](https://es.wikipedia.org/wiki/Multidifusión) que usaba Liferay 6.2** para poder escalar horizontalmente el cluster, como me imaginaba que si decía aquello de _broadcast_ _udp_ o similares **la reunión iba a ser muy larga** hice un pequeño esquema (pequeño al principio... que me llevó un buen rato y es de uno de los que más orgulloso estoy)
 
-![Esquema Multicast](images/Esquema-Multicast_V3.png)
+![Esquema Multicast](../images/Esquema-Multicast_V3.png)
 
 Y claro, estas allí compartiendo pantalla, una sala llena de gente más otra sala llena de gente al otro lado del charco, explicas como funciona esto (... palabras cortas ...) y **después de unos incómodos segundos de silencio** alguien pregunta sobre esto en concreto:
 
-![Broadcast UDP Detail](images/Broadcast_udp_detail.png)
+![Broadcast UDP Detail](../images/Broadcast_udp_detail.png)
 
 ¿Pero esto significa que **cada una de esas comunicaciones se emite sobre cada uno de los hilos de mis cables** ethernet??
 
