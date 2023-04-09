@@ -1,6 +1,8 @@
 ---
 title: "Erase una vez... un CPD en un cuarto escobero"
 date: "2019-11-04"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "informaticaviejuna"
 ---
