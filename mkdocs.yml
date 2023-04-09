@@ -78,6 +78,7 @@ nav:
       - Elecciones del siglo 21, que ya va tocando: infov/infv_eleccionesrancias.md
       - ¿Quien mueve los hilos?? (de mi ethernet): infov/infv_hilosethernet.md
       - Mirror para todos los públicos: infov/infv_mirrorpublicos.md
+      - Tarifa plana YA!!: infov/infv_tarifaplanaya.md
     - Tecnología:
       - Envía ficheros desde Github a EC2 con actions: tec/tec_actionsec2.md
     - RaspberryPi:
