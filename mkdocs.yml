@@ -75,6 +75,7 @@ nav:
       - ¿Y esto tiene discos SSD?: infov/infv_discossd.md
       - Erase una vez... un CPD en un cuarto escobero: infov/infv_cpdcuarto.md
       - Diagramas de flujo e ISO 5807: infov/infv_diagramasflujo.md
+      - Elecciones del siglo 21, que ya va tocando: infov/infv_eleccionesrancias.md
     - Tecnología:
       - Envía ficheros desde Github a EC2 con actions: tec/tec_actionsec2.md
     - RaspberryPi:
