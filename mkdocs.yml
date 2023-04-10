@@ -89,7 +89,7 @@ nav:
       - Chuleta 03 Vaciando OneNote: tips/tip_vaciandoonenote.md
       - Chuleta 04 Trabajando con el segundo plano: tips/tip_segundoplano.md
       - Chuleta 05 Journal: tips/tip_journal.md
-      - Chuleta 06 ¿El fichero existe?: tips/tip_ficheroexiste.md	
+      - Chuleta 06 ¿El fichero existe?: tips/tip_ficheroexiste.md
     - RaspberryPi:
       - Introducción: rpi/rpi_intro.md
       - Instalación Básica I: rpi/rpi_install_i.md
