@@ -6,6 +6,21 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://pruebadeconcepto.es/3dp/3d_anetet4pro/</loc>
+         <lastmod>2023-04-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/3dp/3d_niveladocama/</loc>
+         <lastmod>2023-04-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/3dp/3d_piederey/</loc>
+         <lastmod>2023-04-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://pruebadeconcepto.es/about/about_acercademi/</loc>
          <lastmod>2023-04-10</lastmod>
          <changefreq>daily</changefreq>
@@ -151,7 +166,37 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://pruebadeconcepto.es/tec/tec_arduinoconfinado/</loc>
+         <lastmod>2023-04-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/tec/tec_blogawsparte1/</loc>
+         <lastmod>2023-04-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/tec/tec_bloqueartor/</loc>
+         <lastmod>2023-04-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://pruebadeconcepto.es/tec/tec_comoestamontado/</loc>
+         <lastmod>2023-04-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/tec/tec_githubactions/</loc>
+         <lastmod>2023-04-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/tec/tec_monbasicagrafana/</loc>
+         <lastmod>2023-04-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pruebadeconcepto.es/tec/tec_route53ssl/</loc>
          <lastmod>2023-04-10</lastmod>
          <changefreq>daily</changefreq>
     </url>

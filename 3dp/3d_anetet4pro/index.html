@@ -10,20 +10,16 @@
       
       
       
-        <link rel="canonical" href="https://pruebadeconcepto.es/tips/tip_ficheroexiste/">
+        <link rel="canonical" href="https://pruebadeconcepto.es/3dp/3d_anetet4pro/">
       
       
-        <link rel="prev" href="../tip_journal/">
-      
-      
-        <link rel="next" href="../../rpi/rpi_intro/">
       
       <link rel="icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
     
     
       
-        <title>Chuleta 06 - ¿El fichero existe? - Prueba de Concepto</title>
+        <title>Impresora 3D - Prueba de Concepto</title>
       
     
     
@@ -104,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chuleta 06 - ¿El fichero existe?
+              Impresora 3D
             
           </span>
         </div>
@@ -246,15 +242,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../tip_sumaconawk/" class="md-tabs__link md-tabs__link--active">
+      <a href="../../tips/tip_sumaconawk/" class="md-tabs__link">
         Chuletas
       </a>
     </li>
@@ -610,16 +604,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
       
       
       
@@ -628,7 +620,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           Chuletas
@@ -641,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_sumaconawk/" class="md-nav__link">
+      <a href="../../tips/tip_sumaconawk/" class="md-nav__link">
         Chuleta 00 Sumar con AWK
       </a>
     </li>
@@ -655,7 +647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_utilesansible/" class="md-nav__link">
+      <a href="../../tips/tip_utilesansible/" class="md-nav__link">
         Chuleta 01 Comandos útiles con ansible
       </a>
     </li>
@@ -669,7 +661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_rescatadored/" class="md-nav__link">
+      <a href="../../tips/tip_rescatadored/" class="md-nav__link">
         Chuleta 02 Rescantando de la red
       </a>
     </li>
@@ -683,7 +675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_vaciandoonenote/" class="md-nav__link">
+      <a href="../../tips/tip_vaciandoonenote/" class="md-nav__link">
         Chuleta 03 Vaciando OneNote
       </a>
     </li>
@@ -697,7 +689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_segundoplano/" class="md-nav__link">
+      <a href="../../tips/tip_segundoplano/" class="md-nav__link">
         Chuleta 04 Trabajando con el segundo plano
       </a>
     </li>
@@ -711,7 +703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_journal/" class="md-nav__link">
+      <a href="../../tips/tip_journal/" class="md-nav__link">
         Chuleta 05 Journal
       </a>
     </li>
@@ -723,19 +715,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../tips/tip_ficheroexiste/" class="md-nav__link">
         Chuleta 06 ¿El fichero existe?
       </a>
-      
     </li>
   
 
@@ -1114,39 +1098,20 @@
                   
 
 
-  <h1>Chuleta 06 ¿El fichero existe?</h1>
+  <h1>Impresora 3D</h1>
 
-<p>Cuando empiezas a tirar código Shell con cierta soltura empiezas a meter validaciones digamos que básicas, ¿existe el fichero de configuración de este proceso?, ¿y la ruta del fichero de log que voy a grabar?, ¿el fichero de datos a procesar existe? ¿lo puedo leer? ¿y además tiene datos o está vacio?</p>
-<p>A todas estas preguntas y a bastantes más podemos dar respuesta con un simple <strong>IF</strong> y la correspondiente <strong>evaluación del fichero/directorio</strong>.</p>
-<p>Utilizaremos la expresión de test, la cual podemos expresar con estas  tres sintaxis:</p>
-<p>test EXPRESION</p>
-<p>[ EXPRESION ] </p>
-<p>[[ EXPRESION ]]</p>
-<p>Por cuestiones de portabilidad, si quieres que el script que vas a hacer sea utilizable en el mayor número de sistemas posible, te recomiendo que uses la sintaxis de "test" pues parece estar disponible en todas las shelll basada en norma <a href="https://es.wikipedia.org/wiki/POSIX">POSIX</a>.</p>
-<p>La primera comprobación, la más básica que podemos hacer es comprobar si el elemento existe, sea un fichero, un directorio o un enlace, para essto emplearemos la opción <strong>-e</strong>
-<div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ if test -e &quot;$FIC&quot;; then echo &quot;$FIC existe&quot;; fi
-/tmp/pp existe
-</code></pre></div>
-Si queremos afinar un poco más y preguntar si además de existir, sí se trata de un fichero, empleraremos la opción <strong>-f</strong>
-<div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ if test -f &quot;$FIC&quot;; then echo &quot;$FIC existe y es un fichero regular&quot;; fi
-/tmp/pp existe y es un fichero regular
-</code></pre></div>
-Utilizando los otros formataos de expresar el "test", serían algo así como esto que os pongo a continuación, donde se ejecuta la parte a la derecha de los <code>&amp;&amp;</code> cuando el resultado de la evaluación del test es verdadero, o a la derecha de los <code>||</code> cuando la evaluación del test es falso.
-<div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ \[\[ -f $FIC \]\] &amp;&amp; echo &quot;$FIC existe y es un fichero regular&quot; || echo &quot;$FIC no existe o no es un fichero regular&quot;
-/tmp/pp existe y es un fichero regular
-</code></pre></div>
-Como veis, la potencia del comando reside en el parámetro que utilicemos. A continuación os enumero bastantes de sus opciones, no todas, pero si las que me parecen más útiles:</p>
-<p>Tipo del descriptor:</p>
-<table style="border-collapse: collapse; width: 100%;"><tbody><tr><td style="width: 4.47838%;">-b</td><td style="width: 95.5216%;">Devuelve TRUE si existe y se trata de un Block device o special block file</td></tr><tr><td style="width: 4.47838%;">-c</td><td style="width: 95.5216%;">Devuelve TRUE si exsite y se trata de un fichero de caracteres</td></tr><tr><td style="width: 4.47838%;">-d</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un directorio</td></tr><tr><td style="width: 4.47838%;">-f</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un fichero regular.</td></tr><tr><td style="width: 4.47838%;">-S</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un socket.</td></tr><tr><td style="width: 4.47838%;">-p</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un pipe</td></tr><tr><td style="width: 4.47838%;">-L</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un enlace simbólico</td></tr><tr><td style="width: 4.47838%;">-h</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un enlace simbólico</td></tr></tbody></table>
-
-<p>Permisos del descriptor:</p>
-<table style="border-collapse: collapse; width: 100%; height: 116px;"><tbody><tr style="height: 23px;"><td style="width: 5.73013%; height: 23px;">-u</td><td style="width: 148.224%; height: 23px;">Devuelve TRUE si existe y tiene el flag de set-user-id (suid) activo</td></tr><tr style="height: 23px;"><td style="width: 5.73013%; height: 23px;">-g</td><td style="width: 148.224%; height: 23px;">Devuelve TRUE si existe y tiene el flag de set-group-id (sgid) activo</td></tr><tr style="height: 23px;"><td style="width: 5.73013%; height: 23px;">-k</td><td style="width: 148.224%; height: 23px;">Devuelve TRUE si existe y activo el flag de sticky bit</td></tr><tr style="height: 24px;"><td style="width: 5.73013%; height: 22px;">-w</td><td style="width: 148.224%; height: 22px;">Devuelve TRUE si existe y es escribible</td></tr><tr style="height: 24px;"><td style="width: 5.73013%; height: 24px;">-x</td><td style="width: 148.224%; height: 24px;">Devuelve TRUE si existe y es ejecutable</td></tr><tr style="height: 24px;"><td style="width: 5.73013%; height: 24px;">-r</td><td style="width: 148.224%; height: 24px;">Devuelve TRUE si existe y es leible</td></tr></tbody></table>
-
-<p>Otros acerca del descriptor:</p>
-<table style="border-collapse: collapse; width: 100%;"><tbody><tr><td>-s</td><td>Devuelve TRUE si existe y tienen tamaño distinto de 0</td></tr><tr><td>-G</td><td>Devuelve TRUE si existe y el descriptor tiene el mismo grupo que el usuario que ejecuta el comando</td></tr><tr><td>-O</td><td>Devuelve TRUE si exsite y el descriptor tiene el mismo propietario que el usuario que ejecuta el comando</td></tr></tbody></table>
+<p>Pues si! Al final hemos caido y tenemos impresora 3D.</p>
+<p>En concreto una Anet ET4 Pro, que es algo así como la impresora marca "Hacendado" del momento. La última vez que vi una de estas de cerca funcionando fue en una actividad del grupo de usuarios MAC, un trasto grande, feo y lleno de varillas, motores y cables por todas partes.</p>
+<p>Estaban en lo que denominaban las "<strong>clone Wars</strong>" o <a href="https://www.reprap.org/wiki/RepRap/es">máquina auto-replicables</a> , esto es, con una impresora podías crear las piezas necesarias para otras impresoras.</p>
+<p>Por suerte la impresora que he comprado tiene poco que ver, solo 4 tornillos para apretar, tensar dos cosas aquí, conectar unos cables allí y listo, se puede empezar a configurar. No tengo ya edad para andar ajustando y ajustado, yo quiero imprimir, la investigación ya la dejo para otros.</p>
+<p>Eso si, de lo que no te libras nunca es de la nivelación de la cama, será la siguinte entrada de esta categoría, es tema aparte y una vez que lo consigues rezas para que dure mucho tiempo el ajuste. Este modelo de impresora trae teóricamente autonivelación pero es muy relativo, al final el método del papel rozando la boquilla es lo único que vale, eso y la laca Nelly extrafuerte.</p>
+<p>Al principio los problemas típicos, el filamento que se despega de la cama a mitad de impresión, la bobina de filamento que no gira bien y los parámetros del software para laminar que no terminan de cuadrar, la velocidad, calidad y duración de la tarea de impresión son parámetros que cuestan mucho dominar.</p>
+<p>Algunas piezas grandes ya van saliendo</p>
+<p><img alt="" src="images/IMG_2756-768x1024.jpg" /></p>
+<p>Y algunas cosas voy incluso atreviendome a diseñar, cosas sencillas por supuesto, como esto: <a href="https://www.tinkercad.com/embed/cxx8aXWnTKH?editbtn=1">https://www.tinkercad.com/things/cxx8aXWnTKH-adaptador-spool-amazon-basic</a> que es un adaptador para la bobina de filamento y que haga de unión entre el tubo al que se sujeta en la impresora (20mm) y la bobina que presenta un agujero interior mucho mayor (52mm).</p>
+<p>Os anticipo cual es el siguiente proyecto Impresora 3D + Arduino, un OttoDIY que promete horas de diversión</p>
+<p><img alt="" src="images/IMG_2770-1024x768.jpg" /></p>
+<p>Bienvenidos a la comunidad #Makers3D</p>
 
 
 

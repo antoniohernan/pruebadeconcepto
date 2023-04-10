@@ -10,20 +10,16 @@
       
       
       
-        <link rel="canonical" href="https://pruebadeconcepto.es/tips/tip_ficheroexiste/">
+        <link rel="canonical" href="https://pruebadeconcepto.es/tec/tec_monbasicagrafana/">
       
       
-        <link rel="prev" href="../tip_journal/">
-      
-      
-        <link rel="next" href="../../rpi/rpi_intro/">
       
       <link rel="icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
     
     
       
-        <title>Chuleta 06 - ¿El fichero existe? - Prueba de Concepto</title>
+        <title>Monitorización básica con Grafana + InfluxDB + CollectD - Prueba de Concepto</title>
       
     
     
@@ -104,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chuleta 06 - ¿El fichero existe?
+              Monitorización básica con Grafana + InfluxDB + CollectD
             
           </span>
         </div>
@@ -236,7 +232,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../tec/tec_actionsec2/" class="md-tabs__link">
+      <a href="../tec_actionsec2/" class="md-tabs__link">
         Tecnología
       </a>
     </li>
@@ -246,15 +242,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../tip_sumaconawk/" class="md-tabs__link md-tabs__link--active">
+      <a href="../../tips/tip_sumaconawk/" class="md-tabs__link">
         Chuletas
       </a>
     </li>
@@ -576,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tec/tec_actionsec2/" class="md-nav__link">
+      <a href="../tec_actionsec2/" class="md-nav__link">
         Envía ficheros desde Github a EC2 con actions
       </a>
     </li>
@@ -590,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tec/tec_comoestamontado/" class="md-nav__link">
+      <a href="../tec_comoestamontado/" class="md-nav__link">
         ¿Cómo está montado este blog?
       </a>
     </li>
@@ -610,16 +604,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
       
       
       
@@ -628,7 +620,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           Chuletas
@@ -641,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_sumaconawk/" class="md-nav__link">
+      <a href="../../tips/tip_sumaconawk/" class="md-nav__link">
         Chuleta 00 Sumar con AWK
       </a>
     </li>
@@ -655,7 +647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_utilesansible/" class="md-nav__link">
+      <a href="../../tips/tip_utilesansible/" class="md-nav__link">
         Chuleta 01 Comandos útiles con ansible
       </a>
     </li>
@@ -669,7 +661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_rescatadored/" class="md-nav__link">
+      <a href="../../tips/tip_rescatadored/" class="md-nav__link">
         Chuleta 02 Rescantando de la red
       </a>
     </li>
@@ -683,7 +675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_vaciandoonenote/" class="md-nav__link">
+      <a href="../../tips/tip_vaciandoonenote/" class="md-nav__link">
         Chuleta 03 Vaciando OneNote
       </a>
     </li>
@@ -697,7 +689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_segundoplano/" class="md-nav__link">
+      <a href="../../tips/tip_segundoplano/" class="md-nav__link">
         Chuleta 04 Trabajando con el segundo plano
       </a>
     </li>
@@ -711,7 +703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_journal/" class="md-nav__link">
+      <a href="../../tips/tip_journal/" class="md-nav__link">
         Chuleta 05 Journal
       </a>
     </li>
@@ -723,19 +715,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../tips/tip_ficheroexiste/" class="md-nav__link">
         Chuleta 06 ¿El fichero existe?
       </a>
-      
     </li>
   
 
@@ -1114,39 +1098,27 @@
                   
 
 
-  <h1>Chuleta 06 ¿El fichero existe?</h1>
+  <h1>Monitorización básica con Grafana + InfluxDB + CollectD</h1>
 
-<p>Cuando empiezas a tirar código Shell con cierta soltura empiezas a meter validaciones digamos que básicas, ¿existe el fichero de configuración de este proceso?, ¿y la ruta del fichero de log que voy a grabar?, ¿el fichero de datos a procesar existe? ¿lo puedo leer? ¿y además tiene datos o está vacio?</p>
-<p>A todas estas preguntas y a bastantes más podemos dar respuesta con un simple <strong>IF</strong> y la correspondiente <strong>evaluación del fichero/directorio</strong>.</p>
-<p>Utilizaremos la expresión de test, la cual podemos expresar con estas  tres sintaxis:</p>
-<p>test EXPRESION</p>
-<p>[ EXPRESION ] </p>
-<p>[[ EXPRESION ]]</p>
-<p>Por cuestiones de portabilidad, si quieres que el script que vas a hacer sea utilizable en el mayor número de sistemas posible, te recomiendo que uses la sintaxis de "test" pues parece estar disponible en todas las shelll basada en norma <a href="https://es.wikipedia.org/wiki/POSIX">POSIX</a>.</p>
-<p>La primera comprobación, la más básica que podemos hacer es comprobar si el elemento existe, sea un fichero, un directorio o un enlace, para essto emplearemos la opción <strong>-e</strong>
-<div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ if test -e &quot;$FIC&quot;; then echo &quot;$FIC existe&quot;; fi
-/tmp/pp existe
-</code></pre></div>
-Si queremos afinar un poco más y preguntar si además de existir, sí se trata de un fichero, empleraremos la opción <strong>-f</strong>
-<div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ if test -f &quot;$FIC&quot;; then echo &quot;$FIC existe y es un fichero regular&quot;; fi
-/tmp/pp existe y es un fichero regular
-</code></pre></div>
-Utilizando los otros formataos de expresar el "test", serían algo así como esto que os pongo a continuación, donde se ejecuta la parte a la derecha de los <code>&amp;&amp;</code> cuando el resultado de la evaluación del test es verdadero, o a la derecha de los <code>||</code> cuando la evaluación del test es falso.
-<div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ \[\[ -f $FIC \]\] &amp;&amp; echo &quot;$FIC existe y es un fichero regular&quot; || echo &quot;$FIC no existe o no es un fichero regular&quot;
-/tmp/pp existe y es un fichero regular
-</code></pre></div>
-Como veis, la potencia del comando reside en el parámetro que utilicemos. A continuación os enumero bastantes de sus opciones, no todas, pero si las que me parecen más útiles:</p>
-<p>Tipo del descriptor:</p>
-<table style="border-collapse: collapse; width: 100%;"><tbody><tr><td style="width: 4.47838%;">-b</td><td style="width: 95.5216%;">Devuelve TRUE si existe y se trata de un Block device o special block file</td></tr><tr><td style="width: 4.47838%;">-c</td><td style="width: 95.5216%;">Devuelve TRUE si exsite y se trata de un fichero de caracteres</td></tr><tr><td style="width: 4.47838%;">-d</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un directorio</td></tr><tr><td style="width: 4.47838%;">-f</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un fichero regular.</td></tr><tr><td style="width: 4.47838%;">-S</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un socket.</td></tr><tr><td style="width: 4.47838%;">-p</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un pipe</td></tr><tr><td style="width: 4.47838%;">-L</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un enlace simbólico</td></tr><tr><td style="width: 4.47838%;">-h</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un enlace simbólico</td></tr></tbody></table>
-
-<p>Permisos del descriptor:</p>
-<table style="border-collapse: collapse; width: 100%; height: 116px;"><tbody><tr style="height: 23px;"><td style="width: 5.73013%; height: 23px;">-u</td><td style="width: 148.224%; height: 23px;">Devuelve TRUE si existe y tiene el flag de set-user-id (suid) activo</td></tr><tr style="height: 23px;"><td style="width: 5.73013%; height: 23px;">-g</td><td style="width: 148.224%; height: 23px;">Devuelve TRUE si existe y tiene el flag de set-group-id (sgid) activo</td></tr><tr style="height: 23px;"><td style="width: 5.73013%; height: 23px;">-k</td><td style="width: 148.224%; height: 23px;">Devuelve TRUE si existe y activo el flag de sticky bit</td></tr><tr style="height: 24px;"><td style="width: 5.73013%; height: 22px;">-w</td><td style="width: 148.224%; height: 22px;">Devuelve TRUE si existe y es escribible</td></tr><tr style="height: 24px;"><td style="width: 5.73013%; height: 24px;">-x</td><td style="width: 148.224%; height: 24px;">Devuelve TRUE si existe y es ejecutable</td></tr><tr style="height: 24px;"><td style="width: 5.73013%; height: 24px;">-r</td><td style="width: 148.224%; height: 24px;">Devuelve TRUE si existe y es leible</td></tr></tbody></table>
-
-<p>Otros acerca del descriptor:</p>
-<table style="border-collapse: collapse; width: 100%;"><tbody><tr><td>-s</td><td>Devuelve TRUE si existe y tienen tamaño distinto de 0</td></tr><tr><td>-G</td><td>Devuelve TRUE si existe y el descriptor tiene el mismo grupo que el usuario que ejecuta el comando</td></tr><tr><td>-O</td><td>Devuelve TRUE si exsite y el descriptor tiene el mismo propietario que el usuario que ejecuta el comando</td></tr></tbody></table>
+<p>Vamos a recuperar un poco la esencia del blog, y hoy os traigo <strong>una nueva prueba de concepto</strong>.</p>
+<p>Me ha sucedido en múltiples ocasiones, el cliente quiere <strong>un proyecto en su mínima expresión</strong>, instalar máquinas, instalar productos, echarlo todo a correr y luego un soporte mínimo o incluso ningún soporte. Esto funciona bien hasta <strong>el día que se rompe todo o una parte y piden explicaciones</strong>.</p>
+<p>Aquí han sido <strong>miles las horas que siempre he perdido</strong>, revisión de logs, cruzar estos con otras máquinas para ver si esto afecta a aquello, puntos de fallo, puntos de mejora, responder a preguntas tipo "<em>y esto por qué no lo hemos visto antes?</em>" y así podría estar horas.</p>
+<p>Con la llegada de las "nubes" esto iba a estar chupado, despliego en AWS la infraestructura y activo CloudWatch, ya está, <strong>tengo métricas y tengo alarmas</strong>.</p>
+<p>Pues no, porque el cliente no siempre quiere pagarlo, o tengo clientes en distintas nubes, cada uno con sus métricas y sus servicios de monitorización y/o alarmado, así que empieza el caos.</p>
+<p>La solución que adopté fue emplear <strong>un colector único de métricas para todas las máquinas</strong>, <a href="https://collectd.org/">CollectD</a>, que nos permite recoger aquellos <strong>parámetros básicos del servidor</strong> esté donde esté desplegado, o datos algo <strong>más avanzados</strong> por configuración de <strong>plugins</strong> (bases de datos, estados de JVMs, etc) o incluso algunos <strong>datos realmente personalizados</strong> que no solo nos enviarán métricas si no que podrán incluso ejecutar operaciones más complejas para solventar problemas a la vez que notifica (para esto.. la máquina es David <a href="https://twitter.com/Shefirot88">https://twitter.com/Shefirot88</a> a.k.a. el "<em>externo</em>")</p>
+<p>Todos estos datos se recogen en una <strong>base de datos de series</strong>, la elegida es <a href="https://www.influxdata.com/products/influxdb-overview/">InfluxDB</a>, la cual expone su puerto al mundo y que deberemos por tanto controlar con alguna solución de Firewall, Security Groups si es que estamos en AWS, etc.</p>
+<p>Y por último, <strong>para explotar esa información</strong> emplearemos <a href="https://grafana.com/grafana/">Grafana</a> y alguno de los muchos <a href="https://github.com/antoniohernan/deploy_monitor/blob/master/NOTES.txt">dashboards genéricos</a> que tiene por la comunidad hasta que nos hagamos los nuestros propios.</p>
+<p>La infraestructura sería algo así:</p>
+<p><img alt="" src="images/Deploy_Monitor.png" /></p>
+<p>El proceso de instalación es muy sencillo, <a href="https://github.com/antoniohernan/deploy_monitor/blob/master/README.md"><strong>como explico en mi git</strong></a>, basta con tener el inventario bien informado y la conectividad resuelta para poder ejecutar el playbook de instalación.</p>
+<p>Esta POC está viva y no descarto que <strong>un día consiga tiempo libre</strong> como para poder acometer todo lo <a href="https://github.com/antoniohernan/deploy_monitor/blob/master/TODO.txt">pendiente</a>.</p>
+<p>Y os preguntaréis por <strong>donde están las alarmas</strong>, pues sencillo, en <strong>Grafana</strong>, en la configuración de canales de notificación. Este canal para notificar usando Telegram es uno de los que más me gusta y mejor funciona, llegando incluso a adjuntar en el mensaje una captura del estado del panel que ha generado la alarma, realmente bueno.</p>
+<p><img alt="Notificacion Telegram Grafana" src="images/Selección_189.png" /></p>
+<p>Y posteriormente, en cada panel, <strong>en la zona de Alarmas, podremos emplear este canal de notificación</strong> para que se generen las notificaciones según se disparen los eventos (por umbral de disco, cpu, memoria, métricas personalizadas, etc. ).</p>
+<p><img alt="" src="images/Selección_190.png" /></p>
+<p>En la parte inferior  hay dos valores un tanto peculiares.</p>
+<p>Se refieren a <strong>si se generaran alarmas cuando no se encuentren datos</strong> en la base de datos de series para este panel, o bien tenemos un timeout con la base de datos de métricas. Pueden ser muy útiles ya que una ausencia de datos puede significar algo importante, por ejemplo, un "hueco" en la recepción de datos de un punto de montaje en NFS nos puede indicar que el servicio de NFS se ha podido caer.. y así con muchas más cosas. Aunque también es verdad que la mayoría de las alarmas que se generen por esta falta de datos serán, casi en su totalidad, falsos positivos ocasionados por la perdida de conexión entre Grafana e InfluxDB.</p>
+<p>Y con esto ya está, rápido, sencillo y eficaz; Multicloud y multicliente, el que no lo tiene todo monitorizado es por que no quiera.</p>
 
 
 

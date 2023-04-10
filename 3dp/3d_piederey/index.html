@@ -10,20 +10,16 @@
       
       
       
-        <link rel="canonical" href="https://pruebadeconcepto.es/tips/tip_ficheroexiste/">
+        <link rel="canonical" href="https://pruebadeconcepto.es/3dp/3d_piederey/">
       
       
-        <link rel="prev" href="../tip_journal/">
-      
-      
-        <link rel="next" href="../../rpi/rpi_intro/">
       
       <link rel="icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
     
     
       
-        <title>Chuleta 06 - ¿El fichero existe? - Prueba de Concepto</title>
+        <title>Uso del calibre o pie de rey - Prueba de Concepto</title>
       
     
     
@@ -104,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chuleta 06 - ¿El fichero existe?
+              Uso del calibre o pie de rey
             
           </span>
         </div>
@@ -246,15 +242,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../tip_sumaconawk/" class="md-tabs__link md-tabs__link--active">
+      <a href="../../tips/tip_sumaconawk/" class="md-tabs__link">
         Chuletas
       </a>
     </li>
@@ -610,16 +604,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
       
       
       
@@ -628,7 +620,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           Chuletas
@@ -641,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_sumaconawk/" class="md-nav__link">
+      <a href="../../tips/tip_sumaconawk/" class="md-nav__link">
         Chuleta 00 Sumar con AWK
       </a>
     </li>
@@ -655,7 +647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_utilesansible/" class="md-nav__link">
+      <a href="../../tips/tip_utilesansible/" class="md-nav__link">
         Chuleta 01 Comandos útiles con ansible
       </a>
     </li>
@@ -669,7 +661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_rescatadored/" class="md-nav__link">
+      <a href="../../tips/tip_rescatadored/" class="md-nav__link">
         Chuleta 02 Rescantando de la red
       </a>
     </li>
@@ -683,7 +675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_vaciandoonenote/" class="md-nav__link">
+      <a href="../../tips/tip_vaciandoonenote/" class="md-nav__link">
         Chuleta 03 Vaciando OneNote
       </a>
     </li>
@@ -697,7 +689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_segundoplano/" class="md-nav__link">
+      <a href="../../tips/tip_segundoplano/" class="md-nav__link">
         Chuleta 04 Trabajando con el segundo plano
       </a>
     </li>
@@ -711,7 +703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_journal/" class="md-nav__link">
+      <a href="../../tips/tip_journal/" class="md-nav__link">
         Chuleta 05 Journal
       </a>
     </li>
@@ -723,19 +715,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../tips/tip_ficheroexiste/" class="md-nav__link">
         Chuleta 06 ¿El fichero existe?
       </a>
-      
     </li>
   
 
@@ -1114,39 +1098,22 @@
                   
 
 
-  <h1>Chuleta 06 ¿El fichero existe?</h1>
+  <h1>Uso del calibre o pie de rey</h1>
 
-<p>Cuando empiezas a tirar código Shell con cierta soltura empiezas a meter validaciones digamos que básicas, ¿existe el fichero de configuración de este proceso?, ¿y la ruta del fichero de log que voy a grabar?, ¿el fichero de datos a procesar existe? ¿lo puedo leer? ¿y además tiene datos o está vacio?</p>
-<p>A todas estas preguntas y a bastantes más podemos dar respuesta con un simple <strong>IF</strong> y la correspondiente <strong>evaluación del fichero/directorio</strong>.</p>
-<p>Utilizaremos la expresión de test, la cual podemos expresar con estas  tres sintaxis:</p>
-<p>test EXPRESION</p>
-<p>[ EXPRESION ] </p>
-<p>[[ EXPRESION ]]</p>
-<p>Por cuestiones de portabilidad, si quieres que el script que vas a hacer sea utilizable en el mayor número de sistemas posible, te recomiendo que uses la sintaxis de "test" pues parece estar disponible en todas las shelll basada en norma <a href="https://es.wikipedia.org/wiki/POSIX">POSIX</a>.</p>
-<p>La primera comprobación, la más básica que podemos hacer es comprobar si el elemento existe, sea un fichero, un directorio o un enlace, para essto emplearemos la opción <strong>-e</strong>
-<div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ if test -e &quot;$FIC&quot;; then echo &quot;$FIC existe&quot;; fi
-/tmp/pp existe
-</code></pre></div>
-Si queremos afinar un poco más y preguntar si además de existir, sí se trata de un fichero, empleraremos la opción <strong>-f</strong>
-<div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ if test -f &quot;$FIC&quot;; then echo &quot;$FIC existe y es un fichero regular&quot;; fi
-/tmp/pp existe y es un fichero regular
-</code></pre></div>
-Utilizando los otros formataos de expresar el "test", serían algo así como esto que os pongo a continuación, donde se ejecuta la parte a la derecha de los <code>&amp;&amp;</code> cuando el resultado de la evaluación del test es verdadero, o a la derecha de los <code>||</code> cuando la evaluación del test es falso.
-<div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ \[\[ -f $FIC \]\] &amp;&amp; echo &quot;$FIC existe y es un fichero regular&quot; || echo &quot;$FIC no existe o no es un fichero regular&quot;
-/tmp/pp existe y es un fichero regular
-</code></pre></div>
-Como veis, la potencia del comando reside en el parámetro que utilicemos. A continuación os enumero bastantes de sus opciones, no todas, pero si las que me parecen más útiles:</p>
-<p>Tipo del descriptor:</p>
-<table style="border-collapse: collapse; width: 100%;"><tbody><tr><td style="width: 4.47838%;">-b</td><td style="width: 95.5216%;">Devuelve TRUE si existe y se trata de un Block device o special block file</td></tr><tr><td style="width: 4.47838%;">-c</td><td style="width: 95.5216%;">Devuelve TRUE si exsite y se trata de un fichero de caracteres</td></tr><tr><td style="width: 4.47838%;">-d</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un directorio</td></tr><tr><td style="width: 4.47838%;">-f</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un fichero regular.</td></tr><tr><td style="width: 4.47838%;">-S</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un socket.</td></tr><tr><td style="width: 4.47838%;">-p</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un pipe</td></tr><tr><td style="width: 4.47838%;">-L</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un enlace simbólico</td></tr><tr><td style="width: 4.47838%;">-h</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un enlace simbólico</td></tr></tbody></table>
-
-<p>Permisos del descriptor:</p>
-<table style="border-collapse: collapse; width: 100%; height: 116px;"><tbody><tr style="height: 23px;"><td style="width: 5.73013%; height: 23px;">-u</td><td style="width: 148.224%; height: 23px;">Devuelve TRUE si existe y tiene el flag de set-user-id (suid) activo</td></tr><tr style="height: 23px;"><td style="width: 5.73013%; height: 23px;">-g</td><td style="width: 148.224%; height: 23px;">Devuelve TRUE si existe y tiene el flag de set-group-id (sgid) activo</td></tr><tr style="height: 23px;"><td style="width: 5.73013%; height: 23px;">-k</td><td style="width: 148.224%; height: 23px;">Devuelve TRUE si existe y activo el flag de sticky bit</td></tr><tr style="height: 24px;"><td style="width: 5.73013%; height: 22px;">-w</td><td style="width: 148.224%; height: 22px;">Devuelve TRUE si existe y es escribible</td></tr><tr style="height: 24px;"><td style="width: 5.73013%; height: 24px;">-x</td><td style="width: 148.224%; height: 24px;">Devuelve TRUE si existe y es ejecutable</td></tr><tr style="height: 24px;"><td style="width: 5.73013%; height: 24px;">-r</td><td style="width: 148.224%; height: 24px;">Devuelve TRUE si existe y es leible</td></tr></tbody></table>
-
-<p>Otros acerca del descriptor:</p>
-<table style="border-collapse: collapse; width: 100%;"><tbody><tr><td>-s</td><td>Devuelve TRUE si existe y tienen tamaño distinto de 0</td></tr><tr><td>-G</td><td>Devuelve TRUE si existe y el descriptor tiene el mismo grupo que el usuario que ejecuta el comando</td></tr><tr><td>-O</td><td>Devuelve TRUE si exsite y el descriptor tiene el mismo propietario que el usuario que ejecuta el comando</td></tr></tbody></table>
+<p>Desde que <a href="https://pruebadeconcepto.es/impresora-3d-anet-et4-pro/">tenemos la impresora 3D</a> le estoy volviendo a dar un buen uso a esta herramienta, que de otra manera estaba olvidada en el fondo de un cajón para medir tan solo de manera ocasional el grosor de un tornillo o poco más.</p>
+<p>Fue durante mi etapa de Bachillerato cuando en segundo curso nos enseñaron a usarlos, recuerdo que era en una asignatura llamada "Técnicas de campo", que no tenía que ver con el campo al aire libre, salvo por un trabajo de botánica... Hacíamos bastantes cosas en laboratorio, extraer el alcohol del vino calentándolo y usando un tubo de enfriamiento, reacciones exotérmicas con peróxido de hidrógeno y yoduro potásico (agua oxigenada y Betadine), que hacían un montón de espuma. Cosas que a día de hoy serían impensables... las nuevas generaciones que son tan delicadas...</p>
+<p>Un día nos enseñaron a usar el calibre, era algo que ya había visto en casa, pero ni idea de cómo funcionaban ni la asombrosa precisión que algo sin pilas podía llegar a tener, así como su versatilidad.</p>
+<p>El calibre tiene una precisión de 1/50mm (dependiendo de la graduación su Nonio (ahora os explico que es).</p>
+<p>Sobre este gráfico (fuente wikipedia, que es el dibujo más claro que he encontrado) os indico sus componentes:</p>
+<p><img alt="" src="images/Figura6_large.png" /></p>
+<p><strong>1.</strong> Palpadores de exteriores  (nos permite tomar medidas exteriores al objeto) <strong>2.</strong> Palpadores de interiores (nos permite tomar medidas interiores del objeto) <strong>3.</strong> Sonda de profundidad (nos permite tomar medida de la profundidad) <strong>4</strong> y <strong>5</strong>. Regla graduada (en mm y en pulgadas) <strong>6</strong> y <strong>7</strong>. Nonio o vernier (en mm y en pulgadas) <strong>8</strong>. Botón de desplazamiento (si no presionamos no se moverá y nos permite "bloquear" la lectura)</p>
+<p>Por lo general encontraremos calibres de <strong>apreciación</strong> 0.05mm y 0.02mm, cualquier de los dos para estas finalidades nos vendrán bien. Con uno de 0.02mm encontraremos que las franjas del Nonio no son exactas de 1mm, si no que son de 0.98mm, por tanto podermos tomar medidas de 0.02 mm en 0.02mm</p>
+<p>Los pasos para usar un calibre son sencillos, tomamos la medida según mejor nos convenga, palpadores externos, internor o profundida y luego miramos las marcas de Nonio.</p>
+<p>Por ejemplo, dada esta medida:</p>
+<p><img alt="" src="images/Calibre_005-1024x351.jpg" /></p>
+<p>Buscamos el 0, veos que está entre las marcas de la regla fija, entre la marca de 21 y 22 mm, por tanto tendremos una medida de <strong>21mm</strong> más algo más. Ahora miramos las marcas del Nonio y buscamos la que mejor coincide con las de la regla (aquí es donde encontraremos diferencias entre un calibre de 0.02 y otro de 0.05 pues en el primero tendremos muchas más marcas), en este caso es la de 8,5, por tanto serán <strong>0.85 mm</strong>. Por tanto la medida que hemos tomado es de <strong>21.85mm</strong></p>
+<p>Para saber si tenemos una medida "redonda" en mm, por ejemplo, 21mm, debemos ver en las marcas del Nonio que la marca del 0 y la marca del 10 ambas coinciden en sus marcas de la regla fija.</p>
+<p>Y esto es todo, un instrumento sencillo, sin pilas, con mucha precisión que os acompañará toda la vida, así que comprad uno de calidad (la marca japonesa Mitutoyo hace unos estupendos), que con la impresora 3D os aseguro que lo vais a usar y mucho!!.</p>
 
 
 

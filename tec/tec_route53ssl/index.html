@@ -10,20 +10,16 @@
       
       
       
-        <link rel="canonical" href="https://pruebadeconcepto.es/tips/tip_ficheroexiste/">
+        <link rel="canonical" href="https://pruebadeconcepto.es/tec/tec_route53ssl/">
       
       
-        <link rel="prev" href="../tip_journal/">
-      
-      
-        <link rel="next" href="../../rpi/rpi_intro/">
       
       <link rel="icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
     
     
       
-        <title>Chuleta 06 - ¿El fichero existe? - Prueba de Concepto</title>
+        <title>AWS Route53 como DNS dinámico y Certificado SSL LetsEncrypt - Prueba de Concepto</title>
       
     
     
@@ -104,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chuleta 06 - ¿El fichero existe?
+              AWS Route53 como DNS dinámico y Certificado SSL LetsEncrypt
             
           </span>
         </div>
@@ -236,7 +232,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../tec/tec_actionsec2/" class="md-tabs__link">
+      <a href="../tec_actionsec2/" class="md-tabs__link">
         Tecnología
       </a>
     </li>
@@ -246,15 +242,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../tip_sumaconawk/" class="md-tabs__link md-tabs__link--active">
+      <a href="../../tips/tip_sumaconawk/" class="md-tabs__link">
         Chuletas
       </a>
     </li>
@@ -576,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tec/tec_actionsec2/" class="md-nav__link">
+      <a href="../tec_actionsec2/" class="md-nav__link">
         Envía ficheros desde Github a EC2 con actions
       </a>
     </li>
@@ -590,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tec/tec_comoestamontado/" class="md-nav__link">
+      <a href="../tec_comoestamontado/" class="md-nav__link">
         ¿Cómo está montado este blog?
       </a>
     </li>
@@ -610,16 +604,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
       
       
       
@@ -628,7 +620,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           Chuletas
@@ -641,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_sumaconawk/" class="md-nav__link">
+      <a href="../../tips/tip_sumaconawk/" class="md-nav__link">
         Chuleta 00 Sumar con AWK
       </a>
     </li>
@@ -655,7 +647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_utilesansible/" class="md-nav__link">
+      <a href="../../tips/tip_utilesansible/" class="md-nav__link">
         Chuleta 01 Comandos útiles con ansible
       </a>
     </li>
@@ -669,7 +661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_rescatadored/" class="md-nav__link">
+      <a href="../../tips/tip_rescatadored/" class="md-nav__link">
         Chuleta 02 Rescantando de la red
       </a>
     </li>
@@ -683,7 +675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_vaciandoonenote/" class="md-nav__link">
+      <a href="../../tips/tip_vaciandoonenote/" class="md-nav__link">
         Chuleta 03 Vaciando OneNote
       </a>
     </li>
@@ -697,7 +689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_segundoplano/" class="md-nav__link">
+      <a href="../../tips/tip_segundoplano/" class="md-nav__link">
         Chuleta 04 Trabajando con el segundo plano
       </a>
     </li>
@@ -711,7 +703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_journal/" class="md-nav__link">
+      <a href="../../tips/tip_journal/" class="md-nav__link">
         Chuleta 05 Journal
       </a>
     </li>
@@ -723,19 +715,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../tips/tip_ficheroexiste/" class="md-nav__link">
         Chuleta 06 ¿El fichero existe?
       </a>
-      
     </li>
   
 
@@ -1114,39 +1098,58 @@
                   
 
 
-  <h1>Chuleta 06 ¿El fichero existe?</h1>
+  <h1>AWS Route53 como DNS dinámico y Certificado SSL LetsEncrypt</h1>
 
-<p>Cuando empiezas a tirar código Shell con cierta soltura empiezas a meter validaciones digamos que básicas, ¿existe el fichero de configuración de este proceso?, ¿y la ruta del fichero de log que voy a grabar?, ¿el fichero de datos a procesar existe? ¿lo puedo leer? ¿y además tiene datos o está vacio?</p>
-<p>A todas estas preguntas y a bastantes más podemos dar respuesta con un simple <strong>IF</strong> y la correspondiente <strong>evaluación del fichero/directorio</strong>.</p>
-<p>Utilizaremos la expresión de test, la cual podemos expresar con estas  tres sintaxis:</p>
-<p>test EXPRESION</p>
-<p>[ EXPRESION ] </p>
-<p>[[ EXPRESION ]]</p>
-<p>Por cuestiones de portabilidad, si quieres que el script que vas a hacer sea utilizable en el mayor número de sistemas posible, te recomiendo que uses la sintaxis de "test" pues parece estar disponible en todas las shelll basada en norma <a href="https://es.wikipedia.org/wiki/POSIX">POSIX</a>.</p>
-<p>La primera comprobación, la más básica que podemos hacer es comprobar si el elemento existe, sea un fichero, un directorio o un enlace, para essto emplearemos la opción <strong>-e</strong>
-<div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ if test -e &quot;$FIC&quot;; then echo &quot;$FIC existe&quot;; fi
-/tmp/pp existe
-</code></pre></div>
-Si queremos afinar un poco más y preguntar si además de existir, sí se trata de un fichero, empleraremos la opción <strong>-f</strong>
-<div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ if test -f &quot;$FIC&quot;; then echo &quot;$FIC existe y es un fichero regular&quot;; fi
-/tmp/pp existe y es un fichero regular
-</code></pre></div>
-Utilizando los otros formataos de expresar el "test", serían algo así como esto que os pongo a continuación, donde se ejecuta la parte a la derecha de los <code>&amp;&amp;</code> cuando el resultado de la evaluación del test es verdadero, o a la derecha de los <code>||</code> cuando la evaluación del test es falso.
-<div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ \[\[ -f $FIC \]\] &amp;&amp; echo &quot;$FIC existe y es un fichero regular&quot; || echo &quot;$FIC no existe o no es un fichero regular&quot;
-/tmp/pp existe y es un fichero regular
-</code></pre></div>
-Como veis, la potencia del comando reside en el parámetro que utilicemos. A continuación os enumero bastantes de sus opciones, no todas, pero si las que me parecen más útiles:</p>
-<p>Tipo del descriptor:</p>
-<table style="border-collapse: collapse; width: 100%;"><tbody><tr><td style="width: 4.47838%;">-b</td><td style="width: 95.5216%;">Devuelve TRUE si existe y se trata de un Block device o special block file</td></tr><tr><td style="width: 4.47838%;">-c</td><td style="width: 95.5216%;">Devuelve TRUE si exsite y se trata de un fichero de caracteres</td></tr><tr><td style="width: 4.47838%;">-d</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un directorio</td></tr><tr><td style="width: 4.47838%;">-f</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un fichero regular.</td></tr><tr><td style="width: 4.47838%;">-S</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un socket.</td></tr><tr><td style="width: 4.47838%;">-p</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un pipe</td></tr><tr><td style="width: 4.47838%;">-L</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un enlace simbólico</td></tr><tr><td style="width: 4.47838%;">-h</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un enlace simbólico</td></tr></tbody></table>
-
-<p>Permisos del descriptor:</p>
-<table style="border-collapse: collapse; width: 100%; height: 116px;"><tbody><tr style="height: 23px;"><td style="width: 5.73013%; height: 23px;">-u</td><td style="width: 148.224%; height: 23px;">Devuelve TRUE si existe y tiene el flag de set-user-id (suid) activo</td></tr><tr style="height: 23px;"><td style="width: 5.73013%; height: 23px;">-g</td><td style="width: 148.224%; height: 23px;">Devuelve TRUE si existe y tiene el flag de set-group-id (sgid) activo</td></tr><tr style="height: 23px;"><td style="width: 5.73013%; height: 23px;">-k</td><td style="width: 148.224%; height: 23px;">Devuelve TRUE si existe y activo el flag de sticky bit</td></tr><tr style="height: 24px;"><td style="width: 5.73013%; height: 22px;">-w</td><td style="width: 148.224%; height: 22px;">Devuelve TRUE si existe y es escribible</td></tr><tr style="height: 24px;"><td style="width: 5.73013%; height: 24px;">-x</td><td style="width: 148.224%; height: 24px;">Devuelve TRUE si existe y es ejecutable</td></tr><tr style="height: 24px;"><td style="width: 5.73013%; height: 24px;">-r</td><td style="width: 148.224%; height: 24px;">Devuelve TRUE si existe y es leible</td></tr></tbody></table>
-
-<p>Otros acerca del descriptor:</p>
-<table style="border-collapse: collapse; width: 100%;"><tbody><tr><td>-s</td><td>Devuelve TRUE si existe y tienen tamaño distinto de 0</td></tr><tr><td>-G</td><td>Devuelve TRUE si existe y el descriptor tiene el mismo grupo que el usuario que ejecuta el comando</td></tr><tr><td>-O</td><td>Devuelve TRUE si exsite y el descriptor tiene el mismo propietario que el usuario que ejecuta el comando</td></tr></tbody></table>
+<p>En la <a href="http://pruebadeconcepto.es/?p=140">segunda entrega</a> de como montar tu servidor web en AWS por 0€ os mostraba como tener un dominio gratuito que atendiese a los cambios de IP de nuestro servidor.</p>
+<p>Ahora os voy a enseñar una forma un poco más refinada utilizando el <a href="https://aws.amazon.com/es/route53/">servicio Route 53 de AWS</a>, que por desgracia <strong>no forma parte de la free tier.</strong>..</p>
+<p>En mi empresa tenemos una cuenta AWS, digamos que para usos múltiples... es la cuenta de cacharreo y de la que han salido unas cuantas pruebas de concepto que a día de hoy podemos decir que son productos vendibles (estos con el tiempo los iré desgranando por aquí).</p>
+<p>Hace tiempo que me cansé de pedir registros DNS internos y creé una <strong>zona hospedada en Route53</strong>, con esto consigue tener el <strong>control completo de tu "subdominio" en tu empresa</strong> sin pasar por el staff de sistemas.</p>
+<p>Lo único que necesitarás de ellos es que hagan la <strong>delegación de la zona en el DNS,</strong> y a partir de ese momento todos lo hosts que deis de alta en vuestra zona hospedada será automáticamente de vuestra empresa.</p>
+<p>Para la delegación de DNS <strong>tan sólo deben apuntar a los NS que Route 53</strong> asigna a la zona para el subdominio que hemos creado, y tardará en función del tiempo de refresco de los DNS.</p>
+<p>Dicho y hecho entonces, tenemos nuestra zona hospedada y nuestra delegación de DNS, y ahora vamos a crear una <strong>máquina nueva</strong>, la cual <strong>se va a presentar a nuestro Route53</strong> con su ip pública para generar la entrada si no existe o actualizarla si existe.</p>
+<p>Con esto <strong>nos ahorramos Elastic IP,</strong> el tener que estar recordando las Elastic IP que se han quedado sin asignar o por máquina apagada (que cuestan dinero) y <strong>ganamos en la gestión de estancias efímeras como sería la creación de instancias Spot</strong>, que con este método podemos tener con mucho más control.</p>
+<p>Al lío, lo <strong>primero es obtener el identificador de nuestra zona</strong> (porque podemos tener más de una:</p>
+<p>ubuntu@ip-172-18-10-38:~$ aws route53 list-hosted-zones-by-name | jq --arg name "manoloybenito.es."  -r '.HostedZones | .[] | select(.Name=="\($name)") | .Id'
+/hostedzone/Z2NYXJXXXXQOLJSF</p>
+<p>En <strong>segundo lugar vamos a obtener la IP pública</strong> del servidor que se va a presentar al Route53, para esto empleamos una consulta con Curl al propio servidor, todas las instancias EC2 tienen esto:</p>
+<p>ubuntu@ip-172-18-10-38:~$ curl http://169.254.169.254/latest/meta-data/public-ipv4
+52.214.3.X3</p>
+<p>En <strong>tercer lugar, tenemos que modificar el valor de esta IP en la plantilla .json</strong> que tenemos para nuestra zona, esto lo podemos hacer en línea de comando con sed, aunque más abajo podréis encontrar un enlace a mi gthub con todo el script.</p>
+<p>La <strong>plantilla sería</strong> esta:</p>
+<p>{
+            "Comment": "CREATE/DELETE/UPSERT a record ",
+            "Changes": [{
+            "Action": "CREATE",
+                        "ResourceRecordSet": {
+                                    "Name": "NOMBREHOST.manoloybenito.es",
+                                    "Type": "A",
+                                    "TTL": 300,
+                                 "ResourceRecords": [{ "Value": "IP_PUBLICA"}]
+}}]
+}</p>
+<p>Con la IP cambiada en esta plantilla, y el nombre del servidor sólo nos queda invocar el método de creación/cambio en nuestra zona de Route 53</p>
+<p>aws route53 change-resource-record-sets --hosted-zone-id /hostedzone/Z2NYXJXXXXJSF --change-batch file://plantilla.json</p>
+<p>A los pocos segundos / minutos <strong>tendremos resolución del nombre</strong>.</p>
+<p>En <a href="https://github.com/antoniohernan/route53ssl">mi github</a> tenéis la plantilla y el script completo.</p>
+<p><strong>Segunda parte</strong>, ya que tenemos el control absoluto de nuestro DNS <strong>vamos a generar los certificados SSL</strong> de <a href="https://letsencrypt.org/">LetsEncrypt</a> aprovechándonos del <a href="https://certbot-dns-route53.readthedocs.io/en/stable/">plugin para route53</a>.</p>
+<p><strong>Instalamos CertBot asi como el plugin</strong> que se instala con pip:</p>
+<p>$ sudo apt update
+$ sudo apt install software-properties-common
+$ sudo apt-add-repository ppa:certbot/certbot
+$ sudo apt update
+$ sudo apt install certbot</p>
+<p>$ sudo apt install python3-pip
+$ sudo pip3 install certbot-dns-route53</p>
+<p>Para generar y descargar el certificado, la línea de comando sería similar a esta:</p>
+<p>certbot certonly -d NOMBREHOST.manoloybenito.es --dns-route53 \
+--logs-dir /home/ubuntu/letsencrypt/log/ --config-dir /home/ubuntu/letsencrypt/config/ \
+--work-dir /home/ubuntu/letsencrypt/work/ -m toor@manoloybenito.es \
+--agree-tos --non-interactive --server https://acme-v02.api.letsencrypt.org/directory</p>
+<p>Para las renovaciones de los certificados, la línea de comando sería esta:</p>
+<p>certbot renew --dns-route53 --logs-dir /home/ubuntu/letsencrypt/log/ --config-dir /home/ubuntu/letsencrypt/config/ \
+--work-dir /home/ubuntu/letsencrypt/work/ --non-interactive \
+--server https://acme-v02.api.letsencrypt.org/directory</p>
+<p>Espero os sea de utilidad.</p>
 
 
 

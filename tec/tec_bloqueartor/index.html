@@ -10,20 +10,16 @@
       
       
       
-        <link rel="canonical" href="https://pruebadeconcepto.es/tips/tip_ficheroexiste/">
+        <link rel="canonical" href="https://pruebadeconcepto.es/tec/tec_bloqueartor/">
       
       
-        <link rel="prev" href="../tip_journal/">
-      
-      
-        <link rel="next" href="../../rpi/rpi_intro/">
       
       <link rel="icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
     
     
       
-        <title>Chuleta 06 - ¿El fichero existe? - Prueba de Concepto</title>
+        <title>Bloquear red TOR en nuestro Apache y otras medida preventivas. - Prueba de Concepto</title>
       
     
     
@@ -104,7 +100,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Chuleta 06 - ¿El fichero existe?
+              Bloquear red TOR en nuestro Apache y otras medida preventivas.
             
           </span>
         </div>
@@ -236,7 +232,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../tec/tec_actionsec2/" class="md-tabs__link">
+      <a href="../tec_actionsec2/" class="md-tabs__link">
         Tecnología
       </a>
     </li>
@@ -246,15 +242,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../tip_sumaconawk/" class="md-tabs__link md-tabs__link--active">
+      <a href="../../tips/tip_sumaconawk/" class="md-tabs__link">
         Chuletas
       </a>
     </li>
@@ -576,7 +570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tec/tec_actionsec2/" class="md-nav__link">
+      <a href="../tec_actionsec2/" class="md-nav__link">
         Envía ficheros desde Github a EC2 con actions
       </a>
     </li>
@@ -590,7 +584,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../tec/tec_comoestamontado/" class="md-nav__link">
+      <a href="../tec_comoestamontado/" class="md-nav__link">
         ¿Cómo está montado este blog?
       </a>
     </li>
@@ -610,16 +604,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
       
       
       
@@ -628,7 +620,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           Chuletas
@@ -641,7 +633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_sumaconawk/" class="md-nav__link">
+      <a href="../../tips/tip_sumaconawk/" class="md-nav__link">
         Chuleta 00 Sumar con AWK
       </a>
     </li>
@@ -655,7 +647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_utilesansible/" class="md-nav__link">
+      <a href="../../tips/tip_utilesansible/" class="md-nav__link">
         Chuleta 01 Comandos útiles con ansible
       </a>
     </li>
@@ -669,7 +661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_rescatadored/" class="md-nav__link">
+      <a href="../../tips/tip_rescatadored/" class="md-nav__link">
         Chuleta 02 Rescantando de la red
       </a>
     </li>
@@ -683,7 +675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_vaciandoonenote/" class="md-nav__link">
+      <a href="../../tips/tip_vaciandoonenote/" class="md-nav__link">
         Chuleta 03 Vaciando OneNote
       </a>
     </li>
@@ -697,7 +689,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_segundoplano/" class="md-nav__link">
+      <a href="../../tips/tip_segundoplano/" class="md-nav__link">
         Chuleta 04 Trabajando con el segundo plano
       </a>
     </li>
@@ -711,7 +703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tip_journal/" class="md-nav__link">
+      <a href="../../tips/tip_journal/" class="md-nav__link">
         Chuleta 05 Journal
       </a>
     </li>
@@ -723,19 +715,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../tips/tip_ficheroexiste/" class="md-nav__link">
         Chuleta 06 ¿El fichero existe?
       </a>
-      
     </li>
   
 
@@ -1114,39 +1098,101 @@
                   
 
 
-  <h1>Chuleta 06 ¿El fichero existe?</h1>
+  <h1>Bloquear red TOR en nuestro Apache y otras medida preventivas.</h1>
 
-<p>Cuando empiezas a tirar código Shell con cierta soltura empiezas a meter validaciones digamos que básicas, ¿existe el fichero de configuración de este proceso?, ¿y la ruta del fichero de log que voy a grabar?, ¿el fichero de datos a procesar existe? ¿lo puedo leer? ¿y además tiene datos o está vacio?</p>
-<p>A todas estas preguntas y a bastantes más podemos dar respuesta con un simple <strong>IF</strong> y la correspondiente <strong>evaluación del fichero/directorio</strong>.</p>
-<p>Utilizaremos la expresión de test, la cual podemos expresar con estas  tres sintaxis:</p>
-<p>test EXPRESION</p>
-<p>[ EXPRESION ] </p>
-<p>[[ EXPRESION ]]</p>
-<p>Por cuestiones de portabilidad, si quieres que el script que vas a hacer sea utilizable en el mayor número de sistemas posible, te recomiendo que uses la sintaxis de "test" pues parece estar disponible en todas las shelll basada en norma <a href="https://es.wikipedia.org/wiki/POSIX">POSIX</a>.</p>
-<p>La primera comprobación, la más básica que podemos hacer es comprobar si el elemento existe, sea un fichero, un directorio o un enlace, para essto emplearemos la opción <strong>-e</strong>
-<div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ if test -e &quot;$FIC&quot;; then echo &quot;$FIC existe&quot;; fi
-/tmp/pp existe
-</code></pre></div>
-Si queremos afinar un poco más y preguntar si además de existir, sí se trata de un fichero, empleraremos la opción <strong>-f</strong>
-<div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ if test -f &quot;$FIC&quot;; then echo &quot;$FIC existe y es un fichero regular&quot;; fi
-/tmp/pp existe y es un fichero regular
-</code></pre></div>
-Utilizando los otros formataos de expresar el "test", serían algo así como esto que os pongo a continuación, donde se ejecuta la parte a la derecha de los <code>&amp;&amp;</code> cuando el resultado de la evaluación del test es verdadero, o a la derecha de los <code>||</code> cuando la evaluación del test es falso.
-<div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ \[\[ -f $FIC \]\] &amp;&amp; echo &quot;$FIC existe y es un fichero regular&quot; || echo &quot;$FIC no existe o no es un fichero regular&quot;
-/tmp/pp existe y es un fichero regular
-</code></pre></div>
-Como veis, la potencia del comando reside en el parámetro que utilicemos. A continuación os enumero bastantes de sus opciones, no todas, pero si las que me parecen más útiles:</p>
-<p>Tipo del descriptor:</p>
-<table style="border-collapse: collapse; width: 100%;"><tbody><tr><td style="width: 4.47838%;">-b</td><td style="width: 95.5216%;">Devuelve TRUE si existe y se trata de un Block device o special block file</td></tr><tr><td style="width: 4.47838%;">-c</td><td style="width: 95.5216%;">Devuelve TRUE si exsite y se trata de un fichero de caracteres</td></tr><tr><td style="width: 4.47838%;">-d</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un directorio</td></tr><tr><td style="width: 4.47838%;">-f</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un fichero regular.</td></tr><tr><td style="width: 4.47838%;">-S</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un socket.</td></tr><tr><td style="width: 4.47838%;">-p</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un pipe</td></tr><tr><td style="width: 4.47838%;">-L</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un enlace simbólico</td></tr><tr><td style="width: 4.47838%;">-h</td><td style="width: 95.5216%;">Devuelve TRUE si existe y es un enlace simbólico</td></tr></tbody></table>
-
-<p>Permisos del descriptor:</p>
-<table style="border-collapse: collapse; width: 100%; height: 116px;"><tbody><tr style="height: 23px;"><td style="width: 5.73013%; height: 23px;">-u</td><td style="width: 148.224%; height: 23px;">Devuelve TRUE si existe y tiene el flag de set-user-id (suid) activo</td></tr><tr style="height: 23px;"><td style="width: 5.73013%; height: 23px;">-g</td><td style="width: 148.224%; height: 23px;">Devuelve TRUE si existe y tiene el flag de set-group-id (sgid) activo</td></tr><tr style="height: 23px;"><td style="width: 5.73013%; height: 23px;">-k</td><td style="width: 148.224%; height: 23px;">Devuelve TRUE si existe y activo el flag de sticky bit</td></tr><tr style="height: 24px;"><td style="width: 5.73013%; height: 22px;">-w</td><td style="width: 148.224%; height: 22px;">Devuelve TRUE si existe y es escribible</td></tr><tr style="height: 24px;"><td style="width: 5.73013%; height: 24px;">-x</td><td style="width: 148.224%; height: 24px;">Devuelve TRUE si existe y es ejecutable</td></tr><tr style="height: 24px;"><td style="width: 5.73013%; height: 24px;">-r</td><td style="width: 148.224%; height: 24px;">Devuelve TRUE si existe y es leible</td></tr></tbody></table>
-
-<p>Otros acerca del descriptor:</p>
-<table style="border-collapse: collapse; width: 100%;"><tbody><tr><td>-s</td><td>Devuelve TRUE si existe y tienen tamaño distinto de 0</td></tr><tr><td>-G</td><td>Devuelve TRUE si existe y el descriptor tiene el mismo grupo que el usuario que ejecuta el comando</td></tr><tr><td>-O</td><td>Devuelve TRUE si exsite y el descriptor tiene el mismo propietario que el usuario que ejecuta el comando</td></tr></tbody></table>
+<p>Consultando las <strong>estadísticas de este modesto site veo</strong> que el tráfico llega desde los lugares más <strong>insospechados</strong>, para un blog que está completamente en Castellano (Croacia, EEUU, Serbia, India, Bulgaria, China, Bangladesh.... y en 10ª posición España!!!)</p>
+<p>Obvio, <strong>el mundo está plagado de bots que andan buscando cualquier resquicio</strong> por el que poder obtener información más o menos sensible, poder vulnerar el site o simplemente romperlo.</p>
+<p>No había pensado en hacer ningún tipo de <strong>restricción en el servidor web</strong>, pero va a ser mejor tomar algunas medidas preventivas, e<strong>n el fondo esto es como ponerle el candado a tu moto</strong> o no, si se la quieren llevar se la van a llevar con el mejor candado del mundo, pero si al lado de la tuya hay otra que no tiene puesto nada, esa otra moto tiene más papeletas de que sea la que se lleven.</p>
+<p>Vamos por tanto a poner unos "candados" al site.</p>
+<p>Empezamos por <strong>cortar las peticiones que vengan desde la <a href="https://www.torproject.org/">red Tor</a></strong>. No es que tenga nada en contra de esta red y soy usuario habitual <strong>cuando quiero navegar bajo anonimato</strong>, pero también conozco todo lo que se puede llegar a hacer bajo ese anonimato y a este blog no le aporta nada, por tanto lo cerramos.</p>
+<p>Se deniega el servicio de páginas por configuración de Apache a las ips de este red, pero ¿<strong>cuales son esas Ips</strong>?, cambian constantemente. Hay varios sitios de donde podemos sacarlas, el que más me gusta es <strong>dan.me.uk</strong>, el único problema que podéis tener con <strong>este servicio es que no os va a dejar descargar el fichero más que una vez cada hora</strong> (media hora parecer ser que ahora lo han bajado), creo que suficiente.</p>
+<p>Descargamos el fichero programado con crontab sobre la ruta de configuración de apache, cada hora, construyendo el fichero de exclusión en la misma línea.</p>
+<p>@hourly wget -q https://www.dan.me.uk/torlist/ -O - | sed "s/^/Require not ip /g; 1i\<RequireAll\\>\nRequire all granted" | sed '$a\&lt;\/RequireAll\&gt;' &gt; /etc/apache2/tor-ip.txt</p>
+<p>Y realizamos la siguiente configuración sobre el virtual host de nuestro site:</p>
+<p><Directory /var/www/>
+ Options Indexes FollowSymLinks
+ AllowOverride None
+ Require all granted
+ Include /etc/apache2/tor-ip.txt
+</Directory></p>
+<p>Si todo funciona <strong>dejamos el crontab de descarga y procesado de la lista tor enlazado</strong> con el reinicio de Apache para que se tomen los cambios del listado de Ips</p>
+<p>@hourly wget -q https://www.dan.me.uk/torlist/ -O - | sed "s/^/Require not ip /g; 1i\<RequireAll\\>\nRequire all granted" | sed '$a\&lt;\/RequireAll\&gt;' &gt; /etc/apache2/tor-ip.txt; /usr/sbin/apachectl graceful</p>
+<p>Ahora vamos a <strong>restringir las peticiones a los Bots, los Bad Bots</strong>, seguimos los pasos del proyecto <a href="https://github.com/mitchellkrogza/apache-ultimate-bad-bot-blocker">bad bot blocker</a></p>
+<p>root@ip-172-31-22-120:~# sudo mkdir -p /etc/apache2/custom.d
+root@ip-172-31-22-120:~# sudo wget https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/Apache_2.4/custom.d/globalblacklist.conf -O /etc/apache2/custom.d/globalblacklist.conf
+--2019-06-05 12:08:20-- https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/Apache_2.4/custom.d/globalblacklist.conf
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.60.133
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.60.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 400140 (391K) [text/plain]
+Saving to: ‘/etc/apache2/custom.d/globalblacklist.conf’</p>
+<p>/etc/apache2/custom.d/globalblacklist.conf 100%[=====================================================================================================&gt;] 390.76K --.-KB/s in 0.05s</p>
+<p>2019-06-05 12:08:21 (7.72 MB/s) - ‘/etc/apache2/custom.d/globalblacklist.conf’ saved [400140/400140]</p>
+<p>Generamos nuestra configuración de <strong>lista blanca de ips y dominios</strong>:</p>
+<p>root@ip-172-31-22-120:~# sudo wget https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/Apache_2.4/custom.d/whitelist-ips.conf -O /etc/apache2/custom.d/whitelist-ips.conf
+--2019-06-05 12:09:11-- https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/Apache_2.4/custom.d/whitelist-ips.conf
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.60.133
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.60.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1268 (1.2K) [text/plain]
+Saving to: ‘/etc/apache2/custom.d/whitelist-ips.conf’</p>
+<p>/etc/apache2/custom.d/whitelist-ips.conf 100%[=====================================================================================================&gt;] 1.24K --.-KB/s in 0s</p>
+<p>2019-06-05 12:09:11 (179 MB/s) - ‘/etc/apache2/custom.d/whitelist-ips.conf’ saved [1268/1268]</p>
+<p>root@ip-172-31-22-120:~# sudo wget https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/Apache_2.4/custom.d/whitelist-domains.conf -O /etc/apache2/custom.d/whitelist-domains.conf
+--2019-06-05 12:09:18-- https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/Apache_2.4/custom.d/whitelist-domains.conf
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.16.133
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.16.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 1714 (1.7K) [text/plain]
+Saving to: ‘/etc/apache2/custom.d/whitelist-domains.conf’</p>
+<p>/etc/apache2/custom.d/whitelist-domains.conf 100%[=====================================================================================================&gt;] 1.67K --.-KB/s in 0s</p>
+<p>2019-06-05 12:09:18 (229 MB/s) - ‘/etc/apache2/custom.d/whitelist-domains.conf’ saved [1714/1714]</p>
+<p>En el fichero <strong>whitelist-ips.conf</strong> ponemos las <strong>ips que queremos excluir del bloqueo</strong>, y en el fichero <strong>whitelist-domains.conf</strong> ponemos <strong>los dominios que queremos excluir</strong>. Para editarlos, por supuesto, usamos <a href="http://ex-vi.sourceforge.net/">Vi</a>.</p>
+<p>Ejemplo de como quedaría la lista blanda de dominios:</p>
+<p>SetEnvIfNoCase Referer ~*pruebadeconcepto\.nsupdate\.info good_ref</p>
+<p>(* <em>notamental</em>... hacer un "chuletas" sobre Vi, que <strong>últimamente me usáis mucho Nano y me jode sobremanera</strong>..)</p>
+<p>Ahora bajamos la configuración de la <strong>lista negra de bloqueo de Ips</strong>, que podremos igualmente editar para añadir las que queramos (ojo si actualizamos que se pierden nuestros cambios...)</p>
+<p>sudo wget https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/Apache_2.4/custom.d/blacklist-ips.conf -O /etc/apache2/custom.d/blacklist-ips.conf</p>
+<p>Seguimos, la <strong>lista de referer de dudosa reputación</strong>:</p>
+<p>sudo wget https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/Apache_2.4/custom.d/bad-referrer-words.conf -O /etc/apache2/custom.d/bad-referrer-words.conf</p>
+<p>Ya casi estamos, <strong>la lista de user agents a bloquear</strong>:</p>
+<p>sudo wget https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/Apache_2.4/custom.d/blacklist-user-agents.conf -O /etc/apache2/custom.d/blacklist-user-agents.conf</p>
+<p>Para terminar <strong>sólo nos quedan dos cosas por hacer</strong>, <strong>activar la configuración en Apache</strong>, editando el fichero apache2.conf:</p>
+<p><Directory /var/www/>
+Options Indexes FollowSymLinks
+AllowOverride None
+Require all granted
+Include /etc/apache2/tor-ip.txt
+Include custom.d/globalblacklist.conf
+</Directory></p>
+<p>Reiniciamos Apache</p>
+<p>root@ip-172-31-22-120:/etc/apache2# apachectl restart</p>
+<p>Y <strong>programar el proceso en crontab para el refresco de estos ficheros</strong>, que más fácil no nos lo pueden poner..</p>
+<p>root@ip-172-31-22-120:/etc/apache2# wget https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/update-apacheblocker.sh
+--2019-06-05 12:48:15-- https://raw.githubusercontent.com/mitchellkrogza/apache-ultimate-bad-bot-blocker/master/update-apacheblocker.sh
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.60.133
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.60.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 5342 (5.2K) [text/plain]
+Saving to: ‘update-apacheblocker.sh’</p>
+<p>update-apacheblocker.sh 100%[=====================================================================================================&gt;] 5.22K --.-KB/s in 0s
+2019-06-05 12:48:15 (80.1 MB/s) - ‘update-apacheblocker.sh’ saved [5342/5342]</p>
+<p>Modificamos en ese fichero, en las <strong>variables de entorno nuestra dirección de correo, el protocolo del site (https), el nombre del dominio</strong> y lo programamos así en crontab:</p>
+<p>@daily /etc/apache2/update-apacheblocker.sh</p>
+<p>No olvidarse de <strong>darle permisos de ejecución</strong>:</p>
+<p>root@ip-172-31-22-120:/etc/apache2# chmod u+x update-apacheblocker.sh</p>
+<p><strong>Más "candados" para poner, ahora un plugin de seguridad</strong>, que en esto si que ha crecido Wordpress respecto a lo que fue años atrás.</p>
+<p>He instalado y configurado el plugin <a href="https://es.wordpress.org/plugins/all-in-one-wp-security-and-firewall/">All In One WP Security</a>, es <strong>todo muy sencillo</strong>, ir entrando por las pestañas y habilitando todo aquello que queramos.</p>
+<p><img alt="" src="images/Selección_461.png" /></p>
+<p>En caso de necesitar alguna <strong>actuación sobre el servidor nos lo va a indicar</strong>, instalar tal componente de php, cambiar algún permiso de fichero poco restrictivo, todo bastante fácil.</p>
+<p><strong>Y un último candado, si todo falla el sitio se va a la porra, una buena copia de seguridad</strong>.</p>
+<p>Lo <strong>ideal sería poder tener snapshot</strong> del volumen de nuestra instancia, a diario, si algo cae se restaura el backup y en segundos estamos online otra vez, pero la capa gratuita solo nos deja creo recordar que 1Gb de espacio para este tipo de copias.</p>
+<p>La solución es instalar u<strong>n plugin de copias, que nos permita llevarnos todo nuestro Wordpress a un almacenamiento en nube</strong>, esto es, nuestro Wordpress, la contribución (uploads) y la base de datos.</p>
+<p>Yo estoy usando este <a href="https://es.wordpress.org/plugins/updraftplus/">UpdraftPlus - Backup/Restore</a>, y estoy volcando sobre una cuenta que tengo en dropbox con bastantes gigas libres (esto en su día con las invitaciones y un script en Perl.. fue <strong>un filón de gigas</strong>... da para una entrada en <a href="http://pruebadeconcepto.es/?cat=6">informática viejuna</a>).</p>
+<p>Os <strong>pedirá instalar algún componente de php, creo que curl</strong> y poco más, la configuración sencilla, periodicidad de la copia, opciones, el destino (este es de los más completos, dropbox, s3, Swift, sftp, google drive, onedrive, etc) y la retención del backup.</p>
+<p>En unos minutos la copia estará programada.</p>
+<p><img alt="" src="images/Selección_463.png" /></p>
+<p>Espero no tener que usar estas copias nunca.</p>
 
 
 
