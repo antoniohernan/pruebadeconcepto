@@ -81,6 +81,7 @@ nav:
       - Tarifa plana YA!!: infov/infv_tarifaplanaya.md
     - Tecnología:
       - Envía ficheros desde Github a EC2 con actions: tec/tec_actionsec2.md
+      - ¿Cómo está montado este blog?: tec/tec_comoestamontado.md
     - RaspberryPi:
       - Introducción: rpi/rpi_intro.md
       - Instalación Básica I: rpi/rpi_install_i.md
