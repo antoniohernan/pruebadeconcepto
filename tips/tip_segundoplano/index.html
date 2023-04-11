@@ -74,11 +74,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#binbash" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -708,8 +703,6 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Chuleta 04 Trabajando con el segundo plano
@@ -1107,8 +1100,6 @@
   
   
   
-    
-  
   
 </nav>
                   </div>
@@ -1123,52 +1114,65 @@
                   
 
 
+  <h1>Chuleta 04 Trabajando con el segundo plano</h1>
+
 <p>Esto <strong>no es nada nuevo</strong>, existe desde que Unix/Linux es Unix/Linux, aunque hoy en día <strong>esté quizás en desuso</strong>. Os recuerdo el fin de este blog/diario, recordarme a mi mismo como se hacían las cosas...</p>
 <p>Si necesitamos abrir más "ventanas" de trabajo (<em>Windows y trabajo, que caprichoso oximorón</em>) recurrimos a abrir más terminales o conexiones al sistema y listo, pero no queda tan lejos <strong>la época en la que conseguir un terminal al servidor no era tan sencillo</strong>, el número de terminales por usuario estaba limitado (incluso existían los terminales físicos, cable directo al servidor ahí es nada) o bien la conexión era tan lenta que mantener un terminal abierto era todo un logro, como para abrir más de uno. (algún día os contaré en <a href="http://pruebadeconcepto.es/category/informaticaviejuna/">informática viejuna</a> como conectábamos por una línea "satelital" desde Madrid a Bogotá, pasando por París y medio Estados Unidos, con un lag entre pulsación de tecla y el pintado del carácter en pantalla de 1 segundo mínimo).</p>
 <p>Llega el momento de trabajar con varias cosas a la vez, <strong>un único terminal</strong> y te ves obligado a hacer multitarea de la buena.</p>
 <p>Imaginad... editando un fichero de virtual host para nuestro apache, y a mitad de edición no recuerdas el nombre exacto de la máquina backend sobre la que hacer el proxy, si era demoesto o estodemo.</p>
-<p>Sería algo similar a esto:</p>
-<p>operador@VASS-TONIO:/tmp$ vi virtualhost_demo.es.conf </p>
-<p>...
+<p>Sería algo similar a esto:
+<div class="highlight"><pre><span></span><code>operador@VASS-TONIO:/tmp$ vi virtualhost\_demo.es.conf 
+
+...
   SSLProxyCheckPeerExpire off
-  ProxyPass / "http://demoint.es:8080/" connectiontimeout=5 retry=1 acquire=3000 timeout=600 Keepalive=On
-  ProxyPassReverse / "http://demoint.es:8080/"
-</VirtualHost>
-...</p>
-<p>En este punto, sin salir del editor pulsamos la combinación de teclas <strong>CTRL + Z</strong> lo que causa que el actual proceso, nuestro editor VI se <strong>quede detenido</strong>.</p>
-<p>"virtualhost_demo.es.conf" 33L, 939C                                                                                                                              </p>
-<p>^Z</p>
-<p>[1]+  Detenido                vi virtualhost_demo.es.conf</p>
-<p>Hemos recuperado la shell, tenemos un proceso detenido y podemos consultar los procesos que tenemos en nuestra sesión mediante el comando <strong>jobs</strong></p>
-<p>operador@VASS-TONIO:/tmp$ jobs -l
-[1]+  9515 Parado                  vi virtualhost_demo.es.conf</p>
-<p>Ahora es donde entran en juego dos comandos más son <strong>fg</strong> y <strong>bg</strong></p>
-<p><strong>fg</strong> lo utilizaremos para traer procesos que están en segundo plano o background al primer plano o foreground. Si <strong>solo tenemos un job</strong> y ejecutamos fg nos traerá de nuevo ese proceso al primer plano. Si <strong>tenemos más de un proceso</strong> debemos indicar el número de job que queremos traer al primer plano, este número de job <strong>se obtiene de la salida del comando jobs</strong> antes descrito.</p>
-<p><strong>bg</strong> lo utilizaremos para poner un trabajo <strong>detenido</strong> a correr en segundo plano, en este caso en el que tenemos un VI corriendo la ejecución de bg no tiene mucho sentido pues el proceso requiere salida a terminal</p>
-<p>operador@VASS-TONIO:/tmp$ bg
-[1]+ vi virtualhost_demo.es.conf &amp;</p>
-<p>[1]+  Detenido                vi virtualhost_demo.es.conf
-operador@VASS-TONIO:/tmp$ jobs -l
-[1]+  9515 Parado (requiere salida por terminal)             vi virtualhost_demo.es.conf</p>
-<p>Por tanto, para la tarea anterior que os he comentado, estar editando tal fichero y salir de la edición para hacer otra cosa estaríamos en el punto de hacer esa otra cosa y <strong>"rescatar" nuestra edición</strong> del segundo plano, ejecutando <strong>fg</strong>  (ó <strong>fg #job</strong> si tenemos más de uno)</p>
-<p>¿Realmente <strong>cuando ponemos un job en segundo plano a correr se sigue ejecutando</strong>?</p>
-<p>Pues si, mirad este pequeño script, que muestra un contador, actualizado cada segundo:</p>
-<p>operador@VASS-TONIO:~/Scripts/Bash$ cat testclock.sh </p>
-<h1 id="binbash">!/bin/bash<a class="headerlink" href="#binbash" title="Permanent link">&para;</a></h1>
-<p>for ii in `seq 1 1000000`;
-  do
-    echo "Valor Secuencial: ${ii}"
-    sleep 1
-  done</p>
-<p>Lo ejecutamos y pasados unos segundos lo detenemos con <strong>CTRL + Z</strong>:</p>
-<p>operador@VASS-TONIO:~/Scripts/Bash$ ./testclock.sh &gt; testclock.txt
+  ProxyPass / &quot;http://demoint.es:8080/&quot; connectiontimeout=5 retry=1 acquire=3000 timeout=600 Keepalive=On
+  ProxyPassReverse / &quot;http://demoint.es:8080/&quot;
+&lt;/VirtualHost&gt;
+...
+</code></pre></div>
+En este punto, sin salir del editor pulsamos la combinación de teclas <strong>CTRL + Z</strong> lo que causa que el actual proceso, nuestro editor VI se <strong>quede detenido</strong>.
+<div class="highlight"><pre><span></span><code>&quot;virtualhost\_demo.es.conf&quot; 33L, 939C                                                                                                                              
+
 ^Z
-[1]+  Detenido                ./testclock.sh &gt; testclock.txt</p>
-<p>El proceso ha llegado hasta este valor de cuenta, y no avanza más, <strong>se encuentra detenido</strong>/suspendido.</p>
-<p>operador@VASS-TONIO:~/Scripts/Bash$ tail -1 testclock.txt 
-Valor Secuencial: 15</p>
-<p>Ahora <strong>lo mandamos a segundo plano</strong>, y observamos como <strong>sigue corriendo generando líneas</strong> en el fichero de salida:</p>
-<p>operador@VASS-TONIO:~/Scripts/Bash$ jobs -l 
+
+[1]+  Detenido                vi virtualhost\_demo.es.conf
+</code></pre></div>
+Hemos recuperado la shell, tenemos un proceso detenido y podemos consultar los procesos que tenemos en nuestra sesión mediante el comando <strong>jobs</strong>
+<div class="highlight"><pre><span></span><code>operador@VASS-TONIO:/tmp$ jobs -l
+[1]+  9515 Parado                  vi virtualhost\_demo.es.conf
+</code></pre></div>
+Ahora es donde entran en juego dos comandos más son <strong>fg</strong> y <strong>bg</strong></p>
+<p><strong>fg</strong> lo utilizaremos para traer procesos que están en segundo plano o background al primer plano o foreground. Si <strong>solo tenemos un job</strong> y ejecutamos fg nos traerá de nuevo ese proceso al primer plano. Si <strong>tenemos más de un proceso</strong> debemos indicar el número de job que queremos traer al primer plano, este número de job <strong>se obtiene de la salida del comando jobs</strong> antes descrito.</p>
+<p><strong>bg</strong> lo utilizaremos para poner un trabajo <strong>detenido</strong> a correr en segundo plano, en este caso en el que tenemos un VI corriendo la ejecución de bg no tiene mucho sentido pues el proceso requiere salida a terminal
+<div class="highlight"><pre><span></span><code>operador@VASS-TONIO:/tmp$ bg
+[1]+ vi virtualhost_demo.es.conf &amp;
+
+[1]+  Detenido                vi virtualhost_demo.es.conf
+operador@VASS-TONIO:/tmp$ jobs -l
+[1]+  9515 Parado (requiere salida por terminal)             vi virtualhost_demo.es.conf
+</code></pre></div>
+Por tanto, para la tarea anterior que os he comentado, estar editando tal fichero y salir de la edición para hacer otra cosa estaríamos en el punto de hacer esa otra cosa y <strong>"rescatar" nuestra edición</strong> del segundo plano, ejecutando <strong>fg</strong>  (ó <strong>fg #job</strong> si tenemos más de uno)</p>
+<p>¿Realmente <strong>cuando ponemos un job en segundo plano a correr se sigue ejecutando</strong>?</p>
+<p>Pues si, mirad este pequeño script, que muestra un contador, actualizado cada segundo:
+<div class="highlight"><pre><span></span><code>operador@VASS-TONIO:~/Scripts/Bash$ cat testclock.sh 
+#!/bin/bash
+for ii in \`seq 1 1000000\`;
+  do
+    echo &quot;Valor Secuencial: ${ii}&quot;
+    sleep 1
+  done
+</code></pre></div>
+Lo ejecutamos y pasados unos segundos lo detenemos con <strong>CTRL + Z</strong>:
+<div class="highlight"><pre><span></span><code>operador@VASS-TONIO:~/Scripts/Bash$ ./testclock.sh &gt; testclock.txt
+^Z
+[1]+  Detenido                ./testclock.sh &gt; testclock.txt
+</code></pre></div>
+El proceso ha llegado hasta este valor de cuenta, y no avanza más, <strong>se encuentra detenido</strong>/suspendido.
+<div class="highlight"><pre><span></span><code>operador@VASS-TONIO:~/Scripts/Bash$ tail -1 testclock.txt 
+Valor Secuencial: 15
+</code></pre></div>
+Ahora <strong>lo mandamos a segundo plano</strong>, y observamos como <strong>sigue corriendo generando líneas</strong> en el fichero de salida:
+<div class="highlight"><pre><span></span><code>operador@VASS-TONIO:~/Scripts/Bash$ jobs -l 
 [1]+ 28244 Parado                  ./testclock.sh &gt; testclock.txt
 operador@VASS-TONIO:~/Scripts/Bash$ bg 1
 [1]+ ./testclock.sh &gt; testclock.txt &amp;
@@ -1185,15 +1189,17 @@ Valor Secuencial: 32
 Valor Secuencial: 33
 Valor Secuencial: 34
 Valor Secuencial: 35
-Valor Secuencial: 36</p>
-<p>Si queremos <strong>eliminar el proceso que está corriendo</strong> en segundo plano, o que está detenido, podemos hacer uso del comando kill indicando el job-id</p>
-<p>operador@VASS-TONIO:~/Scripts/Bash$ jobs -r
+Valor Secuencial: 36
+</code></pre></div>
+Si queremos <strong>eliminar el proceso que está corriendo</strong> en segundo plano, o que está detenido, podemos hacer uso del comando kill indicando el job-id
+<div class="highlight"><pre><span></span><code>operador@VASS-TONIO:~/Scripts/Bash$ jobs -r
 [1]+  Ejecutando              ./testclock.sh &gt; testclock.txt &amp;
 operador@VASS-TONIO:~/Scripts/Bash$ kill %1
 operador@VASS-TONIO:~/Scripts/Bash$ jobs -l
-[1]+ 28244 Terminado               ./testclock.sh &gt; testclock.txt</p>
-<p>Con jobs y el parámetro -r vemos las tareas que tenemos corriendo.</p>
-<p>Con kill %1 detenemos el job-id número 1.</p>
+[1]+ 28244 Terminado               ./testclock.sh &gt; testclock.txt
+</code></pre></div>
+Con jobs y el parámetro -r vemos las tareas que tenemos corriendo.</p>
+<p>Con <code>kill %1</code> detenemos el job-id número 1.</p>
 <p>Por ultimo, al listar de nuevo todos los jobs con el parámetros -l vemos que el proceso que hemos matado figura como "Terminado".</p>
 <p>Y esto es todo por ahora, no es gran cosa, es algo muy básico de toda la vida, y que con la facilidad de abrir múltiples terminales y calidad de las conexiones ha dejado relegada a, nunca mejor dicho, un segundo plano estas forma de trabajar.</p>
 

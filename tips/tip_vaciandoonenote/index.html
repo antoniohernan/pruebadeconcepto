@@ -1210,48 +1210,59 @@
 <p>Continuamos con la "serie" de <strong>chuletas rescatadas</strong> de distintos soportes, un día de estos conseguiré unificarlo todo... un día de estos...</p>
 <p>Ahora es el turno de las que tengo en <a href="https://onedrive.live.com/about/es-es/">OneDrive</a> que <strong>voy a ir vaciando en favor del uso de otros métodos más ligeros</strong> y rápidos que la suite de Microsoft.</p>
 <h4 id="empezamos-por-la-forma-de-descomprimir-un-fichero-tar">Empezamos por la forma de descomprimir un fichero <a href="https://es.wikipedia.org/wiki/Tar">tar</a><a class="headerlink" href="#empezamos-por-la-forma-de-descomprimir-un-fichero-tar" title="Permanent link">&para;</a></h4>
-<p>Ó tar+gz .tgz y directamente volcarlo eliminado los directorios superiores, así dicho es un lío, pero en el caso práctico es esto, si tenemos un tar que contiene por ejemplo:</p>
-<p>solr-4.3.1/example/solr/collection1/conf/velocity/suggest.vm</p>
-<p>solr-4.3.1/example/solr/collection1/conf/velocity/tabs.vm</p>
-<p>solr-4.3.1/example/solr/collection1/conf/xslt/example.xsl</p>
-<p>solr-4.3.1/example/solr/collection1/conf/xslt/example_atom.xsl</p>
-<p>solr-4.3.1/example/solr/collection1/conf/xslt/example_rss.xsl</p>
-<p>solr-4.3.1/example/solr/collection1/conf/xslt/luke.xsl</p>
-<p>solr-4.3.1/example/solr/collection1/conf/xslt/updateXml.xsl</p>
-<p>solr-4.3.1/example/solr/solr.xml</p>
-<p>solr-4.3.1/example/solr/zoo.cfg</p>
-<p>solr-4.3.1/example/start.jar</p>
-<p>solr-4.3.1/example/webapps/solr.war</p>
-<p>solr-4.3.1/example/solr/bin/</p>
-<p>solr-4.3.1/example/cloud-scripts/zkcli.sh</p>
-<p>solr-4.3.1/example/etc/create-solrtest.keystore.sh</p>
-<p>solr-4.3.1/example/exampledocs/post.sh</p>
-<p>solr-4.3.1/example/exampledocs/test_utf8.sh</p>
-<p>Y queremos volcarlo omitiendo los niveles superiores ( solr-4.3.1/example ) directamente en la ruta que queramos.</p>
-<p>mkdir -p /opt/solr_liferay</p>
-<p>cd /opt/solr_liferay</p>
-<p>tar -xvzf /tmp/solr-4.3.1.tgz solr-4.3.1/example -C . --strip-components=2</p>
-<p>Donde el parámetro <strong>--strip-components=N</strong> <strong>es el número de niveles</strong> a eliminar al descomprimir y <strong>-C es la ruta</strong> en la que vamos a realizar la extracción.</p>
+<p>Ó tar+gz .tgz y directamente volcarlo eliminado los directorios superiores, así dicho es un lío, pero en el caso práctico es esto, si tenemos un tar que contiene por ejemplo:
+<div class="highlight"><pre><span></span><code>solr-4.3.1/example/solr/collection1/conf/velocity/suggest.vm
+solr-4.3.1/example/solr/collection1/conf/velocity/tabs.vm
+solr-4.3.1/example/solr/collection1/conf/xslt/example.xsl
+solr-4.3.1/example/solr/collection1/conf/xslt/example\_atom.xsl
+solr-4.3.1/example/solr/collection1/conf/xslt/example\_rss.xsl
+solr-4.3.1/example/solr/collection1/conf/xslt/luke.xsl
+solr-4.3.1/example/solr/collection1/conf/xslt/updateXml.xsl
+solr-4.3.1/example/solr/solr.xml
+solr-4.3.1/example/solr/zoo.cfg
+solr-4.3.1/example/start.jar
+solr-4.3.1/example/webapps/solr.war
+solr-4.3.1/example/solr/bin/
+solr-4.3.1/example/cloud-scripts/zkcli.sh
+solr-4.3.1/example/etc/create-solrtest.keystore.sh
+solr-4.3.1/example/exampledocs/post.sh
+solr-4.3.1/example/exampledocs/test\_utf8.sh
+</code></pre></div>
+Y queremos volcarlo omitiendo los niveles superiores ( <code>solr-4.3.1/example</code> ) directamente en la ruta que queramos.
+<div class="highlight"><pre><span></span><code>mkdir -p /opt/solr\_liferay
+
+cd /opt/solr\_liferay
+
+tar -xvzf /tmp/solr-4.3.1.tgz solr-4.3.1/example -C . --strip-components=2
+</code></pre></div>
+Donde el parámetro <strong>--strip-components=N</strong> <strong>es el número de niveles</strong> a eliminar al descomprimir y <strong>-C es la ruta</strong> en la que vamos a realizar la extracción.</p>
 <h4 id="seguimos-con-una-chuleta-que-ha-salvado-mas-de-una-vez-pasar-ficheros-de-una-maquina-a-otra-usando-netcat">Seguimos con una chuleta que ha salvado más de una vez.. <strong>pasar ficheros de una máquina a otra usando</strong> <a href="https://es.wikipedia.org/wiki/Netcat">NetCat</a><a class="headerlink" href="#seguimos-con-una-chuleta-que-ha-salvado-mas-de-una-vez-pasar-ficheros-de-una-maquina-a-otra-usando-netcat" title="Permanent link">&para;</a></h4>
-<p>En la <strong>máquina de destino</strong>, la que va a recibir el fichero ejecutaremos esto:</p>
-<p><code>operador@VASS-TONIO:/tmp$ nc -l -p 9999 &gt; Fichero_Destino.txt</code></p>
+<p>En la <strong>máquina de destino</strong>, la que va a recibir el fichero ejecutaremos esto:
+<div class="highlight"><pre><span></span><code>operador@VASS-TONIO:/tmp$ nc -l -p 9999 &gt; Fichero_Destino.txt
+</code></pre></div></p>
 <p>Y en la <strong>máquina de origen</strong>, la que envía el fichero, ejecutaremos esto:</p>
-<p><code>operador@VASS-TONIO:/tmp$ nc localhost 9999 &lt; Fichero_Origen.txt</code></p>
+<div class="highlight"><pre><span></span><code>operador@VASS-TONIO:/tmp$ nc localhost 9999 &lt; Fichero_Origen.txt
+</code></pre></div>
 <p>El puerto elegido, el 9999, pues a gusto del consumidor o el que encontremos abierto (si tenemos un FW cortando comunicaciones podemos utilizar <a href="http://pruebadeconcepto.es/chuleta-02-rescantando-de-la-red/">PortQuiz</a> como os dije entradas atrás).</p>
 <p>En esta caso el origen ataca a localhost, pero es obvio que aquí va la máquina de destino...</p>
 <h4 id="ahora-vamos-a-ver-la-forma-de-eliminar-los-ficheros-de-un-directorio">Ahora vamos a ver <strong>la forma de eliminar los ficheros de un directorio</strong><a class="headerlink" href="#ahora-vamos-a-ver-la-forma-de-eliminar-los-ficheros-de-un-directorio" title="Permanent link">&para;</a></h4>
 <p>Pero no unos ficheros cualquiera, los <strong>típicos millones de ficheros</strong> que aparecen en un directorio cuando un proceso enloquece y no podemos ni hacer un ls dentro del directorio sin morir.</p>
-<p>La primera forma de hacerlo, con un find y usando el parámetro -print0 que devuelve el nombre de cada elemento sin realizar un retorno de carro para poder enviarlo a xargs que lo interpreta y evalúa línea a línea (y elimina...):</p>
-<p><code>find . -name "*.log" -type f -print0 | xargs -0 rm -f</code></p>
+<p>La primera forma de hacerlo, con un find y usando el parámetro <code>-print0</code> que devuelve el nombre de cada elemento sin realizar un retorno de carro para poder enviarlo a xargs que lo interpreta y evalúa línea a línea (y elimina...):</p>
+<div class="highlight"><pre><span></span><code>find . -name &quot;*.log&quot; -type f -print0 | xargs -0 rm -f
+</code></pre></div>
 <p>Otra forma de hacerlo, empleando rsync para machacar el directorio "infestado" de ficheros con otro vacío:</p>
-<p><code>mkdir empty_dir; rsync -a --delete empty_dir/ directorio_hastalostopes/</code></p>
+<div class="highlight"><pre><span></span><code>mkdir empty_dir; rsync -a --delete empty_dir/ directorio_hastalostopes/
+</code></pre></div>
 <p>Y la última forma, usando el todopoderoso Perl, haciendo un one-line del exterminio:</p>
-<p><code>perl -e 'for(&lt;*&gt;){((stat)[9]&lt;(unlink))}'</code></p>
+<div class="highlight"><pre><span></span><code>perl -e &#39;for(&lt;*&gt;){((stat)[9]&lt;(unlink))}&#39;
+</code></pre></div>
 <h4 id="por-ultimo-vamos-a-ver-un-par-de-metodo-para-conocer-nuestra-ip-publica">Por último, vamos a ver <strong>un par de método para conocer nuestra IP pública</strong><a class="headerlink" href="#por-ultimo-vamos-a-ver-un-par-de-metodo-para-conocer-nuestra-ip-publica" title="Permanent link">&para;</a></h4>
 <p>Con la que nos presentamos en internet después de una suerte de conexiones, proxy y firewall.</p>
-<p><code>wget --user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0" ipinfo.io/ip; cat ip; rm ip*</code></p>
+<div class="highlight"><pre><span></span><code>wget --user-agent=&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:21.0) Gecko/20100101 Firefox/21.0&quot; ipinfo.io/ip; cat ip; rm ip*
+</code></pre></div>
 <p>Y la otra forma es:</p>
-<p><code>wget -qO- http://ipecho.net/plain; echo</code></p>
+<div class="highlight"><pre><span></span><code>wget -qO- http://ipecho.net/plain; echo
+</code></pre></div>
 <p>En función de si <strong>atacamos por http o por https</strong> nos llevaremos la sorpresa de si nuestra salida a internet encamina el tráfico en plano o seguro por distintas conexiones (algo que puede ser muy muy divertido con páginas que generan el token en plano y continúan con el login por seguro... da para una entrada de Informática Viejuna..)</p>
 <p>... continuará ...</p>
 

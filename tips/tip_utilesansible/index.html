@@ -1119,29 +1119,29 @@
 <p>Después de media vida lanzado comandos con más o menos grado de automatización / orquestación en servidores te cruzas con <a href="https://www.ansible.com">Ansible</a> y te das cuenta de la cantidad de tiempo que te hace ganar, el control que tienes sobre tu entorno desde un nodo de bastionado, etc. son todo ventajas, pese a la complejidad que puedan tomar algunos playbooks / tasks si eres un poco maniático como yo.</p>
 <p>Aquí van unas cuantas líneas de comando a modo de habituales que me gusta tener a mano.</p>
 <p>Comprobar que tenemos conexión con todos los nodos:</p>
-<p>ansible all -i inventario.yml -m ping -o</p>
+<p><code>ansible all -i inventario.yml -m ping -o</code></p>
 <p>Reiniciar todas las máquinas de nuestro inventario:</p>
-<p>ansible all -i inventario.yml -b -B 1 -P 0 -m shell -a "sleep 5 &amp;&amp; reboot"</p>
+<p><code>ansible all -i inventario.yml -b -B 1 -P 0 -m shell -a "sleep 5 &amp;&amp; reboot"</code></p>
 <p>Parar/arrancar un servicio:</p>
-<p>ansible all -i inventario.yml -m systemd -a "service=docker state=[stopped|started]"</p>
+<p><code>ansible all -i inventario.yml -m systemd -a "service=docker state=\[stopped|started\]"</code></p>
 <p>Copiar ficheros:</p>
-<p>ansible all -i inventario.yml -m copy -a "src=/<fichero\_origen> dest=/<fichero\_destino>"</p>
+<p><code>ansible all -i inventario.yml -m copy -a "src=/&lt;fichero\_origen&gt; dest=/&lt;fichero\_destino&gt;"</code></p>
 <p>Borrar ficheros:</p>
-<p>ansible all -i inventario.yml -m file -a "dest=/etc/sysconfig/docker-storage state=absent"</p>
+<p><code>ansible all -i inventario.yml -m file -a "dest=/etc/sysconfig/docker-storage state=absent"</code></p>
 <p>Conocer la configuración (soft/hard) de los nodos, y filtrado de resultados:</p>
-<p>ansible localhost -m setup</p>
-<p>ansible localhost -m setup -a 'filter=ansible_processor*'</p>
+<p><code>ansible localhost -m setup</code></p>
+<p><code>ansible localhost -m setup -a 'filter=ansible\_processor\*'</code></p>
 <p>Listar todos los nodos del inventario:</p>
-<p>ansible all --list-hosts</p>
+<p><code>ansible all --list-hosts</code></p>
 <p>Instalar paquetes con Yum:</p>
-<p>ansible webservers -m yum -a "name=httpd state=present" -b -o</p>
+<p><code>ansible webservers -m yum -a "name=httpd state=present" -b -o</code></p>
 <p>Desinstalar paquetes con Yum:</p>
-<p>ansible webservers -m yum -a "name=httpd state=absent" -b -o</p>
+<p><code>ansible webservers -m yum -a "name=httpd state=absent" -b -o</code></p>
 <p>(*) en estos dos últimos ejemplos usamos -b (--become) para que se utilize la configuración de ansible.cfg relativa al <a href="https://docs.ansible.com/ansible/2.4/intro_configuration.html#become">escalado de privilegios</a> con el que se ejecutarán los comandos en destino.</p>
 <p>Actualizar todos los paquetes de las maquinas:</p>
-<p>ansible all -i inventario.yml -m yum -a "name=* state=latest"</p>
+<p><code>ansible all -i inventario.yml -m yum -a "name=\* state=latest"</code></p>
 <p>Chequear sintaxis de PlayBook:</p>
-<p>ansible-playbook --syntax-check install_apache.yml</p>
+<p><code>ansible-playbook --syntax-check install\_apache.yml</code></p>
 <p>Continuará...</p>
 
 

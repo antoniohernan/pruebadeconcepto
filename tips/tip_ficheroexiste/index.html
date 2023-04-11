@@ -1118,11 +1118,14 @@
 
 <p>Cuando empiezas a tirar código Shell con cierta soltura empiezas a meter validaciones digamos que básicas, ¿existe el fichero de configuración de este proceso?, ¿y la ruta del fichero de log que voy a grabar?, ¿el fichero de datos a procesar existe? ¿lo puedo leer? ¿y además tiene datos o está vacio?</p>
 <p>A todas estas preguntas y a bastantes más podemos dar respuesta con un simple <strong>IF</strong> y la correspondiente <strong>evaluación del fichero/directorio</strong>.</p>
-<p>Utilizaremos la expresión de test, la cual podemos expresar con estas  tres sintaxis:</p>
-<p>test EXPRESION</p>
-<p>[ EXPRESION ] </p>
-<p>[[ EXPRESION ]]</p>
-<p>Por cuestiones de portabilidad, si quieres que el script que vas a hacer sea utilizable en el mayor número de sistemas posible, te recomiendo que uses la sintaxis de "test" pues parece estar disponible en todas las shelll basada en norma <a href="https://es.wikipedia.org/wiki/POSIX">POSIX</a>.</p>
+<p>Utilizaremos la expresión de test, la cual podemos expresar con estas  tres sintaxis:
+<div class="highlight"><pre><span></span><code>test EXPRESION
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[ EXPRESION ] 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>[[ EXPRESION ]]
+</code></pre></div>
+Por cuestiones de portabilidad, si quieres que el script que vas a hacer sea utilizable en el mayor número de sistemas posible, te recomiendo que uses la sintaxis de "test" pues parece estar disponible en todas las shelll basada en norma <a href="https://es.wikipedia.org/wiki/POSIX">POSIX</a>.</p>
 <p>La primera comprobación, la más básica que podemos hacer es comprobar si el elemento existe, sea un fichero, un directorio o un enlace, para essto emplearemos la opción <strong>-e</strong>
 <div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
 ahernan:/tmp$ if test -e &quot;$FIC&quot;; then echo &quot;$FIC existe&quot;; fi
@@ -1135,7 +1138,7 @@ ahernan:/tmp$ if test -f &quot;$FIC&quot;; then echo &quot;$FIC existe y es un f
 </code></pre></div>
 Utilizando los otros formataos de expresar el "test", serían algo así como esto que os pongo a continuación, donde se ejecuta la parte a la derecha de los <code>&amp;&amp;</code> cuando el resultado de la evaluación del test es verdadero, o a la derecha de los <code>||</code> cuando la evaluación del test es falso.
 <div class="highlight"><pre><span></span><code>ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ \[\[ -f $FIC \]\] &amp;&amp; echo &quot;$FIC existe y es un fichero regular&quot; || echo &quot;$FIC no existe o no es un fichero regular&quot;
+ahernan:/tmp$ [[ -f $FIC ]] &amp;&amp; echo &quot;$FIC existe y es un fichero regular&quot; || echo &quot;$FIC no existe o no es un fichero regular&quot;
 /tmp/pp existe y es un fichero regular
 </code></pre></div>
 Como veis, la potencia del comando reside en el parámetro que utilicemos. A continuación os enumero bastantes de sus opciones, no todas, pero si las que me parecen más útiles:</p>

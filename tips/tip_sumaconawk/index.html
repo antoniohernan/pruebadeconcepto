@@ -1119,9 +1119,9 @@
 <p>Inauguramos sección donde iré poniendo comandos más o menos útiles a modo de chuleta. No os penséis que es por vosotros.. es por mí, para que no se me olviden, que ya tengo una edad.</p>
 <p>Vamos a contar (sumar) el resultado de un comando con <strong>AWK</strong>, esto es, por ejemplo, los tamaños de MaxMetaspaceSize de las múltiples javas que corren en una máquina.</p>
 <p>Empezamos, lo que queremos sumar <em>-XX:MaxMetaspaceSize=100m</em> ocupa la posición <em>15</em>, y viene acompañado por una <em>m</em> a la derecha (megas).</p>
-<p>ps -ef | grep java | awk '{print $15}' | cut -d= -f2 | sed 's/m//'</p>
+<p><code>ps -ef | grep java | awk '{print $15}' | cut -d= -f2 | sed 's/m//'</code></p>
 <p>Así que a esta salida de comando añadimos nuestro sumatorio awk:</p>
-<p>ps -ef | grep java | awk '{print $15}' | cut -d= -f2 | sed 's/m//' | awk '{total += $NF} END { print total }</p>
+<p><code>ps -ef | grep java | awk '{print $15}' | cut -d= -f2 | sed 's/m//' | awk '{total += $NF} END { print total }</code></p>
 <p>¿Qué es lo que hace este churro?</p>
 <p><em>ps -ef</em> nos lista todos los procesos del servidor en modo extendido.</p>
 <p><em>grep java</em> nos filta los procesos que contienen java (mmm nota mental.. afinar más)</p>

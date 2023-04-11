@@ -1509,43 +1509,50 @@ ene 28 23:33:45 CENTOS7JEEP systemd-journal[95]: Runtime journal is using 8.0M (
 ene 28 23:33:45 CENTOS7JEEP kernel: Initializing cgroup subsys cpuset
 </code></pre></div>
 Se pueden ir "<strong>concatenando</strong>" condiciones de manera que veamos la actividad de un programa concreto durante unas fechas concretas:
-```
-[root@CENTOS7JEEP ~]# journalctl _COMM=containerd --since='2020-02-01 00:00' --until='2020-02-08 00:00'
+<div class="highlight"><pre><span></span><code>[root@CENTOS7JEEP ~]# journalctl _COMM=containerd --since=&#39;2020-02-01 00:00&#39; --until=&#39;2020-02-08 00:00&#39;
 -- Logs begin at mar 2020-01-28 23:33:45 CET, end at sáb 2020-02-08 23:36:39 CET. --
-feb 01 18:36:38 CENTOS7JEEP containerd[1060]: time="2020-02-01T18:36:38.664444543+01:00" level=info msg="starting containerd" revisi
-feb 01 18:36:38 CENTOS7JEEP containerd[1060]: time="2020-02-01T18:36:38.667845640+01:00" level=info msg="loading plugin "io.containe
-feb 01 18:36:38 CENTOS7JEEP containerd[1060]: time="2020-02-01T18:36:38.687200426+01:00" level=info msg="loading plugin "io.containe</p>
-<p>Un recurso muy utilizado, ver la actividad del sistema de los últimos 10 minutos:</p>
-<p>[root@CENTOS7JEEP ~]# journalctl --since='10 min ago'
+feb 01 18:36:38 CENTOS7JEEP containerd[1060]: time=&quot;2020-02-01T18:36:38.664444543+01:00&quot; level=info msg=&quot;starting containerd&quot; revisi
+feb 01 18:36:38 CENTOS7JEEP containerd[1060]: time=&quot;2020-02-01T18:36:38.667845640+01:00&quot; level=info msg=&quot;loading plugin &quot;io.containe
+feb 01 18:36:38 CENTOS7JEEP containerd[1060]: time=&quot;2020-02-01T18:36:38.687200426+01:00&quot; level=info msg=&quot;loading plugin &quot;io.containe
+</code></pre></div>
+Un recurso muy utilizado, ver la actividad del sistema de los últimos 10 minutos:
+<div class="highlight"><pre><span></span><code>[root@CENTOS7JEEP ~]# journalctl --since=&#39;10 min ago&#39;
 -- Logs begin at mar 2020-01-28 23:33:45 CET, end at sáb 2020-02-08 23:36:39 CET. --
 feb 08 22:49:42 CENTOS7JEEP systemd[1]: Starting Cleanup of Temporary Directories...
 feb 08 22:49:42 CENTOS7JEEP systemd[1]: Started Cleanup of Temporary Directories.
-feb 08 23:01:02 CENTOS7JEEP systemd[1]: Started Session 2 of user root.</p>
+feb 08 23:01:02 CENTOS7JEEP systemd[1]: Started Session 2 of user root.
+</code></pre></div></p>
 <h2 id="filtrar-por-la-prioridad-del-mensaje">Filtrar por la prioridad del mensaje<a class="headerlink" href="#filtrar-por-la-prioridad-del-mensaje" title="Permanent link">&para;</a></h2>
 <p>Existen 7 niveles de clasificación de los mensajes según prioridad:</p>
 <table style="border-collapse: collapse; width: 9.87821%; height: 199px;"><tbody><tr><td style="width: 50%;">0</td><td style="width: 50%;">emerg</td></tr><tr><td style="width: 50%;">1</td><td style="width: 50%;">alert</td></tr><tr><td style="width: 50%;">2</td><td style="width: 50%;">critical</td></tr><tr><td style="width: 50%;">3</td><td style="width: 50%;">error</td></tr><tr><td style="width: 50%;">4</td><td style="width: 50%;">notice</td></tr><tr><td style="width: 50%;">5</td><td style="width: 50%;">notice</td></tr><tr><td style="width: 50%;">6</td><td style="width: 50%;">info</td></tr><tr><td style="width: 50%;">7</td><td style="width: 50%;">debug</td></tr></tbody></table>
 
 <p>Para filtrarlos utilizamos el parámetro <code>-p</code> seguido del número correspondiente</p>
-<p>`journalctl -p 2`</p>
+<p><code>journalctl -p 2</code></p>
 <h2 id="espacio-ocupado-por-los-logs">Espacio ocupado por los logs<a class="headerlink" href="#espacio-ocupado-por-los-logs" title="Permanent link">&para;</a></h2>
-<p>Para poder ver lo que ocupa nuestro journal en la máquina empleamos el parámetros <code>--disk-usage</code></p>
-<p>[cloud_user@ahernan1c ~]$ journalctl --disk-usage
-Archived and active journals take up 24.0M on disk.</p>
+<p>Para poder ver lo que ocupa nuestro journal en la máquina empleamos el parámetros <code>--disk-usage</code>
+<div class="highlight"><pre><span></span><code>[cloud_user@ahernan1c ~]$ journalctl --disk-usage
+Archived and active journals take up 24.0M on disk.
+</code></pre></div></p>
 <h2 id="purgado-de-logs">Purgado de logs<a class="headerlink" href="#purgado-de-logs" title="Permanent link">&para;</a></h2>
-<p>Si los logs ocupan mucho podemos limitar su crecimiento editando el fichero <code>/etc/systemd/journald.conf</code></p>
-<p>[cloud_user@ahernan1c ~]$ sudo vi /etc/systemd/journald.conf</p>
-<p>[Journal]
+<p>Si los logs ocupan mucho podemos limitar su crecimiento editando el fichero <code>/etc/systemd/journald.conf</code>
+<div class="highlight"><pre><span></span><code>[cloud_user@ahernan1c ~]$ sudo vi /etc/systemd/journald.conf
+
+[Journal]
 Storage=persistent
-SystemMaxFileSize=10M</p>
-<p>[cloud_user@ahernan1c ~]$ sudo systemctl restart systemd-journald</p>
-<p>Si queremos vaciar journal lo haremos con la siguiente orden</p>
-<p>[cloud_user@ahernan1c ~]$ sudo journalctl --vacuum-size=5M
-Vacuuming done, freed 0B of archived journals on disk.</p>
-<p>Por último, una nota sobre <strong>JournalD</strong> bajo distribución <strong>CentOS</strong>.</p>
+SystemMaxFileSize=10M
+
+[cloud_user@ahernan1c ~]$ sudo systemctl restart systemd-journald
+</code></pre></div>
+Si queremos vaciar journal lo haremos con la siguiente orden
+<div class="highlight"><pre><span></span><code>[cloud_user@ahernan1c ~]$ sudo journalctl --vacuum-size=5M
+Vacuuming done, freed 0B of archived journals on disk.
+</code></pre></div>
+Por último, una nota sobre <strong>JournalD</strong> bajo distribución <strong>CentOS</strong>.</p>
 <p>Este SO por defecto eliminar en la parada del servidor toda la información, de manera que perdemos todo lo que sea anterior al último boot.</p>
-<p>Es posible que queramos esta información, así que tenemos que editar el fichero <code>journalctl.conf</code> y cambiar el parámetro de tipo de almancenamiento</p>
-<p>[Journal]
-Storage=persistent</p>
+<p>Es posible que queramos esta información, así que tenemos que editar el fichero <code>journalctl.conf</code> y cambiar el parámetro de tipo de almancenamiento
+<div class="highlight"><pre><span></span><code>[Journal]
+Storage=persistent
+</code></pre></div></p>
 
 
 

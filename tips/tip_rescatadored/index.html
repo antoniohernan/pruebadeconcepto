@@ -74,11 +74,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#seleccion-ruta-prioridad-estado" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -681,80 +676,9 @@
       
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Chuleta 02 Rescantando de la red
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         Chuleta 02 Rescantando de la red
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#seleccion-ruta-prioridad-estado" class="md-nav__link">
-    Selección Ruta Prioridad Estado
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usrbinperl" class="md-nav__link">
-    !/usr/bin/perl
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solo-para-usuario-ps-f-en-vez-de-ps-ef" class="md-nav__link">
-    Solo para usuario (ps -f en vez de ps -ef)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variables-de-entorno" class="md-nav__link">
-    Variables de entorno
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variables-por-parametros" class="md-nav__link">
-    Variables por parametros
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hilos-de-ese-java" class="md-nav__link">
-    Hilos de ese Java
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#el-hilo-que-mas-consume" class="md-nav__link">
-    El hilo que más consume
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1177,63 +1101,6 @@
   
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#seleccion-ruta-prioridad-estado" class="md-nav__link">
-    Selección Ruta Prioridad Estado
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#usrbinperl" class="md-nav__link">
-    !/usr/bin/perl
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solo-para-usuario-ps-f-en-vez-de-ps-ef" class="md-nav__link">
-    Solo para usuario (ps -f en vez de ps -ef)
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variables-de-entorno" class="md-nav__link">
-    Variables de entorno
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variables-por-parametros" class="md-nav__link">
-    Variables por parametros
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#hilos-de-ese-java" class="md-nav__link">
-    Hilos de ese Java
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#el-hilo-que-mas-consume" class="md-nav__link">
-    El hilo que más consume
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1247,12 +1114,15 @@
                   
 
 
+  <h1>Chuleta 02 Rescantando de la red</h1>
+
 <p>En esta entrada os traigo unas cuantas cosillas que tenía <strong>publicadas por otros blogs</strong>.</p>
 <p><strong>Empezamos por un scaner de puertos abiertos</strong> en nuestra conexión a internet.</p>
 <p><a href="http://portquiz.net">Porquiz.net</a> es un equipo que está escuchando por <strong>TODOS los puertos</strong> (salvo por el 445, que según su administrador no consigue mapear por restricciones de su ISP).</p>
-<p>Con este sencillo comando nmap <strong>podemos ver que puertos de salida tenemos abiertos en nuestra infraestructura</strong> (aka, los puertos que nos permiten salir en nuestro proxy/firewall):</p>
-<p>operador@VASS-TONIO:~$ nmap -p 1-65535 portquiz.net</p>
-<p>Starting Nmap 7.01 ( https://nmap.org ) at 2017-10-03 08:25 CEST
+<p>Con este sencillo comando nmap <strong>podemos ver que puertos de salida tenemos abiertos en nuestra infraestructura</strong> (aka, los puertos que nos permiten salir en nuestro proxy/firewall):
+<div class="highlight"><pre><span></span><code>operador@VASS-TONIO:~$ nmap -p 1-65535 portquiz.net
+
+Starting Nmap 7.01 ( https://nmap.org ) at 2017-10-03 08:25 CEST
 Nmap scan report for portquiz.net (178.33.250.62)
 Host is up (0.0049s latency).
 rDNS record for 178.33.250.62: electron.positon.org
@@ -1274,24 +1144,32 @@ PORT STATE SERVICE
 10039/tcp open unknown
 10040/tcp open unknown
 10041/tcp open unknown
-43440/tcp open unknown</p>
-<p>Nmap done: 1 IP address (1 host up) scanned in 104.11 seconds</p>
-<p>Es muy util para ver que restricciones de salida tenemos en el trabajo... para conectarnos según que servicios.</p>
-<p><strong>Seguimos con la forma de cambiar editor</strong> de /etc/sudoers Ubuntu</p>
-<p>Alguien ha decidido que lo mejor para editar el fichero /etc/sudoers en Ubuntu es la basura infecta del editor nano… Es de risa.. invocas el comando visudo porque se supone que quieres editar con VI el fichero sudoers de sudo.. (vi sudo) y van y te cargan Nano... me entra una mala leche.</p>
-<p>Para <strong>solventar esta terrible decisión que alguien de Canonical que debería estar vendiendo microondas en un WallMart</strong> podemos hacer esto:</p>
-<p>operador@VASS-TONIO:~$ sudo update-alternatives --config editor [sudo] password for operador:</p>
-<p>operador@VASS-TONIO:~$ sudo update-alternatives --config editor
-[sudo] password for operador:</p>
-<p>Existen 4 opciones para la alternativa editor (que provee /usr/bin/editor).</p>
-<h2 id="seleccion-ruta-prioridad-estado">Selección Ruta Prioridad Estado<a class="headerlink" href="#seleccion-ruta-prioridad-estado" title="Permanent link">&para;</a></h2>
-<p>* 0 /bin/nano 40 modo automático
+43440/tcp open unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 104.11 seconds
+</code></pre></div>
+Es muy util para ver que restricciones de salida tenemos en el trabajo... para conectarnos según que servicios.</p>
+<p><strong>Seguimos con la forma de cambiar editor</strong> de <code>/etc/sudoers</code> Ubuntu</p>
+<p>Alguien ha decidido que lo mejor para editar el fichero <code>/etc/sudoers</code> en Ubuntu es la basura infecta del editor nano… Es de risa.. invocas el comando visudo porque se supone que quieres editar con VI el fichero sudoers de sudo.. (vi sudo) y van y te cargan Nano... me entra una mala leche.</p>
+<p>Para <strong>solventar esta terrible decisión que alguien de Canonical que debería estar vendiendo microondas en un WallMart</strong> podemos hacer esto:
+<div class="highlight"><pre><span></span><code>operador@VASS-TONIO:~$ sudo update-alternatives --config editor [sudo] password for operador:
+
+operador@VASS-TONIO:~$ sudo update-alternatives --config editor
+[sudo] password for operador:
+
+Existen 4 opciones para la alternativa editor (que provee /usr/bin/editor).
+
+Selección Ruta Prioridad Estado
+------------------------------------------------------------
+\* 0 /bin/nano 40 modo automático
 1 /bin/ed -100 modo manual
 2 /bin/nano 40 modo manual
 3 /usr/bin/vim.basic 30 modo manual
-4 /usr/bin/vim.tiny 10 modo manual</p>
-<p>Press <enter> to keep the current choice[*], or type selection number: 3</p>
-<p>Y usar <a href="https://es.wikipedia.org/wiki/Vi">VI</a>, como debe ser, para editar ficheros.</p>
+4 /usr/bin/vim.tiny 10 modo manual
+
+Press &lt;enter&gt; to keep the current choice[\*], or type selection number: 3
+</code></pre></div>
+Y usar <a href="https://es.wikipedia.org/wiki/Vi">VI</a>, como debe ser, para editar ficheros.</p>
 <p>(* <em>notamental</em>… tan sencillo como que la segunda línea de la instalación de una máquina sea eliminar ese editor..)</p>
 <p><strong>Por último, vamos a ver como sacar el hilo de ejecición de una JVM que más consume</strong></p>
 <p>Los pasos para hacerlo "a mano" son estos:</p>
@@ -1303,38 +1181,50 @@ PORT STATE SERVICE
 <li>Convertimos el PID a hexadecimal</li>
 <li>Buscamos en el thread dump nid=0x[PID en exadecimal]</li>
 </ol>
-<p>Yo en su momento lo pase a una utilidad para ir desplegando en todas las máquinas, aquí te lo pongo de regalo:</p>
-<h1 id="usrbinperl">!/usr/bin/perl<a class="headerlink" href="#usrbinperl" title="Permanent link">&para;</a></h1>
-<h1 id="solo-para-usuario-ps-f-en-vez-de-ps-ef">Solo para usuario (ps -f en vez de ps -ef)<a class="headerlink" href="#solo-para-usuario-ps-f-en-vez-de-ps-ef" title="Permanent link">&para;</a></h1>
-<p>$PROG=$0; chomp($PROG);
-$CUANTAS=`ps -f | grep ${PROG} | egrep -v 'grep' | wc -l 2&gt;/dev/null`; chomp($CUANTAS);
+<p>Yo en su momento lo pase a una utilidad para ir desplegando en todas las máquinas, aquí te lo pongo de regalo:
+<div class="highlight"><pre><span></span><code>#!/usr/bin/perl
+
+# Solo para usuario (ps -f en vez de ps -ef)
+$PROG=$0; chomp($PROG);
+$CUANTAS=\`ps -f | grep ${PROG} | egrep -v &#39;grep&#39; | wc -l 2&gt;/dev/null\`; chomp($CUANTAS);
 ( $CUANTAS ) or $CUANTAS=0;
-( $CUANTAS &gt; 1 ) and die ("\n\n Existe un proceso en ejecucion de ${PROG}\n\n");
-undef $CUANTAS;</p>
-<h1 id="variables-de-entorno">Variables de entorno<a class="headerlink" href="#variables-de-entorno" title="Permanent link">&para;</a></h1>
-<p>$JSTACKCMD='/usr/java/jdk1.7.0_40/bin/jstack'; chomp($JSTACKCMD);</p>
-<h1 id="variables-por-parametros">Variables por parametros<a class="headerlink" href="#variables-por-parametros" title="Permanent link">&para;</a></h1>
-<p>(@ARGV[0]) and $PID=@ARGV[0]; chomp($PID);
-(@ARGV[0]) or $PID=`ps -ef | grep java | grep liferay | grep -v grep | awk '{print \$2}'`; chomp($PID);</p>
-<p>$ESJAVA=`ps -p ${PID} | tail -1 | grep java | wc -l`; chomp($ESJAVA);
-($ESJAVA) or die("\n\n El PID: ${PID} no es un proceso java\n\n");</p>
-<h1 id="hilos-de-ese-java">Hilos de ese Java<a class="headerlink" href="#hilos-de-ese-java" title="Permanent link">&para;</a></h1>
-<p>@TOP=`top -bH -n 1 -p ${PID}`;</p>
-<h1 id="el-hilo-que-mas-consume">El hilo que más consume<a class="headerlink" href="#el-hilo-que-mas-consume" title="Permanent link">&para;</a></h1>
-<p>$MASTOP=@TOP[7]; chomp($MASTOP);
-($DECPID,$resto,$resto,$resto,$resto,$resto,$resto,$resto,$CPU) = split(" ",$MASTOP,10);</p>
-<p>$HEXPID= sprintf("0x%X",$DECPID);
-$CADHEXPID="nid=".lc($HEXPID);</p>
-<p>@THREADDUMP=`${JSTACKCMD} ${PID}`;</p>
-<p>$IMPRIME=0;</p>
-<p>print "\n\n El Hilo que mas consume (${CADHEXPID}) del proceso ${PID} (${CPU} %CPU):\n\n";</p>
-<p>foreach(@THREADDUMP) {
-$LIN=$_; chomp($LIN);
+( $CUANTAS &gt; 1 ) and die (&quot;\\n\\n Existe un proceso en ejecucion de ${PROG}\\n\\n&quot;);
+undef $CUANTAS;
+
+# Variables de entorno
+$JSTACKCMD=&#39;/usr/java/jdk1.7.0\_40/bin/jstack&#39;; chomp($JSTACKCMD);
+
+# Variables por parametros
+(@ARGV\[0\]) and $PID=@ARGV\[0\]; chomp($PID);
+(@ARGV\[0\]) or $PID=\`ps -ef | grep java | grep liferay | grep -v grep | awk &#39;{print \\$2}&#39;\`; chomp($PID);
+
+$ESJAVA=\`ps -p ${PID} | tail -1 | grep java | wc -l\`; chomp($ESJAVA);
+($ESJAVA) or die(&quot;\\n\\n El PID: ${PID} no es un proceso java\\n\\n&quot;);
+
+# Hilos de ese Java
+@TOP=\`top -bH -n 1 -p ${PID}\`;
+
+# El hilo que más consume
+$MASTOP=@TOP\[7\]; chomp($MASTOP);
+($DECPID,$resto,$resto,$resto,$resto,$resto,$resto,$resto,$CPU) = split(&quot; &quot;,$MASTOP,10);
+
+$HEXPID= sprintf(&quot;0x%X&quot;,$DECPID);
+$CADHEXPID=&quot;nid=&quot;.lc($HEXPID);
+
+@THREADDUMP=\`${JSTACKCMD} ${PID}\`;
+
+$IMPRIME=0;
+
+print &quot;\\n\\n El Hilo que mas consume (${CADHEXPID}) del proceso ${PID} (${CPU} %CPU):\\n\\n&quot;;
+
+foreach(@THREADDUMP) {
+$LIN=$\_; chomp($LIN);
 ($LIN =~ $CADHEXPID) and $IMPRIME=1;
-($IMPRIME &gt; 0 ) and print "${LIN}\n";
+($IMPRIME &gt; 0 ) and print &quot;${LIN}\\n&quot;;
 ($LIN =~ /^$/) and $IMPRIME=0;
-}</p>
-<p>... continuará ...</p>
+}
+</code></pre></div>
+... continuará ...</p>
 
 
 
