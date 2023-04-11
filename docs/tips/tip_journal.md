@@ -205,15 +205,15 @@ Se pueden ir "**concatenando**" condiciones de manera que veamos la actividad de
 feb 01 18:36:38 CENTOS7JEEP containerd[1060]: time="2020-02-01T18:36:38.664444543+01:00" level=info msg="starting containerd" revisi
 feb 01 18:36:38 CENTOS7JEEP containerd[1060]: time="2020-02-01T18:36:38.667845640+01:00" level=info msg="loading plugin "io.containe
 feb 01 18:36:38 CENTOS7JEEP containerd[1060]: time="2020-02-01T18:36:38.687200426+01:00" level=info msg="loading plugin "io.containe
-
+```
 Un recurso muy utilizado, ver la actividad del sistema de los últimos 10 minutos:
-
-\[root@CENTOS7JEEP ~\]# journalctl --since='10 min ago'
+```
+[root@CENTOS7JEEP ~]# journalctl --since='10 min ago'
 -- Logs begin at mar 2020-01-28 23:33:45 CET, end at sáb 2020-02-08 23:36:39 CET. --
-feb 08 22:49:42 CENTOS7JEEP systemd\[1\]: Starting Cleanup of Temporary Directories...
-feb 08 22:49:42 CENTOS7JEEP systemd\[1\]: Started Cleanup of Temporary Directories.
-feb 08 23:01:02 CENTOS7JEEP systemd\[1\]: Started Session 2 of user root.
-
+feb 08 22:49:42 CENTOS7JEEP systemd[1]: Starting Cleanup of Temporary Directories...
+feb 08 22:49:42 CENTOS7JEEP systemd[1]: Started Cleanup of Temporary Directories.
+feb 08 23:01:02 CENTOS7JEEP systemd[1]: Started Session 2 of user root.
+```
 ## Filtrar por la prioridad del mensaje
 
 Existen 7 niveles de clasificación de los mensajes según prioridad:
@@ -222,37 +222,38 @@ Existen 7 niveles de clasificación de los mensajes según prioridad:
 
 Para filtrarlos utilizamos el parámetro `-p` seguido del número correspondiente
 
-\`journalctl -p 2\`
+`journalctl -p 2`
 
 ## Espacio ocupado por los logs
 
 Para poder ver lo que ocupa nuestro journal en la máquina empleamos el parámetros `--disk-usage`
-
-\[cloud\_user@ahernan1c ~\]$ journalctl --disk-usage
+```
+[cloud_user@ahernan1c ~]$ journalctl --disk-usage
 Archived and active journals take up 24.0M on disk.
-
+```
 ## Purgado de logs
 
 Si los logs ocupan mucho podemos limitar su crecimiento editando el fichero `/etc/systemd/journald.conf`
+```
+[cloud_user@ahernan1c ~]$ sudo vi /etc/systemd/journald.conf
 
-\[cloud\_user@ahernan1c ~\]$ sudo vi /etc/systemd/journald.conf
-
-\[Journal\]
+[Journal]
 Storage=persistent
 SystemMaxFileSize=10M
 
-\[cloud\_user@ahernan1c ~\]$ sudo systemctl restart systemd-journald
-
+[cloud_user@ahernan1c ~]$ sudo systemctl restart systemd-journald
+```
 Si queremos vaciar journal lo haremos con la siguiente orden
-
-\[cloud\_user@ahernan1c ~\]$ sudo journalctl --vacuum-size=5M
+```
+[cloud_user@ahernan1c ~]$ sudo journalctl --vacuum-size=5M
 Vacuuming done, freed 0B of archived journals on disk.
-
+```
 Por último, una nota sobre **JournalD** bajo distribución **CentOS**.
 
 Este SO por defecto eliminar en la parada del servidor toda la información, de manera que perdemos todo lo que sea anterior al último boot.
 
 Es posible que queramos esta información, así que tenemos que editar el fichero `journalctl.conf` y cambiar el parámetro de tipo de almancenamiento
-
-\[Journal\]
+```
+[Journal]
 Storage=persistent
+```

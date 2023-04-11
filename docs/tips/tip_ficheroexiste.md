@@ -1,6 +1,8 @@
 ---
 title: "Chuleta 06 - ¿El fichero existe?"
 date: "2021-06-25"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "chuletas"
 ---
@@ -10,13 +12,15 @@ Cuando empiezas a tirar código Shell con cierta soltura empiezas a meter valida
 A todas estas preguntas y a bastantes más podemos dar respuesta con un simple **IF** y la correspondiente **evaluación del fichero/directorio**.
 
 Utilizaremos la expresión de test, la cual podemos expresar con estas  tres sintaxis:
-
+```
 test EXPRESION
-
-\[ EXPRESION \] 
-
-\[\[ EXPRESION \]\]
-
+```
+```
+[ EXPRESION ] 
+```
+```
+[[ EXPRESION ]]
+```
 Por cuestiones de portabilidad, si quieres que el script que vas a hacer sea utilizable en el mayor número de sistemas posible, te recomiendo que uses la sintaxis de "test" pues parece estar disponible en todas las shelll basada en norma [POSIX](https://es.wikipedia.org/wiki/POSIX).
 
 La primera comprobación, la más básica que podemos hacer es comprobar si el elemento existe, sea un fichero, un directorio o un enlace, para essto emplearemos la opción **\-e**
@@ -34,7 +38,7 @@ ahernan:/tmp$ if test -f "$FIC"; then echo "$FIC existe y es un fichero regular"
 Utilizando los otros formataos de expresar el "test", serían algo así como esto que os pongo a continuación, donde se ejecuta la parte a la derecha de los `&&` cuando el resultado de la evaluación del test es verdadero, o a la derecha de los `||` cuando la evaluación del test es falso.
 ```
 ahernan:/tmp$ FIC=/tmp/pp
-ahernan:/tmp$ \[\[ -f $FIC \]\] && echo "$FIC existe y es un fichero regular" || echo "$FIC no existe o no es un fichero regular"
+ahernan:/tmp$ [[ -f $FIC ]] && echo "$FIC existe y es un fichero regular" || echo "$FIC no existe o no es un fichero regular"
 /tmp/pp existe y es un fichero regular
 ```
 Como veis, la potencia del comando reside en el parámetro que utilicemos. A continuación os enumero bastantes de sus opciones, no todas, pero si las que me parecen más útiles:

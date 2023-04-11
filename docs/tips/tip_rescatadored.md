@@ -1,6 +1,8 @@
 ---
 title: "Chuleta 02 - Rescantando de la red"
 date: "2019-06-13"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "chuletas"
 tags: 
@@ -16,7 +18,7 @@ En esta entrada os traigo unas cuantas cosillas que tenía **publicadas por otro
 [Porquiz.net](http://portquiz.net) es un equipo que está escuchando por **TODOS los puertos** (salvo por el 445, que según su administrador no consigue mapear por restricciones de su ISP).
 
 Con este sencillo comando nmap **podemos ver que puertos de salida tenemos abiertos en nuestra infraestructura** (aka, los puertos que nos permiten salir en nuestro proxy/firewall):
-
+```
 operador@VASS-TONIO:~$ nmap -p 1-65535 portquiz.net
 
 Starting Nmap 7.01 ( https://nmap.org ) at 2017-10-03 08:25 CEST
@@ -44,19 +46,19 @@ PORT STATE SERVICE
 43440/tcp open unknown
 
 Nmap done: 1 IP address (1 host up) scanned in 104.11 seconds
-
+```
 Es muy util para ver que restricciones de salida tenemos en el trabajo... para conectarnos según que servicios.
 
-**Seguimos con la forma de cambiar editor** de /etc/sudoers Ubuntu
+**Seguimos con la forma de cambiar editor** de `/etc/sudoers` Ubuntu
 
-Alguien ha decidido que lo mejor para editar el fichero /etc/sudoers en Ubuntu es la basura infecta del editor nano… Es de risa.. invocas el comando visudo porque se supone que quieres editar con VI el fichero sudoers de sudo.. (vi sudo) y van y te cargan Nano... me entra una mala leche.
+Alguien ha decidido que lo mejor para editar el fichero `/etc/sudoers` en Ubuntu es la basura infecta del editor nano… Es de risa.. invocas el comando visudo porque se supone que quieres editar con VI el fichero sudoers de sudo.. (vi sudo) y van y te cargan Nano... me entra una mala leche.
 
 Para **solventar esta terrible decisión que alguien de Canonical que debería estar vendiendo microondas en un WallMart** podemos hacer esto:
-
-operador@VASS-TONIO:~$ sudo update-alternatives --config editor \[sudo\] password for operador:
+```
+operador@VASS-TONIO:~$ sudo update-alternatives --config editor [sudo] password for operador:
 
 operador@VASS-TONIO:~$ sudo update-alternatives --config editor
-\[sudo\] password for operador:
+[sudo] password for operador:
 
 Existen 4 opciones para la alternativa editor (que provee /usr/bin/editor).
 
@@ -68,8 +70,8 @@ Selección Ruta Prioridad Estado
 3 /usr/bin/vim.basic 30 modo manual
 4 /usr/bin/vim.tiny 10 modo manual
 
-Press <enter> to keep the current choice\[\*\], or type selection number: 3
-
+Press <enter> to keep the current choice[\*], or type selection number: 3
+```
 Y usar [VI](https://es.wikipedia.org/wiki/Vi), como debe ser, para editar ficheros.
 
 (\* _notamental_… tan sencillo como que la segunda línea de la instalación de una máquina sea eliminar ese editor..)
@@ -83,10 +85,10 @@ Los pasos para hacerlo "a mano" son estos:
 3. En paralelo vamos lanzando un kill -3 al proceso de java que esta consumiendo mucha cpu
 4. Del top sacamos el pid que esta consumiendo mas cpu
 5. Convertimos el PID a hexadecimal
-6. Buscamos en el thread dump nid=0x\[PID en exadecimal\]
+6. Buscamos en el thread dump nid=0x[PID en exadecimal]
 
 Yo en su momento lo pase a una utilidad para ir desplegando en todas las máquinas, aquí te lo pongo de regalo:
-
+```
 #!/usr/bin/perl
 
 # Solo para usuario (ps -f en vez de ps -ef)
@@ -128,5 +130,5 @@ $LIN=$\_; chomp($LIN);
 ($IMPRIME > 0 ) and print "${LIN}\\n";
 ($LIN =~ /^$/) and $IMPRIME=0;
 }
-
+```
 ... continuará ...

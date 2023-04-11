@@ -1,6 +1,8 @@
 ---
 title: "Chuleta 00 - Sumar con AWK"
 date: "2019-05-23"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "chuletas"
 tags: 
@@ -13,11 +15,11 @@ Vamos a contar (sumar) el resultado de un comando con **AWK**, esto es, por ejem
 
 Empezamos, lo que queremos sumar _\-XX:MaxMetaspaceSize=100m_ ocupa la posición _15_, y viene acompañado por una _m_ a la derecha (megas).
 
-ps -ef | grep java | awk '{print $15}' | cut -d= -f2 | sed 's/m//'
+`ps -ef | grep java | awk '{print $15}' | cut -d= -f2 | sed 's/m//'`
 
 Así que a esta salida de comando añadimos nuestro sumatorio awk:
 
-ps -ef | grep java | awk '{print $15}' | cut -d= -f2 | sed 's/m//' | awk '{total += $NF} END { print total }
+`ps -ef | grep java | awk '{print $15}' | cut -d= -f2 | sed 's/m//' | awk '{total += $NF} END { print total }`
 
 ¿Qué es lo que hace este churro?
 
