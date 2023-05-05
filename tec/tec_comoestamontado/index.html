@@ -1140,15 +1140,14 @@
 <p><strong>Web-SG</strong> en el que vamos a dar acceso a todo el mundo para HTTP y HTTPS (80 y 443), y acceso SSH (22) para nuestras ips personales (la de casa, la del trabajo, etc.)</p>
 <p><strong>RDS-SG</strong> en el que vamos a dar acceso al servicio MySql con el origen del Security Group Web-SG, esto es, las peticiones a la base de datos podrán llegar únicamente desde el frontal web.</p>
 <p>Esto lo <strong>podéis hacer por consola</strong>, o <strong>ponerle un poco más de emoción</strong> al asunto y hacerlo por línea de comando usando el <a href="https://aws.amazon.com/es/cli/">cliente</a>, al que tendréis que configurar unas credenciales de <a href="https://aws.amazon.com/es/iam/">IAM</a> (más que contado en internet).</p>
-<p>Creamos el Security Group WEB-SG, dentro de nuestra VPC por defecto (id vpc-b689b1XX) y capturamos la salida del comando para filtrar el identificador que nos genera AWS.</p>
-<p>root@WOPR:~# aws ec2 create-security-group \</p>
-<blockquote>
-<p>--group-name "WEB-SG" \
---description "Acceso WEB" \
---vpc-id "vpc-b689b1XX" --output json | /usr/bin/jq '.GroupId' | tr -d '"'
-sg-0022389898cf38226</p>
-</blockquote>
-<p>Ahora nombramos a nuestro SG:</p>
+<p>Creamos el Security Group WEB-SG, dentro de nuestra VPC por defecto (id vpc-b689b1XX) y capturamos la salida del comando para filtrar el identificador que nos genera AWS.
+<div class="highlight"><pre><span></span><code>root@WOPR:~# aws ec2 create-security-group \\
+&gt; --group-name &quot;WEB-SG&quot; \\
+&gt; --description &quot;Acceso WEB&quot; \\
+&gt; --vpc-id &quot;vpc-b689b1XX&quot; --output json | /usr/bin/jq &#39;.GroupId&#39; | tr -d &#39;&quot;&#39;
+sg-0022389898cf38226
+</code></pre></div>
+Ahora nombramos a nuestro SG:</p>
 <p>root@WOPR:~# aws ec2 create-tags \</p>
 <blockquote>
 <p>--resources "sg-0022389898cf38226" \
