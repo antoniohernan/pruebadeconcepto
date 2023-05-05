@@ -38,13 +38,13 @@ Empezamos creado dos Security Groups.
 Esto lo **podéis hacer por consola**, o **ponerle un poco más de emoción** al asunto y hacerlo por línea de comando usando el [cliente](https://aws.amazon.com/es/cli/), al que tendréis que configurar unas credenciales de [IAM](https://aws.amazon.com/es/iam/) (más que contado en internet).
 
 Creamos el Security Group WEB-SG, dentro de nuestra VPC por defecto (id vpc-b689b1XX) y capturamos la salida del comando para filtrar el identificador que nos genera AWS.
-
+```
 root@WOPR:~# aws ec2 create-security-group \\
 > --group-name "WEB-SG" \\
 > --description "Acceso WEB" \\
 > --vpc-id "vpc-b689b1XX" --output json | /usr/bin/jq '.GroupId' | tr -d '"'
 sg-0022389898cf38226
-
+```
 Ahora nombramos a nuestro SG:
 
 root@WOPR:~# aws ec2 create-tags \\
