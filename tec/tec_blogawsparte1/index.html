@@ -10,13 +10,9 @@
       
       
       
-        <link rel="canonical" href="https://pruebadeconcepto.es/tec/tec_comoestamontado/">
+        <link rel="canonical" href="https://pruebadeconcepto.es/tec/tec_blogawsparte1/">
       
       
-        <link rel="prev" href="../tec_actionsec2/">
-      
-      
-        <link rel="next" href="../../tips/tip_sumaconawk/">
       
       <link rel="icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
@@ -238,15 +234,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../tec_actionsec2/" class="md-tabs__link md-tabs__link--active">
+      <a href="../tec_actionsec2/" class="md-tabs__link">
         Tecnología
       </a>
     </li>
@@ -555,16 +549,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
       
       
       
@@ -573,7 +565,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Tecnología
@@ -598,19 +590,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../tec_comoestamontado.md" class="md-nav__link">
         ¿Cómo está montado este blog?
       </a>
-      
     </li>
   
 
@@ -1122,7 +1106,7 @@
                   
 
 
-  <h1>¿Cómo está montado este blog?</h1>
+  <h1>Monta tu blog en AWS por 0€ - parte 1</h1>
 
 <p>Monté este blog animado por la <a href="https://aws.amazon.com/es/free">capa gratuita</a> de Amazón en su AWS.</p>
 <p>Antes de esto había experimentado con <a href="http://pruebadeconcepto.es/?p=1">otras opciones</a> de lo más variopintas, tuve <strong>algún blog funcionando con una pequeña RaspberryPi sujeta con velcro</strong> detrás de la televisión cercana al router... todo un ejercicio de optimización de recursos aquello... no puedes desperdiciar un byte de la escasa ram y optimizas el gasto de CPU como cuando de "mozo" mirabas cada línea de código pensando en que alguien vendría con los dichosos MIPS... (esto ya os lo contaré)</p>
@@ -1142,98 +1126,102 @@
 <p>Esto lo <strong>podéis hacer por consola</strong>, o <strong>ponerle un poco más de emoción</strong> al asunto y hacerlo por línea de comando usando el <a href="https://aws.amazon.com/es/cli/">cliente</a>, al que tendréis que configurar unas credenciales de <a href="https://aws.amazon.com/es/iam/">IAM</a> (más que contado en internet).</p>
 <p>Creamos el Security Group WEB-SG, dentro de nuestra VPC por defecto (id vpc-b689b1XX) y capturamos la salida del comando para filtrar el identificador que nos genera AWS.
 <div class="highlight"><pre><span></span><code>root@WOPR:~# aws ec2 create-security-group \\
-&gt; --group-name &quot;WEB-SG&quot; \\
-&gt; --description &quot;Acceso WEB&quot; \\
-&gt; --vpc-id &quot;vpc-b689b1XX&quot; --output json | /usr/bin/jq &#39;.GroupId&#39; | tr -d &#39;&quot;&#39;
+--group-name &quot;WEB-SG&quot; \\
+--description &quot;Acceso WEB&quot; \\
+--vpc-id &quot;vpc-b689b1XX&quot; --output json | /usr/bin/jq &#39;.GroupId&#39; | tr -d &#39;&quot;&#39;
 sg-0022389898cf38226
 </code></pre></div>
 Ahora nombramos a nuestro SG:</p>
-<p>root@WOPR:~# aws ec2 create-tags \</p>
-<blockquote>
-<p>--resources "sg-0022389898cf38226" \
---tags Key=Name,Value="WEB-SG"</p>
-</blockquote>
+<div class="highlight"><pre><span></span><code>root@WOPR:~# aws ec2 create-tags \\
+--resources &quot;sg-0022389898cf38226&quot; \\
+--tags Key=Name,Value=&quot;WEB-SG&quot;
+</code></pre></div>
 <p>Y por último abrimos las comunicaciones de los puertos indicados antes:</p>
-<p>root@WOPR:~# aws ec2 authorize-security-group-ingress \</p>
-<blockquote>
-<p>--group-id "sg-0022389898cf38226" \
---protocol tcp --port 22 \
---cidr "XXX.XXX.XXX.XXX/32"</p>
-</blockquote>
-<p>root@WOPR:~# aws ec2 authorize-security-group-ingress \</p>
-<blockquote>
-<p>--group-id "sg-0022389898cf38226" \
---protocol tcp --port 80 \
---cidr "0.0.0.0/0"</p>
-</blockquote>
-<p>root@WOPR:~# aws ec2 authorize-security-group-ingress \</p>
-<blockquote>
-<p>--group-id "sg-0022389898cf38226" \
---protocol tcp --port 443 \
---cidr "0.0.0.0/0"</p>
-</blockquote>
-<p>Creamos el Security Group RDS-SG:</p>
-<p>root@WOPR:~# aws ec2 create-security-group \</p>
-<blockquote>
-<p>--group-name "RDS-SG" \
---description "Acceso RDS" \
---vpc-id "vpc-b689b1XX" --output json | /usr/bin/jq '.GroupId' | tr -d '"'
-sg-0729ab6694bef3faa</p>
-</blockquote>
-<p>Con ese identificador nombramos el SG:</p>
-<p>root@WOPR:~# aws ec2 create-tags \</p>
-<blockquote>
-<p>--resources "sg-0729ab6694bef3faa" \
---tags Key=Name,Value="RDS-SG"</p>
-</blockquote>
-<p>Y abrimos las comunicaciones para MySql en el 3306 para el origen SG WEB-SG:</p>
-<p>root@WOPR:~# aws ec2 authorize-security-group-ingress \
---group-id "sg-0729ab6694bef3faa" \
---protocol tcp --port 3306 \
---source-group "sg-0022389898cf38226"</p>
-<p>El resultado de estos comando en la consola será similar a esto:</p>
+<div class="highlight"><pre><span></span><code>root@WOPR:~# aws ec2 authorize-security-group-ingress \\
+--group-id &quot;sg-0022389898cf38226&quot; \\
+--protocol tcp --port 22 \\
+--cidr &quot;XXX.XXX.XXX.XXX/32&quot;
+
+root@WOPR:~# aws ec2 authorize-security-group-ingress \\
+--group-id &quot;sg-0022389898cf38226&quot; \\
+--protocol tcp --port 80 \\
+--cidr &quot;0.0.0.0/0&quot;
+
+root@WOPR:~# aws ec2 authorize-security-group-ingress \\
+--group-id &quot;sg-0022389898cf38226&quot; \\
+--protocol tcp --port 443 \\
+--cidr &quot;0.0.0.0/0&quot;
+</code></pre></div>
+<p>Creamos el Security Group RDS-SG:
+<div class="highlight"><pre><span></span><code>root@WOPR:~# aws ec2 create-security-group \\
+--group-name &quot;RDS-SG&quot; \\
+--description &quot;Acceso RDS&quot; \\
+--vpc-id &quot;vpc-b689b1XX&quot; --output json | /usr/bin/jq &#39;.GroupId&#39; | tr -d &#39;&quot;&#39;
+sg-0729ab6694bef3faa
+</code></pre></div>
+Con ese identificador nombramos el SG:
+<div class="highlight"><pre><span></span><code>root@WOPR:~# aws ec2 create-tags \\
+--resources &quot;sg-0729ab6694bef3faa&quot; \\
+--tags Key=Name,Value=&quot;RDS-SG&quot;
+</code></pre></div>
+Y abrimos las comunicaciones para MySql en el 3306 para el origen SG WEB-SG:
+<div class="highlight"><pre><span></span><code>root@WOPR:~# aws ec2 authorize-security-group-ingress \\
+--group-id &quot;sg-0729ab6694bef3faa&quot; \\
+--protocol tcp --port 3306 \\
+--source-group &quot;sg-0022389898cf38226&quot;
+</code></pre></div>
+El resultado de estos comando en la consola será similar a esto:</p>
 <p><img alt="" src="../../images/Selecci%C3%B3n_438.png" /></p>
 <p>Para poder crear (por fin) nuestra máquina en EC2 debemos tener:</p>
-<p>1.- <strong>KeyPair</strong> para poder acceder a ella por SSH. La generamos así (guarda bien esta información!!)</p>
-<p>pi@WOPR:~ $ aws ec2 create-key-pair --key-name "KP_MIEC2"
+<p>1.- <strong>KeyPair</strong> para poder acceder a ella por SSH. La generamos así (guarda bien esta información!!)
+<div class="highlight"><pre><span></span><code>pi@WOPR:~ $ aws ec2 create-key-pair --key-name &quot;KP_MIEC2&quot;
 {
-"KeyFingerprint": "4b:2e:5a:94:cb:6b:8a<img alt="🆎" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/svg/1f18e.svg" title=":ab:" />59:73:77:3f:4a:37:38:6c:d3:d2:5a:d7",
-"KeyName": "KP_MIEC2",
-"KeyMaterial": "-----BEGIN RSA PRIVATE KEY-----\n TEXTO ELIMINADO INTENCIONADAMENTE \n-----END RSA PRIVATE KEY-----"
-}</p>
-<p>2.- Conocer cuales son nuestras <strong>subredes</strong> y las <strong>zonas de disponibilidad</strong>:</p>
-<p>pi@WOPR:~ $ aws ec2 describe-subnets --output text | awk '{print $3" "$12}'
+&quot;KeyFingerprint&quot;: &quot;4b:2e:5a:94:cb:6b:8a:ab:59:73:77:3f:4a:37:38:6c:d3:d2:5a:d7&quot;,
+&quot;KeyName&quot;: &quot;KP_MIEC2&quot;,
+&quot;KeyMaterial&quot;: &quot;-----BEGIN RSA PRIVATE KEY-----\\n TEXTO ELIMINADO INTENCIONADAMENTE \\n-----END RSA PRIVATE KEY-----&quot;
+}
+</code></pre></div>
+2.- Conocer cuales son nuestras <strong>subredes</strong> y las <strong>zonas de disponibilidad</strong>:
+<div class="highlight"><pre><span></span><code>pi@WOPR:~ $ aws ec2 describe-subnets --output text | awk &#39;{print $3&quot; &quot;$12}&#39;
 eu-west-1a subnet-c1f2449b
 eu-west-1c subnet-4630740e
-eu-west-1b subnet-88a8ddee</p>
-<p>(* <em>notamental</em>... manejar mejor las salidas usando formato Json y filtrar con query jq...)</p>
-<p>3.- Conocer el id de AMI que vamos a utilizar, para Ubuntu 18.04 es esta:</p>
-<p>pi@WOPR:~ $ aws ec2 describe-images --owners 099720109477 --filters 'Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-??????????' 'Name=state,Values=available' --output json | jq -r '.Images | sort_by(.CreationDate) | last(.[]).ImageId'
-ami-0b2a4d260c54e8d3d</p>
-<p>Con todo esto montamos un fichero (p.e. specification.json) que emplearemos ahora después como plantilla:<br />
-<strong>specifications.json</strong></p>
-<p>{
-"ImageId": "ami-0b2a4d260c54e8d3d",
-"InstanceType": "t2.micro",
-"KeyName": "KP_MIEC2",
-"Placement": { "AvailabilityZone": "eu-west-1a" },
-"SecurityGroupIds": [ "sg-072526f914e7202f8" ],
-"SubnetId": "subnet-c1f2449b",
-"DryRun": true
-}</p>
-<p>(* <em>DryRun</em> está a true para probar que todo va bien)</p>
-<p>Y ahora si, por fin, vamos a generar nuestra máquina:</p>
-<p>pi@WOPR:~ $ aws ec2 run-instances --cli-input-json file://specifications.json</p>
-<p>An error occurred (DryRunOperation) when calling the RunInstances operation: Request would have succeeded, but DryRun flag is set.</p>
+eu-west-1b subnet-88a8ddee
+</code></pre></div>
+(* <em>notamental</em>... manejar mejor las salidas usando formato Json y filtrar con query jq...)
+(* otra <em>notamental</em>... cambiar todo este código disperso por Cloudformation o por un poco de Terraform... algún día...)</p>
+<p>3.- Conocer el id de AMI que vamos a utilizar, para Ubuntu 18.04 es esta:
+<div class="highlight"><pre><span></span><code>pi@WOPR:~ $ aws ec2 describe-images --owners 099720109477 --filters &#39;Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-??????????&#39; &#39;Name=state,Values=available&#39; --output json | jq -r &#39;.Images | sort_by(.CreationDate) | last(.[]).ImageId&#39;
+ami-0b2a4d260c54e8d3d
+</code></pre></div>
+Con todo esto montamos un fichero (p.e. specification.json) que emplearemos ahora después como plantilla:<br />
+<strong>specifications.json</strong>
+<div class="highlight"><pre><span></span><code>{
+&quot;ImageId&quot;: &quot;ami-0b2a4d260c54e8d3d&quot;,
+&quot;InstanceType&quot;: &quot;t2.micro&quot;,
+&quot;KeyName&quot;: &quot;KP_MIEC2&quot;,
+&quot;Placement&quot;: { &quot;AvailabilityZone&quot;: &quot;eu-west-1a&quot; },
+&quot;SecurityGroupIds&quot;: [ &quot;sg-072526f914e7202f8&quot; ],
+&quot;SubnetId&quot;: &quot;subnet-c1f2449b&quot;,
+&quot;DryRun&quot;: true
+}
+</code></pre></div>
+(* <em>DryRun</em> está a true para probar que todo va bien)</p>
+<p>Y ahora si, por fin, vamos a generar nuestra máquina:
+<div class="highlight"><pre><span></span><code>pi@WOPR:~ $ aws ec2 run-instances --cli-input-json file://specifications.json
+
+An error occurred (DryRunOperation) when calling the RunInstances operation: Request would have succeeded, but DryRun flag is set.
+</code></pre></div></p>
 <p>Si el mensaje <strong>es como este</strong> podemos editar el fichero de especificaciones, poner <em>DryRun</em> a false y volver a ejecutar para crear nuestra instancia.</p>
 <p><strong>Para terminar esta primer parte</strong>, vamos a conectarnos, empleando la clave SSH que tenemos descargada.<br />
-Primero obtenemos <strong>los datos de nuestra instancia</strong>:</p>
-<p>pi@WOPR:~ $ aws ec2 describe-instances --filter Name="instance-type",Values="t2.micro" Name="instance-state-name",Values="running" --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,State.Name,PrivateIpAddress,PublicIpAddress'] --output text
-i-0594d4acc5XX1c465 t2.micro running 172.31.22.120 52.17.XX.126</p>
-<p>Y nos conectamos a ella por SSH:</p>
-<p>pi@WOPR:~ $ ssh -i KP_MIEC2.pem ubuntu@52.17.XX.126
-Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-1039-aws x86_64)</p>
-<p>... <a href="http://pruebadeconcepto.es/?p=140">continuará</a> ...</p>
+Primero obtenemos <strong>los datos de nuestra instancia</strong>:
+<div class="highlight"><pre><span></span><code>pi@WOPR:~ $ aws ec2 describe-instances --filter Name=&quot;instance-type&quot;,Values=&quot;t2.micro&quot; Name=&quot;instance-state-name&quot;,Values=&quot;running&quot; --query &#39;Reservations[*].Instances[*].[InstanceId,InstanceType,State.Name,PrivateIpAddress,PublicIpAddress&#39;] --output text
+i-0594d4acc5XX1c465 t2.micro running 172.31.22.120 52.17.XX.126
+</code></pre></div>
+Y nos conectamos a ella por SSH:
+<div class="highlight"><pre><span></span><code>pi@WOPR:~ $ ssh -i KP_MIEC2.pem ubuntu@52.17.XX.126
+Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-1039-aws x86_64)
+</code></pre></div>
+... <a href="tec/tec_blogawsparte2.md">continuará</a> ...</p>
 
 
 
