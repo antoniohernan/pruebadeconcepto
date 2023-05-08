@@ -40,55 +40,59 @@ Esto lo **podéis hacer por consola**, o **ponerle un poco más de emoción** al
 Creamos el Security Group WEB-SG, dentro de nuestra VPC por defecto (id vpc-b689b1XX) y capturamos la salida del comando para filtrar el identificador que nos genera AWS.
 ```
 root@WOPR:~# aws ec2 create-security-group \\
-> --group-name "WEB-SG" \\
-> --description "Acceso WEB" \\
-> --vpc-id "vpc-b689b1XX" --output json | /usr/bin/jq '.GroupId' | tr -d '"'
+--group-name "WEB-SG" \\
+--description "Acceso WEB" \\
+--vpc-id "vpc-b689b1XX" --output json | /usr/bin/jq '.GroupId' | tr -d '"'
 sg-0022389898cf38226
 ```
 Ahora nombramos a nuestro SG:
 
+```
 root@WOPR:~# aws ec2 create-tags \\
-> --resources "sg-0022389898cf38226" \\
-> --tags Key=Name,Value="WEB-SG"
+--resources "sg-0022389898cf38226" \\
+--tags Key=Name,Value="WEB-SG"
+```
 
 Y por último abrimos las comunicaciones de los puertos indicados antes:
 
+```
 root@WOPR:~# aws ec2 authorize-security-group-ingress \\
-> --group-id "sg-0022389898cf38226" \\
-> --protocol tcp --port 22 \\
-> --cidr "XXX.XXX.XXX.XXX/32"
+--group-id "sg-0022389898cf38226" \\
+--protocol tcp --port 22 \\
+--cidr "XXX.XXX.XXX.XXX/32"
 
 root@WOPR:~# aws ec2 authorize-security-group-ingress \\
-> --group-id "sg-0022389898cf38226" \\
-> --protocol tcp --port 80 \\
-> --cidr "0.0.0.0/0"
+--group-id "sg-0022389898cf38226" \\
+--protocol tcp --port 80 \\
+--cidr "0.0.0.0/0"
 
 root@WOPR:~# aws ec2 authorize-security-group-ingress \\
-> --group-id "sg-0022389898cf38226" \\
-> --protocol tcp --port 443 \\
-> --cidr "0.0.0.0/0"
+--group-id "sg-0022389898cf38226" \\
+--protocol tcp --port 443 \\
+--cidr "0.0.0.0/0"
+```
 
 Creamos el Security Group RDS-SG:
-
+```
 root@WOPR:~# aws ec2 create-security-group \\
-> --group-name "RDS-SG" \\
-> --description "Acceso RDS" \\
-> --vpc-id "vpc-b689b1XX" --output json | /usr/bin/jq '.GroupId' | tr -d '"'
+--group-name "RDS-SG" \\
+--description "Acceso RDS" \\
+--vpc-id "vpc-b689b1XX" --output json | /usr/bin/jq '.GroupId' | tr -d '"'
 sg-0729ab6694bef3faa
-
+```
 Con ese identificador nombramos el SG:
-
+```
 root@WOPR:~# aws ec2 create-tags \\
-> --resources "sg-0729ab6694bef3faa" \\
-> --tags Key=Name,Value="RDS-SG"
-
+--resources "sg-0729ab6694bef3faa" \\
+--tags Key=Name,Value="RDS-SG"
+```
 Y abrimos las comunicaciones para MySql en el 3306 para el origen SG WEB-SG:
-
+```
 root@WOPR:~# aws ec2 authorize-security-group-ingress \\
 --group-id "sg-0729ab6694bef3faa" \\
 --protocol tcp --port 3306 \\
 --source-group "sg-0022389898cf38226"
-
+```
 El resultado de estos comando en la consola será similar a esto:
 
 ![](../images/Selección_438.png)
@@ -96,61 +100,62 @@ El resultado de estos comando en la consola será similar a esto:
 Para poder crear (por fin) nuestra máquina en EC2 debemos tener:
 
 1.- **KeyPair** para poder acceder a ella por SSH. La generamos así (guarda bien esta información!!)
-
-pi@WOPR:~ $ aws ec2 create-key-pair --key-name "KP\_MIEC2"
+```
+pi@WOPR:~ $ aws ec2 create-key-pair --key-name "KP_MIEC2"
 {
 "KeyFingerprint": "4b:2e:5a:94:cb:6b:8a:ab:59:73:77:3f:4a:37:38:6c:d3:d2:5a:d7",
-"KeyName": "KP\_MIEC2",
+"KeyName": "KP_MIEC2",
 "KeyMaterial": "-----BEGIN RSA PRIVATE KEY-----\\n TEXTO ELIMINADO INTENCIONADAMENTE \\n-----END RSA PRIVATE KEY-----"
 }
-
+```
 2.- Conocer cuales son nuestras **subredes** y las **zonas de disponibilidad**:
-
+```
 pi@WOPR:~ $ aws ec2 describe-subnets --output text | awk '{print $3" "$12}'
 eu-west-1a subnet-c1f2449b
 eu-west-1c subnet-4630740e
 eu-west-1b subnet-88a8ddee
-
+```
 (\* _notamental_... manejar mejor las salidas usando formato Json y filtrar con query jq...)
+(\* otra _notamental_... cambiar todo este código disperso por Cloudformation o por un poco de Terraform... algún día...)
 
 3.- Conocer el id de AMI que vamos a utilizar, para Ubuntu 18.04 es esta:
-
-pi@WOPR:~ $ aws ec2 describe-images --owners 099720109477 --filters 'Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-??????????' 'Name=state,Values=available' --output json | jq -r '.Images | sort\_by(.CreationDate) | last(.\[\]).ImageId'
+```
+pi@WOPR:~ $ aws ec2 describe-images --owners 099720109477 --filters 'Name=name,Values=ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-??????????' 'Name=state,Values=available' --output json | jq -r '.Images | sort_by(.CreationDate) | last(.[]).ImageId'
 ami-0b2a4d260c54e8d3d
-
+```
 Con todo esto montamos un fichero (p.e. specification.json) que emplearemos ahora después como plantilla:  
 **specifications.json**
-
+```
 {
 "ImageId": "ami-0b2a4d260c54e8d3d",
 "InstanceType": "t2.micro",
-"KeyName": "KP\_MIEC2",
+"KeyName": "KP_MIEC2",
 "Placement": { "AvailabilityZone": "eu-west-1a" },
-"SecurityGroupIds": \[ "sg-072526f914e7202f8" \],
+"SecurityGroupIds": [ "sg-072526f914e7202f8" ],
 "SubnetId": "subnet-c1f2449b",
 "DryRun": true
 }
-
+```
 (\* _DryRun_ está a true para probar que todo va bien)
 
 Y ahora si, por fin, vamos a generar nuestra máquina:
-
+```
 pi@WOPR:~ $ aws ec2 run-instances --cli-input-json file://specifications.json
 
 An error occurred (DryRunOperation) when calling the RunInstances operation: Request would have succeeded, but DryRun flag is set.
+```
 
 Si el mensaje **es como este** podemos editar el fichero de especificaciones, poner _DryRun_ a false y volver a ejecutar para crear nuestra instancia.
 
-
 **Para terminar esta primer parte**, vamos a conectarnos, empleando la clave SSH que tenemos descargada.  
 Primero obtenemos **los datos de nuestra instancia**:
-
-pi@WOPR:~ $ aws ec2 describe-instances --filter Name="instance-type",Values="t2.micro" Name="instance-state-name",Values="running" --query 'Reservations\[\*\].Instances\[\*\].\[InstanceId,InstanceType,State.Name,PrivateIpAddress,PublicIpAddress'\] --output text
+```
+pi@WOPR:~ $ aws ec2 describe-instances --filter Name="instance-type",Values="t2.micro" Name="instance-state-name",Values="running" --query 'Reservations[*].Instances[*].[InstanceId,InstanceType,State.Name,PrivateIpAddress,PublicIpAddress'] --output text
 i-0594d4acc5XX1c465 t2.micro running 172.31.22.120 52.17.XX.126
-
+```
 Y nos conectamos a ella por SSH:
-
-pi@WOPR:~ $ ssh -i KP\_MIEC2.pem ubuntu@52.17.XX.126
-Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-1039-aws x86\_64)
-
-... [continuará](http://pruebadeconcepto.es/?p=140) ...
+```
+pi@WOPR:~ $ ssh -i KP_MIEC2.pem ubuntu@52.17.XX.126
+Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-1039-aws x86_64)
+```
+... [continuará](tec/tec_blogawsparte2.md) ...
