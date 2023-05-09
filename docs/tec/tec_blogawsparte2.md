@@ -10,7 +10,7 @@ tags:
   - "ubuntu"
 ---
 
-Continuamos con nuestro pequeño servidor, al que deberemos tener acceso si nos han ido bien los pasos de la [primera parte](http://pruebadeconcepto.es/?p=24)
+Continuamos con nuestro pequeño servidor, al que deberemos tener acceso si nos han ido bien los pasos de la [primera parte](/tec/tec_blogawsparte1.md)
 
 Antes de seguir con esta máquina **vamos a generar nuestra base de datos**, empleando el servicio gestionado de bases de datos relacionaes, [RDS](https://aws.amazon.com/es/rds/) de AWS.
 
