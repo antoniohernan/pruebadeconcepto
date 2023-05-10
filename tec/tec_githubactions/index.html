@@ -13,6 +13,10 @@
         <link rel="canonical" href="https://pruebadeconcepto.es/tec/tec_githubactions/">
       
       
+        <link rel="prev" href="../tec_monbasicagrafana/">
+      
+      
+        <link rel="next" href="../tec_bloqueartor/">
       
       <link rel="icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
@@ -239,13 +243,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../tec_blogawsparte1/" class="md-tabs__link">
+      <a href="../tec_blogawsparte1/" class="md-tabs__link md-tabs__link--active">
         Tecnología
       </a>
     </li>
@@ -554,14 +560,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
       
       
       
@@ -570,7 +578,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Tecnología
@@ -655,6 +663,78 @@
     <li class="md-nav__item">
       <a href="../tec_monbasicagrafana/" class="md-nav__link">
         Monitorización básica con Grafana + InfluxDB + CollectD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Github Actions
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Github Actions
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sast" class="md-nav__link">
+    SAST
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    BUILD
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tec_bloqueartor/" class="md-nav__link">
+        Bloquear red TOR en nuestro Apache y otras medida preventivas
       </a>
     </li>
   
@@ -1168,63 +1248,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#github-actions-sintaxis-help" class="md-nav__link">
-    Github Actions sintaxis help:
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#httpsdocsgithubcomenactionsusing-workflowsworkflow-syntax-for-github-actions" class="md-nav__link">
-    https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#semgrep-ci-docs" class="md-nav__link">
-    Semgrep CI docs
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#httpssemgrepdevdocssemgrep-cioverview" class="md-nav__link">
-    https://semgrep.dev/docs/semgrep-ci/overview/
-  </a>
-  
-    <nav class="md-nav" aria-label="https://semgrep.dev/docs/semgrep-ci/overview/">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#build" class="md-nav__link">
     BUILD
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-boards" class="md-nav__link">
-    Install boards
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-libraries" class="md-nav__link">
-    Install Libraries
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#compile" class="md-nav__link">
-    Compile
   </a>
   
 </li>
@@ -1243,6 +1268,8 @@
                 
                   
 
+
+  <h1>Github Actions</h1>
 
 <p>Hacía tiempo que tenía ganas de escribir algo de nuevo y vaya.. <a href="https://github.com/features/actions">actions</a> se ha cruzado conmigo recientemente a nivel laboral donde lo hemos retorcido bastante con <a href="https://docs.microsoft.com/en-us/azure/sentinel/ci-cd?tabs=github">Azure Sentinel</a> y sus despliegues de reglas analíticas, así que me he animado a poner un par de acciones en uno de mis repositorios de código en Github.com.</p>
 <p>Los beneficios de usar <a href="https://github.com/actions">Github Actions</a> en nuestgros repositorios son:</p>
@@ -1266,147 +1293,170 @@
 <li>Utilízalo en tu repositorio público de forma gratuita:</li>
 </ul>
 <p>GitHub Actions es de <strong>uso gratuito en todos los repositorios públicos y se puede utilizar de forma gratuita en los repositorios privados con un límite de 2.000 minutos al mes</strong> de flujos de trabajo alojados (o una cantidad ilimitada de minutos si un desarrollador aloja su propio servidor de GitHub Action).</p>
-<p>Traduciendo esto a los menos versados, podemos hacer infinidad de operaciones para las que antes empleábamos si o si un servidor con Jenkins directamente en nuestro repositorio, teniendo además el código fuente de estas acciones en el propio repositorio, pues la contribución de estas acciones se hace en formato Yamel y los ficheros se alojan bajo .github/workflows.</p>
-<p>Para esta prueba de concepto he pensado generar dos acciones, ambas que se ejecuten al hacer un push de un fichero sobre cualquier rama (o al hacer el merge de una Pull Request que genera un push sobre la rama main/master).</p>
+<p>Traduciendo esto a los menos versados, podemos hacer infinidad de operaciones para las que antes empleábamos si o si un servidor con Jenkins directamente en nuestro repositorio, teniendo además el código fuente de estas acciones en el propio repositorio, pues la contribución de estas acciones se hace en formato Yamel y los ficheros se alojan bajo <code>.github/workflows</code></p>
+<p>Para esta prueba de concepto he pensado generar dos acciones, ambas que se ejecuten al hacer un push de un fichero sobre cualquier rama (o al hacer el merge de una Pull Request que genera un push sobre la rama <code>main/master</code>).</p>
 <p>En <strong>primer lugar</strong> vamos a realizar una acción de análisis de código estático o <strong>SAST (</strong>Static application security testing<strong>)</strong></p>
 <p>Las SAST son un conjunto de tecnologías diseñadas para analizar el código fuente, el código de bytes y los binarios de las aplicaciones en busca de condiciones de codificación y diseño que sean indicativas de vulnerabilidades de seguridad. Las soluciones SAST analizan una aplicación desde "dentro hacia fuera" en un estado de no ejecución.</p>
 <p>Vamos a buscar básicamente secretos y problemas de auditoria en el código, por si nos hemos despistado y hemos colgado públicamente alguna credencial.</p>
 <p>En <strong>segundo lugar</strong> vamos a realizar una <strong>build</strong> o construcción del código que se contribuye al repositorio, por si existe algún problema de compilación que no hayamos detectado, sintaxis, dependencia de librerías, etc .</p>
 <h2 id="sast">SAST<a class="headerlink" href="#sast" title="Permanent link">&para;</a></h2>
-<p>Generamos el fichero .github/workflows/semgrep.yml</p>
-<p>name: Semgrep</p>
-<h1 id="github-actions-sintaxis-help">Github Actions sintaxis help:<a class="headerlink" href="#github-actions-sintaxis-help" title="Permanent link">&para;</a></h1>
-<h1 id="httpsdocsgithubcomenactionsusing-workflowsworkflow-syntax-for-github-actions">https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions<a class="headerlink" href="#httpsdocsgithubcomenactionsusing-workflowsworkflow-syntax-for-github-actions" title="Permanent link">&para;</a></h1>
-<h1 id="semgrep-ci-docs">Semgrep CI docs<a class="headerlink" href="#semgrep-ci-docs" title="Permanent link">&para;</a></h1>
-<h1 id="httpssemgrepdevdocssemgrep-cioverview">https://semgrep.dev/docs/semgrep-ci/overview/<a class="headerlink" href="#httpssemgrepdevdocssemgrep-cioverview" title="Permanent link">&para;</a></h1>
-<p>on:
+<p>Generamos el fichero <code>.github/workflows/semgrep.yml</code>
+<div class="highlight"><pre><span></span><code>name: Semgrep
+
+# Github Actions sintaxis help:
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+
+# Semgrep CI docs
+# https://semgrep.dev/docs/semgrep-ci/overview/
+
+on:
   # Scan changed files in PRs, block on new issues only (existing issues ignored)
   # All Branches
-  pull_request: {}</p>
-<p># Scan all files on branches, block on any issues
+  pull_request: {}
+
+  # Scan all files on branches, block on any issues
   # All Branches
   push:
-  #   branches: ["develop", "main"]</p>
-<p># Schedule this job to run at a certain time, using cron syntax
+  #   branches: [&quot;develop&quot;, &quot;main&quot;]
+
+  # Schedule this job to run at a certain time, using cron syntax
   # Note that * is a special character in YAML so you have to quote this string
   # schedule:
-  #   - cron: '30 0 1,15 * *' # scheduled for 00:30 UTC on both the 1st and 15th of the month</p>
-<p>jobs:
+  #   - cron: &#39;30 0 1,15 * *&#39; # scheduled for 00:30 UTC on both the 1st and 15th of the month
+
+jobs:
   semgrep:
     name: Scan
     runs-on: ubuntu-latest
     container:
       image: returntocorp/semgrep
     # Skip any PR created by dependabot to avoid permission issues
-    if: (github.actor != 'dependabot[bot]')
+    if: (github.actor != &#39;dependabot[bot]&#39;)
     steps:
       # Fetch project source
-      - uses: actions/checkout@v3</p>
-<pre><code>  - run: semgrep ci
-    env:
-      # Semgrep Rules
-      # https://github.com/returntocorp/semgrep-rules
-      SEMGREP\_RULES: &gt;-
-        p/security-audit
-        p/secrets
-</code></pre>
-<p>Aquí le indicamos a Actions que ejecute esta acción al hacer cualquier pull_request, o al hacer push sobre cualquier rama (las posibles ramas sobre las que afinar el alcance de la acción están comentadas). También están comentadas las líneas de la posible programación de la acción, ya que podemos ejecutar la acción si lo queremos también como un "contrab" al uso, sin necesidad de que sea un evento concreto de nuestro repositorio el que ejecute el disparador.</p>
+      - uses: actions/checkout@v3
+
+      - run: semgrep ci
+        env:
+          # Semgrep Rules
+          # https://github.com/returntocorp/semgrep-rules
+          SEMGREP\_RULES: &gt;-
+            p/security-audit
+            p/secrets
+</code></pre></div>
+Aquí le indicamos a Actions que ejecute esta acción al hacer cualquier pull_request, o al hacer push sobre cualquier rama (las posibles ramas sobre las que afinar el alcance de la acción están comentadas). También están comentadas las líneas de la posible programación de la acción, ya que podemos ejecutar la acción si lo queremos también como un "contrab" al uso, sin necesidad de que sea un evento concreto de nuestro repositorio el que ejecute el disparador.</p>
 <p>El funcionamiento es sencillo, indicamos en que sistema operativo correrá el "runner" que ejecuta las acciones y luego las acciones a realizar, haciendo en primer lugar un checkout del nuestro código en ese runner para que se puedan aplicar las siguientes acciones, en este caso son la evaluación de esas reglas.</p>
 <p>Ante los eventos indicados el job se ejecutará y podremos verlo en la parte de "Actions" de nuestro github.com</p>
-<p>9s
-Run semgrep ci
-Running `semgrep ci` without API token but with configs ('p/security-audit', 'p/secrets')
+<p><div class="highlight"><pre><span></span><code>Run semgrep ci
+Running `semgrep ci` without API token but with configs (&#39;p/security-audit&#39;, &#39;p/secrets&#39;)
 Scan environment:
   versions    - semgrep 0.93.0 on python 3.10.4
-  environment - running in environment github-actions, triggering event is push</p>
-<p>Fetching configuration from semgrep.dev
+  environment - running in environment github-actions, triggering event is push
+
+Fetching configuration from semgrep.dev
 Fetching rules from https://semgrep.dev/registry.
-Scanning 12 files with 43 <multilang> rules.</p>
-<p>Some files were skipped or only partially analyzed.
+Scanning 12 files with 43 &lt;multilang&gt; rules.
+
+Some files were skipped or only partially analyzed.
   Scan was limited to files tracked by git.
   Scan skipped: 4 files larger than 1.0 MB, 1 files matching .semgrepignore patterns
-  For a full list of skipped files, run semgrep with the --verbose flag.</p>
-<p>(need more rules? `semgrep login` for additional free Semgrep Registry rules)
+  For a full list of skipped files, run semgrep with the --verbose flag.
+
+(need more rules? `semgrep login` for additional free Semgrep Registry rules)
 Ran 294 rules on 6 files: 0 findings.
 Ran 294 blocking rules, 0 audit rules, and 0 internal rules used for rule recommendations.
 Found 0 findings from blocking rules and 0 findings from non-blocking rules
-No findings so exiting with code 0</p>
-<p>Estamos utilizando <a href="https://semgrep.dev/">Semgrep</a> , que es una evolución de pfff, que comenzó en Facebook en 2009, que a su vez era una evolución de la herramienta de refactorización de Linux Coccinelle. r2c revitalizó el proyecto después de que su autor original, Yoann Padioleau, se uniera a la empresa.</p>
+No findings so exiting with code 0
+</code></pre></div>
+Estamos utilizando <a href="https://semgrep.dev/">Semgrep</a> , que es una evolución de pfff, que comenzó en Facebook en 2009, que a su vez era una evolución de la herramienta de refactorización de Linux Coccinelle. r2c revitalizó el proyecto después de que su autor original, Yoann Padioleau, se uniera a la empresa.</p>
 <p>Podríamos emplear también <a href="https://codeql.github.com/">CodeQL</a> que es de la propia Github, pero este software si que tiene coste ya que requiere que al menos se tenga una organización donde esté activo para poder ejecuarlo.</p>
 <h2 id="build">BUILD<a class="headerlink" href="#build" title="Permanent link">&para;</a></h2>
 <p>Para esta acción lo que vamos es a utilizar un runner que nos permita invocar a arduino-cli con el comando compile y con las librerías que empleamos en este proyecto y ver si se produce una compilación exitosa o no.</p>
-<p>En el caso de tener una máquina virtual o un entorno de desarrollo lo que tendríamos que hacer para generar esa compilación es:</p>
-<p># Install arduino-cli
+<p>En el caso de tener una máquina virtual o un entorno de desarrollo lo que tendríamos que hacer para generar esa compilación es:
+<div class="highlight"><pre><span></span><code># Install arduino-cli
 curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
 Installing in /home/ahernan/bin
 ARCH=64bit
 OS=Linux
 Using curl as download tool
 Downloading https://downloads.arduino.cc/arduino-cli/arduino-cli_0.22.0_Linux_64bit.tar.gz
-arduino-cli  Version: 0.22.0 Commit: 65f662a7 Date: 2022-05-06T11:09:35Z installed </p>
-<h1 id="install-boards">Install boards<a class="headerlink" href="#install-boards" title="Permanent link">&para;</a></h1>
-<p>arduino-cli core install arduino:avr
+arduino-cli  Version: 0.22.0 Commit: 65f662a7 Date: 2022-05-06T11:09:35Z installed 
+
+# Install boards
+arduino-cli core install arduino:avr
 Installing platform arduino:avr@1.8.5...
 Configuring platform....
-Platform arduino:avr@1.8.5 installed</p>
-<h1 id="install-libraries">Install Libraries<a class="headerlink" href="#install-libraries" title="Permanent link">&para;</a></h1>
-<p>arduino-cli lib install LiquidCrystal</p>
-<p>Downloading LiquidCrystal@1.0.7...
+Platform arduino:avr@1.8.5 installed
+
+# Install Libraries
+arduino-cli lib install LiquidCrystal
+
+Downloading LiquidCrystal@1.0.7...
 LiquidCrystal@1.0.7 downloaded
 Installing LiquidCrystal@1.0.7...
-Installed LiquidCrystal@1.0.7</p>
-<h1 id="compile">Compile<a class="headerlink" href="#compile" title="Permanent link">&para;</a></h1>
-<p>arduino-cli compile -b arduino:avr:uno ./cddf.ino
+Installed LiquidCrystal@1.0.7
+
+# Compile
+arduino-cli compile -b arduino:avr:uno ./cddf.ino
 Sketch uses 5096 bytes (15%) of program storage space. Maximum is 32256 bytes.
-Global variables use 295 bytes (14%) of dynamic memory, leaving 1753 bytes for local variables. Maximum is 2048 bytes.</p>
-<p>Para nuestra acción este es el código .yml que ejecutaremos:</p>
-<p>name: Build
+Global variables use 295 bytes (14%) of dynamic memory, leaving 1753 bytes for local variables. Maximum is 2048 bytes.
+</code></pre></div>
+Para nuestra acción este es el código <code>.yml</code> que ejecutaremos:
+<div class="highlight"><pre><span></span><code>name: Build
 on: 
   push:
     paths:
-    - '**.ino'
-    - '**build.yml' 
+    - &#39;**.ino&#39;
+    - &#39;**build.yml&#39; 
 jobs:
   build:
     name: Compile
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
-      uses: actions/checkout@v3</p>
-<pre><code>- name: Compile all files
-  uses: ArminJo/arduino-test-compile@v3
-  with:
-    arduino-board\_fqbn: arduino:avr:uno
-    required-libraries: LiquidCrystal
-</code></pre>
-<p>Indicamos los mismos parámetros que antes, la placa con -b ahora es un parámetro del proceso arduino-board_fqbn, y la librería que el cliente tradicional requiere que se instale se pasa a la acción como parámetro para que sea descargada.</p>
+      uses: actions/checkout@v3
+
+    - name: Compile all files
+      uses: ArminJo/arduino-test-compile@v3
+      with:
+        arduino-board\_fqbn: arduino:avr:uno
+        required-libraries: LiquidCrystal
+</code></pre></div>
+Indicamos los mismos parámetros que antes, la placa con -b ahora es un parámetro del proceso arduino-board_fqbn, y la librería que el cliente tradicional requiere que se instale se pasa a la acción como parámetro para que sea descargada.</p>
 <p>La salida de la ejecución de esta acción sería:</p>
-<p>arduino-cli downloading: ✓
+<div class="highlight"><pre><span></span><code>arduino-cli downloading: ✓
 Upacking arduino-cli to /home/runner/arduino_ide:  ✓
-arduino-cli  Version: 0.22.0 Commit: 65f662a7 Date: 2022-05-06T11:09:35Z</p>
-<p>Update index and install the required board platform
+arduino-cli  Version: 0.22.0 Commit: 65f662a7 Date: 2022-05-06T11:09:35Z
+
+Update index and install the required board platform
 PLATFORM=arduino:avr
 arduino-cli core update-index   &gt; /dev/null
-arduino-cli core install arduino:avr   &gt; /dev/null</p>
-<p>Special esp8266 and esp32 platform handling</p>
-<p>List installed boards with their FQBN
+arduino-cli core install arduino:avr   &gt; /dev/null
+
+Special esp8266 and esp32 platform handling
+
+List installed boards with their FQBN
 arduino-cli board listall
-Board Name                       FQBN                         <br />
+Board Name                       FQBN                           
 Adafruit Circuit Playground      arduino:avr:circuitplay32u4cat 
-Arduino BT                       arduino:avr:bt<br />
-...</p>
-<p>Install required libraries
-Install libraries LiquidCrystal</p>
-<p>Compiling sketches / examples for board arduino:avr:uno</p>
-<p>Creating directory /home/runner/cddf and copy ./* to it
+Arduino BT                       arduino:avr:bt  
+...
+
+Install required libraries
+Install libraries LiquidCrystal
+
+Compiling sketches / examples for board arduino:avr:uno
+
+Creating directory /home/runner/cddf and copy ./* to it
 Compiling cddf ✓
-arduino-cli compile --verbose --warnings all --fqbn arduino:avr:uno   /home/runner/cddf</p>
+arduino-cli compile --verbose --warnings all --fqbn arduino:avr:uno   /home/runner/cddf
+</code></pre></div>
 <p>Por último, podemos colocar en nuestro README.md un testigo o badge de la ejecución de nuestras actions, de manera que veamos de una forma muy visual si está todo correcto:</p>
-<p><img alt="" src="images/cddf_action1-300x97.png" /></p>
+<p><img alt="" src="../../images/cddf_action1-300x97.png" /></p>
 <p>Para esto vamos a cada una de nuestras acciones y pulsamos sobre el botón de los tres puntos <strong>...</strong></p>
-<p><img alt="" src="images/cddf_action2.png" /></p>
+<p><img alt="" src="../../images/cddf_action2.png" /></p>
 <p>Elegimos si quieremos afinar el alcance del badge (por rama, por evento, etc) y copiamos la url al portapales y la pegamos tal cual en nuestro readme.md y listo, ya tendremos el estado de las acciones.</p>
-<p>[![Semgrep](https://github.com/antoniohernan/cddf/actions/workflows/semgrep.yml/badge.svg)](https://github.com/antoniohernan/cddf/actions/workflows/semgrep.yml) [![Build](https://github.com/antoniohernan/cddf/actions/workflows/build.yml/badge.svg)](https://github.com/antoniohernan/cddf/actions/workflows/build.yml)</p>
+<p><a href="https://github.com/antoniohernan/cddf/actions/workflows/semgrep.yml"><img alt="Semgrep" src="https://github.com/antoniohernan/cddf/actions/workflows/semgrep.yml/badge.svg" /></a> <a href="https://github.com/antoniohernan/cddf/actions/workflows/build.yml"><img alt="Build" src="https://github.com/antoniohernan/cddf/actions/workflows/build.yml/badge.svg" /></a></p>
 
 
 
