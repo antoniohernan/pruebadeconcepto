@@ -82,7 +82,8 @@ nav:
     - Tecnología:
       - Monta tu blog en AWS por 0€ – parte 1: tec/tec_blogawsparte1.md
       - Monta tu blog en AWS por 0€ – parte 2: tec/tec_blogawsparte2.md
-      - Envía ficheros desde Github a EC2 con actions: tec/tec_actionsec2.md      
+      - Envía ficheros desde Github a EC2 con actions: tec/tec_actionsec2.md
+      - Un poco de Arduino para pasar el confinamiento: tec/tec_arduinoconfinado.md
     - Chuletas:
       - Chuleta 00 Sumar con AWK: tips/tip_sumaconawk.md
       - Chuleta 01 Comandos útiles con ansible: tips/tip_utilesansible.md
