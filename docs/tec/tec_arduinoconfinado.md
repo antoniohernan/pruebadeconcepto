@@ -15,7 +15,7 @@ En vista del incremento de desastres que estaban sucediendo, e influenciados por
 
 Así tendríamos nuestro propio reloj de "Desastres" en casa (aunque he de reconocer que es algo que llevaba tiempo rondándome por la cabeza, hacer un reloj de "Contador de Días sin Marrones" para poner en el trabajo...)
 
-![](images/Pacific_WClock-300x75.gif)
+![](../images/Pacific_WClock-300x75.gif)
 
 La verdad es que **nunca había tomado muy en serio a Arduino**, tenía una placa de Arduino UNO (por supuesto de las réplicas chinas...) y algunos componentes comprados en masa, pero no le había dado muchas oportunidades.
 
@@ -23,7 +23,7 @@ Ha sido a raiz de hacer este proyecto con mi hijo cuando me he dado cuenta de qu
 
 Te permite ver electrónica sin necesidad de tener grandes conocimientos, con la placa y una [breadboard](https://es.wikipedia.org/wiki/Placa_de_pruebas), cables y componentes varios puedes montar circuitos rápidamente y controlar desde la placa leds, sensores (luz, humedad, temperatura, etc.), servos y casi todo lo que te haya venido con el kit, impensable en otros tiempos.
 
-![](images/IMG_E2008-300x225.jpg)
+![](../images/IMG_E2008-300x225.jpg)
 
 Y en cuanto a programación de refiere, su IDE es muy claro, con un lenguaje lo suficientemente sencillo para rápidamente empezar a hacer cosas algo complejas.
 
@@ -35,7 +35,7 @@ Todo esto viendo de manera inmediata el cambio que ha hecho en la programación 
 
 Cuando utilizamos [una shield como esta](https://wiki.dfrobot.com/LCD_KeyPad_Shield_For_Arduino_SKU__DFR0009), que incorpora un display (de 16x2, esto es, 16 caracteres en cada línea, 2 líneas) y los botones necesarios, el potencial de esta sencilla placa aumenta una barbaridad, siendo el precio del conjunto de apenas 10€.
 
-![](images/IMG_2009_pacman-300x226.jpg)
+![](../images/IMG_2009_pacman-300x226.jpg)
 
 Incluso podremos hacer que cada una de las celdas a "pintar", de esa matriz de 16x2 se pueda rellenar como lo que es, una matriz de 5x8 que podemos [cargar como un mapa de bits](https://maxpromer.github.io/LCD-Character-Creator/), 0 led apagado y 1 led encendido.
 
@@ -53,6 +53,6 @@ En estudio un par de alternativas, ya avisaremos de cual nos va mejor...
 
 Y claro está, estos proyectos evidencian **nuestra necesidad imperiosa de tener una impresora 3D** cuanto antes, para no andar construyendo cajas para arduino hechas de cartón, que mal no nos quedan pero... como que no es lo mismo.
 
-![](images/IMG_2016-300x225.jpg)
+![](../images/IMG_2016-300x225.jpg)
 
 #NosotrosNosQuedamosEnCasa
