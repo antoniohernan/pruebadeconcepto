@@ -86,6 +86,8 @@ nav:
       - Un poco de Arduino para pasar el confinamiento: tec/tec_arduinoconfinado.md
       - AWS Route53 como DNS dinámico y Certificado SSL LetsEncrypt: tec/tec_route53ssl.md
       - Monitorización básica con Grafana + InfluxDB + CollectD: tec/tec_monbasicagrafana.md
+      - Github Actions: tec/tec_githubactions.md
+      - Bloquear red TOR en nuestro Apache y otras medida preventivas: tec/tec_bloqueartor.md
     - Chuletas:
       - Chuleta 00 Sumar con AWK: tips/tip_sumaconawk.md
       - Chuleta 01 Comandos útiles con ansible: tips/tip_utilesansible.md
