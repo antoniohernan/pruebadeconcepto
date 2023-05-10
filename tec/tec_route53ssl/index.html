@@ -13,6 +13,10 @@
         <link rel="canonical" href="https://pruebadeconcepto.es/tec/tec_route53ssl/">
       
       
+        <link rel="prev" href="../tec_arduinoconfinado/">
+      
+      
+        <link rel="next" href="../../tips/tip_sumaconawk/">
       
       <link rel="icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.9">
@@ -234,13 +238,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../tec_blogawsparte1/" class="md-tabs__link">
+      <a href="../tec_blogawsparte1/" class="md-tabs__link md-tabs__link--active">
         Tecnología
       </a>
     </li>
@@ -549,14 +555,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
       
       
       
@@ -565,7 +573,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Tecnología
@@ -622,6 +630,42 @@
     <li class="md-nav__item">
       <a href="../tec_arduinoconfinado/" class="md-nav__link">
         Un poco de Arduino para pasar el confinamiento
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        AWS Route53 como DNS dinámico y Certificado SSL LetsEncrypt
+      </a>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tec_tec_monbasicagrafana.md" class="md-nav__link">
+        Monitorización básica con Grafana + InfluxDB + CollectD
       </a>
     </li>
   
@@ -1136,7 +1180,7 @@
 
   <h1>AWS Route53 como DNS dinámico y Certificado SSL LetsEncrypt</h1>
 
-<p>En la <a href="http://pruebadeconcepto.es/?p=140">segunda entrega</a> de como montar tu servidor web en AWS por 0€ os mostraba como tener un dominio gratuito que atendiese a los cambios de IP de nuestro servidor.</p>
+<p>En la <a href="/pruebadeconcepto/tec/tec_blogawsparte2/">segunda entrega</a> de como montar tu servidor web en AWS por 0€ os mostraba como tener un dominio gratuito que atendiese a los cambios de IP de nuestro servidor.</p>
 <p>Ahora os voy a enseñar una forma un poco más refinada utilizando el <a href="https://aws.amazon.com/es/route53/">servicio Route 53 de AWS</a>, que por desgracia <strong>no forma parte de la free tier.</strong>..</p>
 <p>En mi empresa tenemos una cuenta AWS, digamos que para usos múltiples... es la cuenta de cacharreo y de la que han salido unas cuantas pruebas de concepto que a día de hoy podemos decir que son productos vendibles (estos con el tiempo los iré desgranando por aquí).</p>
 <p>Hace tiempo que me cansé de pedir registros DNS internos y creé una <strong>zona hospedada en Route53</strong>, con esto consigue tener el <strong>control completo de tu "subdominio" en tu empresa</strong> sin pasar por el staff de sistemas.</p>
@@ -1144,48 +1188,57 @@
 <p>Para la delegación de DNS <strong>tan sólo deben apuntar a los NS que Route 53</strong> asigna a la zona para el subdominio que hemos creado, y tardará en función del tiempo de refresco de los DNS.</p>
 <p>Dicho y hecho entonces, tenemos nuestra zona hospedada y nuestra delegación de DNS, y ahora vamos a crear una <strong>máquina nueva</strong>, la cual <strong>se va a presentar a nuestro Route53</strong> con su ip pública para generar la entrada si no existe o actualizarla si existe.</p>
 <p>Con esto <strong>nos ahorramos Elastic IP,</strong> el tener que estar recordando las Elastic IP que se han quedado sin asignar o por máquina apagada (que cuestan dinero) y <strong>ganamos en la gestión de estancias efímeras como sería la creación de instancias Spot</strong>, que con este método podemos tener con mucho más control.</p>
-<p>Al lío, lo <strong>primero es obtener el identificador de nuestra zona</strong> (porque podemos tener más de una:</p>
-<p>ubuntu@ip-172-18-10-38:~$ aws route53 list-hosted-zones-by-name | jq --arg name "manoloybenito.es."  -r '.HostedZones | .[] | select(.Name=="\($name)") | .Id'
-/hostedzone/Z2NYXJXXXXQOLJSF</p>
-<p>En <strong>segundo lugar vamos a obtener la IP pública</strong> del servidor que se va a presentar al Route53, para esto empleamos una consulta con Curl al propio servidor, todas las instancias EC2 tienen esto:</p>
-<p>ubuntu@ip-172-18-10-38:~$ curl http://169.254.169.254/latest/meta-data/public-ipv4
-52.214.3.X3</p>
-<p>En <strong>tercer lugar, tenemos que modificar el valor de esta IP en la plantilla .json</strong> que tenemos para nuestra zona, esto lo podemos hacer en línea de comando con sed, aunque más abajo podréis encontrar un enlace a mi gthub con todo el script.</p>
-<p>La <strong>plantilla sería</strong> esta:</p>
-<p>{
-            "Comment": "CREATE/DELETE/UPSERT a record ",
-            "Changes": [{
-            "Action": "CREATE",
-                        "ResourceRecordSet": {
-                                    "Name": "NOMBREHOST.manoloybenito.es",
-                                    "Type": "A",
-                                    "TTL": 300,
-                                 "ResourceRecords": [{ "Value": "IP_PUBLICA"}]
-}}]
-}</p>
-<p>Con la IP cambiada en esta plantilla, y el nombre del servidor sólo nos queda invocar el método de creación/cambio en nuestra zona de Route 53</p>
-<p>aws route53 change-resource-record-sets --hosted-zone-id /hostedzone/Z2NYXJXXXXJSF --change-batch file://plantilla.json</p>
-<p>A los pocos segundos / minutos <strong>tendremos resolución del nombre</strong>.</p>
+<p>Al lío, lo <strong>primero es obtener el identificador de nuestra zona</strong> (porque podemos tener más de una):
+<div class="highlight"><pre><span></span><code>ubuntu@ip-172-18-10-38:~$ aws route53 list-hosted-zones-by-name | jq --arg name &quot;manoloybenito.es.&quot;  -r &#39;.HostedZones | .[] | select(.Name==&quot;\\($name)&quot;) | .Id&#39;
+/hostedzone/Z2NYXJXXXXQOLJSF
+</code></pre></div>
+En <strong>segundo lugar vamos a obtener la IP pública</strong> del servidor que se va a presentar al Route53, para esto empleamos una consulta con Curl al propio servidor, todas las instancias EC2 tienen esto:
+<div class="highlight"><pre><span></span><code>ubuntu@ip-172-18-10-38:~$ curl http://169.254.169.254/latest/meta-data/public-ipv4
+52.214.3.X3
+</code></pre></div>
+En <strong>tercer lugar, tenemos que modificar el valor de esta IP en la plantilla .json</strong> que tenemos para nuestra zona, esto lo podemos hacer en línea de comando con sed, aunque más abajo podréis encontrar un enlace a mi gthub con todo el script.</p>
+<p>La <strong>plantilla sería</strong> esta:
+<div class="highlight"><pre><span></span><code>{
+  &quot;Comment&quot;: &quot;CREATE/DELETE/UPSERT a record &quot;,
+  &quot;Changes&quot;: [{
+  &quot;Action&quot;: &quot;CREATE&quot;,
+            &quot;ResourceRecordSet&quot;: {
+            &quot;Name&quot;: &quot;NOMBREHOST.manoloybenito.es&quot;,
+            &quot;Type&quot;: &quot;A&quot;,
+            &quot;TTL&quot;: 300,
+            &quot;ResourceRecords&quot;: [{ &quot;Value&quot;: &quot;IP_PUBLICA&quot;}]
+    }
+  }]
+}
+</code></pre></div>
+Con la IP cambiada en esta plantilla, y el nombre del servidor sólo nos queda invocar el método de creación/cambio en nuestra zona de Route 53
+<div class="highlight"><pre><span></span><code>aws route53 change-resource-record-sets --hosted-zone-id /hostedzone/Z2NYXJXXXXJSF --change-batch file://plantilla.json
+</code></pre></div>
+A los pocos segundos / minutos <strong>tendremos resolución del nombre</strong>.</p>
 <p>En <a href="https://github.com/antoniohernan/route53ssl">mi github</a> tenéis la plantilla y el script completo.</p>
 <p><strong>Segunda parte</strong>, ya que tenemos el control absoluto de nuestro DNS <strong>vamos a generar los certificados SSL</strong> de <a href="https://letsencrypt.org/">LetsEncrypt</a> aprovechándonos del <a href="https://certbot-dns-route53.readthedocs.io/en/stable/">plugin para route53</a>.</p>
-<p><strong>Instalamos CertBot asi como el plugin</strong> que se instala con pip:</p>
-<p>$ sudo apt update
+<p><strong>Instalamos CertBot asi como el plugin</strong> que se instala con pip:
+<div class="highlight"><pre><span></span><code>$ sudo apt update
 $ sudo apt install software-properties-common
 $ sudo apt-add-repository ppa:certbot/certbot
 $ sudo apt update
-$ sudo apt install certbot</p>
-<p>$ sudo apt install python3-pip
-$ sudo pip3 install certbot-dns-route53</p>
-<p>Para generar y descargar el certificado, la línea de comando sería similar a esta:</p>
-<p>certbot certonly -d NOMBREHOST.manoloybenito.es --dns-route53 \
+$ sudo apt install certbot
+
+$ sudo apt install python3-pip
+$ sudo pip3 install certbot-dns-route53
+</code></pre></div>
+Para generar y descargar el certificado, la línea de comando sería similar a esta:
+<div class="highlight"><pre><span></span><code>certbot certonly -d NOMBREHOST.manoloybenito.es --dns-route53 \
 --logs-dir /home/ubuntu/letsencrypt/log/ --config-dir /home/ubuntu/letsencrypt/config/ \
 --work-dir /home/ubuntu/letsencrypt/work/ -m toor@manoloybenito.es \
---agree-tos --non-interactive --server https://acme-v02.api.letsencrypt.org/directory</p>
-<p>Para las renovaciones de los certificados, la línea de comando sería esta:</p>
-<p>certbot renew --dns-route53 --logs-dir /home/ubuntu/letsencrypt/log/ --config-dir /home/ubuntu/letsencrypt/config/ \
+--agree-tos --non-interactive --server https://acme-v02.api.letsencrypt.org/directory
+</code></pre></div>
+Para las renovaciones de los certificados, la línea de comando sería esta:
+<div class="highlight"><pre><span></span><code>certbot renew --dns-route53 --logs-dir /home/ubuntu/letsencrypt/log/ --config-dir /home/ubuntu/letsencrypt/config/ \
 --work-dir /home/ubuntu/letsencrypt/work/ --non-interactive \
---server https://acme-v02.api.letsencrypt.org/directory</p>
-<p>Espero os sea de utilidad.</p>
+--server https://acme-v02.api.letsencrypt.org/directory
+</code></pre></div>
+Espero os sea de utilidad.</p>
 
 
 

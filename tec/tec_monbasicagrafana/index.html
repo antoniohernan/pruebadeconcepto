@@ -628,6 +628,34 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tec_route53ssl/" class="md-nav__link">
+        AWS Route53 como DNS dinámico y Certificado SSL LetsEncrypt
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tec_tec_monbasicagrafana.md" class="md-nav__link">
+        Monitorización básica con Grafana + InfluxDB + CollectD
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -1145,13 +1173,13 @@
 <p>Todos estos datos se recogen en una <strong>base de datos de series</strong>, la elegida es <a href="https://www.influxdata.com/products/influxdb-overview/">InfluxDB</a>, la cual expone su puerto al mundo y que deberemos por tanto controlar con alguna solución de Firewall, Security Groups si es que estamos en AWS, etc.</p>
 <p>Y por último, <strong>para explotar esa información</strong> emplearemos <a href="https://grafana.com/grafana/">Grafana</a> y alguno de los muchos <a href="https://github.com/antoniohernan/deploy_monitor/blob/master/NOTES.txt">dashboards genéricos</a> que tiene por la comunidad hasta que nos hagamos los nuestros propios.</p>
 <p>La infraestructura sería algo así:</p>
-<p><img alt="" src="images/Deploy_Monitor.png" /></p>
+<p><img alt="" src="../../images/Deploy_Monitor.png" /></p>
 <p>El proceso de instalación es muy sencillo, <a href="https://github.com/antoniohernan/deploy_monitor/blob/master/README.md"><strong>como explico en mi git</strong></a>, basta con tener el inventario bien informado y la conectividad resuelta para poder ejecutar el playbook de instalación.</p>
 <p>Esta POC está viva y no descarto que <strong>un día consiga tiempo libre</strong> como para poder acometer todo lo <a href="https://github.com/antoniohernan/deploy_monitor/blob/master/TODO.txt">pendiente</a>.</p>
 <p>Y os preguntaréis por <strong>donde están las alarmas</strong>, pues sencillo, en <strong>Grafana</strong>, en la configuración de canales de notificación. Este canal para notificar usando Telegram es uno de los que más me gusta y mejor funciona, llegando incluso a adjuntar en el mensaje una captura del estado del panel que ha generado la alarma, realmente bueno.</p>
-<p><img alt="Notificacion Telegram Grafana" src="images/Selección_189.png" /></p>
+<p><img alt="Notificacion Telegram Grafana" src="../../images/Selecci%C3%B3n_189.png" /></p>
 <p>Y posteriormente, en cada panel, <strong>en la zona de Alarmas, podremos emplear este canal de notificación</strong> para que se generen las notificaciones según se disparen los eventos (por umbral de disco, cpu, memoria, métricas personalizadas, etc. ).</p>
-<p><img alt="" src="images/Selección_190.png" /></p>
+<p><img alt="" src="../../images/Selecci%C3%B3n_190.png" /></p>
 <p>En la parte inferior  hay dos valores un tanto peculiares.</p>
 <p>Se refieren a <strong>si se generaran alarmas cuando no se encuentren datos</strong> en la base de datos de series para este panel, o bien tenemos un timeout con la base de datos de métricas. Pueden ser muy útiles ya que una ausencia de datos puede significar algo importante, por ejemplo, un "hueco" en la recepción de datos de un punto de montaje en NFS nos puede indicar que el servicio de NFS se ha podido caer.. y así con muchas más cosas. Aunque también es verdad que la mayoría de las alarmas que se generen por esta falta de datos serán, casi en su totalidad, falsos positivos ocasionados por la perdida de conexión entre Grafana e InfluxDB.</p>
 <p>Y con esto ya está, rápido, sencillo y eficaz; Multicloud y multicliente, el que no lo tiene todo monitorizado es por que no quiera.</p>
