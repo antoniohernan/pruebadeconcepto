@@ -27,7 +27,7 @@ Y por último, **para explotar esa información** emplearemos [Grafana](https://
 
 La infraestructura sería algo así:
 
-![](images/Deploy_Monitor.png)
+![](../images/Deploy_Monitor.png)
 
  
 
@@ -37,13 +37,13 @@ Esta POC está viva y no descarto que **un día consiga tiempo libre** como para
 
 Y os preguntaréis por **donde están las alarmas**, pues sencillo, en **Grafana**, en la configuración de canales de notificación. Este canal para notificar usando Telegram es uno de los que más me gusta y mejor funciona, llegando incluso a adjuntar en el mensaje una captura del estado del panel que ha generado la alarma, realmente bueno.
 
-![Notificacion Telegram Grafana](images/Selección_189.png)
+![Notificacion Telegram Grafana](../images/Selección_189.png)
 
 Y posteriormente, en cada panel, **en la zona de Alarmas, podremos emplear este canal de notificación** para que se generen las notificaciones según se disparen los eventos (por umbral de disco, cpu, memoria, métricas personalizadas, etc. ).
 
  
 
-![](images/Selección_190.png)
+![](../images/Selección_190.png)
 
 En la parte inferior  hay dos valores un tanto peculiares.
 
