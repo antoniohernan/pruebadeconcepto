@@ -7,7 +7,7 @@ categories:
   - "impresion-3d"
 ---
 
-Desde que [tenemos la impresora 3D](/pruebadeconcepto/3dp/3d_anete4pro/) le estoy volviendo a dar un buen uso a esta herramienta, que de otra manera estaba olvidada en el fondo de un cajón para medir tan solo de manera ocasional el grosor de un tornillo o poco más.
+Desde que [tenemos la impresora 3D](/pruebadeconcepto.es/3dp/3d_anetet4pro) le estoy volviendo a dar un buen uso a esta herramienta, que de otra manera estaba olvidada en el fondo de un cajón para medir tan solo de manera ocasional el grosor de un tornillo o poco más.
 
 Fue durante mi etapa de Bachillerato cuando en segundo curso nos enseñaron a usarlos, recuerdo que era en una asignatura llamada "Técnicas de campo", que no tenía que ver con el campo al aire libre, salvo por un trabajo de botánica... Hacíamos bastantes cosas en laboratorio, extraer el alcohol del vino calentándolo y usando un tubo de enfriamiento, reacciones exotérmicas con peróxido de hidrógeno y yoduro potásico (agua oxigenada y Betadine), que hacían un montón de espuma. Cosas que a día de hoy serían impensables... las nuevas generaciones que son tan delicadas...
 
