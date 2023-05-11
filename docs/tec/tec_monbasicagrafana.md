@@ -1,6 +1,8 @@
 ---
 title: "Monitorización básica con Grafana + InfluxDB + CollectD"
 date: "2019-11-18"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "tecnologia"
 tags: 

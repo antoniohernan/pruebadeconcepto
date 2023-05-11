@@ -1,6 +1,8 @@
 ---
 title: "Impresora 3D"
 date: "2021-05-17"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "impresion-3d"
 tags: 
@@ -24,16 +26,12 @@ Al principio los problemas típicos, el filamento que se despega de la cama a mi
 
 Algunas piezas grandes ya van saliendo
 
-![](images/IMG_2756-768x1024.jpg)
-
- 
+![](../images/IMG_2756-768x1024.jpg)
 
 Y algunas cosas voy incluso atreviendome a diseñar, cosas sencillas por supuesto, como esto: [https://www.tinkercad.com/things/cxx8aXWnTKH-adaptador-spool-amazon-basic](https://www.tinkercad.com/embed/cxx8aXWnTKH?editbtn=1) que es un adaptador para la bobina de filamento y que haga de unión entre el tubo al que se sujeta en la impresora (20mm) y la bobina que presenta un agujero interior mucho mayor (52mm).
 
 Os anticipo cual es el siguiente proyecto Impresora 3D + Arduino, un OttoDIY que promete horas de diversión
 
- 
-
-![](images/IMG_2770-1024x768.jpg)
+![](../images/IMG_2770-1024x768.jpg)
 
 Bienvenidos a la comunidad #Makers3D

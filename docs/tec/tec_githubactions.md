@@ -1,6 +1,8 @@
 ---
 title: "Github Actions"
 date: "2022-05-23"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "tecnologia"
 ---

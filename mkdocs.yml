@@ -114,6 +114,10 @@ nav:
       - Apéndices (I) - Reinicio de router: rpi/rpi_apendice1.md
       - Apéndices (II) - XBMC con MariaDB para BBDD distribuida: rpi/rpi_apendice2.md
       - Apéndices (III) - Administración con Webmin: rpi/rpi_apendice3.md
+    - Impresión 3D:
+      - Impresora 3D: 3dp/3d_anetet4pro.md
+      - Nivelando la cama caliente: 3dp/3d_niveladocama.md
+      - Uso del calibre o pie de rey: 3dp/3d_piederey.md
     - Acerca de:
       - Acerca de mi y mis pruebas de concepto: about/about_acercademi.md
       - Política de privacidad: about/about_privacy-policy.md

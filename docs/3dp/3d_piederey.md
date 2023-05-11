@@ -1,21 +1,23 @@
 ---
 title: "Uso del calibre o pie de rey"
 date: "2021-06-08"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "impresion-3d"
 ---
 
-Desde que [tenemos la impresora 3D](https://pruebadeconcepto.es/impresora-3d-anet-et4-pro/) le estoy volviendo a dar un buen uso a esta herramienta, que de otra manera estaba olvidada en el fondo de un cajón para medir tan solo de manera ocasional el grosor de un tornillo o poco más.
+Desde que [tenemos la impresora 3D](/pruebadeconcepto/3dp/3d_anete4pro/) le estoy volviendo a dar un buen uso a esta herramienta, que de otra manera estaba olvidada en el fondo de un cajón para medir tan solo de manera ocasional el grosor de un tornillo o poco más.
 
 Fue durante mi etapa de Bachillerato cuando en segundo curso nos enseñaron a usarlos, recuerdo que era en una asignatura llamada "Técnicas de campo", que no tenía que ver con el campo al aire libre, salvo por un trabajo de botánica... Hacíamos bastantes cosas en laboratorio, extraer el alcohol del vino calentándolo y usando un tubo de enfriamiento, reacciones exotérmicas con peróxido de hidrógeno y yoduro potásico (agua oxigenada y Betadine), que hacían un montón de espuma. Cosas que a día de hoy serían impensables... las nuevas generaciones que son tan delicadas...
 
 Un día nos enseñaron a usar el calibre, era algo que ya había visto en casa, pero ni idea de cómo funcionaban ni la asombrosa precisión que algo sin pilas podía llegar a tener, así como su versatilidad.
 
-El calibre tiene una precisión de 1/50mm (dependiendo de la graduación su Nonio (ahora os explico que es).
+El calibre tiene una precisión de 1/50mm, dependiendo de la graduación su Nonio (ahora os explico que es).
 
 Sobre este gráfico (fuente wikipedia, que es el dibujo más claro que he encontrado) os indico sus componentes:
 
-![](images/Figura6_large.png)
+![](../images/Figura6_large.png)
 
 **1.** Palpadores de exteriores  (nos permite tomar medidas exteriores al objeto) **2.** Palpadores de interiores (nos permite tomar medidas interiores del objeto) **3.** Sonda de profundidad (nos permite tomar medida de la profundidad) **4** y **5**. Regla graduada (en mm y en pulgadas) **6** y **7**. Nonio o vernier (en mm y en pulgadas) **8**. Botón de desplazamiento (si no presionamos no se moverá y nos permite "bloquear" la lectura)
 
@@ -25,7 +27,7 @@ Los pasos para usar un calibre son sencillos, tomamos la medida según mejor nos
 
 Por ejemplo, dada esta medida:
 
-![](images/Calibre_005-1024x351.jpg)
+![](../images/Calibre_005-1024x351.jpg)
 
 Buscamos el 0, veos que está entre las marcas de la regla fija, entre la marca de 21 y 22 mm, por tanto tendremos una medida de **21mm** más algo más. Ahora miramos las marcas del Nonio y buscamos la que mejor coincide con las de la regla (aquí es donde encontraremos diferencias entre un calibre de 0.02 y otro de 0.05 pues en el primero tendremos muchas más marcas), en este caso es la de 8,5, por tanto serán **0.85 mm**. Por tanto la medida que hemos tomado es de **21.85mm**
 

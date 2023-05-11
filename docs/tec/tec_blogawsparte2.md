@@ -1,6 +1,8 @@
 ---
 title: "Monta tu blog en AWS por 0€ – parte 2"
 date: "2019-05-29"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "tecnologia"
 tags: 
