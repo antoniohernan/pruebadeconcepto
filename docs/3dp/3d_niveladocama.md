@@ -11,7 +11,7 @@ tags:
   - "impresion3d"
 ---
 
-Como os dije en [la primera entrada](/pruebadeconcepto.es/3dp/3d_anetet4pro/) de esta categoría de impresión 3D, aquí os dejo la forma en la que estoy nivelando la cama caliente de mi Anet ET4 Pro.
+Como os dije en [la primera entrada](/pruebadeconcepto/3dp/3d_anetet4pro/) de esta categoría de impresión 3D, aquí os dejo la forma en la que estoy nivelando la cama caliente de mi Anet ET4 Pro.
 
 Antes de esto probé unos cuantos métodos, y también la nivelación automática que incorpora de serie, pero todos ellos con resultados regulares tirando a malos. Con este método consigo calidad uniforme de impresión y que las primeras capas peguen bien al cristal de la cama ayudándome por supuesto de la famosa laca Nelly en su versión extra fuerte.
 
