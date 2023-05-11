@@ -1,6 +1,8 @@
 ---
 title: "Nivelando la cama caliente"
 date: "2021-05-31"
+Copyright: "&copy; 2019-2023 Antonio Hernan"
+License: "CC BY-SA 4.0"
 categories: 
   - "impresion-3d"
 tags: 
@@ -17,7 +19,7 @@ Antes de esto probé unos cuantos métodos, y también la nivelación automátic
 
 Tenemos que precalentar la cama y la boquilla, lógico, los metales calientes tienen la manía de dilatar y si hacemos estos ajustes en frío nos llevaremos la desagradable sorpresa de que no ha servido para nada. Desde el menú principal pulsamos sobre "_**Prepare**_" y dentro del suficiente menú en "**_Pre-Heat_**".
 
-<table style="border-collapse: collapse; border: none; width: 100%;"><tbody><tr style="border: none;"><td style="border: none; width: 50%;"><img class="wp-image-717 size-thumbnail aligncenter" src="images/ET4Pro_Menu1-150x150.png" alt="" width="150" height="150"></td><td style="border: none; width: 50%;"><img class="wp-image-718 size-thumbnail aligncenter" src="images/ET4Pro_Menu2-150x150.png" alt="" width="150" height="150"></td></tr></tbody></table>
+<table style="border-collapse: collapse; border: none; width: 100%;"><tbody><tr style="border: none;"><td style="border: none; width: 50%;"><img class="wp-image-717 size-thumbnail aligncenter" src="../images/ET4Pro_Menu1-150x150.png" alt="" width="150" height="150"></td><td style="border: none; width: 50%;"><img class="wp-image-718 size-thumbnail aligncenter" src="../images/ET4Pro_Menu2-150x150.png" alt="" width="150" height="150"></td></tr></tbody></table>
 
 Yo caliento la boquilla a 210º y la cama a 60º, esto último no se si será necesario, no lo he encontrado como tal en ningún otro manual pero la lógica me lleva a pensar que algo de dilatación puede existir también y que la altura el cristal se pueda ver afectada.
 
@@ -35,7 +37,7 @@ Volvemos al menú principal, una vez precalentada cama y boquilla y ajustada la 
 
 Desde el menú principal entramos en "_**Settings**_" y pulsamos sobre el botón home.
 
-![](images/ET4Pro_Menu3-150x150.png)
+![](../images/ET4Pro_Menu3-150x150.png)
 
 Se empieza a mover el cabezal hasta localizar el home y empieza a bajar, tenemos que estar atentos para detenerlo cuando está bajando y se encuentra a unos 2 cms de altura respeto a la cama, en ese momento pulsamos el botón stop y se queda detenido.
 
@@ -43,7 +45,7 @@ Se empieza a mover el cabezal hasta localizar el home y empieza a bajar, tenemos
 
 Ahora toca coger un papel (un folio típico A4 de 80 gramos servirá, no tiene que ser nuevo pero que no esté arrugado) y vamos a aproximar nuestro cabezal lo máximo posible al papel.
 
-![](images/ET4Pro_Nivel1-150x150.png)
+![](../images/ET4Pro_Nivel1-150x150.png)
 
 Pulsamos sobre el eje Z, y luego según la altura en los valores 0,1 ( 0,1 mm ) , 1 (1 mm) ó 10 (10 mm), atención por que podemos partir el cristal si bajamos de golpe. Tenemos que bajar hasta que el papel se quede casi pillado entre la boquilla y la cama, y al moverlo raspe, no tiene que costar mucho moverlo pero si que tiene que haber un poco de rozamiento.
 
@@ -53,7 +55,7 @@ Para continuar retiramos el papel.
 
 Usando el destornillador plano que nos viene con la impresora vamos a desconectar el sensor de proximidad y a volver a conectarlo
 
-![](images/ET4Pro_Nivel2.png)
+![](../images/ET4Pro_Nivel2.png)
 
 Para esto giramos el destornillador en sentido antihorario hasta que se apague a luz roja (que seguramente tengamos encendida, pero si no es así no pasa nada), y luego muy poco a poco vamos a volver a girar el destornillador en sentido horario hasta que se encienda la luz roja y justo en ese momento dejamos de mover el destornillador.
 
@@ -63,7 +65,7 @@ Antes de seguir al siguiente paso pulsaremos el botón "_**Stop**_"
 
 Pulsamos sobre "_**Volver**_" y salimos al menú principal, desde aquí iremos a "_**Prepare**_" para entrar en "_**Level**_" y luego en la sección "_**Manual**_".
 
-![](images/ET4Pro_Menu4-150x150.png)
+![](../images/ET4Pro_Menu4-150x150.png)
 
 Pulsaremos sobre las flechas hasta que aparezca en el centro "`0.50`".
 
@@ -75,7 +77,7 @@ Ponemos por tanto el papel y pulsamos sobre "_**1**_", el cabezal se mueve a la 
 
 Pasamos a posición 2 y repetimos, 3 y repetimos, 4 y repetimos...
 
-![](images/ET4Pro_Nivel3-150x150.png)
+![](../images/ET4Pro_Nivel3-150x150.png)
 
 Yo repito esta operación 1, 2, 3 y4 al menos un par de veces, y luego hago lo mismo pero cruzado, esto es, empiezo en 1, cruzo en diagonal a 3, izquierda a 4, diagonal a 2, y vuelta a 1.
 
