@@ -1,0 +1,12 @@
+name: Static application security testing
+on:
+#  push:
+  workflow_dispatch:
+jobs:
+  sast_semgrep:
+    permissions:                                                                         # Need write content to create issues
+      issues: write
+      contents: read
+    uses: antoniohernan/ah-actions/.github/workflows/sast_semgrep.yml@main
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
