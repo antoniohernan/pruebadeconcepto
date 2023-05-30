@@ -5,9 +5,41 @@ on:
     branches:
       - main
 jobs:
+  linters:
+    name: Repository linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b                    # @v3.0.2
+      - name: Install NodeJs                                                               # Install Software NodeJs 
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c                  # @v3.6.0
+        with:
+          node-version: 16
+      - name: Install repo-linter
+        run: |
+          npm install -g repolinter
+      - name: Run Repo Linter
+        run: |
+          repolinter --rulesetFile cfg/repolint.json lint .      
+  
+  scan:
+    name: gitleaks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@1f2d10fb689bc07a5f56f48d6db61f5bbbe772fa
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_CONFIG: cfg/gitleaks.toml
+          
   build:
     name: MkDocs Github Pages automatic deployment
     runs-on: ubuntu-latest
+    needs: 
+      - linters 
+      - scan
     steps:
       - name: Checkout main
         uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c

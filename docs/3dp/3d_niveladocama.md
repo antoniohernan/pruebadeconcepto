@@ -19,7 +19,8 @@ Antes de esto probé unos cuantos métodos, y también la nivelación automátic
 
 Tenemos que precalentar la cama y la boquilla, lógico, los metales calientes tienen la manía de dilatar y si hacemos estos ajustes en frío nos llevaremos la desagradable sorpresa de que no ha servido para nada. Desde el menú principal pulsamos sobre "_**Prepare**_" y dentro del suficiente menú en "**_Pre-Heat_**".
 
-<table style="border-collapse: collapse; border: none; width: 100%;"><tbody><tr style="border: none;"><td style="border: none; width: 50%;"><img class="wp-image-717 size-thumbnail aligncenter" src="../images/ET4Pro_Menu1-150x150.png" alt="" width="150" height="150"></td><td style="border: none; width: 50%;"><img class="wp-image-718 size-thumbnail aligncenter" src="../images/ET4Pro_Menu2-150x150.png" alt="" width="150" height="150"></td></tr></tbody></table>
+![](../images/ET4Pro_Menu1-150x150.png)
+![](../images/ET4Pro_Menu2-150x150.png)
 
 Yo caliento la boquilla a 210º y la cama a 60º, esto último no se si será necesario, no lo he encontrado como tal en ningún otro manual pero la lógica me lleva a pensar que algo de dilatación puede existir también y que la altura el cristal se pueda ver afectada.
 

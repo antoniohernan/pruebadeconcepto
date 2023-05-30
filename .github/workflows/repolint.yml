@@ -6,9 +6,7 @@
 name: Repository Linter
 on:
   workflow_dispatch:
-  pull_request:
-    types: [opened, reopened]  
-        
+      
 jobs:
   launch-repolint:
     concurrency:
