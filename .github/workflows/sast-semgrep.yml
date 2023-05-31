@@ -1,6 +1,5 @@
 name: Static application security testing
 on:
-#  push:
   workflow_dispatch:
 jobs:
   sast_semgrep:
