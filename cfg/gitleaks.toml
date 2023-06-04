@@ -22,7 +22,11 @@ paths = [
     '''pnpm-lock.yaml''',
     '''Database.refactorlog''',
     '''vendor''',
+    '''search/search_index.json''',
 ]
+
+# Float representing the minimum shannon entropy a regex group must have to be considered a secret.
+entropy = 3.5
 
 [[rules]]
 description = "Adafruit API Key"
