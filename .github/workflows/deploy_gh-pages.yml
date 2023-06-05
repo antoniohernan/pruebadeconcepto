@@ -27,18 +27,18 @@ jobs:
           repolinter --rulesetFile cfg/repolint.json lint .      
   
   scan:
-    name: Sast
+    name: SAST
     runs-on: ubuntu-latest
     steps:
       - uses: ramshackle-code/sast_semgrep/.github/workflows/sast_semgrep.yml@ea88e0d71ef7abf21aca8c2d108cdce28a878e7a   #v1.0.0
-        secrets:
+        with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - uses: ramshackle-code/sast_gitleaks/.github/workflows/sast_gitleaks.yml@483b518d9015f26a9475d0ddd35caf66470ef908   #v1.2.0   
         with:
           fetch-depth: 0
           gitleaks-config: 'cfg/gitleaks.toml'
-        secrets:
           token: ${{ secrets.GITHUB_TOKEN }}
+  
 
   build:
     name: MkDocs Github Pages automatic deployment
