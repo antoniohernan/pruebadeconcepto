@@ -5,7 +5,7 @@ jobs:
   sast_semgrep:
     permissions:                                                                         
       contents: read
-    uses: ramshackle-code/sast_gitleaks/.github/workflows/sast_gitleaks.yml@main    
+    uses: ramshackle-code/sast_gitleaks/.github/workflows/sast_gitleaks.yml@483b518d9015f26a9475d0ddd35caf66470ef908   #v1.2.0   
     with:
       fetch-depth: 0
       gitleaks-config: 'cfg/gitleaks.toml'
