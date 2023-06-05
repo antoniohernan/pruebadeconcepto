@@ -7,7 +7,7 @@ jobs:
       contents: read
     uses: ramshackle-code/sast_gitleaks/.github/workflows/sast_gitleaks.yml@main    
     with:
-      fetch-depth: 1
+      fetch-depth: 0
       gitleaks-config: 'cfg/gitleaks.toml'
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
