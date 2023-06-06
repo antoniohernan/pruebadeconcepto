@@ -1,4 +1,4 @@
-name: Static application security testing
+name: Sast Semgrep
 on:
   workflow_dispatch:
 jobs:
