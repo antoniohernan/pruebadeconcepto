@@ -27,11 +27,11 @@ jobs:
         run: |
           repolinter --rulesetFile cfg/repolint.json lint .      
   
-#  scan_semgrep:
-#    name: SAST_Semgrep
-#    uses: ramshackle-code/sast_semgrep/.github/workflows/sast_semgrep.yml@ea88e0d71ef7abf21aca8c2d108cdce28a878e7a   #v1.0.0
-#    with:
-#      token: ${{ secrets.GITHUB_TOKEN }}
+  scan_semgrep:
+    name: SAST_Semgrep
+    uses: ramshackle-code/sast_semgrep/.github/workflows/sast_semgrep.yml@ea88e0d71ef7abf21aca8c2d108cdce28a878e7a   #v1.0.0
+    with:
+      token: ${{ secrets.GITHUB_TOKEN }}
 
 #  scan_gitleaks:
 #    name: SAST_Gitleaks
