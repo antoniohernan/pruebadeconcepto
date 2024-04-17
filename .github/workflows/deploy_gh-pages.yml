@@ -29,7 +29,7 @@ jobs:
   
   scan_semgrep:
     name: SAST_Semgrep
-    uses: ramshackle-code/sast_semgrep/.github/workflows/sast_semgrep.yml@ea88e0d71ef7abf21aca8c2d108cdce28a878e7a   #v1.0.0
+    uses: ramshackle-code/sast_semgrep/.github/workflows/sast_semgrep.yml@17a2b599ce6930240aa6c2797eb121c8fe5badf4   #v1.0.2
     with:
       token: ${{ secrets.GITHUB_TOKEN }}
 
