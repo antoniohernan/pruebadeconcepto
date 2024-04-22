@@ -12,7 +12,7 @@ tags:
   - "github"
 ---
 
-En la última entrada comentaba lo que Github nos permite hacer con sus actions, podéis leerlo aquí [Github Actions](https://pruebadeconcepto.es/github-actions/)
+En la última entrada comentaba lo que Github nos permite hacer con sus actions, podéis leerlo aquí [Github Actions](tec_githubactions.md)
 
 Hoy os traigo un caso de uso práctico y real para estas actions, que días atrás nos surgió cuando queríamos subir a una máquia EC2 un fichero que se genera y almacena en nuestro repositorio en Github, de manera que cuando ese proceso/action de publicación terminase, ante el evento push en el repo se enviase al servidor EC2.
 
