@@ -11,7 +11,7 @@ tags:
   - "route-53"
 ---
 
-En la [segunda entrega](/pruebadeconcepto/tec/tec_blogawsparte2/) de como montar tu servidor web en AWS por 0€ os mostraba como tener un dominio gratuito que atendiese a los cambios de IP de nuestro servidor.
+En la [segunda entrega](tec_blogawsparte2.md) de como montar tu servidor web en AWS por 0€ os mostraba como tener un dominio gratuito que atendiese a los cambios de IP de nuestro servidor.
 
 Ahora os voy a enseñar una forma un poco más refinada utilizando el [servicio Route 53 de AWS](https://aws.amazon.com/es/route53/), que por desgracia **no forma parte de la free tier.**..
 
