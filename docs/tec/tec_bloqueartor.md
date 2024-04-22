@@ -150,7 +150,7 @@ Lo **ideal sería poder tener snapshot** del volumen de nuestra instancia, a dia
 
 La solución es instalar u**n plugin de copias, que nos permita llevarnos todo nuestro Wordpress a un almacenamiento en nube**, esto es, nuestro Wordpress, la contribución (uploads) y la base de datos.
 
-Yo estoy usando este [UpdraftPlus - Backup/Restore](https://es.wordpress.org/plugins/updraftplus/), y estoy volcando sobre una cuenta que tengo en dropbox con bastantes gigas libres (esto en su día con las invitaciones y un script en Perl.. fue **un filón de gigas**... da para una entrada en [informática viejuna](/pruebadeconcepto/infov/infv_guybrush/)).
+Yo estoy usando este [UpdraftPlus - Backup/Restore](https://es.wordpress.org/plugins/updraftplus/), y estoy volcando sobre una cuenta que tengo en dropbox con bastantes gigas libres (esto en su día con las invitaciones y un script en Perl.. fue **un filón de gigas**... da para una entrada en [informática viejuna](../infov/infv_guybrush.md)).
 
 Os **pedirá instalar algún componente de php, creo que curl** y poco más, la configuración sencilla, periodicidad de la copia, opciones, el destino (este es de los más completos, dropbox, s3, Swift, sftp, google drive, onedrive, etc) y la retención del backup.
 
