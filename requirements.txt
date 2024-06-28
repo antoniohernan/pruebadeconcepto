@@ -4,4 +4,4 @@ mkdocs-material==9.5.27
 mkdocs-redirects==1.2.1
 mkdocs-static-i18n==1.2.3
 mkdocs-simple-hooks==0.1.5
-mkdocs-rss-plugin==1.12.2
+mkdocs-rss-plugin==1.13.3
