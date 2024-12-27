@@ -1,6 +1,6 @@
 mkdocs==1.6.1
 mkdocs-awesome-pages-plugin==2.10.1
-mkdocs-material==9.5.48
+mkdocs-material==9.5.49
 mkdocs-redirects==1.2.2
 mkdocs-static-i18n==1.2.3
 mkdocs-simple-hooks==0.1.5
