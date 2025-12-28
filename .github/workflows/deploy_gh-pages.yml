@@ -47,6 +47,8 @@ jobs:
   build:
     name: MkDocs Github Pages automatic deployment
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs: 
       - linters 
       - scan_semgrep
