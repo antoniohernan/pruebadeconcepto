@@ -9,6 +9,8 @@ on:
       
 jobs:
   launch-repolint:
+    permissions:
+      contents: read
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}                                    # Only 1 instance at time 
     runs-on: ubuntu-latest
