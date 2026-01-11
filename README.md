@@ -2,10 +2,13 @@
 Blog personal basado en Github Pages
 
 ### Build Status
-[![MkDocs Deploy](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/deploy_gh-pages.yml/badge.svg)](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/deploy_gh-pages.yml)
-[![dependabot](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)](https://img.shields.io/badge/Dependabot-active-brightgreen.svg)
+Pendiente.
+Migrando de MkDocs a Zensical
 
-### Sast
+
+### Code Analysis
+[![CodeQL](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/github-code-scanning/codeql)
+[![Dependabot Updates](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/dependabot/dependabot-updates)
 [![Sast Semgrep](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/sast-semgrep.yml/badge.svg)](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/sast-semgrep.yml)
 [![Sast Gitleaks](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/sast_gitleaks.yml/badge.svg)](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/sast_gitleaks.yml)
 
@@ -14,5 +17,5 @@ Blog personal basado en Github Pages
 
 https://antoniohernan.github.io/pruebadeconcepto/
 
-Copyright: "&copy; 2019-2023 Antonio Hernan"
+Copyright: "&copy; 2019-2026 Antonio Hernan"
 License: "CC BY-SA 4.0"

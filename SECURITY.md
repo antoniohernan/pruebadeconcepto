@@ -7,7 +7,8 @@ Para versiones anteriores no soportadas, recomendamos actualizar a la versión m
 
 | Version | Soportada          |
 | ------- | ------------------ |
-| 1.0.x   | :white_check_mark: |
+| 2.0.x   | :white_check_mark: |
+| 1.0.x   | :x:                |
 | < 1.0   | :x:                |
 
 ## Reporte de Vulnerabilidades
