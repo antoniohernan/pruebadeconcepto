@@ -1,18 +1,11 @@
 name: MkDocs Deploy
-
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - '/docs/**'
-      - 'mkdocs.yml'
     
 jobs:
   linters:
     name: Repository linters
     runs-on: ubuntu-latest
+    permissions:                                                                         
+      contents: read
     steps:
       - name: Check out the code
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8                    #v6.0.1
@@ -47,6 +40,8 @@ jobs:
   build:
     name: MkDocs Github Pages automatic deployment
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs: 
       - linters 
       - scan_semgrep
