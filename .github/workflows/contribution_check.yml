@@ -1,0 +1,47 @@
+name: Contribution Check
+
+on:
+    pull_request:
+        types: [ opened, edited, synchronize ]
+        paths-ignore:
+            - '**.md'
+        branches: 
+            - main
+    
+jobs:
+  linters:
+    name: Repository linters
+    runs-on: ubuntu-latest
+    permissions:                                                                         
+      contents: read     
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8                    #v6.0.1
+      - name: Install NodeJs                                                               # Install Software NodeJs 
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f                  #v6.1.0
+        with:
+          node-version: 20
+      - name: Install repo-linter
+        run: |
+          npm install -g repolinter
+      - name: Run Repo Linter
+        run: |
+          repolinter --rulesetFile cfg/repolint.json lint .      
+  
+  scan_gitleaks:
+    permissions:                                                                         
+      contents: read
+    uses: ramshackle-code/sast_gitleaks/.github/workflows/sast_gitleaks.yml@0de5a68b4c898df6928e8913759357d5e95a86a6   #v1.3.1
+    with:
+      fetch-depth: 0
+      gitleaks-config: 'cfg/gitleaks.toml'
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+
+  scan_semgrep:
+    permissions:                                                                         
+      contents: read
+    uses: ramshackle-code/sast_semgrep/.github/workflows/sast_semgrep.yml@77751635f33b222b56bc198d6e0a2ab5722715c4   #v1.0.3
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+       
