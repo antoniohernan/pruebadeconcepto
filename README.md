@@ -2,15 +2,12 @@
 Blog personal basado en Github Pages
 
 ### Build Status
-Pendiente.
-Migrando de MkDocs a Zensical
-
+[![Deploy Pages](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/deploy-pages.yml)
 
 ### Code Analysis
 [![CodeQL](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/github-code-scanning/codeql)
 [![Dependabot Updates](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/dependabot/dependabot-updates/badge.svg)](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/dependabot/dependabot-updates)
-[![Sast Semgrep](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/sast-semgrep.yml/badge.svg)](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/sast-semgrep.yml)
-[![Sast Gitleaks](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/sast_gitleaks.yml/badge.svg)](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/sast_gitleaks.yml)
+[![Automatic Dependency Submission](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/dependency-graph/auto-submission/badge.svg)](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/dependency-graph/auto-submission)
 
 ### Linters
 [![Repository Linter](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/repolint.yml/badge.svg)](https://github.com/antoniohernan/pruebadeconcepto/actions/workflows/repolint.yml)
