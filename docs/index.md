@@ -5,18 +5,6 @@ License: "CC BY-SA 4.0"
 
 # Bienvenidos a pruebadeconcepto.es
 
-Este blog está en proceso de migración desde wordpres alojado en EC2 hacia github.com usando github pages y [Zensical.org](https://zensical.org).
-
-
----
-title: "pruebadeconcepto.es"
-copyright: "© 2019-2026 Antonio Hernan"
-license: "CC BY-SA 4.0"
-description: "Blog y documentación en proceso de migración desde WordPress en EC2 a GitHub Pages con MkDocs"
----
-
-# Bienvenidos a pruebadeconcepto.es
-
 Este sitio contiene artículos, notas técnicas y documentación que están siendo migrados desde una instalación WordPress alojada en EC2 hacia GitHub Pages usando MkDocs y ~~MkDocs-materials~~ [Zensical.org](https://zensical.org). El objetivo es disponer de una web ligera, versionada y fácilmente mantenible.
 
 ## Estado del proyecto
