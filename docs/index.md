@@ -5,12 +5,13 @@ License: "CC BY-SA 4.0"
 
 # Bienvenidos a pruebadeconcepto.es
 
-Este sitio contiene artículos, notas técnicas y documentación que están siendo migrados desde una instalación WordPress alojada en EC2 hacia GitHub Pages usando MkDocs y ~~MkDocs-materials~~ [Zensical.org](https://zensical.org). El objetivo es disponer de una web ligera, versionada y fácilmente mantenible.
+Este sitio contiene artículos, notas técnicas y documentación que están siendo migrados desde una instalación WordPress alojada en EC2 hacia GitHub Pages usando MkDocs y [Zensical.org](https://zensical.org). El objetivo es disponer de una web ligera, versionada y fácilmente mantenible.
 
 ## Estado del proyecto
 - Migración de contenidos: en curso (entradas y páginas prioritarias).
 - Infraestructura: WordPress (origen) → GitHub Pages (destino) con MkDocs.
 - Diseño: adopción de un tema estático y plantillas sencillas para facilitar la lectura y mantenimiento.
+- Mkdocs Materials -> Zensical, pendiente migrar mkdocs.yml a zensical.toml
 
 ## Contenido principal
 - Artículos técnicos y posts del blog.
