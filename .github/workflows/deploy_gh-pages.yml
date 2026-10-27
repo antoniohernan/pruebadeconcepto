@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8                    #v6.0.1
 
       - name: Set up Python 3.9
-        uses: actions/setup-python@4f41a90a1f38628c7ccc608d05fbafe701bc20ae                #v6.1.0
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97                #v6.1.0
         with:
           python-version: '3.9'
 
